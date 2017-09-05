@@ -1,0 +1,11 @@
+version: '3'
+services:
+  django:
+    build: .
+    image: merenda-django:dev
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 8000:8000
+    tty: true
+    command: /bin/bash -l -c 'python manage.py migrate && python manage.py runserver 0:8000' 
