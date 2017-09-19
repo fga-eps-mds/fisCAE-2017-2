@@ -1,91 +1,131 @@
-{% load static %}
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
-  <head>
+    <head>
 
-    <meta charset="utf-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Lancar - Bootstrap One-Page Portfolio Template</title>
 
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,400">        
+        <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="static/assets/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="static/assets/elegant-font/code/style.css">
+        <link rel="stylesheet" href="static/assets/css/animate.css">
+        <link rel="stylesheet" href="static/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="static/assets/css/form-elements.css">
+        <link rel="stylesheet" href="static/assets/css/style.css">
+        <link rel="stylesheet" href="static/assets/css/media-queries.css">
 
-    <title>FisCae</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- <link href="static/style.css" rel="stylesheet"> -->
-
-    <!-- Custom styles for this template -->
-    <link href="static/css/full-width-pics.css" rel="stylesheet">
-
-  </head>
-
-  <body>
-  <main class='container'>
-    
-  </main>
   
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+
+        <link rel="shortcut icon" href="static/assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="static/assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="static/assets/ico/apple-touch-icon-57-precomposed.png">
+
+    </head>
+
+    <body>
+    
+        <!-- Loader -->
+      <div class="loader">
+        <div class="loader-img"></div>
+      </div>
+    
+    <!-- Top menu -->
+    <nav class="navbar navbar-fixed-top" role="navigation">
       <div class="container">
-        <a class="navbar-brand" href="#">FisCae</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Sobre</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Serviços</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contato</a>
-            </li>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">FisCae</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="top-navbar-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a class="scroll-link" href="#top-content">Top</a></li>
+            <li><a class="scroll-link" href="#what-we-do">Serviços</a></li>
+            <li><a class="scroll-link" href="#contact">Contato</a></li>
           </ul>
         </div>
       </div>
     </nav>
+    
+   <div class="page-title top-content" style="position: relative; z-index: 0; background-image: none; background-position: initial initial; background-repeat: initial initial;">
+            <div class="page-title-text wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+              <h1>Bem vindo ao FisCae</h1>
+              <p>Bem vindo ao projeto FisCAE, plataforma criada pelos membros do Grupo 12 das matérias de Métodos de Desenvolvimento de Software (MDS) e Gestão de Portfólios e Projetos de Software (GPP) da Universidade de Brasília, Campus Gama (FGA)</p>
+            </div>
+        <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 722px; width: 2450px; z-index: -999998; position: absolute;"><img src="static/assets/img/backgrounds/1.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 2450px; height: 1378.125px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -328.0625px;"></div></div>
+    <!-- What we do -->
+        <div class="block-3-container section-container what-we-do-container">
+          <div class="container">
+              <div class="row">
+                  <div class="col-sm-12 block-3 section-description wow fadeIn">
+                      <div class="divider-1 wow fadeInUp"><span></span></div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-3 block-3-box wow fadeInUp">
+                    <div class="block-3-box-icon">
+                      <span aria-hidden="true" class="icon_pencil"></span>
+                    </div>
+                      <h3>Login</h3>
+                      <p>Descrição</p>
+                    </div>
+                    <div class="col-sm-3 block-3-box wow fadeInDown">
+                    <div class="block-3-box-icon">
+                      <span aria-hidden="true" class="icon_cogs"></span>
+                    </div>
+                      <h3>Alguma coisa</h3>
+                     <p>Descrição</p>
+                    </div>
+                    <div class="col-sm-3 block-3-box wow fadeInUp">
+                    <div class="block-3-box-icon">
+                      <span aria-hidden="true" class="social_twitter"></span>
+                    </div>
+                      <h3>Alguma coisa</h3>
+                      <p>Descrição</p>
+                    </div>
+                    <div class="col-sm-3 block-3-box wow fadeInDown">
+                    <div class="block-3-box-icon">
+                      <span aria-hidden="true" class="icon_lightbulb"></span>
+                    </div>
+                      <h3>Alguma coisa</h3>
+                      <p>Descrição</p>
+                    </div>
+              </div>
+          </div>
+        </div>
+   
+        
 
-    <!-- Header - set the background image for the header in the line below -->
-    <header class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1076');">
-      <img class="img-fluid d-block mx-auto" src="{% static 'img/fiscae.png' %}"  alt="" width="200" height="200">
-        <!-- <img src="{% static 'img/fiscae.png' %}" width="300" height="300"> -->
-    </header>
 
-    <!-- Content section -->
-    <section class="py-5">
-      <div class="container">
-        <h1>Projeto FisCae</h1>
-        <p class="lead">Bem vindo ao projeto FisCAE, plataforma criada pelos membros do Grupo 12 das matérias de Métodos de Desenvolvimento de Software (MDS) e Gestão de Portfólios e Projetos de Software (GPP) da Universidade de Brasília, Campus Gama (FGA)</p>
-      </div>
-    </section>
+        <!-- Javascript -->
+        <script src="static/assets/js/jquery-1.11.1.min.js"></script>
+        <script src="static/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="static/assets/js/jquery.backstretch.min.js"></script>
+        <script src="static/assets/js/wow.min.js"></script>
+        <script src="static/assets/js/retina-1.1.0.min.js"></script>
+        <script src="static/assets/js/jquery.magnific-popup.min.js"></script>
+        <script src="static/assets/js/waypoints.min.js"></script>
+        <script src="static/assets/js/jquery.countTo.js"></script>
+        <script src="static/assets/js/masonry.pkgd.min.js"></script>
+        <script src="static/assets/js/scripts.js"></script>
+        
+        <!--[if lt IE 10]>
+            <script src="static/assets/js/placeholder.js"></script>
+        <![endif]-->
 
-    <!-- Image Section - set the background image for the header in the line below -->
-    <section class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1081');">
-      <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
-      <div style="height: 200px;"></div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-5 bg-inverse">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-      </div>
-      <!-- /.container -->
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-  </body>
+    </body>
 
 </html>
+
