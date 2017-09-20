@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class advisor(models.Model):
     name=models.CharField(max_lenght=64, null=False)
     phone=models.CharField(max_lenght=13,null=True)
