@@ -14,3 +14,15 @@ class Checklist(models.Model):
 
     def validadeQuestion(self):
         pass
+    
+    @staticmethod
+    def readQuestion():
+        lista = []
+        arq = open("checklist/questions.txt","r")
+        lista = arq.readlines()
+        # lê linha por linha saltando 1
+        # for linha in arq:
+        # question = arq.readline()
+        # lista.append(question)
+        arq.close()    
+        return lista
