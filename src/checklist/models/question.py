@@ -1,5 +1,7 @@
 from django.db import models
 from .checklist import Checklist
+from django.template import loader
+from django.http import HttpResponse
 
 
 class Question(models.Model):
@@ -13,3 +15,16 @@ class Question(models.Model):
         choices=QUESTIONS_TYPE,
         default='Objetivas')
     description = models.TextField()
+
+
+
+    
+
+     
+
+
+        
+
+
+
+        
