@@ -3,8 +3,7 @@ from .school import School
 
 
 class Checklist(models.Model):
-    checklist = models.ForeignKey(School, on_delete=models.CASCADE)
-    questionList = models.TextField()
+    school = models.ForeignKey(School, related_name="checklists")
 
     def seedQuestions(self):
         pass
@@ -14,7 +13,7 @@ class Checklist(models.Model):
 
     def validadeQuestion(self):
         pass
-
+        
     @staticmethod
     def readQuestion():
         lista = []
@@ -24,5 +23,5 @@ class Checklist(models.Model):
         # for linha in arq:
         # question = arq.readline()
         # lista.append(question)
-        arq.close()   
+        arq.close()
         return lista

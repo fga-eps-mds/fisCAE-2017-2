@@ -1,18 +1,10 @@
 from django.db import models
-from .question import Question
 from .checklist import Checklist
+from .question import Question
 
 
 class Answer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    checklist = models.ForeignKey(Checklist, on_delete=models.CASCADE)
 
-    ANSWER_TYPE = (
-        ('O', 'Objetiva'),
-        ('D', 'Discursiva')
-    )
-
-    answer = models.TextField()
-
-    def __str__(self):
-        return self.answer
+    answer = models.CharField(max_length=255, null=False)
+    checklist = models.ForeignKey(Checklist, related_name="answers", on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, related_name="answers", on_delete=models.CASCADE)
