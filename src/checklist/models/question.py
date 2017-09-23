@@ -15,16 +15,3 @@ class Question(models.Model):
         choices=QUESTIONS_TYPE,
         default='Objetivas')
     description = models.TextField()
-
-
-
-    
-
-     
-
-
-        
-
-
-
-        
