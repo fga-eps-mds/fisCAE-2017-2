@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
     <head>
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>FisCae</title>
+        <title>FISCAE - plataforma de apoio ao CAE </title>
 
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,400">        
@@ -21,6 +20,7 @@
         <link rel="stylesheet" href="static/assets/css/media-queries.css">
 
   
+
         <link rel="shortcut icon" href="static/assets/ico/favicon.png">
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="static/assets/ico/apple-touch-icon-144-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/assets/ico/apple-touch-icon-114-precomposed.png">
@@ -51,9 +51,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="top-navbar-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a class="scroll-link" href="#top-content">Top</a></li>
-            <li><a class="scroll-link" href="#what-we-do">Serviços</a></li>
-            <li><a class="scroll-link" href="#contact">Contato</a></li>
+            <li><a href="#what-we-do">Login</a></li>
+            <li><a href="home">Home</a>
+            <li><a href="#what-we-do">Cartilha</a></li>
           </ul>
         </div>
       </div>
@@ -62,9 +62,9 @@
    <div class="page-title top-content" style="position: relative; z-index: 0; background-image: none; background-position: initial initial; background-repeat: initial initial;">
             <div class="page-title-text wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
               <h1>Bem vindo ao FisCae</h1>
-              <p>Bem vindo ao projeto FisCAE, plataforma criada pelos membros do Grupo 12 das matérias de Métodos de Desenvolvimento de Software (MDS) e Gestão de Portfólios e Projetos de Software (GPP) da Universidade de Brasília, Campus Gama (FGA)</p>
+              <p> Uma plataforma de apoio aos Conselheiros Alimentares Escolares de todo o Brasil!</p>
             </div>
-        <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 722px; width: 2450px; z-index: -999998; position: absolute;"><img src="static/assets/img/backgrounds/1.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 2450px; height: 1378.125px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -328.0625px;"></div></div>
+            <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 722px; width: 100%; z-index: -999998; position: absolute;"><img src="static/assets/img/backgrounds/BG_2.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1400px; height: 1000px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -328.0625px;"></div></div>
     <!-- What we do -->
         <div class="block-3-container section-container what-we-do-container">
           <div class="container">
@@ -76,31 +76,31 @@
               <div class="row">
                   <div class="col-sm-3 block-3-box wow fadeInUp">
                     <div class="block-3-box-icon">
-                      <span aria-hidden="true" class="icon_pencil"></span>
+                      <span aria-hidden="true" class="icon_key"></span>
                     </div>
                       <h3>Login</h3>
-                      <p>Descrição</p>
+                      <p>Acesse com seu id e senha para agendar reuniões e preencher formulário de visita</p>
                     </div>
                     <div class="col-sm-3 block-3-box wow fadeInDown">
                     <div class="block-3-box-icon">
-                      <span aria-hidden="true" class="icon_cogs"></span>
+                      <span aria-hidden="true" class="icon_book"></span>
                     </div>
-                      <h3><a href="{% url 'check' %}">Iniciar visita</a></h3>
-                     <p>Iniciar visita à escola.</p>
+                      <h3>Cartilha</h3>
+                     <p>Acesse aqui a cartilha do PNAE para os CAEs</p>
                     </div>
                     <div class="col-sm-3 block-3-box wow fadeInUp">
                     <div class="block-3-box-icon">
-                      <span aria-hidden="true" class="social_twitter"></span>
+                      <span aria-hidden="true" class="icon_pencil"></span>
                     </div>
-                      <h3>Alguma coisa</h3>
-                      <p>Descrição</p>
+                      <h3>Denúncia</h3>
+                      <p>Viu alguma irregularidade e quer informar aos orgão competentes? Clique aqui! </p>
                     </div>
                     <div class="col-sm-3 block-3-box wow fadeInDown">
                     <div class="block-3-box-icon">
-                      <span aria-hidden="true" class="icon_lightbulb"></span>
+                      <span aria-hidden="true" class="icon_info"></span>
                     </div>
-                      <h3>Alguma coisa</h3>
-                      <p>Descrição</p>
+                      <h3>Info</h3>
+                      <p>Quer saber mais sobre o CAE?</p>
                     </div>
               </div>
           </div>
@@ -124,8 +124,6 @@
         <!--[if lt IE 10]>
             <script src="static/assets/js/placeholder.js"></script>
         <![endif]-->
-
-
 
     </body>
 
