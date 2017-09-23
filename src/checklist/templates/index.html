@@ -7,8 +7,9 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>FisCae</title>
-
+        <title>FISCAE - plataforma de apoio ao CAE </title>
+        
+        
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,400">        
         <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrap.min.css">
@@ -46,14 +47,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">FisCae</a>
+          <a class="navbar-brand" href="">FisCae</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="top-navbar-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a class="scroll-link" href="#top-content">Top</a></li>
-            <li><a class="scroll-link" href="#what-we-do">Serviços</a></li>
-            <li><a class="scroll-link" href="#contact">Contato</a></li>
+              <li><a href="">CAE-DF</a></li>
+              <li><a href="findSchool">Iniciar Visita</a></li>
+              <li><a href="#what-we-do">Cartilha</a></li>
           </ul>
         </div>
       </div>
@@ -62,7 +63,7 @@
    <div class="page-title top-content" style="position: relative; z-index: 0; background-image: none; background-position: initial initial; background-repeat: initial initial;">
     <div class="page-title-text wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
       <h1>Bem vindo ao FisCae</h1>
-      <p>Bem vindo ao projeto FisCAE, plataforma criada pelos membros do Grupo 12 das matérias de Métodos de Desenvolvimento de Software (MDS) e Gestão de Portfólios e Projetos de Software (GPP) da Universidade de Brasília, Campus Gama (FGA)</p>
+      <p>Uma plataforma de apoio aos Conselheiros Alimentares Escolares de todo o Brasil! Escolha uma das opções abaixo para navegar nas funcionalidades do nosso sistema:</p>
     </div>
     <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 722px; width: 100%; z-index: -999998; position: absolute; ">
         <img src="static/assets/img/backgrounds/BG_2.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 100%; height: auto; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -328.0625px;">
@@ -81,29 +82,29 @@
                     <div class="block-3-box-icon">
                       <span aria-hidden="true" class="icon_pencil"></span>
                     </div>
-                      <h3>Login</h3>
-                      <p>Descrição</p>
+                      <h3>Agendar reunião ou visita</h3>
+                      <p>Marque as reuniões e visitas</p>
                     </div>
                     <div class="col-sm-3 block-3-box wow fadeInDown">
                     <div class="block-3-box-icon">
-                      <span aria-hidden="true" class="icon_cogs"></span>
+                      <span aria-hidden="true" class="icon_key"></span>
                     </div>
-                      <h3><a href="{% url 'check' %}">Iniciar visita</a></h3>
+                      <h3><a href="{% url 'findSchool' %}">Iniciar visita a uma escola</a></h3>
                      <p>Iniciar visita à escola.</p>
                     </div>
                     <div class="col-sm-3 block-3-box wow fadeInUp">
                     <div class="block-3-box-icon">
-                      <span aria-hidden="true" class="social_twitter"></span>
+                      <span aria-hidden="true" class="icon_pencil"></span>
                     </div>
-                      <h3>Alguma coisa</h3>
-                      <p>Descrição</p>
+                      <h3>Denúncia</h3>
+                      <p>Viu alguma irregularidade e quer informar aos orgãos competentes?</p>
                     </div>
                     <div class="col-sm-3 block-3-box wow fadeInDown">
                     <div class="block-3-box-icon">
-                      <span aria-hidden="true" class="icon_lightbulb"></span>
+                      <span aria-hidden="true" class="icon_pencil"></span>
                     </div>
-                      <h3>Alguma coisa</h3>
-                      <p>Descrição</p>
+                      <h3>Cartilha</h3>
+                      <p>Acesse aqui a cartilha do PNAE para os CAEs</p>
                     </div>
               </div>
           </div>

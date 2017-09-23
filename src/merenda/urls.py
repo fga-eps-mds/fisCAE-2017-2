@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^check', views.check, name='check'),
     url(r'^home', views.home, name='home'),
     url(r'^findSchool', views.findSchool, name='findSchool'),
+    url(r'formSelect', views.formSelect, name='formSelect')
 ]

@@ -18,6 +18,10 @@ def findSchool(request):
     return render(request, 'findSchool.html')
 
 
+def formSelect(request):
+    return render(request, 'formSelect.html')
+
+
 def check(request):
     html = ''
     newQuestion = Checklist()

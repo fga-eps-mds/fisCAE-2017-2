@@ -1,6 +1,6 @@
 
 body {
-	background: #3F4483;
+	background: #98A0F0;
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     color: rgb(255, 255, 255);
@@ -194,7 +194,7 @@ ul.navbar-nav li a:focus { background: none; color:#3D2BA5; outline: 0; }
 .navbar-brand {
 	width: 117px;
 	height: 66px;
-	background: url(../img/logo.png) left center no-repeat;
+	background: url(../img/logo.jpg) left center no-repeat;
 	text-indent: -99999px;
 }
 
