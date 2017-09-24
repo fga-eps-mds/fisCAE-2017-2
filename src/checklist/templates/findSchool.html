@@ -64,12 +64,22 @@
       <h1>Olá CAE, vamos iniciar a visita?</h1>
       <!-- <p> Entre com o nome da escola em que a visita será realizada:</p> -->
     </div>
-    <!-- <label for="pwd">Nome da escola:</label> -->
-    <input type="text" name="school" value="" placeholder="Digite o nome da escola" size="80"><br><br>
+
 
     <div class="container">
+      
+
+    <!-- <label for="pwd">Nome da escola:</label> -->
+    <form action="{% url 'findSchool' %}" method="post">
+      <input id="id_school" name="school" type="text" class="" placeholder="Digite o nome da escola" style="width: 80%; height: 60px"   required>
+      <hr/>
+      <button class="btn btn-info" style="width: 400px; height: 50px" type="submit">Iniciar Checklists</button>
+    </form>
+
+    <!-- <input type="text" name="school" value="" placeholder="Digite o nome da escola" size="80"><br><br> -->
+ 
       <!-- <a class="btn btn-info" role="button" href="#checklists">Iniciar Checklists</a> -->
-      <input class="btn btn-info" type="button" value="Iniciar Checklists" onclick="location.href='formSelect'" style="width: 300px; height: 50px">
+      <!-- <input class="btn btn-info" type="button" value="Iniciar Checklists" onclick="location.href='formSelect'" style="width: 300px; height: 50px"> -->
     </div>
     <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 722px; width: 100%; z-index: -999998; position: absolute;"><img src="static/assets/img/backgrounds/" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 2450px; height: 1378.125px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -328.0625px;"></div>
   </div>

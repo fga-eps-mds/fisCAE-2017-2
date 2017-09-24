@@ -15,6 +15,7 @@ def home(request):
 
 
 def findSchool(request):
+    
     return render(request, 'findSchool.html')
 
 
