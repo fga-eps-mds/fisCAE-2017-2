@@ -1,9 +1,6 @@
 from django.shortcuts import render
-from django.template import loader
-from django.http import HttpResponse
 from .models.checklist import Checklist
-from django.template import RequestContext
-from django.template import Template
+from checklist.models import School
 
 
 def index(request):
@@ -15,8 +12,24 @@ def home(request):
 
 
 def findSchool(request):
-    
-    return render(request, 'findSchool.html')
+    listSchool = School()
+    listSchool = listSchool.searchSchool()
+    foundSchool = ''
+    try:
+        if request.method == 'POST':
+            schoolName = request.POST.get('school', 'Não encontrado!!')
+            # foundSchool = School.searchSchool(schoolName)
+            for l in listSchool:
+                if l.name == schoolName:
+                    foundSchool = schoolName
+                    return render(request, 'formSelect.html')            
+        return render(request, 'findSchool.html', {'foundSchool': foundSchool, 'schoolName': schoolName})
+    except:
+        return render(request, 'findSchool.html', {'erro': 'Escola não encontrada!!'})
+        
+    # school = School(request.POST)
+    # escola = School.searchSchool(school)
+    # return render(request, 'findSchool.html', {'escola': escola})
 
 
 def formSelect(request):

@@ -9,3 +9,10 @@ class School(models.Model):
     address = models.TextField()
     phone = models.TextField()
     principal = models.TextField()
+
+    def searchSchool(request):
+        # school = School.objects.get(name__contains=school)
+        school = []
+        school = School.objects.all()
+        return school
+    
