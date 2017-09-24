@@ -6,17 +6,18 @@
 </head>
 <body>
     <h1>registrar</h1>
-    <p>id*</p>
-    <forms method= post>
-        <input type="text" name="id" maxlength="10"> </br>
+    <p>nome de usuario*</p>
+    <form method= "POST" action="{% url 'registro' %}">
+        {%csrf_token%}
+        <input type="text" name="username" maxlength="10"> </br>
         <p>nome*</p>
-        <input type="text" name="nome" maxlength="64"> </br>
+        <input type="text" name="name" maxlength="64"> </br>
         <p>email*</p>
         <input type="email" name="email" maxlength="100"></br>
         <p>cpf*</p>
-        <input type="number" name="cpf1" min="0" max="999">.<input type="number" name="cpf2" min="0" max="999">.<input type="number" name="cpf3" min="0" max="999">-<input type="number" name="cpf4" min="0" max="99"></br>
+        <input type="number" name="cpf" min="0" max="99999999999">
         <p>telefone</p>
-        <input type="number" name="ddd" min="0" max="99"><input type="number" name="telefone" min="0" max="999999999"></br>
+        <input type="number" name="phone" min="0" max="99999999999"></br>
         <p>cep*</p>
         <input type="number" name="cep" min="0" max="99999999"></br>
         <p>uf* </p>
@@ -28,10 +29,9 @@
         <p> complemento</p>
         <input type="text" name="descricao" maxlength="50"> </br>
         <p>senha*</p>
-        <input type="password" name="senha" maxlength="10"> </br>
+        <input type="password" name="password" maxlength="10"> </br>
         <p>confirme sua senha*</p>
-        <input type="password" name="confirme" maxlength="10"></br>
-        <button type="button">registrar</button>
+        <button type="submit">registrar</button>
 
     </forms>
     <p>*itens obrigatórios</p>

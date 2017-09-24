@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
-class advisor(models.Model):
+class Advisor(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=64, null=False)
     phone = models.CharField(max_length=13, null=True)
     email = models.CharField(max_length=100, null=True)
