@@ -6,12 +6,13 @@
 </head>
 <body>
     <h3>login</h3>
-    <form method="POST">
-    <p>id</p>
-    <input type="text" name="username" maxlength="10"> </br>
-    <p>senha</p>
-    <input type="password" name="password" maxlength="10"> </br>
-    <button type="submit">entrar</button>
+    <form method="POST" action="{%url 'login'%}">
+        {%csrf_token%}
+        <p>id</p>
+        <input type="text" name="username" maxlength="10"> </br>
+        <p>senha</p>
+        <input type="password" name="password" maxlength="10"> </br>
+        <button type="submit">entrar</button>
     </form>
 </body>
 </html>
