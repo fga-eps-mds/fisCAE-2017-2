@@ -33,12 +33,13 @@ def register(request):
         advisor.bairro = request.POST['bairro']
         advisor.municipio = request.POST['municipio']
         advisor.uf = request.POST['uf']
+        # endereço
         password = request.POST['password']
         username = request.POST['username']
         user = User.objects.create_user(username=username, password=password)
         advisor.user = user
         advisor.save()
-        return render(request, 'index.html')
+        return render(request, 'login.html')
     else:
         return render(request, 'registro.html')
 
