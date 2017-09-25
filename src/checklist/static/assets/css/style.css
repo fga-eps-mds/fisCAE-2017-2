@@ -189,14 +189,12 @@ ul.navbar-nav li a { padding-top: 23px; padding-bottom: 23px; color: #fff; }
 ul.navbar-nav li a:hover { background: none; color:#3D2BA5; }
 ul.navbar-nav li a:focus { background: none; color:#3D2BA5; outline: 0; }
 
-.navbar>.container .navbar-brand { margin-left: 0; }
+.navbar>.container 
 
-.navbar-brand {
-	width: 117px;
-	height: 66px;
-	background: url(../img/logo.jpg) left center no-repeat;
-	text-indent: -99999px;
+.navbar-header {
+		max-width: 70px;
 }
+
 
 
 /***** Page title *****/
