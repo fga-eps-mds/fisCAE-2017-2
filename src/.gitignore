@@ -5,4 +5,4 @@
 # Logs and databases #
 ######################
 *.sql
-*.db.sqlite3
+*.sqlite3
