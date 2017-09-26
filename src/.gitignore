@@ -1,0 +1,9 @@
+# Compiled source #
+###################
+*.pyo
+*.pyc
+*~
+
+# Logs and databases #
+######################
+*.sqlite
