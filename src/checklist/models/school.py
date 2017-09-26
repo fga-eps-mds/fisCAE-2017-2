@@ -15,4 +15,3 @@ class School(models.Model):
         school = []
         school = School.objects.all()
         return school
-    
