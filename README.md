@@ -1,5 +1,5 @@
 <b><p align="center">
-<img src="https://github.com/fga-gpp-mds/fisCAE-2017-2/blob/Mateusas3s-patch-1/photo5001714833711802342.jpg">
+<img src="https://i.imgur.com/PTkqmJC.png">
 </p></br>
 
 # Projeto fisCAE
