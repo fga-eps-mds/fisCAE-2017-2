@@ -53,7 +53,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="">CAE-DF</a></li>
                     <li><a href="findSchool">Iniciar Visita</a></li>
-                    <li><a href="#what-we-do">Cartilha</a></li>
+                    <li><a href="{% url 'view_pdf_cae' %}">Cartilha</a></li>
                 </ul>
             </div>
         </div>
@@ -100,7 +100,7 @@
                     <p>Viu alguma irregularidade e quer informar aos orgãos competentes?</p>
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInDown">
-                    <div class="block-3-box-icon">
+                    <div class="block-3-box-icon" href="{% url 'view_pdf_cae' %}">
                         <span aria-hidden="true" class="icon_pencil"></span>
                     </div>
                     <h3>Cartilha</h3>
