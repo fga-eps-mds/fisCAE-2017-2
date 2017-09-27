@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt_br">
-<head>
-    <meta charset="UTF-8">
-    <title>fiscae</title>
-</head>
-<body>
-    <h3>login</h3>
-    <form method="POST" action="{%url 'login'%}">
-        {%csrf_token%}
-        <p>nome de usuario</p>
-        <input type="text" name="username" maxlength="30" required> </br>
-        <p>senha</p>
-        <input type="password" name="password" maxlength="30" required> </br>
-        <button type="submit">entrar</button>
-    </form>
-</body>
-</html>
+{% extends "base.html" %}
+{% block body %}
+<h3>login</h3>
+<form method="POST" action="{%url 'login'%}">
+    {%csrf_token%}
+    <p>nome de usuario</p>
+    <input type="text" name="username" maxlength="30" required> </br>
+    <p>senha</p>
+    <input type="password" name="password" maxlength="30" required> </br>
+    <button type="submit">entrar</button>
+</form>
+{% endblock %}
