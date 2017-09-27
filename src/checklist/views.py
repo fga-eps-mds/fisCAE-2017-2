@@ -66,11 +66,6 @@ def viewChecklist(request):
     )
 
 
-def showChecklist(request):
-    listQuestions = Question.listQuestionsMethod()
-    return render(request, 'tecForm.html', {'listQuestions': listQuestions})
-
-
 def tecForm(request):
     listQuestions = Question.listQuestionsMethod()
     return render(request, 'tecForm.html', {'listQuestions': listQuestions})
