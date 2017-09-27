@@ -9,13 +9,10 @@ class Checklist(models.Model):
         on_delete=models.CASCADE
     )
 
-    def seedQuestions(self):
-        pass
-
     def getQuestions(self):
         pass
 
-    def validadeQuestion(self):
+    def validaQuestion(self):
         pass
 
     @staticmethod
