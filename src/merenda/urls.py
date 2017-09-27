@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^home', views.home, name='home'),
     url(r'^findSchool', views.findSchool, name='findSchool'),
     url(r'^formSelect', views.formSelect, name='formSelect'),
+    url(r'^tecForm', views.tecForm, name='tecForm'),
     url(r'^viewChecklist', views.viewChecklist, name='viewChecklist'),
 ]

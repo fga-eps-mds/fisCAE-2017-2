@@ -64,3 +64,12 @@ def viewChecklist(request):
         'viewchecklist.html',
         {'answers': answers, 'questions': questions, 'schools': schools}
     )
+
+
+def tecForm(request):
+    questions = Question.objects.all()
+    return render(
+        request,
+        'tecForm.html',
+        {'questions': questions},
+        )
