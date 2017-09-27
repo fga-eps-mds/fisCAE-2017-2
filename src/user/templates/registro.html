@@ -9,27 +9,27 @@
     <p>nome de usuario*</p>
     <form method= "POST" action="{% url 'registro' %}">
         {%csrf_token%}
-        <input type="text" name="username" maxlength="10"> </br>
+        <input type="text" name="username" maxlength="30" required> </br>
         <p>nome*</p>
-        <input type="text" name="name" maxlength="64"> </br>
+        <input type="text" name="name" maxlength="64" required> </br>
         <p>email*</p>
-        <input type="email" name="email" maxlength="100"></br>
+        <input type="email" name="email" maxlength="100" required></br>
         <p>cpf*</p>
-        <input type="number" name="cpf" min="0" max="99999999999">
-        <p>telefone</p>
-        <input type="number" name="phone" min="0" max="99999999999"></br>
+        <input type="number" name="cpf" min="0" max="99999999999" required>
+        <p>telefone(escreva seu numero junto com o ddd, caso não tenha telefone deixe em branco)</p>
+        <input type="number" name="phone" min="1000000000" max="99999999999"></br>
         <p>cep*</p>
-        <input type="number" name="cep" min="0" max="99999999"></br>
+        <input type="number" name="cep" min="0" max="99999999" required></br>
         <p>uf* </p>
-        <input type="text" name="uf" maxlength="2"> </br>
+        <input type="text" name="uf" maxlength="2" required> </br>
         <p>municipio*</p>
-        <input type="text" name="municipio" maxlength="30"> </br>
+        <input type="text" name="municipio" maxlength="30" required> </br>
         <p>bairro*</p>
-        <input type="text" name="bairro" maxlength="30"> </br>
+        <input type="text" name="bairro" maxlength="30" required> </br>
         <p> complemento</p>
         <input type="text" name="descricao" maxlength="50"> </br>
         <p>senha*</p>
-        <input type="password" name="password" maxlength="10"> </br>
+        <input type="password" name="password" maxlength="30" required> </br>
         <button type="submit">registrar</button>
 
     </forms>
