@@ -3,7 +3,11 @@ from .school import School
 
 
 class Checklist(models.Model):
-    school = models.ForeignKey(School, related_name="checklists")
+    school = models.ForeignKey(
+        School,
+        related_name="checklists",
+        on_delete=models.CASCADE
+    )
 
     def seedQuestions(self):
         pass
@@ -13,7 +17,7 @@ class Checklist(models.Model):
 
     def validadeQuestion(self):
         pass
-        
+
     @staticmethod
     def readQuestion():
         lista = []
