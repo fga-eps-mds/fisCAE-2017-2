@@ -1,9 +1,14 @@
-
+#personalizado {
+	border-style: solid;
+	border-radius: 50px;
+	border-color: rgba(255, 255, 255, 0.4);
+	background: rgba(255, 255, 255, 0.6);	
+}
 body {
 	background: #98A0F0;
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
-    color: rgb(255, 255, 255);
+    color: rgba(255, 255, 255, 0.1);
     text-align: center;
 }
 
