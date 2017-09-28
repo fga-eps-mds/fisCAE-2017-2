@@ -3,7 +3,7 @@
 <h1>Cadastro</h1>
 <form method="POST" action="{%url 'registro'%}">
    {%csrf_token%}
-   <p>usuario já existente</p>
+   <p class="error">usuário já existente</p>
    <input type="text" name="username" maxlength="30" placeholder="Username" required></br>
    <input type="text" name="name" maxlength="64" required placeholder="Nome"></br>
    <input type="email" name="email" maxlength="100" required placeholder="Email"></br>
