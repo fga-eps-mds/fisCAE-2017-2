@@ -52,7 +52,7 @@ def register(request):
         else:
             return render(request, 'registro.html')
     except:
-        return render(request, 'registroException.html')
+        return render(request, 'registro.html')
 
 
 @login_required
