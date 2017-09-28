@@ -51,7 +51,12 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="top-navbar-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{% url 'login' %}">Login</a></li>
+                    {% if request.user and not request.user.is_authenticated %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                    {% else %}
+                        <li><a href=" # ">{{ request.user.username }}</a></li> 
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% endif %}
                     <li><a href="#">Sobre</a></li>
                     <li><a href="{% url 'view_pdf_cae' %}">Cartilha</a></li>
                 </ul>
@@ -70,11 +75,14 @@
         </div>
     </div>
     <!-- What we do -->
+    {% if request.user and request.user.is_authenticated %}
     <div class="block-3-container section-container what-we-do-container">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 block-3 section-description wow fadeIn">
-                    <div class="divider-1 wow fadeInUp"><span></span></div>
+                    <div class="divider-1 wow fadeInUp">
+                        <span style="width: 100%"></span>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -103,12 +111,13 @@
                     <div class="block-3-box-icon" href="{% url 'view_pdf_cae' %}">
                         <span aria-hidden="true" class="icon_pencil"></span>
                     </div>
-                    <h3>Cartilha</h3>
+                    <a href="{% url 'view_pdf_cae' %}"><h3>Cartilha</h3></a>
                     <p>Acesse aqui a cartilha do PNAE para os CAEs</p>
                 </div>
             </div>
         </div>
     </div>
+    {% endif %}
 
 
 
