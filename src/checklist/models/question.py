@@ -12,9 +12,9 @@ class Question(models.Model):
         with open('checklist/static/assets/items_checklist.json') as json_file:
             checklist = json.load(json_file)
             for item in checklist['items']:
-                Question(item_number=item['item_number'], description=item['description']).save()
-    
+                Question(item_number=item['item_number'],
+                         description=item['description']).save()
+
     @staticmethod
     def listQuestionsMethod():
         return Question.objects.all()
-        
