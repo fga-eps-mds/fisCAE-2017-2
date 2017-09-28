@@ -1,8 +1,14 @@
  {% extends "base.html" %}
  {% block body %}
-<h1>Cadastro</h1>
+
+<a id="positionT">  
+    <h1>Cadastro</h1>
+ </a>
+
+ <a id="positionForm">                
 <form method="POST" action="{%url 'registro'%}">
     {%csrf_token%}
+            
     <input type="text" name="username" maxlength="30" placeholder="Username" required></br>
     <input type="text" name="name" maxlength="64" required placeholder="Nome"></br>
     <input type="email" name="email" maxlength="100" required placeholder="Email"></br>
@@ -15,5 +21,6 @@
     <input type="text" name="descricao" maxlength="50" placeholder="Decrição"> </br>
     <input type="password" name="password" maxlength="30" required placeholder="Senha" size="50px 50px"> </br>
     <button type="submit" class="btn btn-primary btn-block btn-large">Salvar</button><br>
+    </a>
 </form>
 {% endblock %}
