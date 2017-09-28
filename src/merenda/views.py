@@ -75,5 +75,3 @@ def access_doc(request):
 
 def view_pdf_cae(request):
 	return render(request, 'view_pdf_cae.html')
-
-
