@@ -77,21 +77,14 @@
         <div class="container">
             <div class="form-group-item" style "visibility: visible;"></div>
               <ul class="form-group"></ul>
-              {% for question in questions %}
+              {% for question in listQuestions %}
               <a href="#tec-form" class="form-group-item"></a>
                 <h4 class="form-group-item-heading">
                     <div method="POST" id="answer" class="post-form"></div>
                   {{ question.id }}. {{ question.description }}
                   <form>
-                    <div class="radio">
-                      <label><input type="radio" name="optradio">Sim</label>
-                    </div>
-                    <div class="radio">
-                      <label><input type="radio" name="optradio">Não</label>
-                    </div>
-                    <div class="radio disabled">
-                      <label><input type="radio" name="optradio" >Não se aplica</label>
-                     
+                    <div class="checkbox">
+                      <label><input type="checkbox" name="yesCheck">Sim</label>
                     </div>
                   </form>
                   <p></p>
