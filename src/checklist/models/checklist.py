@@ -20,7 +20,7 @@ class Checklist(models.Model):
         lista = []
         arq = open("checklist/questions.txt", "r")
         lista = arq.readlines()
-        # lê linha por linha saltando 1
+        # le linha por linha saltando 1
         # for linha in arq:
         # question = arq.readline()
         # lista.append(question)
