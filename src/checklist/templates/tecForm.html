@@ -64,9 +64,7 @@
   <div class="page-title-text wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;"></div>
       <div class="container"></div>
          <div class="form-group section-container checklists-container"></div>
-            
-                <h3>Checklist 1 - Condições Higiênico Sanitárias:</h3>
-                      
+                <h3></h3>
         </div>
       </div>
   </div>
@@ -77,26 +75,30 @@
         <div class="container">
             <div class="form-group-item" style "visibility: visible;"></div>
               <ul class="form-group"></ul>
+
+    <div id="personalizado">
+      <br><br><h3>Checklist 1 - Condições Higiênico Sanitárias:</h3><br>
               {% for question in listQuestions %}
-              <a href="#tec-form" class="form-group-item"></a>
-                <h4 class="form-group-item-heading">
+                  {% if question.id >= 5 and question.id <= 57 %}              
+                    <a href="#tec-form" class="form-group-item"></a>
+                    <h4 class="form-group-item-heading">
                     <div method="POST" id="answer" class="post-form"></div>
-                  {{ question.id }}. {{ question.description }}
-                  <form>
-                    <div class="checkbox">
-                      <label><input type="checkbox" name="yesCheck">Sim</label>
-                    </div>
-                  </form>
-                  <p></p>
-                </h4>
-                {% endfor %}
-            
-                <button type="submit" class="btn btn-default">Enviar</button>
-  
+                        <a> {{ question.id }}. {{ question.description }}</a> 
+                        <!-- {{ question.id }}. {{ question.description }} -->
+                        <form>
+                          <div class="checkbox">
+                            <a><label><input type="checkbox" name="yesCheck">Sim</label></a> 
+                          </div>
+                        </form>
+                    <p></p>
+                    </h4>
+                  {% endif %}
+              {% endfor %}
+              <button type="submit" class="btn btn-default">Enviar</button> <br><br>
+            </div>
           </div>
         </div>
-      </div>
-
+    </div>
 
 
 

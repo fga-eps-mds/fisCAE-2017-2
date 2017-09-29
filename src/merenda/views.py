@@ -70,8 +70,10 @@ def tecForm(request):
     listQuestions = Question.listQuestionsMethod()
     return render(request, 'tecForm.html', {'listQuestions': listQuestions})
 
+
 def access_doc(request):
-	return render(request, 'access_doc.html')
+    return render(request, 'access_doc.html')
+
 
 def view_pdf_cae(request):
-	return render(request, 'view_pdf_cae.html')
+    return render(request, 'view_pdf_cae.html')
