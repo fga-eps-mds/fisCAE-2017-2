@@ -1,32 +1,26 @@
+ {% extends "base.html" %}
+ {% block body %}
 
-{% extends "base.html" %}
-{% block body %}
-    <h1>registrar</h1>
-<form method="POST" action="{% url 'registro' %}">
+<a id="positionT">  
+    <h1>Cadastro</h1>
+ </a>
+
+ <a id="positionForm">                
+<form method="POST" action="{%url 'registro'%}">
     {%csrf_token%}
-    <p>nome de usuario*</p>
-    <input type="text" name="username" maxlength="30" required> </br>
-    <p>nome*</p>
-    <input type="text" name="name" maxlength="64" required> </br>
-    <p>email*</p>
-    <input type="email" name="email" maxlength="100" required></br>
-    <p>cpf*</p>
-    <input type="number" name="cpf" min="0" max="99999999999" required>
-    <p>telefone(escreva seu numero junto com o ddd, caso não tenha telefone deixe em branco)</p>
-    <input type="number" name="phone" min="1000000000" max="99999999999"></br>        <p>cep*</p>
-    <input type="number" name="cep" min="0" max="99999999" required></br>
-    <p>uf* </p>
-    <input type="text" name="uf" maxlength="2" required> </br>
-    <p>municipio*</p>
-    <input type="text" name="municipio" maxlength="30" required> </br>
-    <p>bairro*</p>
-    <input type="text" name="bairro" maxlength="30" required> </br>
-    <p> complemento</p>
-    <input type="text" name="descricao" maxlength="50"> </br>
-    <p>senha*</p>
-    <input type="password" name="password" maxlength="30" required> </br>
-    <button type="submit">registrar</button>
-
-</forms>
-        <p>*itens obrigatórios</p>
+            
+    <input type="text" name="username" maxlength="30" placeholder="Username" required></br>
+    <input type="text" name="name" maxlength="64" required placeholder="Nome"></br>
+    <input type="email" name="email" maxlength="100" required placeholder="Email"></br>
+    <input type="number" name="cpf" min="0" max="99999999999" placeholder="Cpf" required="required"><br>
+    <input type="number" name="phone" min="1000000000" max="99999999999" placeholder="Telefone"></br>
+    <input type="number" name="cep" min="0" max="99999999" required placeholder="Cep"></br>
+    <input type="text" name="uf" maxlength="2" required placeholder="Uf"> </br>
+    <input type="text" name="municipio" maxlength="30" required placeholder="Municipio"> </br>
+    <input type="text" name="bairro" maxlength="30" required placeholder="Bairro"> </br>
+    <input type="text" name="descricao" maxlength="50" placeholder="Decrição"> </br>
+    <input type="password" name="password" maxlength="30" required placeholder="Senha" size="50px 50px"> </br>
+    <button type="submit" class="btn btn-primary btn-block btn-large">Salvar</button><br>
+    </a>
+</form>
 {% endblock %}
