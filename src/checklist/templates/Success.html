@@ -77,24 +77,10 @@
               <ul class="form-group"></ul>
 
     <div id="personalizado">
-      <br><br><h3>Checklist 2 - Condições Higiênico Sanitárias:</h3><br>
-              {% for question in listQuestions %}
-                  {% if question.id >= 5 and question.id <= 57 %}              
-                    <a href="#tec-form" class="form-group-item"></a>
-                    <h4 class="form-group-item-heading">
-                    <div method="POST" id="answer" class="post-form"></div>
-                        <a> {{ question.id }}. {{ question.description }}</a> 
-                        <!-- {{ question.id }}. {{ question.description }} -->
-                        <form>
-                          <div class="checkbox">
-                            <a><label><input type="checkbox" name="yesCheck">Sim</label></a> 
-                          </div>
-                        </form>
-                    <p></p>
-                    </h4>
-                  {% endif %}
-              {% endfor %}
-              <button type="submit" onclick="location.href = 'Success'" class="btn btn-default">Enviar</button> <br><br>
+      <br><br><h3>Checklist 1 - Condições Higiênico Sanitárias preenchido com Sucesso!!</h3><br><br>
+      
+      <br><br><a href="formSelect">Voltar aos formulários</a><br><br>
+             
             </div>
           </div>
         </div>
