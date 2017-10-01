@@ -8,7 +8,7 @@
  <a id="positionForm">                
 <form method="POST" action="{%url 'registro'%}">
     {%csrf_token%}
-            
+    <p class="error" id="password-validation"></p>       
     <input type="text" name="username" maxlength="30" placeholder="Username" required></br>
     <input type="text" name="name" maxlength="64" required placeholder="Nome"></br>
     <input type="email" name="email" maxlength="100" required placeholder="Email"></br>
@@ -19,8 +19,27 @@
     <input type="text" name="municipio" maxlength="30" required placeholder="Municipio"> </br>
     <input type="text" name="bairro" maxlength="30" required placeholder="Bairro"> </br>
     <input type="text" name="descricao" maxlength="50" placeholder="Decrição"> </br>
-    <input type="password" name="password" maxlength="30" required placeholder="Senha" size="50px 50px"> </br>
-    <button type="submit" class="btn btn-primary btn-block btn-large">Salvar</button><br>
+    <input type="password" name="password" id="password" maxlength="30" required placeholder="Senha" oninput="validatePassword();" size="50px 50px"> </br>
+    <input type="password"  id="password_confirmation" maxlength="30" required placeholder="Confirmar senha" oninput="validatePassword();" size="50px 50px"> </br>
+    <button type="submit" id="submit-register" class="btn btn-primary btn-block btn-large">Salvar</button><br>
     </a>
 </form>
+<script type="text/javascript">
+    var passwordInput = document.getElementById('password');
+    var passwordConfirmationInput = document.getElementById('password_confirmation');
+    var passwordValidation = document.getElementById('password-validation');
+    var submitInput = document.getElementById('submit-register');
+    submitInput.disabled = true;
+    function validatePassword() {
+        if(passwordInput.value === '' || passwordConfirmationInput.value === '') 
+            return;
+        if(passwordInput.value !== passwordConfirmationInput.value) {
+            passwordValidation.innerHTML = 'você está inserindo uma senha diferente no campo de confirmar senha</p>';
+            submitInput.disabled = true;
+        } else {
+            passwordValidation.innerHTML = '';
+            submitInput.disabled = false;
+        }
+    };
+</script>
 {% endblock %}

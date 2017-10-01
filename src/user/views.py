@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from .models import Advisor
 from django.contrib.auth.models import User
-from django.contrib.auth import login as django_login, authenticate, logout as django_logout
+from django.contrib.auth import login as django_login, authenticate
+from django.contrib.auth import logout as django_logout
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
 
 def login(request):
     if request.method == 'POST':
@@ -18,17 +20,6 @@ def login(request):
         return render(request, 'login.html')
     else:
         return render(request, 'login.html')
-
-def logout(request):
-    if request.user.is_authenticated:
-        django_logout(request)
-        return HttpResponseRedirect(reverse('index'))
-
-
-def logout(request):
-    if request.user.is_authenticated:
-        django_logout(request)
-        return HttpResponseRedirect(reverse('index'))
 
 
 def register(request):
