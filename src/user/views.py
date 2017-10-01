@@ -28,30 +28,30 @@ def logout(request):
 
 
 def register(request):
-    try:
-        if request.method == 'POST':
-            advisor = Advisor()
-            advisor.name = request.POST['name']
-            advisor.phone = request.POST['phone']
-            advisor.email = request.POST['email']
-            advisor.cpf = request.POST['cpf']
-            # endereço
-            advisor.cep = request.POST['cep']
-            advisor.descricao = request.POST['descricao']
-            advisor.bairro = request.POST['bairro']
-            advisor.municipio = request.POST['municipio']
-            advisor.uf = request.POST['uf']
-            # endereço
-            password = request.POST['password']
+    if request.method == 'POST':
+        advisor = Advisor()
+        try:
             username = request.POST['username']
+            password = request.POST['password']
             user = User.objects.create_user(username=username,
                                             password=password)
             advisor.user = user
-            advisor.save()
-            return render(request, 'login.html')
-        else:
-            return render(request, 'registro.html')
-    except:
+        except:
+            return render(request, 'registroException.html')
+        advisor.name = request.POST['name']
+        advisor.phone = request.POST['phone']
+        advisor.email = request.POST['email']
+        advisor.cpf = request.POST['cpf']
+        # endereço
+        advisor.cep = request.POST['cep']
+        advisor.descricao = request.POST['descricao']
+        advisor.bairro = request.POST['bairro']
+        advisor.municipio = request.POST['municipio']
+        advisor.uf = request.POST['uf']
+        # endereço
+        advisor.save()
+        return render(request, 'login.html')
+    else:
         return render(request, 'registro.html')
 
 
