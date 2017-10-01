@@ -22,6 +22,12 @@ def login(request):
         return render(request, 'login.html')
 
 
+def logout(request):
+    if request.user.is_authenticated:
+        django_logout(request)
+        return HttpResponseRedirect(reverse('index'))
+
+
 def register(request):
     if request.method == 'POST':
         advisor = Advisor()
