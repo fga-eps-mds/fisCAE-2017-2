@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'acessar_cartilha',
-    'checklist'
+    'checklist',
+    'acessar_documento'
 ]
 
 MIDDLEWARE = [
