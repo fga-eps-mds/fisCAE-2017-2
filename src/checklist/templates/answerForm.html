@@ -1,0 +1,33 @@
+<form method="post" novalidate>
+    {{ question.id }}.
+    {{ question.description }}
+    <p></p>
+    {% csrf_token %}
+    {{ answerForm }}
+    <button type="submit">Submit</button>
+</form>
+
+
+<!--
+<div class="page-title-text wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;"></div>
+  <div class="container"></div>
+      <div class="list-group section-container checklists-container"></div>
+          <ul class="list-group">
+              <h3>Checklist 1 - Condições Higiênico Sanitárias:</h3>
+              {% for question in questions %}
+              <a href="#tec-form" class="list-group-item">                    
+                  <h4 class="list-group-item-heading">
+                      {{ question.id }}.
+                      {{ question.description }}
+                      <p></p>
+                      {% csrf_token %}
+                      {{ answerForm }}
+                      <button type="submit">Submit</button>
+                  </h4>
+                  {% endfor %}
+              </a>
+          </ul>
+      </div>
+  </div>
+</div>
+-->

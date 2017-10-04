@@ -1,5 +1,8 @@
 from django.db import models
+from django.utils import timezone
+
 from .school import School
+from user.models import User
 
 
 class Checklist(models.Model):
@@ -9,12 +12,30 @@ class Checklist(models.Model):
         on_delete=models.CASCADE
     )
 
+    # author = models.ForeignKey('auth.User')
+    user = models.OneToOneField(User)
+
+    CHECKLIST_TYPE = (
+        ('TA', 'Questões técnicas e administrativas'),
+        ('HS', 'Questões Higiênico Sanitárias'),
+        ('O', 'Questões orçamentárias'),
+    )
+    checklist_type = models.CharField(
+        max_length=2,
+        choices=CHECKLIST_TYPE,
+        default=1,
+    )
+
+    created_date = models.DateTimeField(
+            default=timezone.now)
+
     def getQuestions(self):
         pass
 
     def validaQuestion(self):
         pass
 
+    """
     @staticmethod
     def readQuestion():
         lista = []
@@ -26,3 +47,4 @@ class Checklist(models.Model):
         # lista.append(question)
         arq.close()
         return lista
+    """

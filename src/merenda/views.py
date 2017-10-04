@@ -1,8 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.utils import timezone
+
 from checklist.models.checklist import Checklist
-from checklist.models import School
 from checklist.models.question import Question
 from checklist.models.answer import Answer
+from checklist.models.school import School
+from user.models import User
+
+from checklist.forms import ChecklistForm
+from checklist.forms import AnswerForm
 
 
 def index(request):
@@ -46,6 +52,7 @@ def formSelect(request):
     return render(request, 'formSelect.html')
 
 
+"""
 def check(request):
     html = ''
     newQuestion = Checklist()
@@ -53,6 +60,7 @@ def check(request):
     for question in lista:
         html += '<a>' + question + '</a><br>'
     return render(request, 'check.html', {'questionList': lista})
+"""
 
 
 def viewChecklist(request):
@@ -81,3 +89,62 @@ def view_pdf_cae(request):
 
 def Success(request):
     return render(request, 'Success.html')
+
+
+question_id = 0
+
+
+def answerForm(request):
+    global question_id
+    if question_id <= 85:
+        question_id = question_id + 1
+    else:
+        question_id = 1
+    question = Question.objects.get(pk=question_id)
+    checklist = Checklist.objects.last()
+    if request.method == 'POST':
+        answerForm = AnswerForm(request.POST)
+        if answerForm.is_valid():
+            answer = answerForm.save(commit=False)
+            answer.checklist_id = checklist.id
+            answer.question_id = question_id
+            answer.save()
+            if question_id == 86:
+                return HttpResponseRedirect(reverse('Success'))
+
+    else:
+        answerForm = AnswerForm()
+    return render(
+                request,
+                'answerForm.html',
+                {'answerForm': answerForm, 'question': question}
+            )
+
+
+def checklistForm(request):
+    school = School(
+        idSchool=111,
+        name='EscolaTeste',
+        state='DF',
+        county='Brasília',
+        address='Endereço',
+        phone=111111,
+        principal='Diretor'
+        )
+    school.save()
+    if request.method == 'POST':
+        checklistForm = ChecklistForm(request.POST)
+        if checklistForm.is_valid():
+            checklist = checklistForm.save(commit=False)
+            checklist.user = request.user
+            checklist.school = school
+            checklist.created_date = timezone.now()
+            checklist.save()
+            return HttpResponseRedirect(reverse('answerForm'))
+    else:
+        checklistForm = ChecklistForm()
+    return render(
+                request,
+                'checklistForm.html',
+                {'checklistForm': checklistForm}
+            )
