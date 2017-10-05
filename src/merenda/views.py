@@ -107,9 +107,10 @@ def answerForm(request):
         if answerForm.is_valid():
             answer = answerForm.save(commit=False)
             answer.checklist_id = checklist.id
-            answer.question_id = question_id
+            answer.question_id = question_id - 1
             answer.save()
-            if question_id == 86:
+            if question_id == 87:
+                question_id = 0
                 return HttpResponseRedirect(reverse('Success'))
 
     else:

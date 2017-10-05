@@ -1,5 +1,25 @@
-<form method="post" novalidate>
-    {% csrf_token %}
-    {{ checklistForm }}
-    <button type="submit">Submit</button>
-</form>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>fisCAE</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    </head>
+    <body>
+        <div class="page-header">
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12"  align="center">                    
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        {{ checklistForm }}
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

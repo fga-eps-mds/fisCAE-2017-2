@@ -6,6 +6,18 @@ class Question(models.Model):
     item_number = models.CharField(max_length=4, null=False)
     description = models.CharField(max_length=255, null=False)
 
+    QUESTION_TYPE = (
+        ('TA', 'Questões técnicas e administrativas'),
+        ('HS', 'Questões Higiênico Sanitárias'),
+        ('O', 'Questões orçamentárias'),
+    )
+
+    question_type = models.CharField(
+        max_length=2,
+        choices=QUESTION_TYPE,
+        default=1,
+    )
+
     @staticmethod
     def seedQuestions():
 

@@ -13,7 +13,8 @@ class Checklist(models.Model):
     )
 
     # author = models.ForeignKey('auth.User')
-    user = models.OneToOneField(User)
+    # user = models.OneToOneField(User)
+    user = models.ForeignKey('auth.User')
 
     CHECKLIST_TYPE = (
         ('TA', 'Questões técnicas e administrativas'),
