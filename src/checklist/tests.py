@@ -39,3 +39,10 @@ class ChecklistTest(TestCase):
         client.login(username="amanda", password="123")
         response = client.get(reverse('checklistForm'))
         self.assertEquals(response.status_code, 200)
+
+
+class QuestionTeste(TestCase):
+    def testSeed(self):
+        Question.objects.all().delete()
+        Question.seedQuestions()
+        self.assertEquals(Question.objects.count(), 13)
