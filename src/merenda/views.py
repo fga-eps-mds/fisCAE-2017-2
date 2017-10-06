@@ -91,34 +91,47 @@ def Success(request):
     return render(request, 'Success.html')
 
 
-question_id = 0
+def getQuestions(checklist_type):
+    questions = Question.objects.filter(question_type=checklist_type)
+    return questions
+
+
+questions = []
 
 
 def answerForm(request):
-    global question_id
-    if question_id <= 85:
-        question_id = question_id + 1
-    else:
-        question_id = 1
-    question = Question.objects.get(pk=question_id)
     checklist = Checklist.objects.last()
+    global questions
+
+    if not questions:
+        query_questions = Question.objects.filter(
+                            question_type=checklist.checklist_type
+                            )
+        questions = list(query_questions)
+
+    current_question = questions[0]
+
     if request.method == 'POST':
         answerForm = AnswerForm(request.POST)
         if answerForm.is_valid():
             answer = answerForm.save(commit=False)
             answer.checklist_id = checklist.id
-            answer.question_id = question_id - 1
+            answer.question_id = current_question.id
             answer.save()
-            if question_id == 87:
-                question_id = 0
+            questions.pop(0)
+            if not questions:
                 return HttpResponseRedirect(reverse('Success'))
-
+            else:
+                current_question = questions[0]
     else:
         answerForm = AnswerForm()
     return render(
                 request,
                 'answerForm.html',
-                {'answerForm': answerForm, 'question': question}
+                {
+                    'answerForm': answerForm,
+                    'current_question': current_question
+                }
             )
 
 
@@ -141,7 +154,9 @@ def checklistForm(request):
             checklist.school = school
             checklist.created_date = timezone.now()
             checklist.save()
-            return HttpResponseRedirect(reverse('answerForm'))
+            return HttpResponseRedirect(
+                        reverse('answerForm')
+                        )
     else:
         checklistForm = ChecklistForm()
     return render(

@@ -14,8 +14,8 @@
             <div class="row">
                 <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12"  align="center">                    
                     <form method="post" novalidate>
-                        {{ question.id }}.
-                        {{ question.description }}
+                        {{ current_question.id }}.
+                        {{ current_question.description }}
                         <p></p>
                         {% csrf_token %}
                         {{ answerForm }}

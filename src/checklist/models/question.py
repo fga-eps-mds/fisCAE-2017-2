@@ -20,13 +20,15 @@ class Question(models.Model):
 
     @staticmethod
     def seedQuestions():
-
-        with open('checklist/static/assets/items_checklist.json') as json_file:
+        path = 'checklist/static/assets/test_items_checklist.json'
+        # path = 'checklist/static/assets/items_checklist.json'
+        with open(path) as json_file:
             checklist = json.load(json_file)
             for item in checklist['items']:
                 Question(
                     item_number=item['item_number'],
-                    description=item['description']).save()
+                    description=item['description'],
+                    question_type=item['question_type']).save()
 
     @staticmethod
     def listQuestionsMethod():
