@@ -18,10 +18,9 @@ class Answer(models.Model):
     ANSWER_CHOICE = (
         ('S', 'Sim'),
         ('N', 'Não'),
-        ('SR', 'Sem resposta'),
     )
     answer = models.CharField(
         max_length=2,
         choices=ANSWER_CHOICE,
-        default='SR',
+        default=None,
     )

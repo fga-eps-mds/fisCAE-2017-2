@@ -17,7 +17,9 @@ urlpatterns = [
     url(r'^formSelect', views.formSelect, name='formSelect'),
     url(r'^tecForm', views.tecForm, name='tecForm'),
     url(r'^viewChecklist', views.viewChecklist, name='viewChecklist'),
+
     url(r'^Success', views.Success, name='Success'),
+    url(r'^notLoggedIn', views.notLoggedIn, name='notLoggedIn'),
 
     url(r'^formChecklist', views.checklistForm, name='checklistForm'),
     url(r'^answerForm', views.answerForm, name='answerForm'),

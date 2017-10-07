@@ -24,7 +24,7 @@ class Checklist(models.Model):
     checklist_type = models.CharField(
         max_length=2,
         choices=CHECKLIST_TYPE,
-        default=1,
+        default=None,
     )
 
     created_date = models.DateTimeField(
