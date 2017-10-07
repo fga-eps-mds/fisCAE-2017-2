@@ -2,7 +2,6 @@ from django.db import models
 from django.utils import timezone
 
 from .school import School
-from user.models import User
 
 
 class Checklist(models.Model):
@@ -12,8 +11,6 @@ class Checklist(models.Model):
         on_delete=models.CASCADE
     )
 
-    # author = models.ForeignKey('auth.User')
-    # user = models.OneToOneField(User)
     user = models.ForeignKey('auth.User')
 
     CHECKLIST_TYPE = (
@@ -35,17 +32,3 @@ class Checklist(models.Model):
 
     def validaQuestion(self):
         pass
-
-    """
-    @staticmethod
-    def readQuestion():
-        lista = []
-        arq = open("checklist/questions.txt", "r")
-        lista = arq.readlines()
-        # le linha por linha saltando 1
-        # for linha in arq:
-        # question = arq.readline()
-        # lista.append(question)
-        arq.close()
-        return lista
-    """

@@ -5,7 +5,6 @@ from checklist.models.checklist import Checklist
 from checklist.models.question import Question
 from checklist.models.answer import Answer
 from checklist.models.school import School
-from user.models import User
 
 from checklist.forms import ChecklistForm
 from checklist.forms import AnswerForm
@@ -50,17 +49,6 @@ def findSchool(request):
 
 def formSelect(request):
     return render(request, 'formSelect.html')
-
-
-"""
-def check(request):
-    html = ''
-    newQuestion = Checklist()
-    lista = newQuestion.readQuestion()
-    for question in lista:
-        html += '<a>' + question + '</a><br>'
-    return render(request, 'check.html', {'questionList': lista})
-"""
 
 
 def viewChecklist(request):

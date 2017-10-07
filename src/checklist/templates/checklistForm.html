@@ -70,13 +70,8 @@
                 <div class="row">
                     <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12"  align="center">                    
                         <form method="post" novalidate>
-                            <input type="hidden" name="csrfmiddlewaretoken" value="dSvxBKaXcJFfM2yhue2oU6VDNLZ7EV71l7IYQKnABefsM6O9fkyCX683HIBVL7uZ">
-                             <select name="checklist_type" id="id_checklist_type">
-                              <option value="TA">Questões técnicas e administrativas</option>
-                              <option value="HS">Questões Higiênico Sanitárias</option>
-                              <option value="O">Questões orçamentárias</option>
-                                </select>       {% csrf_token %}
-                                    
+                                {% csrf_token %}
+                                {{ checklistForm }}
                             <button type="submit">Começar</button>
                         </form>
                     </div>
