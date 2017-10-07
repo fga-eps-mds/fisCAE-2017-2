@@ -1,22 +1,19 @@
-import unittest
-from django.test import Client
-from django.shortcuts import render
-# Create your tests here
+from django.test import TestCase, Client
 
 
-class usertest(unittest.TestCase):
+class TestLoginViews(TestCase):
+
     def setUp(self):
-        self.client = Client()
+        self.c = Client()
 
-    def registertest(self, request):
-        result = self.client.post('/user/registro', {'username': 'jhon111',
-                                                     'name': 'jhon',
-                                                     'email': 'jo@mail.com',
-                                                     'cpf': '0000',
-                                                     'cep': '333',
-                                                     'bairro': 'limoeiro',
-                                                     'municipio': 'goiania',
-                                                     'password': '123456',
-                                                     'uf': 'GO'})
-        self.assertEqual(result, render(request, 'login.html'))
+    def test_get_login_page(self):
+        response = self.c.get('/user/login/')
+        self.assertEquals(200, response.status_code)
 
+    def test_get_register_page(self):
+        response = self.c.get('/user/registro/')
+        self.assertEquals(200, response.status_code)
+
+    def test_erro(self):
+        response = self.c.get('/user/dontexist')
+        self.assertEquals(404, response.status_code)
