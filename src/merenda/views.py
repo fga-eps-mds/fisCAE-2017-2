@@ -4,6 +4,7 @@ from checklist.models import School
 from checklist.models.question import Question
 from checklist.models.answer import Answer
 from django.http import HttpResponse
+from django.core.files.storage import FileSystemStorage
 
 
 def index(request):
@@ -77,11 +78,12 @@ def access_doc(request):
 
 
 def view_pdf_cae(request):
-    with open('static/assets/doc/CartilhaCAE.pdf', 'r', encoding='latin-1') as pdf:
+    fs = FileSystemStorage()
+    with fs.open('static/assets/doc/CartilhaCAE.pdf') as pdf:
         response = HttpResponse(pdf.read(), content_type='application/pdf')
         response['Content-Disposition'] = 'inline;filename=CartilhaCAE.pdf'
         return response
-    pdf.closed
+    pdf.close()
 
 
 def Success(request):
