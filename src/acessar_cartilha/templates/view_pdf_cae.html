@@ -1,14 +1,17 @@
+{% load static %}
+{% load staticfiles %}
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="{% static "assets/css/acessar-cartilha.css" %}">
         <title>Cartilha CAE</title>
     </head>
     <body style="background-color: rgb(38,38,38); height: 100%; width: 100%;
     overflow: hidden; margin: 0" cz-shortcut-listen="true">
         <embed width="100%" height="100%" name="plugin" id="plugin"
-        src="https://filedn.com/l69ToagrXAPmacm0V0EF3Fu/Cartilha_para_Conselheiros_do_PNAE_WEB.pdf"
+        src="{% static "assets/doc/CartilhaCAE.pdf" %}"
         type="application/pdf" internalinstanceid="5" title>
     </body>
 </html>

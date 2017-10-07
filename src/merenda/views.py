@@ -3,6 +3,7 @@ from checklist.models.checklist import Checklist
 from checklist.models import School
 from checklist.models.question import Question
 from checklist.models.answer import Answer
+from django.http import HttpResponse
 
 
 def index(request):
@@ -76,7 +77,11 @@ def access_doc(request):
 
 
 def view_pdf_cae(request):
-    return render(request, 'view_pdf_cae.html')
+    with open('static/assets/doc/CartilhaCAE.pdf', 'r', encoding='latin-1') as pdf:
+        response = HttpResponse(pdf.read(), content_type='application/pdf')
+        response['Content-Disposition'] = 'inline;filename=CartilhaCAE.pdf'
+        return response
+    pdf.closed
 
 
 def Success(request):
