@@ -22,48 +22,6 @@ def getQuestions(checklist_type):
     return questions
 
 
-questions = []
-
-
-def answerForm(request):
-    if request.user.is_authenticated:
-        checklist = Checklist.objects.last()
-        global questions
-
-        if not questions:
-            query_questions = Question.objects.filter(
-                                question_type=checklist.checklist_type
-                                )
-            questions = list(query_questions)
-
-        current_question = questions[0]
-
-        if request.method == 'POST':
-            answerForm = AnswerForm(request.POST)
-            if answerForm.is_valid():
-                answer = answerForm.save(commit=False)
-                answer.checklist_id = checklist.id
-                answer.question_id = current_question.id
-                answer.save()
-                questions.pop(0)
-                if not questions:
-                    return HttpResponseRedirect(reverse('checklist:success'))
-                else:
-                    current_question = questions[0]
-        else:
-            answerForm = AnswerForm()
-        return render(
-                    request,
-                    'answerForm.html',
-                    {
-                        'answerForm': answerForm,
-                        'current_question': current_question
-                    }
-                )
-    else:
-        return HttpResponseRedirect(reverse('notLoggedIn'))
-
-
 def checklistForm(request):
     if request.user.is_authenticated:
         school = School(
@@ -89,10 +47,56 @@ def checklistForm(request):
                             )
         else:
             checklistForm = ChecklistForm()
-        return render(
-                    request,
-                    'checklistForm.html',
-                    {'checklistForm': checklistForm}
-                )
+
+        context = {'checklistForm': checklistForm}
+        return render(request, 'checklistForm.html', context)
+
+    else:
+        return HttpResponseRedirect(reverse('notLoggedIn'))
+
+
+questions = []
+
+
+def answerForm(request):
+    if request.user.is_authenticated:
+        checklist = Checklist.objects.last()
+        global questions
+
+        if not questions:
+            query_questions = Question.objects.filter(
+                                question_type=checklist.checklist_type
+                                )
+            questions = list(query_questions)
+
+        current_question = questions[0]
+
+        if request.method == 'POST':
+            answerForm = AnswerForm(request.POST)
+            if answerForm.is_valid():
+                answer = answerForm.save(commit=False)
+                answer.checklist_id = checklist.id
+                answer.question_id = current_question.id
+                answer.save()
+                questions.pop(0)
+                answerForm = AnswerForm()
+
+                if not questions:
+                    return HttpResponseRedirect(reverse('checklist:success'))
+                else:
+                    current_question = questions[0]
+                    return HttpResponseRedirect(
+                                reverse('checklist:answerForm')
+                                )
+
+        else:
+            answerForm = AnswerForm()
+
+        context = {
+            'answerForm': answerForm,
+            'current_question': current_question
+            }
+        return render(request, 'answerForm.html', context)
+
     else:
         return HttpResponseRedirect(reverse('notLoggedIn'))
