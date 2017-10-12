@@ -1,3 +1,8 @@
 from django.db import models
 
-# Create your models here.
+ 
+class formulario(models.Model):
+    data = '' 
+    horario = ''
+    local = ''
+    tema = ''

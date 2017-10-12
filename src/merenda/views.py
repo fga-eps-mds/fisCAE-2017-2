@@ -5,6 +5,10 @@ from checklist.models.question import Question
 from checklist.models.answer import Answer
 
 
+def indexScheduleMeeting(request):
+    return render(request, 'indexScheduleMeeting.html')
+
+
 def index(request):
     return render(request, 'index.html')
 
