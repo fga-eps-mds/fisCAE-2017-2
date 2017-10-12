@@ -31,6 +31,6 @@ urlpatterns = [
     url(r'^tecForm', views.tecForm, name='tecForm'),
     url(r'^viewChecklist', views.viewChecklist, name='viewChecklist'),
     url(r'^Success', views.Success, name='Success'),
-
+    url(r'^indexScheduleMeeting', views.indexScheduleMeeting, name='indexScheduleMeeting'),
 
 ]
