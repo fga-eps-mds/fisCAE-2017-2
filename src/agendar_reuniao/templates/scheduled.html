@@ -64,12 +64,17 @@
         </div>
     </nav>
     <br><br><br><br>
-    <h1>Agendar Reunião</h1>
+    <h1>Agendamentos</h1>
     
-    <form action="/indexScheduleMeeting" method="POST">
-    {% csrf_token %}
-    </form> 
-    <a href="scheduled">Reuniões marcadas</a>
+        {% for a in todosAgendamentos %}
+            Local: {{ a.local }}
+            Data: {{ a.data }}
+            Horario: {{ a.horario }}
+            Observações: {{ a.observacoes }}
+            <br>
+        {% endfor %}
+
+  
 
     <!-- Javascript -->
     <script src="static/assets/js/jquery-1.11.1.min.js"></script>

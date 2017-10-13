@@ -3,10 +3,23 @@ from checklist.models.checklist import Checklist
 from checklist.models import School
 from checklist.models.question import Question
 from checklist.models.answer import Answer
+from agendar_reuniao.models import Agendamento
 
 
 def indexScheduleMeeting(request):
+    novoAgendamento = Agendamento()
+    if request.method == 'POST':
+        novoAgendamento.local = request.POST['local']
+        novoAgendamento.data = request.POST['date']
+        novoAgendamento.horario = request.POST['time']
+        novoAgendamento.observacoes = request.POST['note']
+        novoAgendamento.save()
     return render(request, 'indexScheduleMeeting.html')
+
+
+def scheduled(request):
+    todosAgendamentos = Agendamento.agendamentos(request)
+    return render(request, 'scheduled.html', {'todosAgendamentos': todosAgendamentos})
 
 
 def index(request):
@@ -85,3 +98,8 @@ def view_pdf_cae(request):
 
 def Success(request):
     return render(request, 'Success.html')
+
+
+
+
+
