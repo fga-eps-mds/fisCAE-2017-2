@@ -32,5 +32,6 @@ urlpatterns = [
     url(r'^viewChecklist', views.viewChecklist, name='viewChecklist'),
     url(r'^Success', views.Success, name='Success'),
     url(r'^indexScheduleMeeting', views.indexScheduleMeeting, name='indexScheduleMeeting'),
+    url(r'^scheduled', views.scheduled, name='scheduled'),
 
 ]
