@@ -68,6 +68,9 @@
     
     <form action="/indexScheduleMeeting" method="POST">
     {% csrf_token %}
+    local:
+    <input type="text"  name="local" size="40px 20px" required>
+    <button type="submit">Enviar</button>
     </form> 
     <a href="scheduled">Reuniões marcadas</a>
 
