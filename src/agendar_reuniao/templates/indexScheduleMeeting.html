@@ -7,6 +7,12 @@
     <title>Agendamento de reunião</title>
 </head>
 <body>
-    Birl
+
+    <h1>Agendar Reunião</h1>
+        
+    <form action="/indexScheduleMeeting" method="POST">
+        {% csrf_token %}
+    </form>  
+    <a href="scheduled">Reuniões marcadas</a>
 </body>
 </html>
