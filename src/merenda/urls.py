@@ -33,5 +33,6 @@ urlpatterns = [
     url(r'^Success', views.Success, name='Success'),
     url(r'^indexScheduleMeeting', views.indexScheduleMeeting, name='indexScheduleMeeting'),
     url(r'^scheduled', views.scheduled, name='scheduled'),
-
+    url(r'^schedule_delete/(?P<pk>\d+)/$', views.schedule_delete, name='schedule_delete'),
+    
 ]
