@@ -64,6 +64,7 @@
         </div>
     </nav>
     <br><br><br><br>
+    {% if request.user and request.user.is_authenticated %}    
     <h1>Reuniões Agendadas</h1>
     <form action="scheduled"  method="POST">
         {% csrf_token %}
@@ -82,8 +83,12 @@
         </ol>
     </form>
     
-    <a href="{% url 'indexScheduleMeeting' %}">Novo Agendamento</a>     
+    <a href="{% url 'indexScheduleMeeting' %}">Novo Agendamento</a>  
+    {% else %}
     
+        <h1>É necessário estar logado em uma conta de usuário para acessar essa funcionalidade!</h1>
+
+    {% endif %}
 
     <!-- Javascript -->
     <script src="static/assets/js/jquery-1.11.1.min.js"></script>
