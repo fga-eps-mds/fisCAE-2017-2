@@ -6,13 +6,19 @@ from checklist.models.answer import Answer
 from agendar_reuniao.models import Agendamento
 
 
+def schedule_delete(request, pk):
+    # reuniao = Agendamento.objects.get(pk=pk)
+    Agendamento.objects.filter(id=pk).delete() 
+    return render(request, 'schedule_delete.html')  
+
+
 def indexScheduleMeeting(request):
     novoAgendamento = Agendamento()
     if request.method == 'POST':
         novoAgendamento.local = request.POST['local']
-        novoAgendamento.data = request.POST['date']
-        novoAgendamento.horario = request.POST['time']
-        novoAgendamento.observacoes = request.POST['note']
+        # novoAgendamento.data = request.POST['date']
+        # novoAgendamento.horario = request.POST['time']
+        # novoAgendamento.observacoes = request.POST['note']
         novoAgendamento.save()
     return render(request, 'indexScheduleMeeting.html')
 
@@ -98,8 +104,3 @@ def view_pdf_cae(request):
 
 def Success(request):
     return render(request, 'Success.html')
-
-
-
-
-
