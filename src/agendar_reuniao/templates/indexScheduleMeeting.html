@@ -69,15 +69,15 @@
         
         <form action="/indexScheduleMeeting" method="POST">
             {% csrf_token %}
-                <label for="local">Local</label></br>
-                <input type="text" style="color:black ; width:30% ; height:60px" name="local" id="local" maxlength="30" placeholder="Insira o local da reunião" required></br></br>
-                <label for="date">Data</label></br>
-                <input type="date" style="color:black ; width:30% ; height:60px" name="date" id="date" required></br></br>
-                <label for="time">Horário</label></br>
-                <input type="time" style="color:black ; width:30% ; height:60px" name="time" id="time" required></br></br>
-                <label for="note">Observações</label></br>
-                <input type="text" style="color:black ; width:30% ; height:100px" name="note" id="note" maxlenght="1000" placeholder="Insira as observações" required size="100px"></br></br>
-                <button type="submit" class="btn btn-primary">Enviar</button></br>
+                <label for="local" style="font-size:20px">Local</label></br>
+                <input type="text" style="text-align:center ; width:30% ; height:60px" name="tLocal" id="local" maxlength="30" placeholder="Insira o local da reuniao" required></br></br>
+                <label for="date" style="font-size:20px">Data</label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <label for="time" style="font-size:20px">Horário</label></br>
+                <input type="date" style="text-align:center; color:#707070; border:1px; border-style: solid; border-radius: 8px ; width:15% ; height:60px" name="tDate" id="date" required>
+                <input type="time" style="text-align:center; color:#707070; border:1px; border-style: solid; border-radius: 8px ;width:15% ; height:60px" name="tTime" id="time" required></br></br>
+                <label for="note" style="font-size:20px">Observações</label></br>
+                <input type="text" style="text-align:center; color:black ; width:30% ; height:100px" name="tNote" id="note" maxlenght="1000" placeholder="Insira as observacoes" required size="100px"></br></br>
+                <button type="submit" class="btn btn-primary" id="submit">Enviar</button></br>
             </form></br>
         </form> 
         <a href="{% url 'scheduled' %}">Reuniões marcadas</a>
