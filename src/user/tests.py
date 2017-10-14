@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 
 
-class TestLoginViews(TestCase):
+class TestSimpleViews(TestCase):
 
     def setUp(self):
         self.c = Client()
@@ -17,3 +17,19 @@ class TestLoginViews(TestCase):
     def test_erro(self):
         response = self.c.get('/user/dontexist')
         self.assertEquals(404, response.status_code)
+
+    def test_templateLogin(self):
+        response = self.c.get('/user/login/')
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'login.html')
+
+    def test_templateRegistro(self):
+        response = self.c.get('/user/registro/')
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'registro.html')
+
+    def test_templateNotExist(self):
+        response = self.c.get('/user/registro/')
+        self.assertTemplateNotUsed(response, 'notexist.html')
+
+    
