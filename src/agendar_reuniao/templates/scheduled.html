@@ -65,19 +65,22 @@
     </nav>
     <br><br><br><br>
     <h1>Agendamentos</h1>
-    
+    <form action="scheduled"  method="POST">
+        {% csrf_token %}
+        <ol>
         {% for a in todosAgendamentos %}
-            Local: {{ a.local }} 
+            Local: {{ a.local }}
             Data: {{ a.data }}
             Horario: {{ a.horario }}
             Observações: {{ a.observacoes }}
-            <button class=" btn-info" style="width: 60px; height: 30px" type="delete">Excluir</button>
-            <button class=" btn-info" style="width: 60px; height: 30px" type="delete">Alterar</button>
+            <a href="{% url 'schedule_delete' a.id %}">Delete</a>            
             
             <br>
         {% endfor %}
-
-  
+        </ol>
+    </form>
+    <a href="{% url 'indexScheduleMeeting' %}">Novo Agendamento</a>     
+    
 
     <!-- Javascript -->
     <script src="static/assets/js/jquery-1.11.1.min.js"></script>
