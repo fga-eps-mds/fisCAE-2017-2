@@ -67,17 +67,22 @@
     
     <form action="/indexScheduleMeeting" method="POST">
     {% csrf_token %}
-        <label for="local">Local</label></br>
-        <input type="text" style="color:black" name="tLocal" id="local" maxlength="30" placeholder="Insira o local da reunião" required></br></br>
-        <label for="date">Data</label></br>
-        <input type="date" style="color:black" name="tDate" id="date" required></br></br>
-        <label for="time">Horário</label></br>
-        <input type="time" style="color:black" name="tTime" id="time" required></br></br>
-        <label for="note">Observações</label></br>
-        <input type="text" style="color:black" name="tNote" id="note" maxlenght="1000" placeholder="Insira as observações" required size="100px"></br></br>
-        <button type="submit" class="btn btn-primary">Enviar</button></br>
-    </form></br>
-    <a href="scheduled">Reuniões marcadas</a>
+    <form action="/indexScheduleMeeting" method="POST">
+        {% csrf_token %}
+            <label for="local">Local</label></br>
+            <input type="text" style="color:black ; width:30% ; height:60px" name="local" id="local" maxlength="30" placeholder="Insira o local da reunião" required></br></br>
+            <label for="date">Data</label></br>
+            <input type="date" style="color:black ; width:30% ; height:60px" name="date" id="date" required></br></br>
+            <label for="time">Horário</label></br>
+            <input type="time" style="color:black ; width:30% ; height:60px" name="time" id="time" required></br></br>
+            <label for="note">Observações</label></br>
+            
+            <input type="text" style="color:black ; width:30% ; height:100px" name="note" id="note" maxlenght="1000" placeholder="Insira as observações" required size="100px"></br></br>
+            <button type="submit" class="btn btn-primary">Enviar</button></br>
+        </form></br>
+    </form> 
+    <a href="{% url 'scheduled' %}">Reuniões marcadas</a>
+    
 
     <!-- Javascript -->
     <script src="static/assets/js/jquery-1.11.1.min.js"></script>

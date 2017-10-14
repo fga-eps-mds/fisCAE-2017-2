@@ -16,9 +16,9 @@ def indexScheduleMeeting(request):
     novoAgendamento = Agendamento()
     if request.method == 'POST':
         novoAgendamento.local = request.POST['local']
-        # novoAgendamento.data = request.POST['date']
-        # novoAgendamento.horario = request.POST['time']
-        # novoAgendamento.observacoes = request.POST['note']
+        novoAgendamento.data = request.POST['date']
+        novoAgendamento.horario = request.POST['time']
+        novoAgendamento.observacoes = request.POST['note']
         novoAgendamento.save()
     return render(request, 'indexScheduleMeeting.html')
 
