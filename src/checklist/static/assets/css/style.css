@@ -675,3 +675,39 @@ button, input, optgroup, select, textarea {
 	color: #000000;
 	font-size: 23px;
 }
+
+.checklistType ul li {
+ 
+	list-style: none;
+	font-size: 20px;
+    color: #95a5a6;
+}
+
+.checklistType ul{
+
+	text-align: left;
+}
+
+.checklistButton{
+
+	background: none;
+	border:none;
+	color:#1F4788;
+	font-weight: bold;
+
+}
+
+.checklistType input[type = radio]{
+
+	border:10px solid red;
+}
+
+#checklistTitle{
+
+	text-transform: initial;
+}
+
+#logo img{
+    width: 65px;
+    margin-left: 5px;
+}
