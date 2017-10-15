@@ -67,3 +67,27 @@ class TestForms(TestCase):
         self.assertEquals(data['municipio'], Advisor.objects.last().municipio)
         self.assertEquals(data['uf'], Advisor.objects.last().uf)
         self.assertNotEquals(data['email'], Advisor.objects.last().uf)
+
+    def test_authenticate_user(self):
+        user = User.objects.create_user(username='test', password='123456')
+        user.save()
+        c = Client()
+        data = {'username': 'test', 'password': '123456'}
+        response = c.post('/user/login/', data, follow=True)
+        self.assertEquals(response.context['user'], user)
+
+    def test_FailPassword_authenticate_user(self):
+        user = User.objects.create_user(username='test', password='12345')
+        user.save()
+        c = Client()
+        data = {'username': 'test', 'password': '123456'}
+        response = c.post('/user/login/', data, follow=True)
+        self.assertNotEquals(response.context['user'], user)
+
+    def test_FailUsername_authenticate_user(self):
+        user = User.objects.create_user(username='tes', password='12345')
+        user.save()
+        c = Client()
+        data = {'username': 'test', 'password': '123456'}
+        response = c.post('/user/login/', data, follow=True)
+        self.assertNotEquals(response.context['user'], user)
