@@ -41,7 +41,7 @@ class TestForms(TestCase):
         data = {
             'username': 'robin',
             'password': 'testing',
-            'email': '',
+            'email': 'jjj@ggg.com',
             'name': 'Test',
             'cpf': 'Tester',
             'phone': '',
@@ -55,4 +55,15 @@ class TestForms(TestCase):
         c = Client()
         c.post('/user/registro/', data)
         self.assertEquals(data['username'], User.objects.last().username)
+        self.assertNotEquals(data['password'], User.objects.last().password)
+        # a função padrão de senha do django crptografa a senha
         self.assertEquals(data['email'], Advisor.objects.last().email)
+        self.assertEquals(data['name'], Advisor.objects.last().name)
+        self.assertEquals(data['cpf'], Advisor.objects.last().cpf)
+        self.assertEquals(data['phone'], Advisor.objects.last().phone)
+        self.assertEquals(data['cep'], Advisor.objects.last().cep)
+        self.assertEquals(data['descricao'], Advisor.objects.last().descricao)
+        self.assertEquals(data['bairro'], Advisor.objects.last().bairro)
+        self.assertEquals(data['municipio'], Advisor.objects.last().municipio)
+        self.assertEquals(data['uf'], Advisor.objects.last().uf)
+        self.assertNotEquals(data['email'], Advisor.objects.last().uf)
