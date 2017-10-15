@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="static/assets/css/form-elements.css">
   <link rel="stylesheet" href="static/assets/css/style.css">
   <link rel="stylesheet" href="static/assets/css/media-queries.css">
+  <link rel="stylesheet" href="static/assets/css/mobile.css">
 
 
 
@@ -38,49 +39,33 @@
 
   <!-- Top menu -->
   <nav class="navbar navbar-fixed-top" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        <a href="/"> <img src="static/assets/img/logo/l.png" alt="Fiscae" class="img-responsive"></a>
-
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="top-navbar-1">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#top-content">Login</a></li>
-          <li><a href="{% url 'checklist:checklistForm' %}">Iniciar Checklist</a></li>
-          <li><a href="#what-we-do">Cartilha</a></li>
-          <li><a href="#contact">Denúncia</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  
-  <!-- form Title -->
-  <div class="page-title-text wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;"></div>
-      <div class="container"></div>
-         <div class="form-group section-container checklists-container"></div>
-                <h3></h3>
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          <a id="logo" href="/"> <img src="static/assets/img/logo/l.png"  alt="Fiscae" class="pull-left"></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="top-navbar-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#top-content">Login</a></li>
+            <li><a href="#what-we-do">Cartilha</a></li>
+            <li><a href="#contact">Denúncia</a></li>
+          </ul>
         </div>
       </div>
-  </div>
-               
-                       
-       <!-- What we do -->
-    <div class="block-3-container section-container what-we-do-container">
-        <div class="container">
-            <div class="form-group-item" style "visibility: visible;"></div>
-              <ul class="form-group"></ul>
+    </nav>
 
-    <div id="personalizado">
+  <!-- succes Title -->
+          
+        <div id="successMessage">
       <br><br><h3>Checklist preenchido com Sucesso!</h3><br><br>
       
-      <br><br><a href="checklistForm">Voltar aos formulários</a><br><br>
+      <br><br><a href="checklistForm" button class="backButton" >Voltar aos formulários</button><br><br>
              
             </div>
           </div>
