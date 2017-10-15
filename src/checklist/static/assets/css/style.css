@@ -697,11 +697,11 @@ button, input, optgroup, select, textarea {
 
 }
 
-.checklistType input[type = radio]{
+.checklistType input[type=radio]{
 
 	border:10px solid red;
 }
-
+ 
 #checklistTitle{
 
 	text-transform: initial;
@@ -711,3 +711,35 @@ button, input, optgroup, select, textarea {
     width: 65px;
     margin-left: 5px;
 }
+
+.checklistAnswer ul li {
+	
+	   list-style: none;
+	   font-size: 20px;
+	   color: #95a5a6;
+   }
+   
+   .checklistAnswer ul{
+   
+	   text-align: center;
+   }
+
+   .answerButton{
+	
+		background: none;
+		border:none;
+		color:#1F4788;
+		font-weight: bold;
+	
+	}
+
+	#questionDescription{
+
+	margin-top: 20px;
+	font-size: 32px;
+    font-weight: bold;
+    color: #1F4788;
+    line-height: 30px;
+    text-transform: initial;
+		
+	}
