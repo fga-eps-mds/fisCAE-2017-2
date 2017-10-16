@@ -34,6 +34,13 @@
              background-color:#AEB0C7}
     </style>
 
+    <script type="text/javascript">
+        function RedirectLogin() {
+        location.href="user/login" }
+        function RedirectHome() {
+        location.href="/" }
+    </script>
+
 </head>
 
 <body>
@@ -99,8 +106,8 @@
         <h4 align="left">Atenção</h4>
         <h5 align="left">É necessário estar logado em uma conta de usuário para acessar essa funcionalidade.</h5>
     </div><br /><br /><br /><br /><br /><br /><br />
-    <a href="/">Voltar</a>
-    <a href="user/login">Login</a>
+    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Voltar" onclick="RedirectHome()">
+    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Login" onclick="RedirectLogin()">
 
     {% endif %}
 
