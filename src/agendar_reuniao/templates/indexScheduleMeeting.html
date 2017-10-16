@@ -26,6 +26,13 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/assets/ico/72.png">
     <link rel="apple-touch-icon-precomposed" href="static/assets/ico/57.png">
 
+    <style>
+        #pop{position:absolute; top:25%; left:50%; margin-left:-300px;
+             margin-top:-100px; padding:8px; width:600px;
+             height:100px; border-radius:4px; border:solid #9090B0 1px; 
+             background-color:#AEB0C7}
+    </style>
+
 </head>
 
 <body>
@@ -82,7 +89,15 @@
         </form> 
         <a href="{% url 'scheduled' %}">Reuniões marcadas</a>
     {% else %}
-        <h1>É necessário estar logado em uma conta de usuário para acessar essa funcionalidade!</h1>
+    <div id="pop">
+        <a class="close" id="close" href="#" onclick="document.getElementById('pop').style.display='none';">×</a>
+        <br />
+        <h4 align="left">Atenção</h4>
+        <h5 align="left">É necessário estar logado em uma conta de usuário para acessar essa funcionalidade.</h5>
+    </div><br /><br /><br /><br /><br /><br /><br />
+    <a href="/">Voltar</a>
+    <a href="user/login">Login</a>
+             
     {% endif %}
     <!-- Javascript -->
     <script src="static/assets/js/jquery-1.11.1.min.js"></script>
