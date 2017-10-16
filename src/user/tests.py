@@ -1,6 +1,7 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from .models import Advisor
+from django.contrib.auth import authenticate
 
 
 class TestSimpleViews(TestCase):
@@ -36,6 +37,11 @@ class TestSimpleViews(TestCase):
 
 
 class TestForms(TestCase):
+    def setUp(self):
+        self.c = Client()
+        self.user = User.objects.create_user(username='test',
+                                             password='123456')
+        self.user.save()
 
     def test_register_user(self):
         data = {
@@ -52,8 +58,8 @@ class TestForms(TestCase):
             'uf': 'go',
 
         }
-        c = Client()
-        c.post('/user/registro/', data)
+        
+        self.c.post('/user/registro/', data)
         self.assertEquals(data['username'], User.objects.last().username)
         self.assertNotEquals(data['password'], User.objects.last().password)
         # a função padrão de senha do django crptografa a senha
@@ -69,25 +75,50 @@ class TestForms(TestCase):
         self.assertNotEquals(data['email'], Advisor.objects.last().uf)
 
     def test_authenticate_user(self):
-        user = User.objects.create_user(username='test', password='123456')
-        user.save()
-        c = Client()
+        
         data = {'username': 'test', 'password': '123456'}
-        response = c.post('/user/login/', data, follow=True)
-        self.assertEquals(response.context['user'], user)
+        response = self.c.post('/user/login/', data, follow=True)
+        self.assertEquals(response.context['user'], self.user)
 
     def test_FailPassword_authenticate_user(self):
-        user = User.objects.create_user(username='test', password='12345')
-        user.save()
-        c = Client()
-        data = {'username': 'test', 'password': '123456'}
-        response = c.post('/user/login/', data, follow=True)
-        self.assertNotEquals(response.context['user'], user)
+        data = {'username': 'test', 'password': '12345'}
+        response = self.c.post('/user/login/', data, follow=True)
+        self.assertNotEquals(response.context['user'], self.user)
 
     def test_FailUsername_authenticate_user(self):
-        user = User.objects.create_user(username='tes', password='12345')
-        user.save()
-        c = Client()
-        data = {'username': 'test', 'password': '123456'}
-        response = c.post('/user/login/', data, follow=True)
-        self.assertNotEquals(response.context['user'], user)
+        data = {'username': 'tes', 'password': '123456'}
+        response = self.c.post('/user/login/', data, follow=True)
+        self.assertNotEquals(response.context['user'], self.user)
+
+    ''' def test_register_DuplicateUser(self):
+        data1 = {
+            'username': 'robin',
+            'password': 'testing',
+            'email': 'jjj@ggg.com',
+            'name': 'Test',
+            'cpf': 'Tester',
+            'phone': '',
+            'cep': '2223335555',
+            'descricao': '',
+            'bairro': 'sss',
+            'municipio': 'goiania',
+            'uf': 'go',
+
+        }
+        data2 = {
+            'username': 'robin',
+            'password': 'testi',
+            'email': 'hhh@ggg.com',
+            'name': 'batma',
+            'cpf': 'Tester',
+            'phone': '',
+            'cep': '2223345555',
+            'descricao': '',
+            'bairro': 'sss',
+            'municipio': 'goiania',
+            'uf': 'go',
+
+        }
+        self.c.post('/user/registro/', data1)
+        self.c.post('/user/registro/', data2)
+        self.assertEquals(data2['username'], User.objects.last().username) '''
