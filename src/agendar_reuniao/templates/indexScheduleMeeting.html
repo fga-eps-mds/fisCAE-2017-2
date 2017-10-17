@@ -79,8 +79,8 @@
     <br><br><br><br>
 
     {% if request.user and request.user.is_authenticated %}    
+    <div id="personalizadoform">  
         <h1>Agendar Reunião</h1>
-        
         <form action="/indexScheduleMeeting" method="POST">
             {% csrf_token %}
                 <label for="local" style="font-size:20px">Local</label></br>
@@ -94,7 +94,8 @@
                 <button type="submit" class="btn btn-primary" id="submit">Enviar</button></br>
             </form></br>
         </form> 
-        <a href="{% url 'scheduled' %}">Reuniões marcadas</a>
+        <a href="{% url 'scheduled' %}">Reuniões marcadas</a>        
+    </div>
     {% else %}
     <div id="pop">
         <a class="close" id="close" href="#" onclick="document.getElementById('pop').style.display='none';">×</a>

@@ -80,26 +80,28 @@
         </div>
     </nav>
     <br><br><br><br>
-    {% if request.user and request.user.is_authenticated %}    
+    {% if request.user and request.user.is_authenticated %}   
+    <!-- <div id="formstyle"> -->
     <h1>Reuniões Agendadas</h1>
     <form action="scheduled"  method="POST">
         {% csrf_token %}
         <ol>
         {% for a in todosAgendamentos %}
-        <div class="divider-1 wow fadeInUp">
-            <span style="width: 100%"></span>
-        </div>
+       
+        <div id="formstyle">
             Local: {{ a.local }}<br>
             Data: {{ a.data }}<br>
             Horario: {{ a.horario }}<br>
             Observações: {{ a.observacoes }}<br>
             <a href="{% url 'schedule_delete' a.id %}">Delete</a>            
             <br><br>
+        </div>   
         {% endfor %}
         </ol>
     </form>
     
     <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Novo agendamento" onclick="IndexScheduleMeetingRedirect()">
+<!-- </div>     -->
     {% else %}
     
     <div id="pop">
