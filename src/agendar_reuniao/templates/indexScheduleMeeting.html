@@ -34,10 +34,10 @@
     </style>
 
     <script type="text/javascript">
-        function RedirectLogin() {
-        location.href="user/login" }
-        function RedirectHome() {
-        location.href="/" }
+        function LoginRedirect() {
+            location.href="user/login" }
+        function HomeRedirect() {
+            location.href="/" }
     </script>
 
 </head>
@@ -84,13 +84,13 @@
         <form action="/indexScheduleMeeting" method="POST">
             {% csrf_token %}
                 <label for="local" style="font-size:20px">Local</label></br>
-                <input type="text" style="text-align:center ; width:30% ; height:60px" name="tLocal" id="local" maxlength="30" placeholder="Insira o local da reuniao" required></br></br>
+                <input type="text" style="text-align:center ; width:30% ; height:60px" name="local" id="local" maxlength="30" placeholder="Insira o local da reuniao" required></br></br>
                 <label for="date" style="font-size:20px">Data</label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                 <label for="time" style="font-size:20px">Horário</label></br>
-                <input type="date" style="text-align:center; color:#707070; border:1px; border-style: solid; border-radius: 8px ; width:15% ; height:60px" name="tDate" id="date" required>
-                <input type="time" style="text-align:center; color:#707070; border:1px; border-style: solid; border-radius: 8px ;width:15% ; height:60px" name="tTime" id="time" required></br></br>
+                <input type="date" style="text-align:center; color:#707070; border:1px; border-style: solid; border-radius: 8px ; width:15% ; height:60px" name="date" id="date" required>
+                <input type="time" style="text-align:center; color:#707070; border:1px; border-style: solid; border-radius: 8px ;width:15% ; height:60px" name="time" id="time" required></br></br>
                 <label for="note" style="font-size:20px">Observações</label></br>
-                <input type="text" style="text-align:center; color:black ; width:30% ; height:100px" name="tNote" id="note" maxlenght="1000" placeholder="Insira as observacoes" required size="100px"></br></br>
+                <input type="text" style="text-align:center; color:black ; width:30% ; height:100px" name="note" id="note" maxlenght="1000" placeholder="Insira as observacoes" required size="100px"></br></br>
                 <button type="submit" class="btn btn-primary" id="submit">Enviar</button></br>
             </form></br>
         </form> 
@@ -102,8 +102,8 @@
         <h4 align="left">Atenção</h4>
         <h5 align="left">É necessário estar logado em uma conta de usuário para acessar essa funcionalidade.</h5>
     </div><br /><br /><br /><br /><br /><br /><br />
-    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Voltar" onclick="RedirectHome()">
-    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Login" onclick="RedirectLogin()">
+    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Voltar" onclick="HomeRedirect()">
+    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Login" onclick="LoginRedirect()">
              
     {% endif %}
     <!-- Javascript -->

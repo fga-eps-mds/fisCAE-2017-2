@@ -35,10 +35,12 @@
     </style>
 
     <script type="text/javascript">
-        function RedirectLogin() {
-        location.href="user/login" }
-        function RedirectHome() {
-        location.href="/" }
+        function LoginRedirect() {
+            location.href="user/login" }
+        function HomeRedirect() {
+            location.href="/" }
+        function IndexScheduleMeetingRedirect() {
+            location.href="indexScheduleMeeting" }
     </script>
 
 </head>
@@ -97,7 +99,7 @@
         </ol>
     </form>
     
-    <a href="{% url 'indexScheduleMeeting' %}">Novo Agendamento</a>  
+    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Novo agendamento" onclick="IndexScheduleMeetingRedirect()">
     {% else %}
     
     <div id="pop">
@@ -106,8 +108,8 @@
         <h4 align="left">Atenção</h4>
         <h5 align="left">É necessário estar logado em uma conta de usuário para acessar essa funcionalidade.</h5>
     </div><br /><br /><br /><br /><br /><br /><br />
-    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Voltar" onclick="RedirectHome()">
-    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Login" onclick="RedirectLogin()">
+    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Voltar" onclick="HomeRedirect()">
+    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Login" onclick="LoginRedirect()">
 
     {% endif %}
 
