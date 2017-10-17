@@ -51,12 +51,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="top-navbar-1">
                 <ul class="nav navbar-nav navbar-right">
+
                     {% if request.user and not request.user.is_authenticated %}
                         <li><a href="{% url 'login' %}">Login</a></li>
                     {% else %}
                         <li><a href=" # ">{{ request.user.username }}</a></li> 
                         <li><a href="{% url 'logout' %}">Logout</a></li>
                     {% endif %}
+
                     <li><a href="#">Sobre</a></li>
                     <li><a href="{% url 'view_pdf_cae' %}">Cartilha</a></li>
                 </ul>
@@ -90,7 +92,7 @@
                     <div class="block-3-box-icon">
                         <span aria-hidden="true" class="icon_pencil"></span>
                     </div>
-                    <h3>Agendar reunião ou visita</h3>
+                    <h3><a href="{% url 'scheduled' %}">Agendar reunião ou visita</a></h3>
                     <p>Marque as reuniões e visitas</p>
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInDown">
@@ -118,9 +120,6 @@
         </div>
     </div>
     {% endif %}
-
-
-
 
     <!-- Javascript -->
     <script src="static/assets/js/jquery-1.11.1.min.js"></script>

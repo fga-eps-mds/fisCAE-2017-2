@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'acessar_cartilha',
-    'checklist'
+    'checklist',
+    'agendar_reuniao'
+
+
 ]
 
 MIDDLEWARE = [
