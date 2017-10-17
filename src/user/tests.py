@@ -58,7 +58,7 @@ class TestForms(TestCase):
             'uf': 'go',
 
         }
-        
+
         self.c.post('/user/registro/', data)
         self.assertEquals(data['username'], User.objects.last().username)
         self.assertNotEquals(data['password'], User.objects.last().password)
@@ -75,7 +75,7 @@ class TestForms(TestCase):
         self.assertNotEquals(data['email'], Advisor.objects.last().uf)
 
     def test_authenticate_user(self):
-        
+
         data = {'username': 'test', 'password': '123456'}
         response = self.c.post('/user/login/', data, follow=True)
         self.assertEquals(response.context['user'], self.user)
@@ -90,7 +90,7 @@ class TestForms(TestCase):
         response = self.c.post('/user/login/', data, follow=True)
         self.assertNotEquals(response.context['user'], self.user)
 
-    ''' def test_register_DuplicateUser(self):
+    def test_register_DuplicateUser(self):
         data1 = {
             'username': 'robin',
             'password': 'testing',
@@ -120,5 +120,6 @@ class TestForms(TestCase):
 
         }
         self.c.post('/user/registro/', data1)
-        self.c.post('/user/registro/', data2)
-        self.assertEquals(data2['username'], User.objects.last().username) '''
+        response = self.c.post('/user/registro/', data2)
+        self.assertTemplateUsed(response, 'base.html')
+        self.assertTemplateUsed(response, 'registroException.html')
