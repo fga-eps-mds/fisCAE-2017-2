@@ -51,12 +51,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="top-navbar-1">
                 <ul class="nav navbar-nav navbar-right">
+
                     {% if request.user and not request.user.is_authenticated %}
                         <li><a href="{% url 'login' %}">Login</a></li>
                     {% else %}
                         <li><a href=" # ">{{ request.user.username }}</a></li> 
                         <li><a href="{% url 'logout' %}">Logout</a></li>
                     {% endif %}
+
                     <li><a href="#">Sobre</a></li>
                     <li><a href="{% url 'view_pdf_cae' %}">Cartilha</a></li>
                 </ul>

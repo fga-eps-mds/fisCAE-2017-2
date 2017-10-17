@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'acessar_cartilha',
     'checklist',
     'agendar_reuniao'
+
+
 ]
 
 MIDDLEWARE = [

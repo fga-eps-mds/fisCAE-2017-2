@@ -27,10 +27,11 @@
 	background: rgba(255, 255, 255, 0.6);	
 }
 body {
-	background: #98A0F0;
+	background: #FFFFFF;
     font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.8);
+	font-weight: 300;
+	font-size: 45px;
+    color: rgba(9, 14, 88, 0.8);
     text-align: center;
 }
 
@@ -46,7 +47,7 @@ h1, h2 {
 	margin-top: 10px;
 	font-size: 42px;
     font-weight: 700;
-    color: #FFFFFF(253, 253, 253);
+    color: #18225F(253, 253, 253);
     line-height: 54px;
     text-transform: uppercase;
 }
@@ -55,7 +56,7 @@ h2 { text-align: left; }
 h3 {
 	font-size: 26px;
     font-weight: 700;
-    color: #033A61;
+    color: #18225F;
     line-height: 30px;
     text-transform: uppercase;
 }
@@ -233,11 +234,11 @@ ul.navbar-nav li a:focus { background: none; color:#3D2BA5; outline: 0; }
 .page-title-text {
 	width: 700px;
 	margin: 0 auto;	
-	color: rgb(250, 246, 246);
+	color: rgb(5, 26, 75);
 }
 
 .page-title-text h1 {
-	color: rgb(238, 240, 245);
+	color: rgb(5, 26, 75);
 	text-shadow: 0 1px 6px rgba(255, 255, 255, 0);
 }
 
@@ -689,3 +690,11 @@ footer .scroll-to-top a:hover, footer .scroll-to-top a:focus, footer .scroll-to-
 
 .footer-social a { margin: 0 8px; font-size: 39px; color: #666; }
 .footer-social a:hover, .footer-social a:focus { color: #666; opacity: 0.6; }
+
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font: inherit;
+	color: #000000;
+	font-size: 23px;
+}
