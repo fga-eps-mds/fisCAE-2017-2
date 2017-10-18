@@ -1,0 +1,17 @@
+<div class="container">
+  <form action="{% url 'search_school:searchSchool' %}" method="POST">
+      {% csrf_token %}
+      <input id="id_school" name="school" type="text" class="" placeholder="Digite o nome da escola" style="width: 40%; height: 30px" required>
+      <button class="btn btn-info" style="width: 200px; height: 30px" type="submit">
+        Procurar escola
+      </button>
+  </form>
+
+  {% for school in schoolList %}      
+    <tr>
+      <td>{{ school }}</td>
+      <p></p>
+  {% endfor %}
+  </div>
+    <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 722px; width: 100%; z-index: -999998; position: absolute;"><img src="static/assets/img/backgrounds/" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 2450px; height: 1378.125px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -328.0625px;"></div>
+ </div>

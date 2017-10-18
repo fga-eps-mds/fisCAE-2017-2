@@ -5,6 +5,8 @@ from merenda import views
 
 urlpatterns = [
     url(r'^', include('checklist.urls', namespace='checklist')),
+    url(r'^', include('search_school.urls', namespace='search_school')),
+
     url(r'^$', views.index, name='index'),
 
     url(r'^admin/', admin.site.urls),

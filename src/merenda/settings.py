@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'acessar_cartilha',
     'checklist',
+    'search_school',
 ]
 
 MIDDLEWARE = [
