@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt_br">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FISCAE - plataforma de apoio ao CAE </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,400">
+  <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/assets/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="static/assets/elegant-font/code/style.css">
+  <link rel="stylesheet" href="static/assets/css/animate.css">
+  <link rel="stylesheet" href="static/assets/css/magnific-popup.css">
+  <link rel="stylesheet" href="static/assets/css/form-elements.css">
+  <link rel="stylesheet" href="static/assets/css/style.css">
+  <link rel="stylesheet" href="static/assets/css/mobile.css">
+  <link rel="stylesheet" href="static/assets/css/media-queries.css">
+  <link rel="stylesheet" href="assets/css/Footer-with-logo.css">
+
+
+
+  <link rel="shortcut icon" sizes="20x20" href="static/assets/ico/f.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="static/assets/ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/assets/ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/assets/ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="static/assets/ico/apple-touch-icon-57-precomposed.png">
+
+</head>
+
+<body>
+
+  <!-- Loader -->
+  <div class="loader">
+    <div class="loader-img"></div>
+  </div>
+
+  <!-- Top menu -->
+  <nav class="navbar navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a id="logo" href="/"> <img src="static/assets/img/logo/l.png"  alt="Fiscae" class="pull-left"></a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="top-navbar-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#top-content">Login</a></li>
+          <li><a href="#what-we-do">Cartilha</a></li>
+          <li><a href="#contact">Denúncia</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+ 
+  {% block body %} {% endblock %}
+      <!--footer -->
+      <div class="content">
+      </div>
+      <footer id="myFooter">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3">
+              <h5>Começar</h5>
+              <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Agenda</a></li>
+                <li><a href="checklistForm.hmtl">Checklists</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-3">
+              <h5>Sobre nós</h5>
+              <ul>
+                <li><a href="#">Sobre o CAE</a></li>
+                <li><a href="#">Fale Conosco</a></li>
+                <li><a href="#">Faça uma denuncia</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-3">
+              <h5>Suporte</h5>
+              <ul>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Help desk</a></li>
+                <li><a href="#">Forums</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-3 info">
+              <h5>Sobre o FISCAE</h5>
+              <p> O FISCAE existe para dar superte aos conselheiros alimentares de todo o Brasil.</p>
+            </div>
+          </div>
+        </div>
+        <div class="second-bar">
+          <div class="container">
+            <a id="logo" href="/"> <img src="static/assets/img/logo/l.png"  alt="Fiscae" class="pull-left"></a>
+            <h7>GPP/MDS-Universidade de Brasília 2017/2</h7>
+          </div>
+        </div>
+
+      </footer>
+
+
+
+
+      <!-- Javascript -->
+      <script src="static/assets/js/jquery-1.11.1.min.js"></script>
+      <script src="static/assets/bootstrap/js/bootstrap.min.js"></script>
+      <script src="static/assets/js/jquery.backstretch.min.js"></script>
+      <script src="static/assets/js/wow.min.js"></script>
+      <script src="static/assets/js/retina-1.1.0.min.js"></script>
+      <script src="static/assets/js/jquery.magnific-popup.min.js"></script>
+      <script src="static/assets/js/waypoints.min.js"></script>
+      <script src="static/assets/js/jquery.countTo.js"></script>
+      <script src="static/assets/js/masonry.pkgd.min.js"></script>
+      <script src="static/assets/js/scripts.js"></script>
+      
+
+      <!--[if lt IE 10]>
+            <script src="static/assets/js/placeholder.js"></script>
+        <![endif]-->
+
+</body>
+
+</html>
