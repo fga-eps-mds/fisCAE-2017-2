@@ -1,23 +1,13 @@
-{% load staticfiles %}
-<html>
-    <head>
-        <title>fisCAE</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-    </head>
-    <body>
-        <div class="content container">
-            <div class="row">
-                <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12"  align="center">                    
-                    <h2>
-                        Não é possível iniciar um checklist sem autorização.
-                        <p></p>
-                        Faça login para continuar.
-                    </h2>
+{% extends "Base.html" %} {% block body %}
+<!--Error Message-->
+<div id="errorMessage">
+    <br><br>
+    <h3>Acesso não permitido</h3><br><br>
+
+    <br><br><a href="login" button class="backButton">Faça login para continuar</button><br><br>
+                   
+                  </div>
                 </div>
-            </div>
-        </div>
-    </body>
-</html>
+              </div>
+          </div>
+    {% endblock %}

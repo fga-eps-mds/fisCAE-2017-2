@@ -1,101 +1,22 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FISCAE - plataforma de apoio ao CAE </title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,400">
-  <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="static/assets/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="static/assets/elegant-font/code/style.css">
-  <link rel="stylesheet" href="static/assets/css/animate.css">
-  <link rel="stylesheet" href="static/assets/css/magnific-popup.css">
-  <link rel="stylesheet" href="static/assets/css/form-elements.css">
-  <link rel="stylesheet" href="static/assets/css/style.css">
-  <link rel="stylesheet" href="static/assets/css/media-queries.css">
-
-
-
-  <link rel="shortcut icon" sizes="20x20" href="static/assets/ico/f.png">
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="static/assets/ico/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/assets/ico/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/assets/ico/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="static/assets/ico/apple-touch-icon-57-precomposed.png">
-
-</head>
-
-<body>
-
-  <!-- Loader -->
-  <div class="loader">
-    <div class="loader-img"></div>
+{% extends "Base.html" %} {% block body %}
+<!-- checklists -->
+<div class="page-title top-content" style="position: relative; z-index: 0; background-image: none; background-position: initial initial; background-repeat: initial initial;">
+  <div class="page-title-text wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+    <h1 id="checklistTitle">Escolha um formulário para começar:</h1>
   </div>
-
-  <!-- Top menu -->
-  <nav class="navbar navbar-fixed-top" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a  href="/"> <img src="static/assets/img/logo/l.png" alt="Fiscae" class="img-responsive"></a>          
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="top-navbar-1">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#top-content">Login</a></li>
-          <li><a href="#what-we-do">Cartilha</a></li>
-          <li><a href="#contact">Denúncia</a></li>
-        </ul>
+  <div class="container">
+    <div class="content container">
+      <div class="row">
+        <form method="post" novalidate>
+          <!--div class="col-md-8 col-md-push-4" align="center"-->
+            {% csrf_token %} {% for field in checklistForm %}
+            <div class="checklistType">{{ field }}</div>
+            {% endfor %}
+          </div>
+          <!--div class="col-md-12"-->
+            <button class="checklistButton" type="submit">Começar</button>
+          </div>
+        </form>
       </div>
     </div>
-  </nav>
-
-  <!-- checklists -->
-  <div class="page-title top-content" style="position: relative; z-index: 0; background-image: none; background-position: initial initial; background-repeat: initial initial;">
-    <div class="page-title-text wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
-      <h1>Escolha um formulário para começar:</h1>
-    </div>   
-    <div class="container">
-            <div class="content container">
-                <div class="row">
-                    <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12"  align="center">                    
-                        <form method="post" novalidate>
-                                {% csrf_token %}
-                                {{ checklistForm }}
-                            <button type="submit">Começar</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-
-
-  <!-- Javascript -->
-  <script src="static/assets/js/jquery-1.11.1.min.js"></script>
-  <script src="static/assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="static/assets/js/jquery.backstretch.min.js"></script>
-  <script src="static/assets/js/wow.min.js"></script>
-  <script src="static/assets/js/retina-1.1.0.min.js"></script>
-  <script src="static/assets/js/jquery.magnific-popup.min.js"></script>
-  <script src="static/assets/js/waypoints.min.js"></script>
-  <script src="static/assets/js/jquery.countTo.js"></script>
-  <script src="static/assets/js/masonry.pkgd.min.js"></script>
-  <script src="static/assets/js/scripts.js"></script>
-
-  <!--[if lt IE 10]>
-            <script src="static/assets/js/placeholder.js"></script>
-        <![endif]-->
-
-</body>
-
-</html>
+    {% endblock %}
