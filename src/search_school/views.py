@@ -3,6 +3,8 @@ from django.shortcuts import render, HttpResponseRedirect, reverse
 import requests
 import json
 
+from .forms import SchoolForm
+
 
 def getItems(name, state):
     items = {}
@@ -22,10 +24,17 @@ def getFilteredItems(name, state):
     schoolList = []
     for dictionary in items:
         for (key, value) in dictionary.items():
-            # apply filter
             if key == 'nome':
                 schoolList.append(value)
     return schoolList
+
+
+gList = []
+
+
+def getList():
+    global gList
+    return gList
 
 
 def search(request):
@@ -37,12 +46,16 @@ def search(request):
             if schoolName == '':
                 context['schoolName'] = ''
             else:
-                state = 'RO'
+                state = 'TO'
                 schoolList = getFilteredItems(schoolName, state)
+                global gList
+                gList = schoolList
                 if not schoolList:
                     context['schoolName'] = 'Não encontrado'
                 else:
-                    pass
+                    return HttpResponseRedirect(
+                            reverse('search_school:schoolForm')
+                            )
 
         return render(
                     request,
@@ -51,3 +64,27 @@ def search(request):
                 )
     else:
         return HttpResponseRedirect(reverse('notLoggedIn'))
+
+
+def schoolForm(request):
+    global gList
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            schoolForm = SchoolForm(request.POST, schools=gList)
+            selectedSchool = request.POST.get('school')
+            print(selectedSchool)
+            return HttpResponseRedirect(
+                            reverse('search_school:schoolSuccess')
+                            )
+        else:
+            schoolForm = SchoolForm(schools=gList)
+
+        context = {'schoolForm': schoolForm}
+        return render(request, 'schoolForm.html', context)
+
+    else:
+        return HttpResponseRedirect(reverse('notLoggedIn'))
+
+
+def schoolSuccess(request):
+    return render(request, 'schoolSuccess.html')
