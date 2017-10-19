@@ -8,12 +8,12 @@
     <div class="content container">
       <div class="row">
         <form method="post" novalidate>
-          <div class="col-md-8 col-md-push-4" align="center">
+          <!--div class="col-md-8 col-md-push-4" align="center"-->
             {% csrf_token %} {% for field in checklistForm %}
             <div class="checklistType">{{ field }}</div>
             {% endfor %}
           </div>
-          <div class="col-md-12">
+          <!--div class="col-md-12"-->
             <button class="checklistButton" type="submit">Começar</button>
           </div>
         </form>
