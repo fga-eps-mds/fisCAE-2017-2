@@ -71,11 +71,12 @@ def schoolForm(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             schoolForm = SchoolForm(request.POST, schools=gList)
-            selectedSchool = request.POST.get('school')
-            print(selectedSchool)
-            return HttpResponseRedirect(
-                            reverse('search_school:schoolSuccess')
-                            )
+            if schoolForm.is_valid():
+                selectedSchool = request.POST.get('school')
+                print(selectedSchool)
+                return HttpResponseRedirect(
+                                reverse('search_school:schoolSuccess')
+                                )
         else:
             schoolForm = SchoolForm(schools=gList)
 

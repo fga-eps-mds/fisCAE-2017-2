@@ -8,8 +8,10 @@
           <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12"  align="center">                    
             <h1>Escolha uma escola:</h1>
               <form method="post" novalidate>
-                {% csrf_token %}
-                {{ schoolForm }}
+                {% csrf_token %} 
+                {% for field in schoolForm %}
+                  <div class="checklistType">{{ field }}</div>
+                {% endfor %} 
                 <button type="submit">OK</button>
               </form>
           </div>
@@ -18,4 +20,3 @@
     </div>
   </div>
 </body>
-
