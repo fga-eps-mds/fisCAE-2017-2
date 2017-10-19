@@ -23,4 +23,4 @@ before_script:
   - psql -c "CREATE DATABASE mydb;" -U postgres
 
 script:
-  - python src/manage.py syncdb --noinput
+  - python src/manage.py migrate --noinput
