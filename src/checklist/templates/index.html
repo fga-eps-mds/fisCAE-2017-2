@@ -11,11 +11,14 @@
         </div>
     </div>
     <!-- What we do -->
+    {% if request.user and request.user.is_authenticated %}
     <div class="block-3-container section-container what-we-do-container">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 block-3 section-description wow fadeIn">
-                    <div class="divider-1 wow fadeInUp"><span></span></div>
+                    <div class="divider-1 wow fadeInUp">
+                        <span style="width: 100%"></span>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -44,11 +47,15 @@
                     <div class="block-3-box-icon" href="{% url 'view_pdf_cae' %}">
                         <span aria-hidden="true" class="icon_pencil"></span>
                     </div>
-                    <h3>Cartilha</h3>
+                    <a href="{% url 'view_pdf_cae' %}"><h3>Cartilha</h3></a>
                     <p>Acesse aqui a cartilha do PNAE para os CAEs</p>
                 </div>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 {% endblock %}
+=======
+    {% endif %}
+>>>>>>> e6882767e23df222f6b713fdf9bb68e6444fc935
 
