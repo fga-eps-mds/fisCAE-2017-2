@@ -9,7 +9,7 @@ env:
   - DJANGO=1.11.5
 
 before_install:
-  - export DJANGO_SETTINGS_MODULE=src.merenda.settings
+  - export DJANGO_SETTINGS_MODULE=merenda.settings
   - export PYTHONPATH=$HOME/builds/fga-gpp-mds/fisCAE-2017-2
   - export PIP_USE_MIRRORS=true
   - export PYTHONPATH="/usr/local/lib/python3.4/dist-packages"
