@@ -1,0 +1,26 @@
+language: python
+
+python:
+  - 3.4.5
+
+services: postgresql
+
+env:
+  - DJANGO=1.11.5
+
+before_install:
+  - export DJANGO_SETTINGS_MODULE=merenda.settings
+  - export PYTHONPATH=$HOME/builds/fga-gpp-mds/fisCAE-2017-2
+  - export PIP_USE_MIRRORS=true
+  - export PYTHONPATH="/usr/local/lib/python3.4/dist-packages"
+
+install:
+  - pip install -r src/requirements.txt
+  - pip install django==$DJANGO --quiet
+  - pip install psycopg2 --quiet
+
+before_script:
+  - psql -c "CREATE DATABASE mydb;" -U postgres
+
+script:
+  - python src/manage.py syncdb --noinput
