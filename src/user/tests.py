@@ -1,5 +1,5 @@
 from django.test import TestCase, Client
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AnonymousUser
 from .models import Advisor
 from django.contrib.auth import authenticate
 
@@ -123,3 +123,8 @@ class TestForms(TestCase):
         response = self.c.post('/user/registro/', data2)
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'registroException.html')
+
+    def test_logout_user(self):
+        self.c.login(username='test', password='123456')
+        response = self.c.get('/user/logout')
+        self.assertEquals(response.status_code, 301)
