@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from .models import Advisor
 from django.contrib.auth.models import User
-from django.contrib.auth import login as django_login, authenticate, logout as django_logout
+from django.contrib.auth import login as django_login, authenticate
+from django.contrib.auth import logout as django_logout
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 
@@ -19,6 +21,7 @@ def login(request):
     else:
         return render(request, 'login.html')
 
+
 def logout(request):
     if request.user.is_authenticated:
         django_logout(request)
@@ -28,6 +31,14 @@ def logout(request):
 def register(request):
     if request.method == 'POST':
         advisor = Advisor()
+        try:
+            username = request.POST['username']
+            password = request.POST['password']
+            user = User.objects.create_user(username=username,
+                                            password=password)
+            advisor.user = user
+        except:
+            return render(request, 'registroException.html')
         advisor.name = request.POST['name']
         advisor.phone = request.POST['phone']
         advisor.email = request.POST['email']
@@ -39,10 +50,6 @@ def register(request):
         advisor.municipio = request.POST['municipio']
         advisor.uf = request.POST['uf']
         # endereço
-        password = request.POST['password']
-        username = request.POST['username']
-        user = User.objects.create_user(username=username, password=password)
-        advisor.user = user
         advisor.save()
         return render(request, 'login.html')
     else:
@@ -52,4 +59,6 @@ def register(request):
 @login_required
 def index(request):
     advisor = Advisor.objects.get(user=request.user)
-    return render(request, 'checklist/templates/index.html', {'advisor': advisor})
+    return render(request,
+                  'checklist/templates/index.html',
+                  {'advisor': advisor})
