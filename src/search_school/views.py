@@ -63,7 +63,7 @@ def search(request):
                     {'schoolList': schoolList}
                 )
     else:
-        return HttpResponseRedirect(reverse('notLoggedIn'))
+        return HttpResponseRedirect(reverse('search_school:notLoggedIn'))
 
 
 def schoolForm(request):
@@ -75,7 +75,7 @@ def schoolForm(request):
                 selectedSchool = request.POST.get('school')
                 print(selectedSchool)
                 return HttpResponseRedirect(
-                                reverse('search_school:schoolSuccess')
+                                reverse('search_school:successSchool')
                                 )
         else:
             schoolForm = SchoolForm(schools=gList)
@@ -84,8 +84,12 @@ def schoolForm(request):
         return render(request, 'schoolForm.html', context)
 
     else:
-        return HttpResponseRedirect(reverse('notLoggedIn'))
+        return HttpResponseRedirect(reverse('search_school:notLoggedIn'))
 
 
-def schoolSuccess(request):
+def successSchool(request):
     return render(request, 'schoolSuccess.html')
+
+
+def notLoggedIn(request):
+    return render(request, 'notLoggedIn.html')
