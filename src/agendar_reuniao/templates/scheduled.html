@@ -93,7 +93,8 @@
             Data: {{ a.data }}<br>
             Horario: {{ a.horario }}<br>
             Observações: {{ a.observacoes }}<br>
-            <a href="{% url 'schedule_delete' a.id %}">Delete</a>            
+            <a href="{% url 'schedule_delete' a.id %}">Delete</a> |   
+            <a href="{% url 'edit_schedule' a.id %}">Edit</a>         
             <br><br>
         </div>   
         {% endfor %}

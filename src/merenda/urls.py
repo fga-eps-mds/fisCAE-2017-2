@@ -23,5 +23,7 @@ urlpatterns = [
     url(r'^schedule_delete/(?P<pk>\d+)/$', views.schedule_delete, name='schedule_delete'),
     url(r'^formChecklist', views.checklistForm, name='checklistForm'),
     url(r'^answerForm', views.answerForm, name='answerForm'),
+    url(r'^edit_schedule/(?P<pk>\d+)/$', views.edit_schedule, name='edit_schedule'),
+    
 
 ]

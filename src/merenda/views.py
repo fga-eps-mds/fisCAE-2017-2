@@ -8,6 +8,22 @@ from user.models import User
 from checklist.forms import ChecklistForm
 from checklist.forms import AnswerForm
 from agendar_reuniao.models import Agendamento
+from django.shortcuts import redirect
+from agendar_reuniao.forms import AgendamentoForm
+# def edit_schedule(request, pk):
+#     if request.method == 'POST':
+#         objectEdit = Agendamento.objects.filter(id=pk)
+#         objectEdit.local = request.POST['local']
+#         objectEdit.update()
+#     return render(request, 'edit_schedule.html')
+
+def edit_schedule(request, pk):
+    reuniao = Agendamento.objects.get(id=pk)
+    form =  AgendamentoForm(request.POST or None, instance=reuniao)
+    if form.is_valid():
+        form.save()
+    return render(request, 'edit_schedule.html',{'form': form})
+
 
 
 def schedule_delete(request, pk):
