@@ -9,12 +9,13 @@
 <body>
         <form method="POST">
             {% csrf_token %}
-            {{ form }}
+            Local: {{ form.local }}<br>
+            Data: {{ form.data }}<br>
+            Horario: {{ form.horario }}<br>
+            Observações: {{ form.observacoes }}<br>
             <button type="submit" class="btn btn-primary" id="submit">Enviar</button></br>
         </form> 
         <a href="{% url 'scheduled' %}">Reuniões marcadas</a>        
-
-
 
 </body>
 </html>

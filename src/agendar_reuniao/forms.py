@@ -4,4 +4,4 @@ from agendar_reuniao.models import Agendamento
 class AgendamentoForm(ModelForm):
     class Meta:
         model = Agendamento
-        exclude = [""]
+        exclude = ["tema"]
