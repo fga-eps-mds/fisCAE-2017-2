@@ -1,21 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'baseSchedule.html' %}
+
+
+{% block main %}
+
         <form method="POST">
             {% csrf_token %}
-            Local: {{ form.local }}<br>
+            Local:  {{ form.local }}<br>
             Data: {{ form.data }}<br>
             Horario: {{ form.horario }}<br>
             Observações: {{ form.observacoes }}<br>
-            <button type="submit" class="btn btn-primary" id="submit">Enviar</button></br>
+            <button type="submit" class="btn btn-primary" id="submit">Salvar</button></br>
+        </div>  
         </form> 
         <a href="{% url 'scheduled' %}">Reuniões marcadas</a>        
 
-</body>
-</html>
+{% endblock %}
