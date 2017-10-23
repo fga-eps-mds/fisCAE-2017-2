@@ -10,7 +10,7 @@
         <form method="post" novalidate>
           <!--div class="col-md-8 col-md-push-4" align="center"-->
             {% csrf_token %} {% for field in checklistForm %}
-            <div class="checklistType">{{ field }}</div>
+            <div class="checklistAnswer">{{ field }}</div>
             {% endfor %}
           </div>
           <!--div class="col-md-12"-->

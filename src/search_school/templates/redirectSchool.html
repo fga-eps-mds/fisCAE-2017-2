@@ -1,3 +1,10 @@
 {% extends "Base.html" %} {% block body %}
-<h4>Sucesso!</h4>
+<div id="successMessage">
+  <br><br>
+  <h3>Escola escolhida com sucesso!</h3>
+  <br><br>
+  <br><br><a href="{% url 'search_school:searchSchool' %}" button class="backButton">
+      Procurar outra escola</button>
+  <br><br>
+
 {% endblock %}
