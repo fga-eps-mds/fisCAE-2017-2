@@ -123,11 +123,23 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-"""STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+"""A basic database set-up for Travis CI.
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    '/usr/src/app/checklist/static/',
-    '/usr/src/app/search_school/static/',
-]
+The set-up uses the 'TRAVIS' (== True) environment variable on Travis
+to detect the session, and changes the default database accordingly.
+
+Be mindful of where you place this code, as you may accidentally
+assign the default database to another configuration later in your code.
 """
+
+if 'TRAVIS' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE':   'django.db.backends.sqlite3',
+            'NAME':     'travisdb',
+            'USER':     'sqlite3',
+            'PASSWORD': '',
+            'HOST':     'localhost',
+            'PORT':     '',
+        }
+    }
