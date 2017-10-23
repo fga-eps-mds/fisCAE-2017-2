@@ -13,10 +13,6 @@ def success(request):
     return render(request, 'success.html')
 
 
-def notLoggedIn(request):
-    return render(request, 'notLoggedIn.html')
-
-
 def getQuestions(checklist_type):
     questions = Question.objects.filter(question_type=checklist_type)
     return questions

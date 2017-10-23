@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^findSchool', views.findSchool, name='findSchool'),
     url(r'^formSelect', views.formSelect, name='formSelect'),
     url(r'^tecForm', views.tecForm, name='tecForm'),
+    url(r'^notLoggedIn/$', views.notLoggedIn, name='notLoggedIn'),
 ]

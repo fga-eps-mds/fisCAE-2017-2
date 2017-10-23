@@ -1,12 +1,8 @@
-{% extends "/usr/src/app/checklist/templates/Base.html" %} {% block body %}
+{% extends "Base.html" %} {% block body %}
 <div id="errorMessage">
-    <br><br>
+  <br><br>
     <h3>Acesso não permitido</h3><br><br>
-
-    <br><br><a href="login" button class="backButton">Faça login para continuar</button><br><br>
-                   
-                  </div>
-                </div>
-              </div>
-          </div>
-    {% endblock %}
+    <br><br>
+    <a href="user/login/" button class="backButton">Faça login para continuar</button><br><br>
+</div>
+{% endblock %}

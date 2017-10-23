@@ -65,7 +65,7 @@ def search(request):
                     {'error': error}
                 )
     else:
-        return HttpResponseRedirect(reverse('search_school:notLoggedIn'))
+        return HttpResponseRedirect(reverse('notLoggedIn'))
 
 
 def schoolForm(request):
@@ -86,12 +86,9 @@ def schoolForm(request):
         return render(request, 'schoolForm.html', context)
 
     else:
-        return HttpResponseRedirect(reverse('search_school:notLoggedIn'))
+        return HttpResponseRedirect(reverse('notLoggedIn'))
 
 
 def redirectSchool(request):
     return render(request, 'redirectSchool.html')
 
-
-def notLoggedIn(request):
-    return render(request, 'notLoggedIn.html')
