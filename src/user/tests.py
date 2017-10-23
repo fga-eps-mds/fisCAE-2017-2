@@ -1,7 +1,6 @@
 from django.test import TestCase, Client
-from django.contrib.auth.models import User, AnonymousUser
+from django.contrib.auth.models import User
 from .models import Advisor
-from django.contrib.auth import authenticate
 
 
 class TestSimpleViews(TestCase):
@@ -21,12 +20,10 @@ class TestSimpleViews(TestCase):
         response = self.c.get('/user/dontexist')
         self.assertEquals(404, response.status_code)
 
-    def test_templateLogin(self):
+    def test_template(self):
         response = self.c.get('/user/login/')
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'login.html')
-
-    def test_templateRegistro(self):
         response = self.c.get('/user/registro/')
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'registro.html')
@@ -45,15 +42,15 @@ class TestForms(TestCase):
 
     def test_register_user(self):
         data = {
-            'username': 'robin',
-            'password': 'testing',
+            'username': 'algo',
+            'password': '123456',
             'email': 'jjj@ggg.com',
             'name': 'Test',
-            'cpf': 'Tester',
+            'cpf': '',
             'phone': '',
             'cep': '2223335555',
+            'bairro': 'hhh',
             'descricao': '',
-            'bairro': 'sss',
             'municipio': 'goiania',
             'uf': 'go',
 
@@ -75,17 +72,14 @@ class TestForms(TestCase):
         self.assertNotEquals(data['email'], Advisor.objects.last().uf)
 
     def test_authenticate_user(self):
-
         data = {'username': 'test', 'password': '123456'}
         response = self.c.post('/user/login/', data, follow=True)
         self.assertEquals(response.context['user'], self.user)
-
-    def test_FailPassword_authenticate_user(self):
+        self.c.logout()
         data = {'username': 'test', 'password': '12345'}
         response = self.c.post('/user/login/', data, follow=True)
         self.assertNotEquals(response.context['user'], self.user)
-
-    def test_FailUsername_authenticate_user(self):
+        self.c.logout()
         data = {'username': 'tes', 'password': '123456'}
         response = self.c.post('/user/login/', data, follow=True)
         self.assertNotEquals(response.context['user'], self.user)
