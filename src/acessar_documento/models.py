@@ -3,7 +3,7 @@ from django.forms import ModelForm
 
 class Arquivos(models.Model):
     title = models.TextField()
-    arquivo = models.FileField(upload_to='../uploads')
+    arquivo = models.FileField()
     @staticmethod
     def arquivosSalvos():
         lista = ''

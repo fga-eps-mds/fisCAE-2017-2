@@ -10,28 +10,27 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse , HttpResponseRedirect
 from acessar_documento.forms import UploadFileForm
 from acessar_documento.models import Arquivos
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
+from django.http import JsonResponse
 
+
+
+
+def upload_file(request):
+    form = UploadFileForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        arq = form.save(commit=False)
+        arq.arquivo = request.FILES['arquivo']
+        arq.save()
+        return render(request, 'upload_file.html')
+    return render(request, 'upload_file.html', {'form':form})
 
 
 def documentsAll(request):
     lista = Arquivos.arquivosSalvos()
     return render(request,'documentsAll.html',{'lista':lista})
 
-
-def upload_file(request):
-    arq = Arquivos()
-    if request.method == 'POST':
-        arq.title = request.text['text']
-        arq.arquivo = request.file['file']
-        arq.save()
-        return HttpResponseRedirect('/')
-    return render(request, 'upload_file.html', {'form': form})
-
-# def upload_file(request):
-#     form = UploadFileForm(request.POST, request.FILES)
-#     if request.method == 'POST':
-#         form.file = request.FILES['file']
-#     return render(request, 'upload_file.html', {'form': form})
 
 
 def index(request):
