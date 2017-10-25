@@ -5,10 +5,11 @@
 	background: rgba(255, 255, 255, 0.6);	
 }
 body {
-	background: #98A0F0;
+	background: #FFFFFF;
     font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.8);
+	font-weight: 300;
+	font-size: 45px;
+    color: rgba(9, 14, 88, 0.8);
     text-align: center;
 }
 
@@ -24,7 +25,7 @@ h1, h2 {
 	margin-top: 10px;
 	font-size: 42px;
     font-weight: 700;
-    color: #FFFFFF(253, 253, 253);
+    color: #18225F(253, 253, 253);
     line-height: 54px;
     text-transform: uppercase;
 }
@@ -33,7 +34,7 @@ h2 { text-align: left; }
 h3 {
 	font-size: 26px;
     font-weight: 700;
-    color: #033A61;
+    color: #18225F;
     line-height: 30px;
     text-transform: uppercase;
 }
@@ -178,8 +179,7 @@ img { max-width: 100%; }
 
 .navbar {
 	margin-bottom: 0;
-	background: #6192EC;
-	background: rgb(174, 176, 199);
+	background: #14427f;
 	border: 0;
 	-moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
 }
@@ -211,11 +211,11 @@ ul.navbar-nav li a:focus { background: none; color:#3D2BA5; outline: 0; }
 .page-title-text {
 	width: 700px;
 	margin: 0 auto;	
-	color: rgb(250, 246, 246);
+	color: rgb(5, 26, 75);
 }
 
 .page-title-text h1 {
-	color: rgb(238, 240, 245);
+	color: rgb(5, 26, 75);
 	text-shadow: 0 1px 6px rgba(255, 255, 255, 0);
 }
 
@@ -642,28 +642,241 @@ ul.navbar-nav li a:focus { background: none; color:#3D2BA5; outline: 0; }
 
 /***** Footer *****/
 
-footer {
-	padding: 25px 0 20px 0;
-	background: #404040;
-	text-align: right;
+#myFooter {
+    background-color: #E6E9EC;
+	color: white;
 }
 
-footer .scroll-to-top {
-	font-size: 36px;
+#myFooter .row {
+    margin-bottom: 30px;
+}
+
+#myFooter .info{
+    text-align: justify; 
+    color: #afb0b1;
+}
+
+#myFooter ul {
+    list-style-type: none;
+    padding-left: 0;
+    line-height: 0.7;
+}
+
+#myFooter h5 {
+    font-size: 18px;
+    color: #14427f;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+#myFooter .logo{
+    margin-top: 10px;
+}
+
+#myFooter .second-bar .logo a{
+    color:#FFBC4B;
+    font-size: 28px;
+    float: left;
+    font-weight: bold;
+    line-height: 68px;
+    margin: 0;
+    padding: 0;
+}
+
+#myFooter h7{
+	font-size: 10px;
+	color: black;
+	font-weight: bold;
+}
+
+#myFooter a {
+    color: #14427f;
+	text-decoration: none;
+	font-size: 12px;
+	}
+
+#myFooter p {
+
+	color: #14427f;
+	text-decoration: none;
+	font-size: 12px;
+
+}
+
+#myFooter a:hover,
+#myFooter a:focus {
+    text-decoration: none;
+    color: white;
+}
+
+#myFooter .second-bar {
+    text-align: center;
+    background-color: #FFBC4B;
+	bottom: 0;
+}
+
+#myFooter .second-bar a {
+    font-size: 22px;
+    color: #9fa3a9;
+    padding: 10px;
+    transition: 0.2s;
+    line-height: 68px;
+}
+
+#myFooter .second-bar a:hover {
+    text-decoration: none;
+}
+
+#myFooter .social-icons {
+    float:right;
+}
+
+
+#myFooter .facebook:hover {
+    color: #0077e2;
+}
+
+#myFooter .google:hover {
+    color: #ef1a1a;
+}
+
+#myFooter .twitter:hover {
+    color: #00aced;
+}
+
+@media screen and (max-width: 767px) {
+    #myFooter {
+        text-align: center;
+    }
+
+    #myFooter .info{
+        text-align: center;
+    }
+}
+
+
+
+/* CSS used for positioning the footers at the bottom of the page. */
+/* You can remove this. */
+
+html{
+    height: 100%;
+}
+
+body{
+    
+    height: 100%;
+}
+
+.content{
+   flex: 1 0 auto;
+   -webkit-flex: 1 0 auto;
+   border: 0px;
+   min-height: 200px;
+}
+
+#myFooter{
+   flex: 0 0 auto;
+   -webkit-flex: 0 0 auto;
+}
+
+
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font: inherit;
+	color: #000000;
+	font-size: 23px;
+}
+
+.checklistType ul li {
+ 
+	list-style: none;
+	font-size: 20px;
+    color: #95a5a6;
+}
+
+.checklistType ul{
+
 	text-align: center;
 }
-footer .scroll-to-top a { color: #666; }
-footer .scroll-to-top a:hover, footer .scroll-to-top a:focus, footer .scroll-to-top a:active { outline: 0; opacity: 0.6; color: #666; }
 
-.footer-copyright {
-	margin: 11px 0 0 0;
-	font-size: 18px;
-	color: #fff;
-    line-height: 32px;
-    text-align: left;
+.checklistButton{
+
+	background: none;
+	border:none;
+	color:#1F4788;
+	font-weight: bold;
+
 }
-.footer-copyright a { color: #fff; border: 0; }
-.footer-copyright a:hover, .footer-copyright a:focus { color: #fff; border-bottom: 1px dotted #fff; }
 
-.footer-social a { margin: 0 8px; font-size: 39px; color: #666; }
-.footer-social a:hover, .footer-social a:focus { color: #666; opacity: 0.6; }
+.checklistType input[type=radio]{
+
+	border:10px solid red;
+}
+ 
+#checklistTitle{
+
+	text-transform: initial;
+}
+
+#logo img{
+    width: 65px;
+    margin-left: 5px;
+}
+
+.checklistAnswer ul li {
+	
+	   list-style: none;
+	   font-size: 20px;
+	   color: #95a5a6;
+   }
+   
+   .checklistAnswer ul{
+   
+	   text-align: center;
+   }
+
+   .answerButton{
+	
+		background: none;
+		border:none;
+		color:#1F4788;
+		font-weight: bold;
+	
+	}
+
+	#questionDescription{
+
+	margin-top: 20px;
+	font-size: 32px;
+    font-weight: bold;
+    color: #1F4788;
+    line-height: 30px;
+    text-transform: initial;
+		
+	}
+	
+	#successMessage{
+
+		font-size: 32px;
+		color: #1F4788;
+		font-weight: bold;
+		text-transform: initial;
+	}
+	#errorMessage{
+		
+				font-size: 32px;
+				color: #1F4788;
+				font-weight: bold;
+				text-transform: initial;
+	}
+
+	.backButton{
+		
+			background: none;
+			border:none;
+			color:#1F4788;
+			font-weight: bold;
+		
+		}
