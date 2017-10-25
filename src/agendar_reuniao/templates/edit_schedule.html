@@ -1,0 +1,17 @@
+{% extends 'baseSchedule.html' %}
+
+
+{% block main %}
+
+        <form method="POST">
+            {% csrf_token %}
+            Local:  {{ form.local }}<br>
+            Data: {{ form.data }}<br>
+            Horario: {{ form.horario }}<br>
+            Observações: {{ form.observacoes }}<br>
+            <button type="submit" class="btn btn-primary" id="submit">Salvar</button></br>
+        </div>  
+        </form> 
+        <a href="{% url 'scheduled' %}">Reuniões marcadas</a>        
+
+{% endblock %}

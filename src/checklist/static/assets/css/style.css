@@ -1,3 +1,25 @@
+#personalizadoform{
+
+	border-style: solid;
+	border-radius: 30px;
+	border-color: rgba(255, 255, 255, 0.4);
+	background:rgba(227,74,65,0.4);
+	padding: 10px;
+	position: relative;
+}
+#formstyle{
+	
+		border-style: solid;
+		border-radius: 30px;
+		border-color: rgba(255, 255, 255, 0.4);
+		background: rgba(255, 255, 255, 0.3);	
+		padding: 10px;
+		position: relative;
+	}
+#formstyle:hover{
+	background:rgba(227,74,65,0.4);	
+}
+
 #personalizado {
 	border-style: solid;
 	border-radius: 50px;
@@ -712,7 +734,6 @@ ul.navbar-nav li a:focus { background: none; color:#3D2BA5; outline: 0; }
 #myFooter .second-bar {
     text-align: center;
     background-color: #FFBC4B;
-	text-align: center;
 	bottom: 0;
 }
 
@@ -799,7 +820,7 @@ button, input, optgroup, select, textarea {
 
 .checklistType ul{
 
-	text-align: left;
+	text-align: center;
 }
 
 .checklistButton{
