@@ -22,6 +22,7 @@ h1, h2 {
     line-height: 54px;
     text-transform: uppercase;
 }
+
 h2 { text-align: left; }
 
 h3 {
@@ -172,8 +173,7 @@ img { max-width: 100%; }
 
 .navbar {
 	margin-bottom: 0;
-	background: #6192EC;
-	background: rgb(174, 176, 199);
+	background: #14427f;	
 	border: 0;
 	-moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
 }
