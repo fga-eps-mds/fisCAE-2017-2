@@ -62,7 +62,7 @@
       <div class="collapse navbar-collapse" id="top-navbar-1">
         <ul class="nav navbar-nav navbar-right">
           {% if request.user and not request.user.is_authenticated %}
-          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'user:login' %}">Login</a></li>
       {% else %}
           <li><a href=" # ">{{ request.user.username }}</a></li> 
           <li><a href='logout'>Logout</a></li>
@@ -89,7 +89,7 @@
                 <li><a href="#">Início</a></li>
                 <li><a href="#">Login</a></li>
                 <li><a href="#">Agenda</a></li>
-                <li><a href="checklistForm.hmtl">Checklists</a></li>
+                <li><a href="#">Checklists</a></li>
               </ul>
             </div>
             <div class="col-sm-3">

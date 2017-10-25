@@ -23,10 +23,10 @@
             <div class="collapse navbar-collapse" id="top-navbar-1">
                 <ul class="nav navbar-nav navbar-right">
                     {% if request.user and not request.user.is_authenticated %}
-                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'user:login' %}">Login</a></li>
                     {% else %}
                         <li><a href=" # ">{{ request.user.username }}</a></li> 
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        <li><a href="{% url 'user:logout' %}">Logout</a></li>
                     {% endif %}
                     <li><a href="#">Sobre</a></li>
                     <li><a href="{% url 'view_pdf_cae' %}">Cartilha</a></li>
@@ -61,14 +61,14 @@
                     <div class="block-3-box-icon">
                         <span aria-hidden="true" class="icon_pencil"></span>
                     </div>
-                    <h3><a href="{% url 'scheduled' %}">Agendar reunião ou visita</a></h3>
+                    <h3><a href="{% url 'agendar_reuniao:scheduled' %}">Agendar reunião ou visita</a></h3>
                     <p>Marque as reuniões e visitas</p>
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInDown">
                     <div class="block-3-box-icon">
                         <span aria-hidden="true" class="icon_key"></span>
                     </div>
-                    <h3><a href="{% url 'findSchool' %}">Iniciar visita a uma escola</a></h3>
+                    <h3><a href="#">Iniciar visita a uma escola</a></h3>
                     <p>Iniciar visita à escola.</p>
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInUp">

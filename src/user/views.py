@@ -5,9 +5,6 @@ from django.contrib.auth import login as django_login, authenticate
 from django.contrib.auth import logout as django_logout
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
-
-# Create your views here.
 
 
 def login(request):
@@ -54,11 +51,3 @@ def register(request):
         return render(request, 'login.html')
     else:
         return render(request, 'registro.html')
-
-
-@login_required
-def index(request):
-    advisor = Advisor.objects.get(user=request.user)
-    return render(request,
-                  'checklist/templates/index.html',
-                  {'advisor': advisor})
