@@ -1,3 +1,25 @@
+#personalizadoform{
+
+	border-style: solid;
+	border-radius: 30px;
+	border-color: rgba(255, 255, 255, 0.4);
+	background:rgba(227,74,65,0.4);
+	padding: 10px;
+	position: relative;
+}
+#formstyle{
+	
+		border-style: solid;
+		border-radius: 30px;
+		border-color: rgba(255, 255, 255, 0.4);
+		background: rgba(255, 255, 255, 0.3);	
+		padding: 10px;
+		position: relative;
+	}
+#formstyle:hover{
+	background:rgba(227,74,65,0.4);	
+}
+
 #personalizado {
 	border-style: solid;
 	border-radius: 50px;
