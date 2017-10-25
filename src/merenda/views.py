@@ -53,7 +53,3 @@ def view_pdf_cae(request):
 
 def notLoggedIn(request):
     return render(request, 'notLoggedIn.html')
-
-
-def Success(request):
-    return render(request, 'Success.html')
