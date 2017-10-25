@@ -9,22 +9,29 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse , HttpResponseRedirect
 from acessar_documento.forms import UploadFileForm
+from acessar_documento.models import Arquivos
 
-# Imaginary function to handle an uploaded file.
+
+
+def documentsAll(request):
+    lista = Arquivos.arquivosSalvos()
+    return render(request,'documentsAll.html',{'lista':lista})
 
 
 def upload_file(request):
+    arq = Arquivos()
     if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/')
-    else:
-        form = UploadFileForm()
-    return render(request, 'documents.html', {'form': form})
+        arq.title = request.text['text']
+        arq.arquivo = request.file['file']
+        arq.save()
+        return HttpResponseRedirect('/')
+    return render(request, 'upload_file.html', {'form': form})
 
-def documents(request):
-    return render(request, 'documents.html')
+# def upload_file(request):
+#     form = UploadFileForm(request.POST, request.FILES)
+#     if request.method == 'POST':
+#         form.file = request.FILES['file']
+#     return render(request, 'upload_file.html', {'form': form})
 
 
 def index(request):

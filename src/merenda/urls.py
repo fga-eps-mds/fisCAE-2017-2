@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^tecForm', views.tecForm, name='tecForm'),
     url(r'^viewChecklist', views.viewChecklist, name='viewChecklist'),
     url(r'^Success', views.Success, name='Success'),
-    url(r'^documents', views.documents, name='documents')
-
+    url(r'^upload_file', views.upload_file, name='upload_file'),
+    url(r'^documentsAll', views.documentsAll, name='documentsAll'),
 
 ]
