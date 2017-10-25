@@ -5,6 +5,7 @@ from django.contrib.auth import login as django_login, authenticate, logout as d
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 
@@ -18,6 +19,7 @@ def login(request):
         return render(request, 'login.html')
     else:
         return render(request, 'login.html')
+
 
 def logout(request):
     if request.user.is_authenticated:
