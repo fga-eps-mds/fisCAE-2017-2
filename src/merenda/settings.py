@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'acessar_cartilha',
     'checklist',
-    'agendar_reuniao'
+    'agendar_reuniao',
+    'agendar_visita'
 
 
 ]
