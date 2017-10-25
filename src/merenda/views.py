@@ -24,8 +24,8 @@ def edit_schedule(request, pk):
 
 def schedule_delete(request, pk):
     # reuniao = Agendamento.objects.get(pk=pk)
-    Agendamento.objects.filter(id=pk).delete() 
-    return render(request, 'schedule_delete.html')  
+    Agendamento.objects.filter(id=pk).delete()
+    return render(request, 'schedule_delete.html')
 
 
 def indexScheduleMeeting(request):
@@ -86,17 +86,6 @@ def formSelect(request):
     return render(request, 'formSelect.html')
 
 
-"""
-def check(request):
-    html = ''
-    newQuestion = Checklist()
-    lista = newQuestion.readQuestion()
-    for question in lista:
-        html += '<a>' + question + '</a><br>'
-    return render(request, 'check.html', {'questionList': lista})
-"""
-
-
 def viewChecklist(request):
     schools = School.objects.all()
     answers = Answer.objects.filter(checklist_id=1)
@@ -119,11 +108,6 @@ def access_doc(request):
 
 def view_pdf_cae(request):
     return render(request, 'view_pdf_cae.html')
-
-
-def Success(request):
-    return render(request, 'Success.html')
-
 
 
 def getQuestions(checklist_type):
@@ -199,4 +183,3 @@ def checklistForm(request):
                 'checklistForm.html',
                 {'checklistForm': checklistForm}
             )
-

@@ -4,9 +4,12 @@ from merenda import views
 
 
 urlpatterns = [
+    url(r'^', include('checklist.urls', namespace='checklist')),
+    url(r'^$', views.index, name='index'),
+
     url(r'^admin/', admin.site.urls),
     url(r'^user/', include('user.urls')),
-    url(r'^$', views.index, name='index'),
+
     url(
         r'^view_pdf_cae/CartilhaCAE.pdf$',
         views.view_pdf_cae,
@@ -17,7 +20,6 @@ urlpatterns = [
     url(r'^formSelect', views.formSelect, name='formSelect'),
     url(r'^tecForm', views.tecForm, name='tecForm'),
     url(r'^viewChecklist', views.viewChecklist, name='viewChecklist'),
-    url(r'^Success', views.Success, name='Success'),
     url(r'^indexScheduleMeeting', views.indexScheduleMeeting, name='indexScheduleMeeting'),
     url(r'^scheduled', views.scheduled, name='scheduled'),
     url(r'^schedule_delete/(?P<pk>\d+)/$', views.schedule_delete, name='schedule_delete'),
