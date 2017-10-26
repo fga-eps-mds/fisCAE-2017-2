@@ -11,13 +11,15 @@ class SearchSchoolTest(TestCase):
     def testGetItems(self):
         name = 'ESCOLA ESTADUAL PEDRO LUDOVICO TEIXEIRA'
         state = 'TO'
-        item = getItems(name, state)
+        city = 'Maurilândia do Tocantins'
+        item = getItems(name, state, city)
         self.assertEquals(item[0].get('nome'), name)
 
     def testGetFilteredItems(self):
         name = 'Nazare'
         state = 'DF'
-        schoolList = getFilteredItems(name, state)
+        city = 'Brasília'
+        schoolList = getFilteredItems(name, state, city)
         testList = [
             'INST EDUCACIONAL EVANGELICO NAZARENO',
             'CR MARIA DE NAZARE',
@@ -29,4 +31,4 @@ class SearchSchoolTest(TestCase):
         client = Client()
         client.login(username="amanda", password="123")
         response = client.get(reverse('search_school:schoolForm'))
-        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.status_code, 302)
