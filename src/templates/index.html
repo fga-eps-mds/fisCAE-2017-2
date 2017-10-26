@@ -29,7 +29,7 @@
                         <li><a href="{% url 'user:logout' %}">Logout</a></li>
                     {% endif %}
                     <li><a href="#">Sobre</a></li>
-                    <li><a href="{% url 'view_pdf_cae' %}">Cartilha</a></li>
+                    <li><a href="{% url 'acessar_cartilha:view_pdf_cae' %}">Cartilha</a></li>
                 </ul>
             </div>
         </div>
@@ -79,10 +79,10 @@
                     <p>Viu alguma irregularidade e quer informar aos orgãos competentes?</p>
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInDown">
-                    <div class="block-3-box-icon" href="{% url 'view_pdf_cae' %}">
+                    <div class="block-3-box-icon" href="{% url 'acessar_cartilha:view_pdf_cae' %}">
                         <span aria-hidden="true" class="icon_pencil"></span>
                     </div>
-                    <a href="{% url 'view_pdf_cae' %}"><h3>Cartilha</h3></a>
+                    <a href="{% url 'acessar_cartilha:view_pdf_cae' %}"><h3>Cartilha</h3></a>
                     <p>Acesse aqui a cartilha do PNAE para os CAEs</p>
                 </div>
             </div>
