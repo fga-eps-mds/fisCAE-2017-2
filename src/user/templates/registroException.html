@@ -8,7 +8,8 @@
 <a id="positionForm">                
 <form method="POST" action="{%url 'registro'%}">
    {%csrf_token%}
-   <p class="error" id="password-validation"></p>       
+   <p class="error" id="password-validation"></p>
+   <p class="error">usuário já existe</p>        
    <input type="text" name="username" maxlength="30" placeholder="Username" required></br>
    <input type="text" name="name" maxlength="64" required placeholder="Nome"></br>
    <input type="email" name="email" maxlength="100" required placeholder="Email"></br>
@@ -25,21 +26,21 @@
    </a>
 </form>
 <script type="text/javascript">
-   var passwordInput = document.getElementById('password');
-   var passwordConfirmationInput = document.getElementById('password_confirmation');
-   var passwordValidation = document.getElementById('password-validation');
-   var submitInput = document.getElementById('submit-register');
-   submitInput.disabled = true;
-   function validatePassword() {
-       if(passwordInput.value === '' || passwordConfirmationInput.value === '') 
-           return;
-       if(passwordInput.value !== passwordConfirmationInput.value) {
-           passwordValidation.innerHTML = 'você está inserindo uma senha diferente no campo de confirmar senha</p>';
-           submitInput.disabled = true;
-       } else {
-           passwordValidation.innerHTML = '';
-           submitInput.disabled = false;
-       }
-   };
+    var passwordInput = document.getElementById('password');
+    var passwordConfirmationInput = document.getElementById('password_confirmation');
+    var passwordValidation = document.getElementById('password-validation');
+    var submitInput = document.getElementById('submit-register');
+    submitInput.disabled = true;
+    function validatePassword() {
+        if(passwordInput.value === '' || passwordConfirmationInput.value === '') 
+            return;
+        if(passwordInput.value !== passwordConfirmationInput.value) {
+            passwordValidation.innerHTML = 'você está inserindo uma senha diferente no campo de confirmar senha';
+            submitInput.disabled = true;
+        } else {
+            passwordValidation.innerHTML = '';
+            submitInput.disabled = false;
+        }
+    };
 </script>
 {% endblock %}
