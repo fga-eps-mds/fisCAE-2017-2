@@ -1,130 +1,34 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+{% extends "Base.html" %}
+{% block body %}
 
-<head>
+{% if request.user and request.user.is_authenticated %}    
+<div id="personalizadoform" style="position: relative;
+top: 50%; left: 50%;transform: translate(-50%, -50%)">  
+    <h1>Agendar Reunião</h1>
+    <form action="/indexScheduleMeeting" method="POST">
+        {% csrf_token %}
+            <label for="local" style="font-size:20px; display:inline-block;width:100px;">Local</label>
+            <input type="text" style="text-align:center ; width:30% ; height:40px" name="local" id="local" maxlength="30" placeholder="Insira o local da reuniao" required><P></P>
+            <label for="date" style="font-size:20px;display:inline-block;width:100px;">Data</label>
+            <input type="date" style="text-align:center; color:#707070; border:1px; border-style: solid; border-radius: 8px ; width:30% ; height:40px" name="date" id="date" required><p></p>
+            <label for="time" style="font-size:20px; display:inline-block;width:100px;">Horário</label>
+            <input type="time" style="text-align:center; color:#707070; border:1px; border-style: solid; border-radius: 8px ;width:30% ; height:40px" name="time" id="time" required><p></p>
+            <label for="note" style="font-size:20px; display:inline-block;width:100px;">Obs.:</label>
+            <input type="text" style="text-align:center; color:black ; width:30% ; height:100px" name="note" id="note" maxlenght="1000" placeholder="Insira as observacoes" required size="100px"><P></P>
+            <button type="submit" class="btn btn-primary" id="submit">Agendar</button>
+        </form>
+    </form> 
+    <a href="{% url 'agendar_reuniao:scheduled' %}" class="backButton" style="font-size:30px">Reuniões marcadas</a>        
+</div>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FISCAE - plataforma de apoio ao CAE </title>
+{% else %}
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,400">
-    <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/assets/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="static/assets/elegant-font/code/style.css">
-    <link rel="stylesheet" href="static/assets/css/animate.css">
-    <link rel="stylesheet" href="static/assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="static/assets/css/form-elements.css">
-    <link rel="stylesheet" href="static/assets/css/style.css">
-    <link rel="stylesheet" href="static/assets/css/media-queries.css">
-
-
-    <link rel="shortcut icon" sizes="20x20" href="static/assets/ico/f.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="static/assets/ico/144png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/assets/ico/114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/assets/ico/72.png">
-    <link rel="apple-touch-icon-precomposed" href="static/assets/ico/57.png">
-
-    <style>
-        #pop{position:absolute; top:25%; left:50%; margin-left:-300px;
-             margin-top:-100px; padding:8px; width:600px;
-             height:100px; border-radius:10px; border:solid #9090B0 1px; 
-             background-color:rgba(174, 176, 199, 0.5)}
-    </style>
-
-    <script type="text/javascript">
-        function LoginRedirect() {
-            location.href="user/login" }
-        function HomeRedirect() {
-            location.href="/" }
-    </script>
-
-</head>
-
-<body>
-
-    <!-- Loader -->
-    <div class="loader">
-        <div class="loader-img"></div>
-    </div>
-
-    <!-- Top menu -->
-    <nav class="navbar navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-                <a  href="/"> <img src="static/assets/img/logo/l.png" alt="Fiscae" class="img-responsive"></a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="top-navbar-1">
-                <ul class="nav navbar-nav navbar-right">
-                    {% if request.user and not request.user.is_authenticated %}
-                        <li><a href="{% url 'user:login' %}">Login</a></li>
-                    {% else %}
-                        <li><a href=" # ">{{ request.user.username }}</a></li> 
-                        <li><a href="{% url 'user:logout' %}">Logout</a></li>
-                    {% endif %}
-                    <li><a href="#">Sobre</a></li>
-                    <li><a href="{% url 'acessar_cartilha:view_pdf_cae' %}">Cartilha</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+  <div id="errorMessage">
     <br><br><br><br>
+      <h3>Acesso não permitido</h3><br><br>
+      <a href="{% url 'user:login' %}" button class="backButton">Faça login para continuar</button><br><br>
+  </div>
+            
+{% endif %}
 
-    {% if request.user and request.user.is_authenticated %}    
-    <div id="personalizadoform">  
-        <h1>Agendar Reunião</h1>
-        <form action="/indexScheduleMeeting" method="POST">
-            {% csrf_token %}
-                <label for="local" style="font-size:20px">Local</label></br>
-                <input type="text" style="text-align:center ; width:30% ; height:60px" name="local" id="local" maxlength="30" placeholder="Insira o local da reuniao" required></br></br>
-                <label for="date" style="font-size:20px">Data</label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                <label for="time" style="font-size:20px">Horário</label></br>
-                <input type="date" style="text-align:center; color:#707070; border:1px; border-style: solid; border-radius: 8px ; width:15% ; height:60px" name="date" id="date" required>
-                <input type="time" style="text-align:center; color:#707070; border:1px; border-style: solid; border-radius: 8px ;width:15% ; height:60px" name="time" id="time" required></br></br>
-                <label for="note" style="font-size:20px">Observações</label></br>
-                <input type="text" style="text-align:center; color:black ; width:30% ; height:100px" name="note" id="note" maxlenght="1000" placeholder="Insira as observacoes" required size="100px"></br></br>
-                <button type="submit" class="btn btn-primary" id="submit">Enviar</button></br>
-            </form></br>
-        </form> 
-        <a href="{% url 'agendar_reuniao:scheduled' %}">Reuniões marcadas</a>        
-    </div>
-    {% else %}
-    <div id="pop">
-        <a class="close" id="close" href="#" onclick="document.getElementById('pop').style.display='none';">×</a>
-        <br />
-        <h4 align="left">Atenção</h4>
-        <h5 align="left">É necessário estar logado em uma conta de usuário para acessar essa funcionalidade.</h5>
-    </div><br /><br /><br /><br /><br /><br /><br />
-    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Voltar" onclick="HomeRedirect()">
-    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Login" onclick="LoginRedirect()">
-             
-    {% endif %}
-    <!-- Javascript -->
-    <script src="static/assets/js/jquery-1.11.1.min.js"></script>
-    <script src="static/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="static/assets/js/jquery.backstretch.min.js"></script>
-    <script src="static/assets/js/wow.min.js"></script>
-    <script src="static/assets/js/retina-1.1.0.min.js"></script>
-    <script src="static/assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="static/assets/js/waypoints.min.js"></script>
-    <script src="static/assets/js/jquery.countTo.js"></script>
-    <script src="static/assets/js/masonry.pkgd.min.js"></script>
-    <script src="static/assets/js/scripts.js"></script>
-
-    <!--[if lt IE 10]>
-            <script src="static/assets/js/placeholder.js"></script>
-        <![endif]-->
-
-
-
-</body>
-
-</html>
+{% endblock %}

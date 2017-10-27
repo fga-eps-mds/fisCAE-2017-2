@@ -1,15 +1,21 @@
 {% extends 'Base.html' %}
 {% block body %}
 
-        <form method="POST">
-            {% csrf_token %}
+<div id="personalizadoform" style="position: relative;
+    top: 50%; left: 50%;transform: translate(-50%, -50%)">  
+    
+    <h1>Editar Reunião</h1>
+    <form method="POST">
+        <div id="formstyle" style="font-size:30px;display:inline-block;">
+            {% csrf_token %}<br>
             Local:  {{ form.local }}<br>
             Data: {{ form.data }}<br>
             Horario: {{ form.horario }}<br>
-            Observações: {{ form.observacoes }}<br>
+            Observações: {{ form.observacoes }}
+            <br><br>
             <button type="submit" class="btn btn-primary" id="submit">Salvar</button></br>
-        </div>  
-        </form> 
-        <a href="{% url 'agendar_reuniao:scheduled' %}">Reuniões marcadas</a>        
-
+            <a href="{% url 'agendar_reuniao:scheduled' %}">Reuniões marcadas</a>
+        </div>
+    </form> 
+</div>
 {% endblock %}
