@@ -1,6 +1,7 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 from merenda import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 urlpatterns = [
@@ -15,3 +16,5 @@ urlpatterns = [
 
     url(r'^notLoggedIn/$', views.notLoggedIn, name='notLoggedIn'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()

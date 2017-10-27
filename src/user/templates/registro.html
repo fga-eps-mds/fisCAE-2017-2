@@ -6,7 +6,7 @@
  </a>
 
  <a id="positionForm">                
-<form method="POST" action="{%url 'registro'%}">
+<form method="POST" action="{%url 'user:registro'%}">
     {%csrf_token%}
     <p class="error" id="password-validation"></p>       
     <input type="text" name="username" maxlength="30" placeholder="Username" required></br>
