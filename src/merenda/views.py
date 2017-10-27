@@ -13,8 +13,15 @@ from acessar_documento.models import Arquivos
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.http import JsonResponse
+import os.path
 
 
+def viewpdf(request):
+    with open('../media/Novo_Documento_2017-09-13_18.19.55_20170913182145649.pdf', 'r', encoding='latin-1') as pdf:
+        response = HttpResponse(pdf.read(), content_type='application/pdf')
+        response['Content-Disposition'] = 'inline;filename=CartilhaCAE.pdf'
+        return response
+    pdf.closed
 
 
 def upload_file(request):
@@ -23,7 +30,7 @@ def upload_file(request):
         arq = form.save(commit=False)
         arq.arquivo = request.FILES['arquivo']
         arq.save()
-        return render(request, 'upload_file.html')
+        # return render(request, 'documentsAll.html')
     return render(request, 'upload_file.html', {'form':form})
 
 
