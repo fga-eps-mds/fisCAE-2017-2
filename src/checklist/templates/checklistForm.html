@@ -1,22 +1,29 @@
-{% extends "Base.html" %} {% block body %}
-<!-- checklists -->
-<div class="page-title top-content" style="position: relative; z-index: 0; background-image: none; background-position: initial initial; background-repeat: initial initial;">
-  <div class="page-title-text wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
-    <h1 id="checklistTitle">Escolha um formulário para começar:</h1>
-  </div>
+{% extends "Base.html" %}
+{% block body %}
+
+<div class="page-title top-content" style="position: relative; z-index: 0; background-image: none;
+  background-position: initial initial; background-repeat: initial initial;
+  top: 50%; left: 50%;transform: translate(-50%, -50%)">
   <div class="container">
     <div class="content container">
       <div class="row">
+        
+        <div class="page-title-text wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+          <h1 id="checklistTitle">Escolha um formulário:</h1>
+        </div>
+
         <form method="post" novalidate>
-          <!--div class="col-md-8 col-md-push-4" align="center"-->
             {% csrf_token %} {% for field in checklistForm %}
             <div class="checklistAnswer">{{ field }}</div>
             {% endfor %}
           </div>
-          <!--div class="col-md-12"-->
-            <button class="checklistButton" type="submit">Começar</button>
+            <button class="btn btn-info" type="submit">Começar</button>
           </div>
         </form>
+
       </div>
     </div>
-    {% endblock %}
+  </div>
+</div>
+
+{% endblock %}
