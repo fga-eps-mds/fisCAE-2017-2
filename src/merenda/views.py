@@ -14,14 +14,19 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.http import JsonResponse
 import os.path
+from django.core.files.storage import FileSystemStorage
+
+
+
 
 
 def viewpdf(request):
-    with open('../media/Novo_Documento_2017-09-13_18.19.55_20170913182145649.pdf', 'r', encoding='latin-1') as pdf:
+    fs = FileSystemStorage()
+    with fs.open('CartilhaCAE.pdf') as pdf:
         response = HttpResponse(pdf.read(), content_type='application/pdf')
         response['Content-Disposition'] = 'inline;filename=CartilhaCAE.pdf'
         return response
-    pdf.closed
+    pdf.close()
 
 
 def upload_file(request):
