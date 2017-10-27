@@ -10,6 +10,7 @@ from checklist.forms import AnswerForm
 from agendar_reuniao.models import Agendamento
 from django.shortcuts import redirect
 from agendar_reuniao.forms import AgendamentoForm
+from agendar_visita.models import ScheduleVisit
 
 
 def edit_schedule(request, pk):
@@ -43,6 +44,16 @@ def scheduled(request):
     todosAgendamentos = Agendamento.agendamentos(request)
     return render(request, 'scheduled.html', {'todosAgendamentos': todosAgendamentos})
 
+
+def indexScheduleVisit(request):
+    newSchedule = ScheduleVisit()
+    if request.method == 'POST':
+        newSchedule.school = request.POST['school']
+        newSchedule.date = request.POST['date']
+        newSchedule.time = request.POST['time']
+        newSchedule.members = request.POST['members']
+        newSchedule.save()
+    return render(request, 'indexScheduleVisit.html')
 
 
 def index(request):

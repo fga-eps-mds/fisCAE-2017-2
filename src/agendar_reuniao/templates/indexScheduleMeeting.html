@@ -79,16 +79,24 @@
     <br><br><br><br>
 
     {% if request.user and request.user.is_authenticated %}    
-    <div id="personalizadoform">  
+    <div class="background-schedule">  
         <h1>Agendar Reunião</h1>
         <form action="/indexScheduleMeeting" method="POST">
             {% csrf_token %}
                 <label for="local" style="font-size:20px">Local</label></br>
                 <input type="text" style="text-align:center ; width:30% ; height:60px" name="local" id="local" maxlength="30" placeholder="Insira o local da reuniao" required></br></br>
-                <label for="date" style="font-size:20px">Data</label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                <label for="time" style="font-size:20px">Horário</label></br>
-                <input type="date" style="text-align:center; color:#707070; border:1px; border-style: solid; border-radius: 8px ; width:15% ; height:60px" name="date" id="date" required>
-                <input type="time" style="text-align:center; color:#707070; border:1px; border-style: solid; border-radius: 8px ;width:15% ; height:60px" name="time" id="time" required></br></br>
+                <div class="center-table-schedule">
+                    <table>
+                        <tr>
+                            <th><label for="date" class="label-date">Data</label></th>
+                            <th><label for="time" class="label-time">Horário</label></th>
+                        </tr>
+                        <tr>
+                            <th><input type="date" class="input-date" name="date" required></th>
+                            <th><input type="time" class="input-time" name="time" required></th>
+                        </tr>
+                    </table>
+                </div>
                 <label for="note" style="font-size:20px">Observações</label></br>
                 <input type="text" style="text-align:center; color:black ; width:30% ; height:100px" name="note" id="note" maxlenght="1000" placeholder="Insira as observacoes" required size="100px"></br></br>
                 <button type="submit" class="btn btn-primary" id="submit">Enviar</button></br>
