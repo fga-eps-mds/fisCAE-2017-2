@@ -1,9 +1,11 @@
-{% extends "Base.html" %} {% block body %}
+{% extends "Base.html" %}
+{% block body %}
+
 <div id="successMessage">
   <br><br>
   <h3>Escola escolhida com sucesso!</h3>
   <br><br>
-  <br><br><a href="{% url 'search_school:searchSchool' %}" button class="backButton">
+  <a href="{% url 'search_school:searchSchool' %}" button class="backButton">
       Procurar outra escola</button>
   <br><br>
 
