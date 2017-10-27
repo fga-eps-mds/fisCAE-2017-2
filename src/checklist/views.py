@@ -58,19 +58,21 @@ def checklistForm(request):
 questions = []
 
 
+def checkQuestions(checklist):
+    global questions
+    if not questions:
+        query_questions = Question.objects.filter(
+                            question_type=checklist.checklist_type
+                            )
+        questions = list(query_questions)
+
+
 def answerForm(request):
     if request.user.is_authenticated:
         checklist = Checklist.objects.last()
         global questions
-
-        if not questions:
-            query_questions = Question.objects.filter(
-                                question_type=checklist.checklist_type
-                                )
-            questions = list(query_questions)
-
+        checkQuestions(checklist)
         current_question = questions[0]
-
         if request.method == 'POST':
             answerForm = AnswerForm(request.POST)
             if answerForm.is_valid():
@@ -88,15 +90,12 @@ def answerForm(request):
                     return HttpResponseRedirect(
                                 reverse('checklist:answerForm')
                                 )
-
         else:
             answerForm = AnswerForm()
-
         context = {
             'answerForm': answerForm,
             'current_question': current_question
             }
         return render(request, 'answerForm.html', context)
-
     else:
         return HttpResponseRedirect(reverse('notLoggedIn'))
