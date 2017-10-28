@@ -17,9 +17,6 @@ import os.path
 from django.core.files.storage import FileSystemStorage
 
 
-
-
-
 def viewpdf(request):
     fs = FileSystemStorage()
     with fs.open('CartilhaCAE.pdf') as pdf:
