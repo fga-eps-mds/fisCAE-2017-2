@@ -1,0 +1,22 @@
+{% extends "Base.html" %} {% block body %}
+<!--AnswerForm-->
+<div class="page-header">
+</div>
+<div class="content container">
+  <div class="row">
+    <div class="col-md-12" "col-md-push-4" align="center">
+      <form method="post" novalidate>
+        <div id="questionDescription">
+          {{ current_question.id }}. {{ current_question.description }}
+        </div>
+        <p></p>
+        {% csrf_token %}{% for field in answerForm %}
+        <div class="checklistAnswer">{{ field }}</div>
+        {% endfor %}
+        <button class="answerButton" type="submit">Responder</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
