@@ -11,6 +11,8 @@ from agendar_reuniao.models import Agendamento
 from django.shortcuts import redirect
 from agendar_reuniao.forms import AgendamentoForm
 from agendar_visita.models import ScheduleVisit
+from django.http import HttpResponse
+from django.core.files.storage import FileSystemStorage
 
 
 def edit_schedule(request, pk):
@@ -118,7 +120,12 @@ def access_doc(request):
 
 
 def view_pdf_cae(request):
-    return render(request, 'view_pdf_cae.html')
+    fs = FileSystemStorage()
+    with fs.open('static/assets/doc/CartilhaCAE.pdf') as pdf:
+        response = HttpResponse(pdf.read(), content_type='application/pdf')
+        response['Content-Disposition'] = 'inline;filename=CartilhaCAE.pdf'
+        return response
+    pdf.close()
 
 
 def getQuestions(checklist_type):
