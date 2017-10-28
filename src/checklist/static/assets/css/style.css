@@ -8,6 +8,20 @@
 	position: relative;
 }
 
+#pop {
+	position:absolute;
+	top:25%;
+	left:50%;
+	margin-left:-300px;
+	margin-top:-100px;
+	padding:8px;
+	width:600px;
+	height:100px;
+	border-radius:10px;
+	border:solid #9090B0 1px; 
+	background-color:rgba(174, 176, 199, 0.5)
+}
+
 .background-schedule {
 	background-color: #FFFFFF;
 }
@@ -26,7 +40,7 @@
 	border: 1px; 
 	border-style: solid; 
 	border-radius: 8px; 
-	width: 100%; 
+	width: 90%; 
 	height: 60px;
 }
 
@@ -36,7 +50,7 @@
 	border: 1px;
 	border-style: solid;
 	border-radius: 8px ;
-	width: 100%;
+	width: 90%;
 	height: 60px;
 }
 

@@ -11,5 +11,4 @@ class ScheduleVisit(models.Model):
     def scheduleVisit(request):
         visits = []
         visits = ScheduleVisit.objects.all()
-        return visits 
-
+        return visits

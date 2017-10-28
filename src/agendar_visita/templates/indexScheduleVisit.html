@@ -1,6 +1,44 @@
 {% extends "Base.html" %}
+
     {% block body %}
 
-        <h1> Agendar Visita</h1>
-    
+        {% if request.user and request.user.is_authenticated %}
+        
+            <div class="background-schedule">  
+            </br><h1>Agendar Visita</h1>
+                <form action="/indexScheduleVisit" method="POST">
+                    {% csrf_token %}
+                        <label for="school" style="font-size:20px">Escola</label></br>
+                        <input type="text" style="text-align:center ; width:30% ; height:60px" name="school" id="school" maxlength="30" placeholder="Insira a escola" required></br></br>
+                        <div class="center-table-schedule">
+                            <table>
+                                <tr>
+                                    <th><label for="date" class="label-date">Data</label></th>
+                                    <th><label for="time" class="label-time">Horário</label></th>
+                                </tr>
+                                <tr>
+                                    <th><input type="date" class="input-date" name="date" required></th>
+                                    <th><input type="time" class="input-time" name="time" required></th>
+                                </tr>
+                            </table>
+                        </div>
+                        <label for="members" style="font-size:20px">Membros</label></br>
+                        <input type="text" style="text-align:center; color:black ; width:30% ; height:100px" name="members" id="members" maxlenght="1000" placeholder="Insira as observacoes" required size="100px"></br></br>
+                        <button type="submit" class="btn btn-primary" id="submit">Enviar</button></br>
+                    </form></br>
+                </form> 
+                <a href="{% url 'scheduled' %}">Visitas marcadas</a>        
+            </div>
+            {% else %}
+            <div id="pop">
+                <a class="close" id="close" href="#" onclick="document.getElementById('pop').style.display='none';">×</a>
+                <br />
+                <h4 align="left">Atenção</h4>
+                <h5 align="left">É necessário estar logado em uma conta de usuário para acessar essa funcionalidade.</h5>
+            </div><br /><br /><br /><br /><br /><br />
+            <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Voltar" onclick="HomeRedirect()">
+            <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Login" onclick="LoginRedirect()">
+
+        {% endif %}
+
     {% endblock %}
