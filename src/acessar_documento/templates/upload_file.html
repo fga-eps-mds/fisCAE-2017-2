@@ -2,8 +2,10 @@
 <form method="POST" enctype="multipart/form-data">
   {% csrf_token %}
 
-  {{ form }}
+  {{ form.title }}<br><br>
+  {{ form.arquivo }}<br><br>
+  
   <button type="submit" class="btn btn-success">Submit</button>
-  <!-- <input type="submit" value="Upload" /> -->
+
 </form>
 <a href="documentsAll">Arquivos salvos</a>
