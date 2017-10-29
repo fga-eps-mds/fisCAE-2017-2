@@ -23,12 +23,14 @@ from agendar_reuniao.models import Agendamento
 from django.shortcuts import redirect
 from agendar_reuniao.forms import AgendamentoForm
 from django.http import HttpResponse
+from os import listdir
 
 
 
 def viewpdf(request, pk):
     fs = FileSystemStorage()
-    with fs.open(pk+'.pdf') as pdf:
+    # with fs.open(pk+'.pdf') as pdf:
+    with fs.open(pk) as pdf:    
         response = HttpResponse(pdf.read(), content_type='application/pdf')
         response['Content-Disposition'] = 'inline;filename='
         return response
@@ -47,8 +49,11 @@ def upload_file(request):
 
 
 def documentsAll(request):
-    lista = Arquivos.arquivosSalvos()
-    return render(request,'documentsAll.html',{'lista':lista})
+    lista = listdir('media')
+    return render(request,'documentsAll.html',{'lista':lista})    
+    # lista = Arquivos.arquivosSalvos()
+    # return render(request,'documentsAll.html',{'lista':lista})
+
 
 
 def edit_schedule(request, pk):
