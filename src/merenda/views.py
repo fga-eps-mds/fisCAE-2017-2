@@ -25,7 +25,6 @@ from agendar_reuniao.forms import AgendamentoForm
 from django.http import HttpResponse
 
 
-
 def edit_schedule(request, pk):
     reuniao = Agendamento.objects.get(id=pk)
     form =  AgendamentoForm(request.POST or None, instance=reuniao)

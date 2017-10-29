@@ -9,7 +9,6 @@ from checklist.forms import ChecklistForm
 from checklist.forms import AnswerForm
 
 
-
 def success(request):
     return render(request, 'success.html')
 
