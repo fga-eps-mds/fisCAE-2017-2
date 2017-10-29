@@ -33,8 +33,9 @@ urlpatterns = [
     url(r'^answerForm', views.answerForm, name='answerForm'),
     url(r'^edit_schedule/(?P<pk>\d+)/$', views.edit_schedule, name='edit_schedule'),
     url(r'^upload_file', views.upload_file, name='upload_file'),
-    url(r'^documentsAll', views.documentsAll, name='documentsAll'),
-    url(r'^viewpdf', views.viewpdf, name='viewpdf'),
+    url(r'^documentsAll', views.documentsAll, name='documentsAll'), 
+    url(r'^viewpdf/(?P<pk>[^/]+)/', views.viewpdf, name='viewpdf'),
+    
 
 ]
 

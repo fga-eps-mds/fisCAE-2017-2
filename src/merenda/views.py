@@ -26,11 +26,11 @@ from django.http import HttpResponse
 
 
 
-def viewpdf(request):
+def viewpdf(request, pk):
     fs = FileSystemStorage()
-    with fs.open('CartilhaCAE.pdf') as pdf:
+    with fs.open(pk+'.pdf') as pdf:
         response = HttpResponse(pdf.read(), content_type='application/pdf')
-        response['Content-Disposition'] = 'inline;filename=CartilhaCAE.pdf'
+        response['Content-Disposition'] = 'inline;filename='
         return response
     pdf.close()
 
