@@ -40,6 +40,7 @@ def upload_file(request):
     if form.is_valid():
         arq = form.save(commit=False)
         arq.arquivo = request.FILES['arquivo']
+        arq.title = request.POST['title']
         arq.save()
         # return render(request, 'documentsAll.html')
     return render(request, 'upload_file.html', {'form':form})
