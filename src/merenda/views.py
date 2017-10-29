@@ -1,16 +1,13 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse
-from django.utils import timezone
 from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import HttpResponseRedirect, reverse
+from django.utils import timezone
 from checklist.models.checklist import Checklist
 from checklist.models.question import Question
 from checklist.models.answer import Answer
-
 from checklist.models.school import School
 from user.models import User
-from checklist.forms import ChecklistForm
-from checklist.forms import AnswerForm
+from checklist.forms import ChecklistForm, AnswerForm
 from agendar_reuniao.models import Agendamento
-from django.shortcuts import redirect
 from agendar_reuniao.forms import AgendamentoForm
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core.files.storage import FileSystemStorage
@@ -21,6 +18,36 @@ from acessar_documento.forms import UploadFileForm
 from acessar_documento.models import Arquivos
 from django.contrib.auth import authenticate, login, logout
 import os.path
+
+from os import listdir
+
+
+def viewpdf(request, pk):
+    fs = FileSystemStorage()
+    # with fs.open(pk+'.pdf') as pdf:
+    with fs.open(pk) as pdf:
+        response = HttpResponse(pdf.read(), content_type='application/pdf')
+        response['Content-Disposition'] = 'inline;filename='
+        return response
+    pdf.close()
+
+
+def upload_file(request):
+    form = UploadFileForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        arq = form.save(commit=False)
+        arq.arquivo = request.FILES['arquivo']
+        arq.title = request.POST['title']
+        arq.save()
+        # return render(request, 'documentsAll.html')
+    return render(request, 'upload_file.html', {'form': form})
+
+
+def documentsAll(request):
+    lista = listdir('media')
+    return render(request, 'documentsAll.html', {'lista': lista})
+    # lista = Arquivos.arquivosSalvos()
+    # return render(request,'documentsAll.html',{'lista':lista})
 
 
 def edit_schedule(request, pk):
@@ -51,31 +78,8 @@ def indexScheduleMeeting(request):
 
 def scheduled(request):
     todosAgendamentos = Agendamento.agendamentos(request)
-    return render(request, 'scheduled.html', {'todosAgendamentos': todosAgendamentos})
-
-
-def viewpdf(request):
-    fs = FileSystemStorage()
-    with fs.open('CartilhaCAE.pdf') as pdf:
-        response = HttpResponse(pdf.read(), content_type='application/pdf')
-        response['Content-Disposition'] = 'inline;filename=CartilhaCAE.pdf'
-        return response
-    pdf.close()
-
-
-def upload_file(request):
-    form = UploadFileForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        arq = form.save(commit=False)
-        arq.arquivo = request.FILES['arquivo']
-        arq.save()
-        # return render(request, 'documentsAll.html')
-    return render(request, 'upload_file.html', {'form': form})
-
-
-def documentsAll(request):
-    lista = Arquivos.arquivosSalvos()
-    return render(request, 'documentsAll.html', {'lista': lista})
+    return render(request, 'scheduled.html',
+                  {'todosAgendamentos': todosAgendamentos})
 
 
 def index(request):

@@ -25,10 +25,8 @@ class Question(models.Model):
         with open(path) as json_file:
             checklist = json.load(json_file)
             for item in checklist['items']:
-                Question(
-                    item_number=item['item_number'],
-                    description=item['description'],
-                    question_type=item['question_type']).save()
+                Question(item_number=item['item_number'],
+                         description=item['description']).save()
 
     @staticmethod
     def listQuestionsMethod():

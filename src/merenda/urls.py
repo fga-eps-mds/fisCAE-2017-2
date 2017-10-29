@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
+
     url(r'^', include('checklist.urls', namespace='checklist')),
     url(r'^', include('search_school.urls', namespace='search_school')),
 
@@ -20,7 +21,7 @@ urlpatterns = [
         views.view_pdf_cae,
         name='view_pdf_cae'
     ),
-    url(r'^home', views.home, name='home'),
+    url(r'^index', views.home, name='home'),
     url(r'^findSchool', views.findSchool, name='findSchool'),
     url(r'^formSelect', views.formSelect, name='formSelect'),
     url(r'^tecForm', views.tecForm, name='tecForm'),
@@ -36,9 +37,7 @@ urlpatterns = [
         views.edit_schedule, name='edit_schedule'),
     url(r'^upload_file', views.upload_file, name='upload_file'),
     url(r'^documentsAll', views.documentsAll, name='documentsAll'),
-    url(r'^viewpdf', views.viewpdf, name='viewpdf'),
-
-
+    url(r'^viewpdf/(?P<pk>[^/]+)/', views.viewpdf, name='viewpdf'),
 
 
 ]

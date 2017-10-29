@@ -6,7 +6,12 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Cartilha CAE</title>
     </head>
-    <body> 
-            <a href="../../media/Novo_Documento_2017-09-13_18.19.55_20170913182145649.pdf"   target="_blank">pdf_001</a>
+    <body>
+            <!-- <a href="../../media/Novo_Documento_2017-09-13_18.19.55_20170913182145649.pdf"   target="_blank">pdf_001</a> -->
+            {% for l in lista %}
+            <ul>
+                <li><a href="viewpdf/{{ l.title }}">{{ l.title }}</a><br></li>
+            </ul>
+            {% endfor %}
     </body>
 </html>
