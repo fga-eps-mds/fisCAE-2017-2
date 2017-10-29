@@ -2,6 +2,16 @@
 {% block body %}
 
 {% if request.user and request.user.is_authenticated %}
+
+<script type="text/javascript">
+    function LoginRedirect() {
+        location.href="user/login" }
+    function HomeRedirect() {
+        location.href="/" }
+    function IndexScheduleMeetingRedirect() {
+        location.href="indexScheduleMeeting" }
+</script>
+
 <div class="page-title top-content" style="position: relative;
 top: 50%; left: 50%;transform: translate(-50%, -50%)">   
     <h1>Reuniões Agendadas</h1>
