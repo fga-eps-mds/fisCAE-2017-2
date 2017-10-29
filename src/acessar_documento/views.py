@@ -1,14 +1,16 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse, HttpResponse
+from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.shortcuts import HttpResponse
 from acessar_documento.models import Arquivos
 from os import listdir
 from django.utils import timezone
 from django.core.files.storage import FileSystemStorage
 from .forms import UploadFileForm
 
+
 def viewpdf(request, pk):
     fs = FileSystemStorage()
     # with fs.open(pk+'.pdf') as pdf:
-    with fs.open(pk) as pdf:    
+    with fs.open(pk) as pdf:
         response = HttpResponse(pdf.read(), content_type='application/pdf')
         response['Content-Disposition'] = 'inline;filename='
         return response
@@ -23,11 +25,11 @@ def upload_file(request):
         arq.title = request.POST['title']
         arq.save()
         # return render(request, 'documentsAll.html')
-    return render(request, 'upload_file.html', {'form':form})
+    return render(request, 'upload_file.html', {'form': form})
 
 
 def documentsAll(request):
-    lista = listdir('media')
-    return render(request,'documentsAll.html',{'lista':lista})    
+    lista = listdir('../media')
+    return render(request, 'documentsAll.html', {'lista': lista})
     # lista = Arquivos.arquivosSalvos()
     # return render(request,'documentsAll.html',{'lista':lista})

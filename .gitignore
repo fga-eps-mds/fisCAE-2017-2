@@ -5,8 +5,4 @@ db.sqlite3
 src/user/migrations/*
 src/search_school/migrations/
 src/checklist/migrations/
-<<<<<<< HEAD
 src/user/migrations/*
-=======
-
->>>>>>> 5f57504a02d285daf3688043ec200ebb06728b2c

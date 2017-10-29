@@ -19,6 +19,7 @@ from acessar_documento.models import Arquivos
 from django.contrib.auth import authenticate, login, logout
 import os.path
 
+
 def edit_schedule(request, pk):
     reuniao = Agendamento.objects.get(id=pk)
     form = AgendamentoForm(request.POST or None, instance=reuniao)
