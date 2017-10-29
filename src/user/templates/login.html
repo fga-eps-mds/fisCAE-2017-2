@@ -1,13 +1,24 @@
-{% extends "base.html" %} 
+{% extends "Base.html" %} 
 {% block body %}
-<h1>Login</h1>
-<form method="POST" action="{%url 'user:login'%}">
-    {%csrf_token%}       
-    <input type="text" name="username" placeholder="Username" required maxlength="30" />
-    <input type="password" name="password" maxlength="30" placeholder="Password" required />
-    <button type="submit" class="btn btn-primary btn-block btn-large">Entrar</button><br>
-    <a href="{% url 'user:registro' %}">Registrar</a>
-</form>
+
+<div class="page-header">
+</div>
+<div class="content container">
+  <div class="row">
+    <div class="col-md-12" "col-md-push-4" align="center">
+        <br>
+        <h1>Login</h1>
+            <form method="POST" action="{%url 'user:login'%}">
+                {%csrf_token%}       
+                <input type="" name="username" placeholder="Username" required maxlength="30" style="text-align:center ; width:25% ; height:40px" /><br>
+                <input type="password" name="password" maxlength="30" placeholder="Password" required style="text-align:center ; width:25% ; height:40px" /><br>
+                <button type="submit" class="btn btn-info" style="width: 100px; height: 50px">Entrar</button><br>
+                <a href="{% url 'user:registro' %}" style="font-size:20px;">Registrar</a>
+            </form>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
+
     
