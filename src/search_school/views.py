@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
-# import requests
+import requests
 import json
 from .forms import SchoolForm
 from user.models import Advisor
@@ -54,13 +54,13 @@ def search(request):
                     error = ['Não encontrado. Digite novamente']
                 else:
                     return HttpResponseRedirect(
-                            reverse('search_school:schoolForm')
-                            )
+                        reverse('search_school:schoolForm')
+                    )
         return render(
-                    request,
-                    'search.html',
-                    {'error': error}
-                )
+            request,
+            'search.html',
+            {'error': error}
+        )
     else:
         return HttpResponseRedirect(reverse('search_school:notLoggedIn'))
 
@@ -74,8 +74,8 @@ def schoolForm(request):
                 selectedSchool = request.POST.get('school')
                 print(selectedSchool)
                 return HttpResponseRedirect(
-                                reverse('search_school:redirectSchool')
-                                )
+                    reverse('search_school:redirectSchool')
+                )
         else:
             schoolForm = SchoolForm(schools=gList)
 
