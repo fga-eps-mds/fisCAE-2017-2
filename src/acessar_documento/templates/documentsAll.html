@@ -4,8 +4,8 @@
             <br><br>
             {% for l in lista %}
             <ul>
-                {% if l.title  != '.Ds_Store' %}
-                <li><a href="viewpdf/{{ l.title }}">{{ l.title }}</a><br></li>
+                {% if l  != '.Ds_Store' %}
+                <li><a href="viewpdf/{{ l }}">{{ l }}</a><br></li>
                 {% endif %}
             </ul>
             {% endfor %}
