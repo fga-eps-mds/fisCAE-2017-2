@@ -29,4 +29,6 @@ urlpatterns = [
     url(r'^answerForm', views.answerForm, name='answerForm'),
     url(r'^edit_schedule/(?P<pk>\d+)/$', views.edit_schedule, name='edit_schedule'),
     url(r'indexScheduleVisit', views.indexScheduleVisit, name='indexScheduleVisit'),
+    url(r'visitScheduleds', views.visitScheduled, name='visitScheduled'),
+    url(r'schedules', views.schedules, name='schedules'),
 ]

@@ -58,6 +58,13 @@ def indexScheduleVisit(request):
     return render(request, 'indexScheduleVisit.html')
 
 
+def visitScheduled(request):
+    allSchedules = ScheduleVisit.scheduleVisit(request)
+    return render(request, 'visitScheduleds.html', {'allSchedules': allSchedules})
+
+def schedules(request):
+    return render(request, 'schedules.html')
+
 def index(request):
     return render(request, 'index.html')
 
