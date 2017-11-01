@@ -47,6 +47,11 @@ def scheduled(request):
     return render(request, 'scheduled.html', {'todosAgendamentos': todosAgendamentos})
 
 
+def scheduleVisitDelete(request, pk):
+    ScheduleVisit.objects.filter(id=pk).delete()
+    return render(request, 'deleteScheduleVisit.html')
+
+
 def indexScheduleVisit(request):
     newSchedule = ScheduleVisit()
     if request.method == 'POST':

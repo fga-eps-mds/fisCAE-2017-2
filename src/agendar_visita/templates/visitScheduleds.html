@@ -14,6 +14,7 @@
                 Data: {{ i.date }}<br>
                 Horário: {{ i.time }}<br>
                 Membros: {{ i.members }}<br>
+                <a href="{% url 'scheduleVisitDelete' i.id %}">Deletar</a> | 
                 <br><br>
             </div>   
             {% endfor %}
