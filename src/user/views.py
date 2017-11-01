@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from .models import Advisor
 from django.contrib.auth.models import User
 from django.contrib.auth import login as django_login, authenticate
@@ -6,8 +5,27 @@ from django.contrib.auth import logout as django_logout
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404, redirect
+from user.forms import AdvisorForm
 
 # Create your views here.
+
+@login_required
+def userEdit(request, pk):
+    user = get_object_or_404(Advisor, pk=pk)
+    form = AdvisorForm(request.POST or None, instance=user)
+    if form.is_valid():
+        form.save()
+        return redirect('/')
+    return render(request, 'login.html', {'form':form})
+
+
+    reuniao = Agendamento.objects.get(id=pk)
+    form = AgendamentoForm(request.POST or None, instance=reuniao)
+    if form.is_valid():
+        form.save()
+        return redirect('../../scheduled.html')
+    return render(request, 'edit_schedule.html', {'form': form})
 
 
 def login(request):
