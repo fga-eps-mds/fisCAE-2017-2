@@ -38,6 +38,9 @@ urlpatterns = [
     url(r'^edit_schedule/(?P<pk>\d+)/$',
         views.edit_schedule, name='edit_schedule'),
 
+    url(r'^userEdit/(?P<pk>\d+)$', views.userEdit, name='userEdit'),
+
+
 
 
 ]

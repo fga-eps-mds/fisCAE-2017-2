@@ -18,6 +18,20 @@ from acessar_documento.forms import UploadFileForm
 from acessar_documento.models import Arquivos
 from django.contrib.auth import authenticate, login, logout
 import os.path
+from django.contrib.auth.decorators import login_required
+from user.forms import AdvisorForm
+from user.models import Advisor
+
+
+
+@login_required
+def userEdit(request, pk):
+    user = get_object_or_404(Advisor, pk=pk)
+    form = AdvisorForm(request.POST or None, instance=user)
+    if request.method == 'POST':
+        form.save()
+        return redirect('../../')
+    return render(request, 'userEdit.html', {'form':form})
 
 def edit_schedule(request, pk):
     reuniao = Agendamento.objects.get(id=pk)
