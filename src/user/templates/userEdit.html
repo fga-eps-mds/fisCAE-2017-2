@@ -1,6 +1,7 @@
+{% extends "base.html" %}
 
-{% block main %}
-
+{% block body %}
+  
         <form method="POST">
             {% csrf_token %}
           <label>Nome</label><br>{{ form.name }}<br><br>
@@ -12,7 +13,8 @@
           <label>Bairro</label><br> {{ form.bairro }}<br><br>
           <label>Municipio</label><br>  {{ form.municipio }}<br><br>
           <label>Uf</label><br> {{ form.uf }}<br><br>
-            <button type="submit" class="btn btn-primary" id="submit">Salvar</button></br>
+            <button type="submit" class="btn btn-primary" id="submit">Salvar</button>
+            <a href="../" >Voltar</a>
         </div>  
         </form>  
 

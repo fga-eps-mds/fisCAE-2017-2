@@ -23,15 +23,16 @@ from user.forms import AdvisorForm
 from user.models import Advisor
 
 
-
 @login_required
 def userEdit(request, pk):
     user = get_object_or_404(Advisor, pk=pk)
     form = AdvisorForm(request.POST or None, instance=user)
     if request.method == 'POST':
-        form.save()
-        return redirect('../../')
+        if pk == user.id:
+            form.save()
+            return redirect( '../../')
     return render(request, 'userEdit.html', {'form':form})
+
 
 def edit_schedule(request, pk):
     reuniao = Agendamento.objects.get(id=pk)
