@@ -2,5 +2,7 @@
 __pycache__
 db.sqlite3
 .DS_Store
+src/user/migrations/*
 src/search_school/migrations/
 src/checklist/migrations/
+src/user/migrations/*

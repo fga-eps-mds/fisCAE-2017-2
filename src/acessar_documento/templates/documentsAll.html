@@ -1,0 +1,12 @@
+{% extends "base_docs.html" %}
+
+{% block body %}
+            <br><br>
+            {% for l in lista %}
+            <ul>
+                {% if l.title  != '.Ds_Store' %}
+                <li><a href="viewpdf/{{ l }}">{{ l }}</a><br></li>
+                {% endif %}
+            </ul>
+            {% endfor %}
+{% endblock %}

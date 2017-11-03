@@ -59,5 +59,6 @@ def register(request):
 @login_required
 def index(request):
     advisor = Advisor.objects.get(user=request.user)
-    return render(request, 'index.html',
+    return render(request,
+                  'checklist/templates/index.html',
                   {'advisor': advisor})

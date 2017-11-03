@@ -1,14 +1,12 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.shortcuts import render, redirect
+from django.shortcuts import HttpResponseRedirect, reverse
 from django.utils import timezone
 from checklist.models.checklist import Checklist
 from checklist.models.question import Question
 from checklist.models.answer import Answer
 from checklist.models.school import School
-from user.models import User
-from checklist.forms import ChecklistForm
-from checklist.forms import AnswerForm
+from checklist.forms import ChecklistForm, AnswerForm
 from agendar_reuniao.models import Agendamento
-from django.shortcuts import redirect
 from agendar_reuniao.forms import AgendamentoForm
 from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
@@ -16,12 +14,11 @@ from django.core.files.storage import FileSystemStorage
 
 def edit_schedule(request, pk):
     reuniao = Agendamento.objects.get(id=pk)
-    form =  AgendamentoForm(request.POST or None, instance=reuniao)
+    form = AgendamentoForm(request.POST or None, instance=reuniao)
     if form.is_valid():
         form.save()
         return redirect('../../scheduled.html')
-    return render(request, 'edit_schedule.html',{'form': form})
-
+    return render(request, 'edit_schedule.html', {'form': form})
 
 
 def schedule_delete(request, pk):
@@ -43,8 +40,8 @@ def indexScheduleMeeting(request):
 
 def scheduled(request):
     todosAgendamentos = Agendamento.agendamentos(request)
-    return render(request, 'scheduled.html', {'todosAgendamentos': todosAgendamentos})
-
+    return render(request, 'scheduled.html',
+                  {'todosAgendamentos': todosAgendamentos})
 
 
 def index(request):
@@ -131,8 +128,8 @@ def answerForm(request):
 
     if not questions:
         query_questions = Question.objects.filter(
-                            question_type=checklist.checklist_type
-                            )
+            question_type=checklist.checklist_type
+        )
         questions = list(query_questions)
 
     current_question = questions[0]
@@ -152,13 +149,13 @@ def answerForm(request):
     else:
         answerForm = AnswerForm()
     return render(
-                request,
-                'answerForm.html',
-                {
-                    'answerForm': answerForm,
-                    'current_question': current_question
-                }
-            )
+        request,
+        'answerForm.html',
+        {
+            'answerForm': answerForm,
+            'current_question': current_question
+        }
+    )
 
 
 def checklistForm(request):
@@ -170,7 +167,7 @@ def checklistForm(request):
         address='Endereço',
         phone=111111,
         principal='Diretor'
-        )
+    )
     school.save()
     if request.method == 'POST':
         checklistForm = ChecklistForm(request.POST)
@@ -181,12 +178,12 @@ def checklistForm(request):
             checklist.created_date = timezone.now()
             checklist.save()
             return HttpResponseRedirect(
-                        reverse('answerForm')
-                        )
+                reverse('answerForm')
+            )
     else:
         checklistForm = ChecklistForm()
     return render(
-                request,
-                'checklistForm.html',
-                {'checklistForm': checklistForm}
-            )
+        request,
+        'checklistForm.html',
+        {'checklistForm': checklistForm}
+    )
