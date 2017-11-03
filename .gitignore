@@ -2,7 +2,10 @@
 __pycache__
 db.sqlite3
 .DS_Store
+<<<<<<< HEAD
 src/user/migrations/*
+=======
+>>>>>>> origin/TS09_extend_base
 src/search_school/migrations/
 src/checklist/migrations/
 src/user/migrations/*

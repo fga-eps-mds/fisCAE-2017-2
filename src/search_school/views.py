@@ -1,8 +1,12 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
-import requests
+# import requests
 import json
 from .forms import SchoolForm
 from user.models import Advisor
+
+
+gList = []
+gSelectedSchool = ''
 
 
 def getItems(name, state, city):
@@ -29,11 +33,9 @@ def getFilteredItems(name, state, city):
     return schoolList
 
 
-gList = []
-
-
 def search(request):
     error = []
+    global gList
     if request.user.is_authenticated:
         schoolList = []
         if request.method == 'POST':
@@ -46,9 +48,7 @@ def search(request):
                 userObject = Advisor.objects.get(id=userId)
                 state = (userObject.uf).upper()
                 city = userObject.municipio
-                print((userObject.uf).upper(), city)
                 schoolList = getFilteredItems(schoolName, state, city)
-                global gList
                 gList = schoolList
                 if not schoolList:
                     error = ['Não encontrado. Digite novamente']
@@ -62,17 +62,18 @@ def search(request):
             {'error': error}
         )
     else:
-        return HttpResponseRedirect(reverse('search_school:notLoggedIn'))
+        return HttpResponseRedirect(reverse('notLoggedIn'))
 
 
 def schoolForm(request):
     global gList
+    global gSelectedSchool
     if request.user.is_authenticated:
         if request.method == 'POST':
             schoolForm = SchoolForm(request.POST, schools=gList)
             if schoolForm.is_valid():
-                selectedSchool = request.POST.get('school')
-                print(selectedSchool)
+                gSelectedSchool = request.POST.get('school')
+                print(gSelectedSchool)
                 return HttpResponseRedirect(
                     reverse('search_school:redirectSchool')
                 )
@@ -83,12 +84,8 @@ def schoolForm(request):
         return render(request, 'schoolForm.html', context)
 
     else:
-        return HttpResponseRedirect(reverse('search_school:notLoggedIn'))
+        return HttpResponseRedirect(reverse('notLoggedIn'))
 
 
 def redirectSchool(request):
     return render(request, 'redirectSchool.html')
-
-
-def notLoggedIn(request):
-    return render(request, 'notLoggedIn.html')

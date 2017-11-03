@@ -1,3 +1,5 @@
+{% extends "Base.html" %}
+{% block body %}
 <div class="page-header">
 </div>
 <div class="content container">
@@ -7,10 +9,11 @@
       <form method="post" novalidate>
         {% csrf_token %} 
         {% for field in schoolForm %}
-          <div class="checklistType">{{ field }}</div>
+          <div class="checklistAnswer">{{ field }}</div>
         {% endfor %} 
         <button type="submit">OK</button>
       </form>
     </div>
   </div>
 </div>
+{% endblock %}

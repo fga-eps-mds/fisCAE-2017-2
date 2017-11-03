@@ -72,6 +72,22 @@ TEMPLATES = [
     },
 ]
 
+MEDIA_ROOT = './media/'
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = ''
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (os.path.join('static'), )
+
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
+
 WSGI_APPLICATION = 'merenda.wsgi.application'
 
 

@@ -1,29 +1,39 @@
-{% extends "base.html" %}
-{% block body %}
+ {% extends "Base.html" %}
+ {% block body %}
 
-<a id="positionT">  
-   <h1>Cadastro</h1>
-</a>
-
-<a id="positionForm">                
-<form method="POST" action="{%url 'registro'%}">
-   {%csrf_token%}
-   <p class="error" id="password-validation"></p>       
-   <input type="text" name="username" maxlength="30" placeholder="Username" required></br>
-   <input type="text" name="name" maxlength="64" required placeholder="Nome"></br>
-   <input type="email" name="email" maxlength="100" required placeholder="Email"></br>
-   <input type="number" name="cpf" min="0" max="99999999999" placeholder="Cpf" required><br>
-   <input type="number" name="phone" min="1000000000" max="99999999999" placeholder="Telefone(com ddd,não tem deixe em branco)"></br>
-   <input type="number" name="cep" min="0" max="99999999" required placeholder="Cep"></br>
-   <input type="text" name="uf" maxlength="2" required placeholder="sigla do seu estado"> </br>
-   <input type="text" name="municipio" maxlength="30" required placeholder="Municipio"> </br>
-   <input type="text" name="bairro" maxlength="30" required placeholder="Bairro"> </br>
-   <input type="text" name="descricao" maxlength="50" placeholder="Decrição"> </br>
-   <input type="password" name="password" id="password" maxlength="30" required placeholder="Senha" oninput="validatePassword();" size="50px 50px"> </br>
-   <input type="password"  id="password_confirmation" maxlength="30" required placeholder="Confirmar senha" oninput="validatePassword();" size="50px 50px"> </br>
-   <button type="submit" id="submit-register" class="btn btn-primary btn-block btn-large">Salvar</button><br>
-   </a>
-</form>
+ <div class="page-header">
+    </div>
+    <div class="content container">
+      <div class="row">
+        <div class="col-md-12" "col-md-push-4" align="center">
+            <form method="POST" action="{%url 'user:registro'%}" style="
+            margin: 0 auto;display:inline-block;width: 100%;
+            padding: 12px;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical">
+                {%csrf_token%}
+                <p class="error" id="password-validation"></p>
+                <label><h3>Cadastro</h3></label><br>
+                <input type="" name="username" maxlength="30" placeholder="Username" required></br>
+                <input type="" name="name" maxlength="64" required placeholder="Nome"></br>
+                <input type="email" name="email" maxlength="100" required placeholder="Email"></br>
+                <input type="number" name="cpf" min="0" max="99999999999" placeholder="Cpf" required><br>
+                <input type="number" name="phone" min="1000000000" max="99999999999" placeholder="Telefone(com ddd,não tem deixe em branco)"></br>
+                <input type="number" name="cep" min="0" max="99999999" required placeholder="Cep"></br>
+                <input type="" name="uf" maxlength="2" required placeholder="Sigla do seu estado"> </br>
+                <input type="" name="municipio" maxlength="30" required placeholder="Municipio"> </br>
+                <input type="" name="bairro" maxlength="30" required placeholder="Bairro"> </br>
+                <input type="" name="descricao" maxlength="50" placeholder="Decrição"> </br>
+                <input type="password" name="password" id="password" maxlength="30" required placeholder="Senha" oninput="validatePassword();" > </br>
+                <input type="password"  id="password_confirmation" maxlength="30" required placeholder="Confirmar senha" oninput="validatePassword();"> </br><p></p>
+                <button type="submit" class="btn btn-primary btn-block btn-large" style="width: 150px; height: 50px">Salvar</button><br>
+                </a>
+            </form>
+        </div>
+      </div>
+    </div>     
+    
 <script type="text/javascript">
    var passwordInput = document.getElementById('password');
    var passwordConfirmationInput = document.getElementById('password_confirmation');
