@@ -28,3 +28,23 @@ def postUser(cep, email, name, username, password):
     response = requests.post(url, data=json.dumps(data), headers=headers)
 
     return response
+
+
+def authenticateUser(email, password):
+    email = str(email)
+    password = str(password)
+
+    urlBase = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS'
+    rest = '/rest/pessoas/autenticar?'
+    url = urlBase + rest
+
+    # appIdentifier = '464'
+    # headers = {'email': email, 'senha': password, 'appIdentifier': appIdentifier}
+    headers = {'email': email, 'senha': password}
+    request = requests.get(url, headers=headers)
+
+    print(request.text, '\n\n')
+    # print(json.loads(request.text))
+    print(request.headers)
+
+    return request
