@@ -205,7 +205,7 @@ ul.navbar-nav li a:focus { background: none; color:#3D2BA5; outline: 0; }
 /***** Page title *****/
 
 .page-title {
-	padding: 260px 0 210px 0;
+	padding: 110px 0 110px 0;
 }
 
 .page-title-text {
@@ -711,9 +711,8 @@ ul.navbar-nav li a:focus { background: none; color:#3D2BA5; outline: 0; }
 
 #myFooter .second-bar {
     text-align: center;
-    background-color: #FFBC4B;
+    background-color: #14427f;
 	bottom: 0;
-	position:fixed;
 	left:0px;
 	bottom:0px;
 	width:100%;
@@ -861,6 +860,32 @@ button, input, optgroup, select, textarea {
     text-transform: initial;
 		
 	}
+
+	#formstyle{
+	  
+		background: #C5D2D6;
+		font-size: 12px;
+		color: #061937;
+		text-align: center;
+		width: 100%; 
+
+	}
+
+	#formstyle edit{
+		background: white;
+		font-size: 20px;
+		display:inline-block;
+		width:100px;
+		text-align: center;
+	}
+
+	#scheduleTitles{
+		font-size: 32px;
+		color: #1F4788;
+		font-weight: bold;
+		text-transform: initial;
+
+	}
 	
 	#successMessage{
 
@@ -885,3 +910,12 @@ button, input, optgroup, select, textarea {
 			font-weight: bold;
 		
 		}
+		
+
+	@media only screen and (max-width:480px) {
+    #logo img{
+        width: 50px;
+        margin-left: 5px;
+    }
+}
+	

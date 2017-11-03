@@ -2,8 +2,7 @@
 {% block body %}
 
 {% if request.user and request.user.is_authenticated %}    
-<div id="personalizadoform" style="position: relative;
-top: 50%; left: 50%;transform: translate(-50%, -50%)">  
+<div id="personalizadoform" >
     <h1>Agendar Reunião</h1>
     <form action="/indexScheduleMeeting" method="POST">
         {% csrf_token %}
@@ -17,7 +16,7 @@ top: 50%; left: 50%;transform: translate(-50%, -50%)">
             <input type="" style="text-align:center; color:black ; width:30% ; height:100px" name="note" id="note" maxlenght="1000" placeholder="Insira as observacoes" required size="100px"><P></P>
             <button type="submit" class="btn btn-primary" id="submit">Agendar</button>
         </form>
-    </form> 
+
     <a href="{% url 'agendar_reuniao:scheduled' %}" class="backButton" style="font-size:30px">Reuniões marcadas</a>        
 </div>
 

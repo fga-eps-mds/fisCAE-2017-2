@@ -1,12 +1,12 @@
 {% extends 'Base.html' %}
 {% block body %}
 
-<div id="personalizadoform" style="position: relative;
-    top: 50%; left: 50%;transform: translate(-50%, -50%)">  
-    
+<div class="page-title" >   
+        <div id = "scheduleTitles">    
     <h1>Editar Reunião</h1>
+    </div></div>
     <form method="POST">
-        <div id="formstyle" style="font-size:30px;display:inline-block;">
+        <div id="formstyle edit">
             {% csrf_token %}<br>
             Local:  {{ form.local }}<br>
             Data: {{ form.data }}<br>

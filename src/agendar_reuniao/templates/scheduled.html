@@ -12,9 +12,10 @@
         location.href="indexScheduleMeeting" }
 </script>
 
-<div class="page-title top-content" style="position: relative;
-top: 50%; left: 50%;transform: translate(-50%, -50%)">   
-    <h1>Reuniões Agendadas</h1>
+<div class="page-title" >   
+    <div id = "scheduleTitles">
+        <h1>Reuniões Agendadas</h1>
+        </div> </div>
     <form action="scheduled"  method="POST">
         {% csrf_token %}
         <ol>
@@ -32,7 +33,7 @@ top: 50%; left: 50%;transform: translate(-50%, -50%)">
         </ol>
     </form>
     <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Novo agendamento" onclick="IndexScheduleMeetingRedirect()">
-</div> 
+
 {% else %}
     <div id="errorMessage">
         <br><br><br><br>
