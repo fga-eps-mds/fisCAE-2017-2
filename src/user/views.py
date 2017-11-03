@@ -6,8 +6,7 @@ from django.contrib.auth import logout as django_logout
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-
-# Create your views here.
+from nuvem_civica.services import postUser
 
 
 def login(request):
@@ -43,14 +42,22 @@ def register(request):
         advisor.phone = request.POST['phone']
         advisor.email = request.POST['email']
         advisor.cpf = request.POST['cpf']
-        # endereço
         advisor.cep = request.POST['cep']
         advisor.descricao = request.POST['descricao']
         advisor.bairro = request.POST['bairro']
         advisor.municipio = request.POST['municipio']
         advisor.uf = request.POST['uf']
-        # endereço
         advisor.save()
+
+        response = postUser(
+                        advisor.cep,
+                        advisor.email,
+                        advisor.name,
+                        username,
+                        password
+                    )
+        print(response.text)
+        print(response.status_code, response.reason)
         return render(request, 'login.html')
     else:
         return render(request, 'registro.html')
