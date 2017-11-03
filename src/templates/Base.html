@@ -64,7 +64,7 @@
                     <li><a href="#">Sobre</a></li>
                 {% else %}
                     <li><a href=" # ">{{ request.user.username }}</a></li> 
-                    <li><a href="{% url 'acessar_cartilha:view_pdf_cae' %}">Cartilha</a></li>
+                    <li><a href="documentsAll.html">Documentos</a></li>
                     <li><a href="#">Sobre</a></li>
                     <li><a href="{% url 'user:logout' %}">Sair</a></li>
                 {% endif %}
