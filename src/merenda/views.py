@@ -1,37 +1,15 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponseRedirect, reverse
 from django.utils import timezone
 from checklist.models.checklist import Checklist
 from checklist.models.question import Question
 from checklist.models.answer import Answer
 from checklist.models.school import School
-from user.models import User
 from checklist.forms import ChecklistForm, AnswerForm
 from agendar_reuniao.models import Agendamento
 from agendar_reuniao.forms import AgendamentoForm
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
-from django.shortcuts import render_to_response
-from django.contrib import messages
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from acessar_documento.forms import UploadFileForm
-from acessar_documento.models import Arquivos
-from django.contrib.auth import authenticate, login, logout
-import os.path
-from django.contrib.auth.decorators import login_required
-from user.forms import AdvisorForm
-from user.models import Advisor
-
-
-@login_required
-def userEdit(request, pk):
-    user = get_object_or_404(Advisor, pk=pk)
-    form = AdvisorForm(request.POST or None, instance=user)
-    if request.method == 'POST':
-        if pk == user.id:
-            form.save()
-            return redirect( '../../')
-    return render(request, 'userEdit.html', {'form':form})
 
 
 def edit_schedule(request, pk):

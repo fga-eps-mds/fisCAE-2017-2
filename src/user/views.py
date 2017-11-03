@@ -7,7 +7,6 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from user.forms import AdvisorForm
-
 # Create your views here.
 
 
@@ -63,3 +62,14 @@ def index(request):
     return render(request,
                   'checklist/templates/index.html',
                   {'advisor': advisor})
+
+
+@login_required
+def userEdit(request, pk):
+    user = get_object_or_404(Advisor, pk=pk)
+    form = AdvisorForm(request.POST or None, instance=user)
+    if request.method == 'POST':
+        if pk == user.id:
+            form.save()
+            return redirect('../../')
+    return render(request, 'userEdit.html', {'form': form})
