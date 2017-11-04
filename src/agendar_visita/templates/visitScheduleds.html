@@ -14,13 +14,15 @@
                 Data: {{ i.date }}<br>
                 Horário: {{ i.time }}<br>
                 Membros: {{ i.members }}<br>
-                <a href="{% url 'scheduleVisitDelete' i.id %}">Deletar</a> | 
+                <a href="{% url 'agendar_visita:scheduleVisitDelete' i.id %}">Deletar</a> | 
+                <a href="{% url 'agendar_visita:editVisit' i.id %}">Editar</a>
                 <br><br>
             </div>   
             {% endfor %}
             </ol>
         </form>
-        <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Nova Visita" onclick="IndexScheduleVisitRedirect()">
+        <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" 
+        class="btn btn-primary" value="Nova Visita" onclick="location.href='{% url 'search_school:searchSchool' %}'">
 
 
         {% else %}

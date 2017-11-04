@@ -8,11 +8,10 @@
             </br><h1>Agendar Visita</h1>
                 <form action="/indexScheduleVisit" method="POST">
                     {% csrf_token %}
-                        <label for="school" style="font-size:20px">Escola</label></br>
-                        <input type="text" style="text-align:center ; width:30% ; height:60px" name="school" id="school" maxlength="30" placeholder="Insira a escola" required></br></br>
                         <div class="center-table-schedule">
                             <table>
                                 <tr>
+                                    <h3>Escola: {{ school }}</h3>
                                     <th><label for="date" class="label-date">Data</label></th>
                                     <th><label for="time" class="label-time">Horário</label></th>
                                 </tr>
@@ -27,7 +26,7 @@
                         <button type="submit" class="btn btn-primary" id="submit">Enviar</button></br>
                     </form></br>
                 </form> 
-                <a href="{% url 'visitScheduled' %}">Visitas marcadas</a>        
+                <a href="{% url 'agendar_visita:visitScheduled' %}">Visitas marcadas</a>        
             </div>
             {% else %}
             <div id="pop">

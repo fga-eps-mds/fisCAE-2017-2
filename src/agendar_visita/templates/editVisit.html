@@ -1,0 +1,21 @@
+{% extends "Base.html" %}
+{% block body %}
+
+<div class="page-title" >   
+        <div id = "scheduleTitles">    
+    <h1>Editar Visita</h1>
+    </div></div>
+    <form method="POST">
+        <div id="formstyle edit">
+            {% csrf_token %}<br>
+            Escola: {{ school }}
+            Data: {{ form.date }}<br>
+            Horário: {{ form.time }}<br>
+            Membros: {{ form.members }}
+            <br><br>
+            <button type="submit" class="btn btn-primary" id="submit">Salvar</button></br>
+            <a href="{% url 'agendar_visita:visitScheduled' %}">Visitas marcadas</a>
+        </div>
+    </form> 
+</div>
+{% endblock %}
