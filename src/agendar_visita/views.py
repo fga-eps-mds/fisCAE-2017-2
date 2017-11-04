@@ -6,6 +6,7 @@ from .forms import VisitForm
 
 def indexScheduleVisit(request):
     newSchedule = ScheduleVisit()
+    school = getSelectedSchool
     if request.method == 'POST':
         newSchedule.school = getSelectedSchool()
         newSchedule.date = request.POST['date']
@@ -15,7 +16,11 @@ def indexScheduleVisit(request):
         return HttpResponseRedirect(
                             reverse('agendar_visita:visitScheduled')
                             )
-    return render(request, 'indexScheduleVisit.html')
+    return render(
+                request,
+                'indexScheduleVisit.html',
+                {'school': school}
+                )
 
 
 def visitScheduled(request):
