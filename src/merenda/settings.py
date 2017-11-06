@@ -38,12 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'acessar_documento',
     'checklist',
     'agendar_reuniao',
     'search_school',
     'agendar_visita'
-
-
 ]
 
 MIDDLEWARE = [
@@ -73,6 +72,22 @@ TEMPLATES = [
         },
     },
 ]
+
+MEDIA_ROOT = './media/'
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = ''
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (os.path.join('static'), )
+
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
 
 WSGI_APPLICATION = 'merenda.wsgi.application'
 
@@ -125,6 +140,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 
 """A basic database set-up for Travis CI.
 

@@ -1,6 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from agendar_reuniao.models import Agendamento
-from django.shortcuts import redirect
 from agendar_reuniao.forms import AgendamentoForm
 from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
@@ -16,7 +15,6 @@ def edit_schedule(request, pk):
 
 
 def schedule_delete(request, pk):
-    # reuniao = Agendamento.objects.get(pk=pk)
     Agendamento.objects.filter(id=pk).delete()
     return render(request, 'schedule_delete.html')
 
@@ -60,3 +58,7 @@ def view_pdf_cae(request):
         response['Content-Disposition'] = 'inline;filename=CartilhaCAE.pdf'
         return response
     pdf.close()
+
+
+def notLoggedIn(request):
+    return render(request, 'notLoggedIn.html')

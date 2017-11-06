@@ -1,148 +1,45 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+{% extends "Base.html" %}
+{% block body %}
 
-<head>
+{% if request.user and request.user.is_authenticated %}
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FISCAE - plataforma de apoio ao CAE </title>
+<script type="text/javascript">
+    function LoginRedirect() {
+        location.href="user/login" }
+    function HomeRedirect() {
+        location.href="/" }
+    function IndexScheduleMeetingRedirect() {
+        location.href="indexScheduleMeeting" }
+</script>
 
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,400">
-    <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/assets/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="static/assets/elegant-font/code/style.css">
-    <link rel="stylesheet" href="static/assets/css/animate.css">
-    <link rel="stylesheet" href="static/assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="static/assets/css/form-elements.css">
-    <link rel="stylesheet" href="static/assets/css/style.css">
-    <link rel="stylesheet" href="static/assets/css/media-queries.css">
-
-
-    <link rel="shortcut icon" sizes="20x20" href="static/assets/ico/f.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="static/assets/ico/144png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/assets/ico/114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/assets/ico/72.png">
-    <link rel="apple-touch-icon-precomposed" href="static/assets/ico/57.png">
-
-    <style>
-        #pop{position:absolute; top:25%; left:50%; margin-left:-300px;
-             margin-top:-100px; padding:8px; width:600px;
-             height:100px; border-radius:10px; border:solid #9090B0 1px; 
-             background-color:rgba(174, 176, 199, 0.5)}
-    </style>
-
-    <!-- JS -->
-    <script type="text/javascript">
-        function LoginRedirect() {
-            location.href="user/login"
-        }
-        function HomeRedirect() {
-            location.href="/"
-        }
-        function IndexScheduleMeetingRedirect() {
-            location.href="indexScheduleMeeting"
-        }
-        function IndexScheduleVisitRedirect() {
-            location.href="indexScheduleVisit"
-        }
-    </script>
-
-</head>
-
-<body>
-
-    <!-- Loader -->
-    <div class="loader">
-        <div class="loader-img"></div>
-    </div>
-
-    <!-- Top menu -->
-    <nav class="navbar navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-                <a  href="/"> <img src="static/assets/img/logo/l.png" alt="Fiscae" class="img-responsive"></a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="top-navbar-1">
-                <ul class="nav navbar-nav navbar-right">
-                    {% if request.user and not request.user.is_authenticated %}
-                        <li><a href="{% url 'login' %}">Login</a></li>
-                    {% else %}
-                        <li><a href=" # ">{{ request.user.username }}</a></li> 
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
-                    {% endif %}
-                    <li><a href="#">Sobre</a></li>
-                    <li><a href="{% url 'view_pdf_cae' %}">Cartilha</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <br><br><br><br>
-    {% if request.user and request.user.is_authenticated %}   
-    <!-- <div id="formstyle"> -->
-
-    <h1>Reuniões Agendadas</h1>
+<div class="page-title" >   
+    <div id = "scheduleTitles">
+        <h1>Reuniões Agendadas</h1>
+        </div> </div>
     <form action="scheduled"  method="POST">
         {% csrf_token %}
         <ol>
         {% for a in todosAgendamentos %}
-        
-        <div id="formstyle">
+        <div id="formstyle" style="font-size:30px;">
             Local: {{ a.local }}<br>
             Data: {{ a.data }}<br>
             Horario: {{ a.horario }}<br>
             Observações: {{ a.observacoes }}<br>
-            <a href="{% url 'schedule_delete' a.id %}">Delete</a> |   
-            <a href="{% url 'edit_schedule' a.id %}">Edit</a>         
+            <a href="{% url 'agendar_reuniao:schedule_delete' a.id %}">Excluir</a> |   
+            <a href="{% url 'agendar_reuniao:edit_schedule' a.id %}">Editar</a>         
             <br><br>
         </div>   
         {% endfor %}
         </ol>
     </form>
-    
-    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Nova Reunião" onclick="IndexScheduleMeetingRedirect()">
+    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Novo agendamento" onclick="IndexScheduleMeetingRedirect()">
 
-<!-- </div>     -->
-    {% else %}
-    
-    <div id="pop">
-        <a class="close" id="close" href="#" onclick="document.getElementById('pop').style.display='none';">×</a>
-        <br />
-        <h4 align="left">Atenção</h4>
-        <h5 align="left">É necessário estar logado em uma conta de usuário para acessar essa funcionalidade.</h5>
-    </div><br /><br /><br /><br /><br /><br /><br />
-    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Voltar" onclick="HomeRedirect()">
-    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Login" onclick="LoginRedirect()">
+{% else %}
+    <div id="errorMessage">
+        <br><br><br><br>
+            <h3>Acesso não permitido</h3><br><br>
+            <a href="{% url 'user:login' %}" button class="backButton">Faça login para continuar</button><br><br>
+    </div>         
+{% endif %}  
 
-    {% endif %}
-
-    <!-- Javascript -->
-    <script src="static/assets/js/jquery-1.11.1.min.js"></script>
-    <script src="static/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="static/assets/js/jquery.backstretch.min.js"></script>
-    <script src="static/assets/js/wow.min.js"></script>
-    <script src="static/assets/js/retina-1.1.0.min.js"></script>
-    <script src="static/assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="static/assets/js/waypoints.min.js"></script>
-    <script src="static/assets/js/jquery.countTo.js"></script>
-    <script src="static/assets/js/masonry.pkgd.min.js"></script>
-    <script src="static/assets/js/scripts.js"></script>
-
-    <!--[if lt IE 10]>
-            <script src="static/assets/js/placeholder.js"></script>
-        <![endif]-->
-
-
-
-</body>
-
-</html>
+{% endblock %}

@@ -7,8 +7,6 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-
 
 def login(request):
     if request.method == 'POST':
@@ -59,5 +57,6 @@ def register(request):
 @login_required
 def index(request):
     advisor = Advisor.objects.get(user=request.user)
-    return render(request, 'index.html',
+    return render(request,
+                  'checklist/templates/index.html',
                   {'advisor': advisor})
