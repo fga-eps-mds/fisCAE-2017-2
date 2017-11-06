@@ -1,8 +1,6 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.shortcuts import render
 from django.shortcuts import HttpResponse
-from acessar_documento.models import Arquivos
 from os import listdir
-from django.utils import timezone
 from django.core.files.storage import FileSystemStorage
 from .forms import UploadFileForm
 
