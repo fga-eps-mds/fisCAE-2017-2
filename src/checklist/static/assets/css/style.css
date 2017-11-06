@@ -7,6 +7,62 @@
 	padding: 10px;
 	position: relative;
 }
+
+#pop {
+	position:absolute;
+	top:25%;
+	left:50%;
+	margin-left:-300px;
+	margin-top:-100px;
+	padding:8px;
+	width:600px;
+	height:100px;
+	border-radius:10px;
+	border:solid #9090B0 1px; 
+	background-color:rgba(174, 176, 199, 0.5)
+}
+
+.background-schedule {
+	background-color: #FFFFFF;
+}
+
+.label-date {
+	font-size: 20px;
+}
+
+.label-time {
+	font-size: 20px;
+}
+
+.input-date {
+	text-align: center; 
+	color: #707070; 
+	border: 1px; 
+	border-style: solid; 
+	border-radius: 8px; 
+	width: 90%; 
+	height: 60px;
+}
+
+.input-time {
+	text-align: center;
+	color: #707070;
+	border: 1px;
+	border-style: solid;
+	border-radius: 8px ;
+	width: 90%;
+	height: 60px;
+}
+
+div.center-table-schedule {
+	text-align: center;
+}
+
+div.center-table-schedule table {
+	margin: 0 auto;
+	text-align: center;
+}
+
 #formstyle{
 	
 		border-style: solid;

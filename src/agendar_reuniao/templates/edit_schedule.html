@@ -1,17 +1,21 @@
-{% extends 'baseSchedule.html' %}
+{% extends 'Base.html' %}
+{% block body %}
 
-
-{% block main %}
-
-        <form method="POST">
-            {% csrf_token %}
+<div class="page-title" >   
+        <div id = "scheduleTitles">    
+    <h1>Editar Reunião</h1>
+    </div></div>
+    <form method="POST">
+        <div id="formstyle edit">
+            {% csrf_token %}<br>
             Local:  {{ form.local }}<br>
             Data: {{ form.data }}<br>
             Horario: {{ form.horario }}<br>
-            Observações: {{ form.observacoes }}<br>
+            Observações: {{ form.observacoes }}
+            <br><br>
             <button type="submit" class="btn btn-primary" id="submit">Salvar</button></br>
-        </div>  
-        </form> 
-        <a href="{% url 'scheduled' %}">Reuniões marcadas</a>        
-
+            <a href="{% url 'agendar_reuniao:scheduled' %}">Reuniões marcadas</a>
+        </div>
+    </form> 
+</div>
 {% endblock %}
