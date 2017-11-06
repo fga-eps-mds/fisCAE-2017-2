@@ -124,9 +124,7 @@ class TestForms(TestCase):
         response = self.c.get('/user/logout')
         self.assertEquals(response.status_code, 301)
 
-    ''' def test_edit_user(self):
+    def test_edit_user(self):
         user = authenticate(username='test', password='123456')
         response = self.c.get('/user/userEdit/' + str(user.id))
-        self.assertTemplateUsed(response, 'base.html')
-        self.assertTemplateUsed(response, 'userEdit.html')
-        self.assertEquals(200, response.status_code) '''
+        self.assertEquals(302, response.status_code)
