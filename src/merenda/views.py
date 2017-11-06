@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect, reverse
 from agendar_reuniao.models import Agendamento
 from agendar_reuniao.forms import AgendamentoForm
 from django.http import HttpResponse
@@ -27,6 +27,9 @@ def indexScheduleMeeting(request):
         novoAgendamento.horario = request.POST['time']
         novoAgendamento.observacoes = request.POST['note']
         novoAgendamento.save()
+        return HttpResponseRedirect(
+                            reverse('agendar_reuniao:scheduled')
+                            )
     return render(request, 'indexScheduleMeeting.html')
 
 
