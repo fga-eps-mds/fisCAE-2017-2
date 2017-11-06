@@ -1,43 +1,32 @@
 {% extends "Base.html" %}
+{% block body %}
 
-    {% block body %}
+{% if request.user and request.user.is_authenticated %}    
+<div id="personalizadoform" >
+    <h1>Agendar Visita</h1>
+    <form action="/indexScheduleVisit" method="POST">
+        {% csrf_token %}
+        <h3>Escola: {{ school }}</h3>
+        <label for="date" style="font-size:20px; display:inline-block;width:100px;">Data</label>
+        <input type="date" class="input-date" name="date" required><br>
+        <label for="time" style="font-size:20px; display:inline-block;width:100px;">Horário</label>
+        <input type="time" class="input-time" name="time" required><br>
+        <label for="members" style="font-size:20px; display:inline-block;width:100px;">Membros</label></br>
+        <input type="text" style="display:inline-block;text-align:center; color:black ; width:30% ; height:100px" name="members" id="members" maxlenght="1000" placeholder="Insira as observacoes" required size="100px"></br></br>
+        <button type="submit" class="btn btn-primary" id="submit">Enviar</button></br>
+        </form></br>
+    </form> 
+    <a href="{% url 'agendar_visita:visitScheduled' %}">Visitas marcadas</a>                
+</div>
 
-        {% if request.user and request.user.is_authenticated %}
-        
-            <div class="background-schedule">  
-            </br><h1>Agendar Visita</h1>
-                <form action="/indexScheduleVisit" method="POST">
-                    {% csrf_token %}
-                        <div class="center-table-schedule">
-                            <table>
-                                <tr>
-                                    <h3>Escola: {{ school }}</h3>
-                                    <th><label for="date" class="label-date">Data</label></th>
-                                    <th><label for="time" class="label-time">Horário</label></th>
-                                </tr>
-                                <tr>
-                                    <th><input type="date" class="input-date" name="date" required></th>
-                                    <th><input type="time" class="input-time" name="time" required></th>
-                                </tr>
-                            </table>
-                        </div>
-                        <label for="members" style="font-size:20px">Membros</label></br>
-                        <input type="text" style="text-align:center; color:black ; width:30% ; height:100px" name="members" id="members" maxlenght="1000" placeholder="Insira as observacoes" required size="100px"></br></br>
-                        <button type="submit" class="btn btn-primary" id="submit">Enviar</button></br>
-                    </form></br>
-                </form> 
-                <a href="{% url 'agendar_visita:visitScheduled' %}">Visitas marcadas</a>        
-            </div>
-            {% else %}
-            <div id="pop">
-                <a class="close" id="close" href="#" onclick="document.getElementById('pop').style.display='none';">×</a>
-                <br />
-                <h4 align="left">Atenção</h4>
-                <h5 align="left">É necessário estar logado em uma conta de usuário para acessar essa funcionalidade.</h5>
-            </div><br /><br /><br /><br /><br /><br />
-            <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Voltar" onclick="HomeRedirect()">
-            <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Login" onclick="LoginRedirect()">
+{% else %}
 
-        {% endif %}
+  <div id="errorMessage">
+    <br><br><br><br>
+      <h3>Acesso não permitido</h3><br><br>
+      <a href="{% url 'user:login' %}" button class="backButton">Faça login para continuar</button><br><br>
+  </div>
+            
+{% endif %}
 
-    {% endblock %}
+{% endblock %}
