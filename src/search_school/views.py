@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
-# import requests
+import requests
 import json
 from .forms import SchoolForm
 from user.models import Advisor
@@ -75,7 +75,7 @@ def schoolForm(request):
                 gSelectedSchool = request.POST.get('school')
                 print(gSelectedSchool)
                 return HttpResponseRedirect(
-                    reverse('search_school:redirectSchool')
+                    reverse('agendar_visita:indexScheduleVisit')
                 )
         else:
             schoolForm = SchoolForm(schools=gList)
@@ -89,3 +89,12 @@ def schoolForm(request):
 
 def redirectSchool(request):
     return render(request, 'redirectSchool.html')
+
+
+def notLoggedIn(request):
+    return render(request, 'notLoggedIn.html')
+
+
+def getSelectedSchool():
+    global gSelectedSchool
+    return gSelectedSchool

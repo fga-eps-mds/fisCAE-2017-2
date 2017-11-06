@@ -1,0 +1,40 @@
+{% extends "Base.html" %}
+
+    {% block body %}
+
+        {% if request.user and request.user.is_authenticated %}
+        <div class="page-title" >   
+            <div id = "scheduleTitles">
+                <h1>Visitas Agendadas</h1>
+                </div>
+                <form action="scheduled" method="POST">
+                    <ol>
+                    {% for i in allSchedules %}
+                    <div id="formstyle" style="font-size:30px;">
+                        Escola: {{ i.school }}<br>
+                        Data: {{ i.date }}<br>
+                        Horário: {{ i.time }}<br>
+                        Membros: {{ i.members }}<br>
+                        <a href="{% url 'agendar_visita:scheduleVisitDelete' i.id %}">Deletar</a> | 
+                        <a href="{% url 'agendar_visita:editVisit' i.id %}">Editar</a>
+                        <br><br>
+                    </div>   
+                    {% endfor %}
+                    </ol>
+                </form>
+                <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" 
+                class="btn btn-primary" value="Nova Visita" onclick="location.href='{% url 'search_school:searchSchool' %}'">
+            
+            {% else %}
+            <div id="pop">
+                <a class="close" id="close" href="#" onclick="document.getElementById('pop').style.display='none';">×</a>
+                <br />
+                <h4 align="left">Atenção</h4>
+                <h5 align="left">É necessário estar logado em uma conta de usuário para acessar essa funcionalidade.</h5>
+            </div><br /><br /><br /><br /><br /><br />
+            <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Voltar" onclick="HomeRedirect()">
+            <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Login" onclick="LoginRedirect()">
+
+        {% endif %}
+
+    {% endblock %}

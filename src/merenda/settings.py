@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'acessar_documento',
     'checklist',
-    'search_school',
     'agendar_reuniao',
+    'search_school',
+    'agendar_visita'
 ]
 
 MIDDLEWARE = [
