@@ -1,8 +1,9 @@
 *.pyc
 __pycache__
-db.sqlite3
 .DS_Store
 src/user/migrations/*
-src/search_school/migrations/
-src/checklist/migrations/
+src/search_school/migrations/*
+src/checklist/migrations/*
 src/user/migrations/*
+src/agendar_reuniao/migrations/*
+src/acessar_documento/migrations/*
