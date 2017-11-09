@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^success', views.success, name='success'),
     url(r'^checklistForm', views.checklistForm, name='checklistForm'),
     url(r'^answerForm', views.answerForm, name='answerForm'),
-    url(r'^showAnswers', views.showAnswers, name='showAnswers')
+    url(r'^showAnswers/([0-9]+)/$', views.showAnswers, name='showAnswers'),
+    url(r'^listSchools', views.listSchools, name='listSchools')
 
 ]

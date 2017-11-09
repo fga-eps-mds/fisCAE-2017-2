@@ -99,9 +99,25 @@ def answerForm(request):
         return HttpResponseRedirect(reverse('notLoggedIn'))
 
 
-def showAnswers(request):
-    answers = Answer.objects.filter(user=request.user)
-    context = {
-        'answers': answers
-    }
+def showAnswers(request,id):
+    try:
+        checklist = Checklist.objects.get(pk=id)
+        answers = Answer.objects.filter(user=request.user, checklist=checklist)
+        context = {
+            'answers': answers
+        }
+    except:
+        context = {
+            'error': 'checklist não encontrado'
+        }
+
     return render(request, 'showAnswers.html', context)
+
+def listSchools(request):
+    schools = School.objects.all()
+
+    context = {
+        'schools': schools
+    }
+    
+    return render(request, 'listSchools.html', context)
