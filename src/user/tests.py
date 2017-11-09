@@ -1,6 +1,7 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from .models import Advisor
+from django.contrib.auth import authenticate
 
 
 class TestSimpleViews(TestCase):
@@ -9,27 +10,27 @@ class TestSimpleViews(TestCase):
         self.c = Client()
 
     def test_get_login_page(self):
-        response = self.c.get('/user/login/')
+        response = self.c.get('/login/')
         self.assertEquals(200, response.status_code)
 
     def test_get_register_page(self):
-        response = self.c.get('/user/registro/')
+        response = self.c.get('/registro/')
         self.assertEquals(200, response.status_code)
 
     def test_erro(self):
-        response = self.c.get('/user/dontexist')
+        response = self.c.get('/dontexist')
         self.assertEquals(404, response.status_code)
 
     def test_template(self):
-        response = self.c.get('/user/login/')
-        self.assertTemplateUsed(response, 'base.html')
+        response = self.c.get('/login/')
+        self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'login.html')
-        response = self.c.get('/user/registro/')
-        self.assertTemplateUsed(response, 'base.html')
+        response = self.c.get('/registro/')
+        self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'registro.html')
 
     def test_templateNotExist(self):
-        response = self.c.get('/user/registro/')
+        response = self.c.get('/registro/')
         self.assertTemplateNotUsed(response, 'notexist.html')
 
 
@@ -56,7 +57,7 @@ class TestForms(TestCase):
 
         }
 
-        self.c.post('/user/registro/', data)
+        self.c.post('/registro/', data)
         self.assertEquals(data['username'], User.objects.last().username)
         self.assertNotEquals(data['password'], User.objects.last().password)
         # a função padrão de senha do django crptografa a senha
@@ -73,15 +74,15 @@ class TestForms(TestCase):
 
     def test_authenticate_user(self):
         data = {'username': 'test', 'password': '123456'}
-        response = self.c.post('/user/login/', data, follow=True)
+        response = self.c.post('/login/', data, follow=True)
         self.assertEquals(response.context['user'], self.user)
         self.c.logout()
         data = {'username': 'test', 'password': '12345'}
-        response = self.c.post('/user/login/', data, follow=True)
+        response = self.c.post('/login/', data, follow=True)
         self.assertNotEquals(response.context['user'], self.user)
         self.c.logout()
         data = {'username': 'tes', 'password': '123456'}
-        response = self.c.post('/user/login/', data, follow=True)
+        response = self.c.post('/login/', data, follow=True)
         self.assertNotEquals(response.context['user'], self.user)
 
     def test_register_DuplicateUser(self):
@@ -113,12 +114,17 @@ class TestForms(TestCase):
             'uf': 'go',
 
         }
-        self.c.post('/user/registro/', data1)
-        response = self.c.post('/user/registro/', data2)
-        self.assertTemplateUsed(response, 'base.html')
+        self.c.post('/registro/', data1)
+        response = self.c.post('/registro/', data2)
+        self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'registroException.html')
 
     def test_logout_user(self):
         self.c.login(username='test', password='123456')
-        response = self.c.get('/user/logout')
-        self.assertEquals(response.status_code, 301)
+        response = self.c.get('/logout/')
+        self.assertEquals(response.status_code, 302)
+
+    def test_edit_user(self):
+        user = authenticate(username='test', password='123456')
+        response = self.c.get('/userEdit/' + str(user.id))
+        self.assertEquals(302, response.status_code)
