@@ -1,9 +1,14 @@
-{% for school in schools%}
-    <h2>{{ school.name }}</h2>
-    {% for checklist in school.checklists.all %}
-        {% if checklist.user == request.user %}
-            <p><a href="/showAnswers/{{ checklist.id }}">{{ checklist.get_checklist_type_display }} </a></p>
-            <small>{{ checklist.created_date }}</small>
-        {% endif %}
-    {% endfor%}
-{% endfor %}
+{% extends "Base.html" %}
+{% block body %}
+    <div class="answer">
+        {% for school in schools%}
+            <h2>{{ school.name }}</h2>
+            {% for checklist in school.checklists.all %}
+                {% if checklist.user == request.user %}
+                    <p><a href="/showAnswers/{{ checklist.id }}">{{ checklist.get_checklist_type_display }} </a></p>
+                    <small>{{ checklist.created_date }}</small>
+                {% endif %}
+            {% endfor%}
+        {% endfor %}
+    </div>
+{% endblock %}

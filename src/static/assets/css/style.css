@@ -910,7 +910,9 @@ button, input, optgroup, select, textarea {
 			font-weight: bold;
 		
 		}
-		
+	div.answer{
+		margin-top: 5%;
+	}
 
 	@media only screen and (max-width:480px) {
     #logo img{
