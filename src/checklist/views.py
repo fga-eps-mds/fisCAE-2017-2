@@ -10,7 +10,6 @@ from checklist.forms import ChecklistForm
 from checklist.forms import AnswerForm
 
 
-
 def success(request):
     return render(request, 'success.html')
 
@@ -41,8 +40,8 @@ def checklistForm(request):
                 checklist.created_date = timezone.now()
                 checklist.save()
                 return HttpResponseRedirect(
-                            reverse('checklist:answerForm')
-                            )
+                    reverse('checklist:answerForm')
+                )
         else:
             checklistForm = ChecklistForm()
 
@@ -60,8 +59,8 @@ def checkQuestions(checklist):
     global questions
     if not questions:
         query_questions = Question.objects.filter(
-                            question_type=checklist.checklist_type
-                            )
+            question_type=checklist.checklist_type
+        )
         questions = list(query_questions)
 
 
@@ -77,6 +76,7 @@ def answerForm(request):
                 answer = answerForm.save(commit=False)
                 answer.checklist_id = checklist.id
                 answer.question_id = current_question.id
+                answer.user = request.user
                 answer.save()
                 questions.pop(0)
                 answerForm = AnswerForm()
@@ -86,20 +86,21 @@ def answerForm(request):
                 else:
                     current_question = questions[0]
                     return HttpResponseRedirect(
-                                reverse('checklist:answerForm')
-                                )
+                        reverse('checklist:answerForm')
+                    )
         else:
             answerForm = AnswerForm()
         context = {
             'answerForm': answerForm,
             'current_question': current_question
-            }
+        }
         return render(request, 'answerForm.html', context)
     else:
         return HttpResponseRedirect(reverse('notLoggedIn'))
 
+
 def showAnswers(request):
-    answers = Answer.objects.all()
+    answers = Answer.objects.filter(user=request.user)
     context = {
         'answers': answers
     }
