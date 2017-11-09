@@ -42,7 +42,6 @@ urlpatterns = [
     url(r'^notLoggedIn/$', views.notLoggedIn, name='notLoggedIn'),
 ]
 
-
 urlpatterns += staticfiles_urlpatterns()
 
 if settings.DEBUG:

@@ -1,6 +1,7 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from .models import Advisor
+from django.contrib.auth import authenticate
 
 
 class TestSimpleViews(TestCase):
@@ -122,3 +123,8 @@ class TestForms(TestCase):
         self.c.login(username='test', password='123456')
         response = self.c.get('/logout/')
         self.assertEquals(response.status_code, 302)
+
+    def test_edit_user(self):
+        user = authenticate(username='test', password='123456')
+        response = self.c.get('/userEdit/' + str(user.id))
+        self.assertEquals(302, response.status_code)

@@ -1,3 +1,11 @@
+from django.shortcuts import render, redirect
+from django.shortcuts import HttpResponseRedirect, reverse
+from django.utils import timezone
+from checklist.models.checklist import Checklist
+from checklist.models.question import Question
+from checklist.models.answer import Answer
+from checklist.models.school import School
+from checklist.forms import ChecklistForm, AnswerForm
 from django.shortcuts import render, redirect, HttpResponseRedirect, reverse
 from agendar_reuniao.models import Agendamento
 from agendar_reuniao.forms import AgendamentoForm
