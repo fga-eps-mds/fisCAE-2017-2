@@ -9,5 +9,5 @@ urlpatterns = [
         views.checklistForm,
         name='checklistForm'),
     url(r'^answerForm', views.answerForm, name='answerForm'),
-
+    url(r'^visitsSchool', views.visitsSchool, name='visitsSchool'),
 ]

@@ -19,6 +19,12 @@ def getQuestions(checklist_type):
     return questions
 
 
+def visitsSchool(request):
+    # visita = ScheduleVisit.objects.filter(status=False)
+    visita = ScheduleVisit.objects.all()
+    return render(request, 'visitsSchool.html', {'visita': visita})
+    
+
 def checklistForm(request, id_visit):
     visit = ScheduleVisit.objects.get(id=id_visit)
 
@@ -39,13 +45,13 @@ def checklistForm(request, id_visit):
                 checklist = checklistForm.save(commit=False)
                 checklist.user = request.user
                 checklist.school = school
-                checklist.vist = visit
+                checklist.visit = visit
                 checklist.created_date = timezone.now()
                 checklist.save()
-                listChecklist = Checklist.objects.get(visit_id=id_visit)
+                listChecklist = Checklist.objects.filter(visit_id=id_visit)
                 
-                if len(listChecklist) == Checklist.countTypes():
-                    visit.update(status=True)
+                if len(listChecklist) == len(Checklist.CHECKLIST_TYPE):
+                    visit.update()
 
                 return HttpResponseRedirect(
                             reverse('checklist:answerForm')

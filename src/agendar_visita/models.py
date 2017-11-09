@@ -13,3 +13,7 @@ class ScheduleVisit(models.Model):
         visits = []
         visits = ScheduleVisit.objects.all()
         return visits
+
+    @staticmethod
+    def update(self):
+        self.status = True

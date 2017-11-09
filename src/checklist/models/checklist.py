@@ -34,5 +34,6 @@ class Checklist(models.Model):
     created_date = models.DateTimeField(
             default=timezone.now)
 
+    @staticmethod
     def countTypes(CHECKLIST_TYPE):
         return len(CHECKLIST_TYPE)
