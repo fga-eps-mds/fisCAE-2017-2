@@ -16,7 +16,8 @@ class Checklist(models.Model):
     CHECKLIST_TYPE = (
         ('TA', 'Questões técnicas e administrativas'),
         ('HS', 'Questões Higiênico Sanitárias'),
-        ('O', 'Questões orçamentárias'),
+        ('AL', 'Questões Alimentares'),
+        ('D', 'Sobre a documentação'),
     )
     checklist_type = models.CharField(
         max_length=2,
