@@ -1,0 +1,8 @@
+{% for answer in answers %}
+    <h1>{{ answer.question.description }}</h1>
+    {% if answer.answer == 'S' %}
+        <p>sim</p>
+    {% else %}
+        <p>não</p>
+    {% endif %}
+{% endfor %}

@@ -4,9 +4,11 @@ from django.utils import timezone
 from checklist.models.checklist import Checklist
 from checklist.models.question import Question
 from checklist.models.school import School
+from checklist.models.answer import Answer
 
 from checklist.forms import ChecklistForm
 from checklist.forms import AnswerForm
+
 
 
 def success(request):
@@ -95,3 +97,10 @@ def answerForm(request):
         return render(request, 'answerForm.html', context)
     else:
         return HttpResponseRedirect(reverse('notLoggedIn'))
+
+def showAnswers(request):
+    answers = Answer.objects.all()
+    context = {
+        'answers': answers
+    }
+    return render(request, 'showAnswers.html', context)
