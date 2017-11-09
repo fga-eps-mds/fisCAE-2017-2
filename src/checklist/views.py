@@ -4,10 +4,10 @@ from django.utils import timezone
 from checklist.models.checklist import Checklist
 from checklist.models.question import Question
 from checklist.models.school import School
+from agendar_visita.models import ScheduleVisit
 
 from checklist.forms import ChecklistForm
 from checklist.forms import AnswerForm
-
 
 def success(request):
     return render(request, 'success.html')
@@ -18,7 +18,9 @@ def getQuestions(checklist_type):
     return questions
 
 
-def checklistForm(request):
+def checklistForm(request, id_visit):
+    # visit = ScheduleVisit.objects.get(id=id_visit)
+
     if request.user.is_authenticated:
         school = School(
             idSchool=111,
@@ -36,8 +38,14 @@ def checklistForm(request):
                 checklist = checklistForm.save(commit=False)
                 checklist.user = request.user
                 checklist.school = school
+                # checklist.vist = visit
                 checklist.created_date = timezone.now()
                 checklist.save()
+                # listChecklist = Checklist.objects.get(visit_id=id_visit)
+                
+                # if len(listChecklist) == Checklist.countTypes():
+                #   visit.update(status=True)
+
                 return HttpResponseRedirect(
                             reverse('checklist:answerForm')
                             )

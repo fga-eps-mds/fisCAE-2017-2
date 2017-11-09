@@ -6,6 +6,7 @@ class ScheduleVisit(models.Model):
     date = models.TextField()
     time = models.TextField()
     members = models.TextField()
+    status = models.BooleanField(default=False)
 
     @staticmethod
     def scheduleVisit(request):
