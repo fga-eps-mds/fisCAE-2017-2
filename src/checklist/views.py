@@ -10,10 +10,6 @@ from checklist.forms import ChecklistForm
 from checklist.forms import AnswerForm
 
 
-def success(request):
-    return render(request, 'success.html')
-
-
 def getQuestions(checklist_type):
     questions = Question.objects.filter(question_type=checklist_type)
     return questions
@@ -23,9 +19,14 @@ def visitsSchool(request):
     # visita = ScheduleVisit.objects.filter(status=False)
     visita = ScheduleVisit.objects.all()
     return render(request, 'visitsSchool.html', {'visita': visita})
-    
+
+
+var_id = 0
+
 
 def checklistForm(request, id_visit):
+    global var_id 
+    var_id = id_visit
     visit = ScheduleVisit.objects.get(id=id_visit)
 
     if request.user.is_authenticated:
@@ -67,6 +68,10 @@ def checklistForm(request, id_visit):
 
 
 questions = []
+
+
+def success(request):
+    return render(request, 'success.html', {'var_id': var_id})
 
 
 def checkQuestions(checklist):
