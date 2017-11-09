@@ -13,7 +13,7 @@
             box-sizing: border-box;
             resize: vertical">
                 {%csrf_token%}
-                <p class="error" id="password-validation"></p>
+                
                 <label><h3>Cadastro</h3></label><br>
                 <input type="" name="username" maxlength="30" placeholder="Username" required></br>
                 <input type="" name="name" maxlength="64" required placeholder="Nome"></br>
@@ -27,8 +27,8 @@
                 <input type="" name="descricao" maxlength="50" placeholder="Decrição"> </br>
                 <input type="password" name="password" id="password" maxlength="30" required placeholder="Senha" oninput="validatePassword();" > </br>
                 <input type="password"  id="password_confirmation" maxlength="30" required placeholder="Confirmar senha" oninput="validatePassword();"> </br><p></p>
-                <button type="submit" class="btn btn-primary btn-block btn-large" style="width: 150px; height: 50px">Salvar</button><br>
-                </a>
+                <button type="submit" id="submit-register" class="btn btn-primary btn-block btn-large" style="width: 150px; height: 50px">Salvar</button><br>
+                <p class="error" id="password-validation"></p>
             </form>
         </div>
       </div>
