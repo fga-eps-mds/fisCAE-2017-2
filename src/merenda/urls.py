@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^', include('agendar_reuniao.urls', namespace='agendar_reuniao')),
     url(r'^', include('user.urls', namespace='user')),
     url(r'^', include('acessar_cartilha.urls', namespace='acessar_cartilha')),
+    url(r'^', include('denuncias.urls', namespace='denuncias')),
 
     url(r'^$', views.index, name='index'),
 
