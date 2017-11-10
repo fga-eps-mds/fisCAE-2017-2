@@ -62,11 +62,13 @@
                 {% if request.user and not request.user.is_authenticated %}
                     <li><a href="{% url 'user:login' %}">Login</a></li>
                     <li><a href="#">Sobre</a></li>
+                    <li><a href="denunciations.html">Denúncias</a></li>
                 {% else %}
                     <li><a href=" # ">{{ request.user.username }}</a></li> 
                     <li><a href="documentsAll.html">Documentos</a></li>
                     <li><a href="#">Sobre</a></li>
                     <li><a href="{% url 'user:logout' %}">Sair</a></li>
+                    <li><a href="denunciations.html">Denúncias</a></li>
                 {% endif %}
             </ul>
         </div>
