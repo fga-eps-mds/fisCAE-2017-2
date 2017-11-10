@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
-import requests
 import json
+import requests
 from .forms import SchoolForm
 from user.models import Advisor
 

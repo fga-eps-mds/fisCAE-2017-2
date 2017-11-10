@@ -10,11 +10,11 @@ class ChecklistTest(TestCase):
     def setUp(self):
         User.objects.create_user(username="amanda", password="123")
         question = Question(
-                        id=1,
-                        item_number=1,
-                        description="Agua parada",
-                        question_type='TA'
-                        )
+            id=1,
+            item_number=1,
+            description="Agua parada",
+            question_type='TA'
+        )
         question.save()
 
     def testSubmitChecklistFormValid(self):
@@ -22,9 +22,9 @@ class ChecklistTest(TestCase):
         client.login(username="amanda", password="123")
         data = {'checklist_type': 'TA'}
         response = client.post(
-                        reverse('checklist:checklistForm'),
-                        data, follow=True
-                        )
+            reverse('checklist:checklistForm'),
+            data, follow=True
+        )
         print(response.redirect_chain)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.redirect_chain, [('/answerForm', 302)])
@@ -34,10 +34,10 @@ class ChecklistTest(TestCase):
         client.login(username="amanda", password="123")
         data = {'checklist_type': 'TT'}
         response = client.post(
-                        reverse('checklist:checklistForm'),
-                        data,
-                        follow=True
-                        )
+            reverse('checklist:checklistForm'),
+            data,
+            follow=True
+        )
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.redirect_chain, [])
 
@@ -46,6 +46,13 @@ class ChecklistTest(TestCase):
         client.login(username="amanda", password="123")
         response = client.get(reverse('checklist:checklistForm'))
         self.assertEquals(response.status_code, 200)
+
+    def test_listSchools(self):
+        c = Client()
+        c.login(username="amanda", password="123")
+        response = c.get('/listSchools/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'listSchools.html')
 
 
 class QuestionTeste(TestCase):

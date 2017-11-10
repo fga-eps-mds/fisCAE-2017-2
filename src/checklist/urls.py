@@ -10,4 +10,6 @@ urlpatterns = [
         name='checklistForm'),
     url(r'^answerForm', views.answerForm, name='answerForm'),
     url(r'^visitsSchool', views.visitsSchool, name='visitsSchool'),
+    url(r'^showAnswers/([0-9]+)/$', views.showAnswers, name='showAnswers'),
+    url(r'^listSchools', views.listSchools, name='listSchools')
 ]

@@ -5,7 +5,7 @@ from checklist.models.checklist import Checklist
 from checklist.models.question import Question
 from checklist.models.school import School
 from agendar_visita.models import ScheduleVisit
-
+from checklist.models.answer import Answer
 from checklist.forms import ChecklistForm
 from checklist.forms import AnswerForm
 
@@ -16,8 +16,8 @@ def getQuestions(checklist_type):
 
 
 def visitsSchool(request):
-    # visita = ScheduleVisit.objects.filter(status=False)
-    visita = ScheduleVisit.objects.all()
+    visita = ScheduleVisit.objects.filter(status=False)
+    #visita = ScheduleVisit.objects.all()
     return render(request, 'visitsSchool.html', {'visita': visita})
 
 
@@ -55,8 +55,8 @@ def checklistForm(request, id_visit):
                     visit.update()
 
                 return HttpResponseRedirect(
-                            reverse('checklist:answerForm')
-                            )
+                    reverse('checklist:answerForm')
+                )
         else:
             checklistForm = ChecklistForm()
 
@@ -78,8 +78,8 @@ def checkQuestions(checklist):
     global questions
     if not questions:
         query_questions = Question.objects.filter(
-                            question_type=checklist.checklist_type
-                            )
+            question_type=checklist.checklist_type
+        )
         questions = list(query_questions)
 
 
@@ -95,6 +95,7 @@ def answerForm(request):
                 answer = answerForm.save(commit=False)
                 answer.checklist_id = checklist.id
                 answer.question_id = current_question.id
+                answer.user = request.user
                 answer.save()
                 questions.pop(0)
                 answerForm = AnswerForm()
@@ -104,14 +105,39 @@ def answerForm(request):
                 else:
                     current_question = questions[0]
                     return HttpResponseRedirect(
-                                reverse('checklist:answerForm')
-                                )
+                        reverse('checklist:answerForm')
+                    )
         else:
             answerForm = AnswerForm()
         context = {
             'answerForm': answerForm,
             'current_question': current_question
-            }
+        }
         return render(request, 'answerForm.html', context)
     else:
         return HttpResponseRedirect(reverse('notLoggedIn'))
+
+
+def showAnswers(request, id):
+    try:
+        checklist = Checklist.objects.get(pk=id)
+        answers = Answer.objects.filter(user=request.user, checklist=checklist)
+        context = {
+            'answers': answers
+        }
+    except:
+        context = {
+            'error': 'checklist não encontrado'
+        }
+
+    return render(request, 'showAnswers.html', context)
+
+
+def listSchools(request):
+    schools = School.objects.all()
+
+    context = {
+        'schools': schools
+    }
+
+    return render(request, 'listSchools.html', context)
