@@ -4,14 +4,10 @@ from django.utils import timezone
 from checklist.models.checklist import Checklist
 from checklist.models.question import Question
 from checklist.models.school import School
+from agendar_visita.models import ScheduleVisit
 from checklist.models.answer import Answer
-
 from checklist.forms import ChecklistForm
 from checklist.forms import AnswerForm
-
-
-def success(request):
-    return render(request, 'success.html')
 
 
 def getQuestions(checklist_type):
@@ -19,7 +15,20 @@ def getQuestions(checklist_type):
     return questions
 
 
-def checklistForm(request):
+def visitsSchool(request):
+    visita = ScheduleVisit.objects.filter(status=False)
+    #visita = ScheduleVisit.objects.all()
+    return render(request, 'visitsSchool.html', {'visita': visita})
+
+
+var_id = 0
+
+
+def checklistForm(request, id_visit):
+    global var_id 
+    var_id = id_visit
+    visit = ScheduleVisit.objects.get(id=id_visit)
+
     if request.user.is_authenticated:
         school = School(
             idSchool=111,
@@ -37,8 +46,14 @@ def checklistForm(request):
                 checklist = checklistForm.save(commit=False)
                 checklist.user = request.user
                 checklist.school = school
+                checklist.visit = visit
                 checklist.created_date = timezone.now()
                 checklist.save()
+                listChecklist = Checklist.objects.filter(visit_id=id_visit)
+                
+                if len(listChecklist) == len(Checklist.CHECKLIST_TYPE):
+                    visit.update()
+
                 return HttpResponseRedirect(
                     reverse('checklist:answerForm')
                 )
@@ -53,6 +68,10 @@ def checklistForm(request):
 
 
 questions = []
+
+
+def success(request):
+    return render(request, 'success.html', {'var_id': var_id})
 
 
 def checkQuestions(checklist):
