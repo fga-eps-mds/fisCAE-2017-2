@@ -34,17 +34,39 @@ def authenticateUser(email, password):
     email = str(email)
     password = str(password)
 
-    urlBase = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS'
+    url_base = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS'
     rest = '/rest/pessoas/autenticar?'
-    url = urlBase + rest
+    url = url_base + rest
 
-    # appIdentifier = '464'
-    # headers = {'email': email, 'senha': password, 'appIdentifier': appIdentifier}
     headers = {'email': email, 'senha': password}
     request = requests.get(url, headers=headers)
 
-    print(request.text, '\n\n')
-    # print(json.loads(request.text))
-    print(request.headers)
+    text = json.loads(request.text)
+    header = request.headers
+    dictionary = {'request': request, 'text': text, 'header': header}
 
-    return request
+    return dictionary
+
+
+def registerProfile(description, codAplicativo, email, password):
+    authenticate = authenticateUser(email, password)
+    codAplicativo = str(codAplicativo)
+    app_token = authenticate.get('header').get('appToken')
+
+    description = str(description)
+
+    data = { 
+        "descricao": description 
+        }
+
+    url_base = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS'
+    rest = '/rest/aplicativos/' + codAplicativo + '/tipos-perfil'
+    url = url_base + rest
+    headers = {
+        'Content-type': 'application/json',
+        'Accept': 'text/plain',
+        'appToken': str(app_token)
+        }
+    response = requests.post(url, data=json.dumps(data), headers=headers)
+
+    return response
