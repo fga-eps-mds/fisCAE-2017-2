@@ -17,7 +17,6 @@ def getQuestions(checklist_type):
 
 def visitsSchool(request):
     visita = ScheduleVisit.objects.filter(status=False)
-    #visita = ScheduleVisit.objects.all()
     return render(request, 'visitsSchool.html', {'visita': visita})
 
 
@@ -25,7 +24,7 @@ var_id = 0
 
 
 def checklistForm(request, id_visit):
-    global var_id 
+    global var_id
     var_id = id_visit
     visit = ScheduleVisit.objects.get(id=id_visit)
 
@@ -44,18 +43,32 @@ def checklistForm(request, id_visit):
             checklistForm = ChecklistForm(request.POST)
             if checklistForm.is_valid():
                 checklist = checklistForm.save(commit=False)
-                checklist.user = request.user
-                checklist.school = school
-                checklist.visit = visit
-                checklist.created_date = timezone.now()
-                checklist.save()
-                listChecklist = Checklist.objects.filter(visit_id=id_visit)
-                
-                if len(listChecklist) == len(Checklist.CHECKLIST_TYPE):
-                    visit.update()
+                try:
+                    tempChecklist = Checklist.objects.get(
+                        visit_id=id_visit,
+                        checklist_type=checklist.checklist_type
+                        )
+                    checklist = tempChecklist
+                except:
+                    checklist.user = request.user
+                    checklist.school = school
+                    checklist.visit = visit
+                    checklist.created_date = timezone.now()
+                    checklist.save()
 
+                    checklist.setNumberQuestions(checklist)
+
+                listChecklist = Checklist.objects.filter(visit_id=id_visit)
+
+                if len(listChecklist) == len(Checklist.CHECKLIST_TYPE):
+                    visit.update(visit)
+
+                redirect_url = reverse(
+                    'checklist:answerForm',
+                    args=[checklist.id]
+                    )
                 return HttpResponseRedirect(
-                    reverse('checklist:answerForm')
+                    redirect_url
                 )
         else:
             checklistForm = ChecklistForm()
@@ -74,6 +87,10 @@ def success(request):
     return render(request, 'success.html', {'var_id': var_id})
 
 
+def completed(request):
+    return render(request, 'completed.html', {'var_id': var_id})
+
+
 def checkQuestions(checklist):
     global questions
     if not questions:
@@ -83,37 +100,51 @@ def checkQuestions(checklist):
         questions = list(query_questions)
 
 
-def answerForm(request):
+def answerForm(request, checklist_id):
     if request.user.is_authenticated:
-        checklist = Checklist.objects.last()
-        global questions
-        checkQuestions(checklist)
-        current_question = questions[0]
-        if request.method == 'POST':
-            answerForm = AnswerForm(request.POST)
-            if answerForm.is_valid():
-                answer = answerForm.save(commit=False)
-                answer.checklist_id = checklist.id
-                answer.question_id = current_question.id
-                answer.user = request.user
-                answer.save()
-                questions.pop(0)
-                answerForm = AnswerForm()
-
-                if not questions:
-                    return HttpResponseRedirect(reverse('checklist:success'))
-                else:
-                    current_question = questions[0]
-                    return HttpResponseRedirect(
-                        reverse('checklist:answerForm')
-                    )
+        user = request.user
+        checklist = Checklist.objects.get(
+            id=checklist_id,
+            user_id=user.id,
+            )
+        if checklist.status:
+            return HttpResponseRedirect(reverse('checklist:completed'))
         else:
-            answerForm = AnswerForm()
-        context = {
-            'answerForm': answerForm,
-            'current_question': current_question
-        }
-        return render(request, 'answerForm.html', context)
+            questionNumber = checklist.last_question + 1
+            question = Question.objects.get(
+                        id=questionNumber,
+                        )
+
+            if request.method == 'POST':
+                answerForm = AnswerForm(request.POST)
+                if answerForm.is_valid():
+                    answer = answerForm.save(commit=False)
+                    answer.checklist_id = checklist.id
+                    answer.question_id = question.id
+                    answer.user = request.user
+                    answer.save()
+
+                    checklist.updateStatus(checklist, question.id)
+
+                    answerForm = AnswerForm()
+                    if checklist.status:
+                        return HttpResponseRedirect(reverse('checklist:success'))
+                    else:
+                        redirect_url = reverse(
+                            'checklist:answerForm',
+                            args=[checklist.id]
+                        )
+                        return HttpResponseRedirect(
+                            # reverse('checklist:answerForm')
+                            redirect_url
+                        )
+            else:
+                answerForm = AnswerForm()
+            context = {
+                'answerForm': answerForm,
+                'current_question': question
+            }
+            return render(request, 'answerForm.html', context)
     else:
         return HttpResponseRedirect(reverse('notLoggedIn'))
 
