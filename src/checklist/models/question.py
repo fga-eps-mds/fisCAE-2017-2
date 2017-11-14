@@ -21,7 +21,7 @@ class Question(models.Model):
 
     @staticmethod
     def seedQuestions():
-        path = 'static/assets/checklist_questions.json'
+        path = 'static/assets/checklist_question.json'
         # path = 'static/assets/test_items_checklist.json'
         # path = 'static/assets/items_checklist.json'
         with open(path) as json_file:
