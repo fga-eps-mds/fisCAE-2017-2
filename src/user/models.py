@@ -15,3 +15,19 @@ class Advisor(models.Model):
     municipio = models.CharField(max_length=30, null=False)
     uf = models.CharField(max_length=2, null=False)
     # endereço
+
+
+class President(Advisor):
+    class Meta:
+        permissions = (
+            ('add_advisor', 'President can add Advisor'),
+            ('remove_advisor', 'President can remove Advisor'),
+        )
+
+
+class Administrator(Advisor):
+    class Meta:
+        permissions = (
+            ('add_president', 'Administrator can add President'),
+            ('remove_president', 'Administrator can remove President'),
+        )

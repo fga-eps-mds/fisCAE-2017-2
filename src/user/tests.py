@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from .models import Advisor
 from django.contrib.auth import authenticate
+from user.views import register
 
 
 class TestSimpleViews(TestCase):

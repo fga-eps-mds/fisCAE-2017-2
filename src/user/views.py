@@ -1,4 +1,4 @@
-from .models import Advisor
+from .models import Advisor, President
 from django.contrib.auth.models import User
 from django.contrib.auth import login as django_login, authenticate
 from django.contrib.auth import logout as django_logout
@@ -29,28 +29,33 @@ def logout(request):
 
 
 def register(request):
+    user_type = "president"
     if request.method == 'POST':
-        advisor = Advisor()
+        if(user_type == "advisor"):
+            person = Advisor()
+        elif(user_type == "president"):
+            person = President()
+
         try:
             username = request.POST['username']
             password = request.POST['password']
             user = User.objects.create_user(username=username,
                                             password=password)
-            advisor.user = user
+            person.user = user
         except:
             return render(request, 'registroException.html')
-        advisor.name = request.POST['name']
-        advisor.phone = request.POST['phone']
-        advisor.email = request.POST['email']
-        advisor.cpf = request.POST['cpf']
+        person.name = request.POST['name']
+        person.phone = request.POST['phone']
+        person.email = request.POST['email']
+        person.cpf = request.POST['cpf']
         # endereço
-        advisor.cep = request.POST['cep']
-        advisor.descricao = request.POST['descricao']
-        advisor.bairro = request.POST['bairro']
-        advisor.municipio = request.POST['municipio']
-        advisor.uf = request.POST['uf']
+        person.cep = request.POST['cep']
+        person.descricao = request.POST['descricao']
+        person.bairro = request.POST['bairro']
+        person.municipio = request.POST['municipio']
+        person.uf = request.POST['uf']
         # endereço
-        advisor.save()
+        person.save()
         return render(request, 'login.html')
     else:
         return render(request, 'registro.html')
