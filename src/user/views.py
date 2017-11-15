@@ -46,6 +46,7 @@ def register(request):
         # endereço
         advisor.cep = request.POST['cep']
         advisor.descricao = request.POST['descricao']
+        advisor.tipo_cae = request.POST['tipo_cae']
         advisor.bairro = request.POST['bairro']
         advisor.municipio = request.POST['municipio']
         advisor.uf = request.POST['uf']
