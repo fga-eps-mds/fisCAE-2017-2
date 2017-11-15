@@ -50,6 +50,10 @@ def register(request):
         advisor.bairro = request.POST['bairro']
         advisor.municipio = request.POST['municipio']
         advisor.uf = request.POST['uf']
+        if(advisor.tipo_cae == 'Municipal'):
+            advisor.nome_cae = 'CAE'+' '+advisor.tipo_cae+' '+advisor.municipio
+        else:
+            advisor.nome_cae = 'CAE'+' '+advisor.tipo_cae+' '+advisor.uf
         # endereço
         advisor.save()
         return render(request, 'login.html')
