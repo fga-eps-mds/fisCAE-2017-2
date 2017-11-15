@@ -1,7 +1,6 @@
 {% extends "Base.html" %}
 
     {% block body %}
-
         {% if request.user and request.user.is_authenticated %}
         <div class="page-title" >   
             <div id = "scheduleTitles">
@@ -9,7 +8,7 @@
                 </div>
                 <form action="scheduled" method="POST">
                     <ol>
-                    {% for i in allSchedules %}
+                    {% for i in visits %}
                     <div id="formstyle" style="font-size:30px;">
                         Escola: {{ i.school }}<br>
                         Data: {{ i.date }}<br>
@@ -18,6 +17,9 @@
                         <a href="{% url 'agendar_visita:scheduleVisitDelete' i.id %}">Deletar</a> | 
                         <a href="{% url 'agendar_visita:editVisit' i.id %}">Editar</a>
                         <br><br>
+                        <input style="background-color:#6C5FDD; border:#6C5FDD" 
+                        type="button" class="btn btn-primary" value="Iniciar" 
+                        onclick="location.href='{% url 'checklist:checklistForm' i.id  %}'"> <br>
                     </div>   
                     {% endfor %}
                     </ol>

@@ -52,7 +52,9 @@ class Checklist(models.Model):
         Checklist.objects.filter(pk=self.id).update(last_question=question_id)
         if len(answers) == self.number_questions:
             Checklist.objects.filter(pk=self.id).update(status=True)
-        print('\n', 'ANSWERS:', len(answers), self.status, '\n')
+            visit = ScheduleVisit.objects.get(id=self.visit_id)
+            visit.updateStatus(visit)
+            print('\n', 'ANSWERS:', len(answers), self.status, '\n')
 
     @staticmethod
     def setNumberQuestions(self):

@@ -23,7 +23,7 @@ def indexScheduleVisit(request):
                 )
 
 
-def visitedScheduleds(request):
+def visited(request):
     visited = ScheduleVisit.objects.filter(status=True)
     return render(
             request,
@@ -32,7 +32,7 @@ def visitedScheduleds(request):
             )
 
 
-def visitScheduled(request):
+def sceduled(request):
     visits = ScheduleVisit.objects.filter(status=False)
     return render(
             request,
