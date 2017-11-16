@@ -23,12 +23,21 @@ def indexScheduleVisit(request):
                 )
 
 
-def visitScheduled(request):
-    allSchedules = ScheduleVisit.scheduleVisit(request)
+def visited(request):
+    visited = ScheduleVisit.objects.filter(status=True)
+    return render(
+            request,
+            'visitedScheduleds.html',
+            {'visited': visited},
+            )
+
+
+def sceduled(request):
+    visits = ScheduleVisit.objects.filter(status=False)
     return render(
             request,
             'visitScheduleds.html',
-            {'allSchedules': allSchedules}
+            {'visits': visits},
             )
 
 

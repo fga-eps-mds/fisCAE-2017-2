@@ -17,8 +17,10 @@ def getItems(name, state, city):
     state = '&uf=' + state
     city = '&municipio=' + city
     quantity = '&quantidadeDeItens=7'
-    url = urlBase + rest + name + state + city + quantity
+    category = '&rede=Publica'
+    url = urlBase + rest + name + category + state + city + quantity
     request = requests.get(url)
+
     items = json.loads(request.text)
     return items
 
