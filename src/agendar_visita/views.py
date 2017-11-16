@@ -14,7 +14,7 @@ def indexScheduleVisit(request):
         newSchedule.members = request.POST['members']
         newSchedule.save()
         return HttpResponseRedirect(
-                            reverse('agendar_visita:visitScheduled')
+                            reverse('checklist:visitsSchool')
                             )
     return render(
                 request,
