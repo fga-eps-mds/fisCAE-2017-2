@@ -1,55 +1,116 @@
- {% extends "Base.html" %}
- {% block body %}
+{% extends "Base.html" %}
+{% block body %}
 
- <div class="page-header">
-    </div>
-    <div class="content container">
-      <div class="row">
-        <div class="col-md-12" "col-md-push-4" align="center">
-            <form method="POST" action="{%url 'user:registro'%}" style="
-            margin: 0 auto;display:inline-block;width: 100%;
-            padding: 12px;
-            border-radius: 4px;
-            box-sizing: border-box;
-            resize: vertical">
-                {%csrf_token%}
-                
-                <label><h3>Cadastro</h3></label><br>
-                <input type="" name="username" maxlength="30" placeholder="Username" required></br>
-                <input type="" name="name" maxlength="64" required placeholder="Nome"></br>
-                <input type="email" name="email" maxlength="100" required placeholder="Email"></br>
-                <input type="number" name="cpf" min="0" max="99999999999" placeholder="Cpf" required><br>
-                <input type="number" name="phone" min="1000000000" max="99999999999" placeholder="Telefone(com ddd,não tem deixe em branco)"></br>
-                <input type="number" name="cep" min="0" max="99999999" required placeholder="Cep"></br>
-                <input type="" name="uf" maxlength="2" required placeholder="Sigla do seu estado"> </br>
-                <input type="" name="municipio" maxlength="30" required placeholder="Municipio"> </br>
-                <input type="" name="bairro" maxlength="30" required placeholder="Bairro"> </br>
-                <input type="" name="descricao" maxlength="50" placeholder="Decrição"> </br>
-                <input type="password" name="password" id="password" maxlength="30" required placeholder="Senha" oninput="validatePassword();" > </br>
-                <input type="password"  id="password_confirmation" maxlength="30" required placeholder="Confirmar senha" oninput="validatePassword();"> </br><p></p>
-                <button type="submit" id="submit-register" class="btn btn-primary btn-block btn-large" style="width: 150px; height: 50px">Salvar</button><br>
-                <p class="error" id="password-validation"></p>
-            </form>
-        </div>
-      </div>
-    </div>     
-    
+
+<head>
+   <meta charset="utf-8">
+   <title>autocomplete demo</title>
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+   <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+   <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <script src="path/to/jquery.easy-autocomplete.min.js"></script> 
+   <link rel="stylesheet" href="path/to/easy-autocomplete.min.css"> 
+   <link rel="stylesheet" href="path/to/easy-autocomplete.themes.min.css"> 
+   <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+ </head>
+
+<div class="page-header">
+   </div>
+   <div class="content container">
+     <div class="row">
+       <div class="col-md-12" "col-md-push-4" align="center">
+           <form method="POST" action="{%url 'user:registro'%}" style="
+           margin: 0 auto;display:inline-block;width: 100%;
+           padding: 12px;
+           border-radius: 4px;
+           box-sizing: border-box;
+           resize: vertical">
+               {%csrf_token%}
+               
+               <label><h3>Cadastro</h3></label><br>
+               <input type="" name="username" maxlength="30" placeholder="Username" required></br>
+               <input type="" name="name" maxlength="64" required placeholder="Nome"></br>
+               <input type="email" name="email" maxlength="100" required placeholder="Email"></br>
+               <input type="" name="cpf" min="0" max="99999999999" placeholder="Cpf" required><br>
+               <input type="" name="phone" min="1000000000" max="99999999999" placeholder="Telefone com ddd"></br>
+               <input type="" name="cep" min="0" max="99999999" required placeholder="Cep"></br>
+               
+               <label id="campo_uf">
+                   <select id="uf" name="uf"></select>
+               </label><br>
+               <label id="campo_municipio">
+                   <select id="municipio" name="municipio"></select>
+               </label><br>
+
+               <script>
+               function listaMunicio(uf){
+                   $.ajax({
+                       type:'GET',
+                       url:'http://api.londrinaweb.com.br/PUC/Cidades/'+uf+'/BR/0/10000',
+                       contentType: "application/json; charset=utf-8",
+                       dataType: "jsonp",
+                       async:false
+                   }).done(function(response){
+                       municipios='';
+               
+                       $.each(response, function(c, municipio){
+                           municipios+='<option value="'+municipio+'">'+municipio+'</option>';
+                       });
+                       $('#municipio').html(municipios);
+                   });
+               }
+               
+               function listaUF(){
+                   $.ajax({
+                       type:'GET',
+                       url:'http://api.londrinaweb.com.br/PUC/Estados/BR/0/10000',
+                       contentType: "application/json; charset=utf-8",
+                       dataType: "jsonp",
+                       async:false
+                   }).done(function(response){
+                       ufs='';
+                       $.each(response, function(e, uf){
+                           ufs+='<option value="'+uf.UF+'">'+uf.Estado+'</option>';
+                       });
+                       $('#uf').html(ufs);
+                       listaMunicio($('#uf').val());
+                       $('#uf').change(function(){
+                           listaMunicio($(this).val());
+                       });
+                   });
+               }
+               listaUF()
+               </script>
+
+               
+               <!--<input type="" name="municipio" maxlength="30" required placeholder="Municipio"> </br>-->
+               <input type="" name="bairro" maxlength="30" required placeholder="Bairro"> </br>
+               <input type="" name="descricao" maxlength="50" placeholder="Decrição"> </br>
+               <input type="password" name="password" id="password" maxlength="30" required placeholder="Senha" oninput="validatePassword();" > </br>
+               <input type="password"  id="password_confirmation" maxlength="30" required placeholder="Confirmar senha" oninput="validatePassword();"> </br><p></p>
+               <button type="submit" id="submit-register" class="btn btn-primary btn-block btn-large" style="width: 150px; height: 50px">Salvar</button><br>
+               <p class="error" id="password-validation"></p>
+           </form>
+       </div>
+     </div>
+   </div>     
+   
 <script type="text/javascript">
-   var passwordInput = document.getElementById('password');
-   var passwordConfirmationInput = document.getElementById('password_confirmation');
-   var passwordValidation = document.getElementById('password-validation');
-   var submitInput = document.getElementById('submit-register');
-   submitInput.disabled = true;
-   function validatePassword() {
-       if(passwordInput.value === '' || passwordConfirmationInput.value === '') 
-           return;
-       if(passwordInput.value !== passwordConfirmationInput.value) {
-           passwordValidation.innerHTML = 'você está inserindo uma senha diferente no campo de confirmar senha</p>';
-           submitInput.disabled = true;
-       } else {
-           passwordValidation.innerHTML = '';
-           submitInput.disabled = false;
-       }
-   };
+  var passwordInput = document.getElementById('password');
+  var passwordConfirmationInput = document.getElementById('password_confirmation');
+  var passwordValidation = document.getElementById('password-validation');
+  var submitInput = document.getElementById('submit-register');
+  submitInput.disabled = true;
+  function validatePassword() {
+      if(passwordInput.value === '' || passwordConfirmationInput.value === '') 
+          return;
+      if(passwordInput.value !== passwordConfirmationInput.value) {
+          passwordValidation.innerHTML = 'você está inserindo uma senha diferente no campo de confirmar senha</p>';
+          submitInput.disabled = true;
+      } else {
+          passwordValidation.innerHTML = '';
+          submitInput.disabled = false;
+      }
+  };
 </script>
 {% endblock %}
