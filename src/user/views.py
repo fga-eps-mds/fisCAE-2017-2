@@ -56,6 +56,12 @@ def register(request):
         return render(request, 'registro.html')
 
 
+def userDelete(request, pk):
+    Advisor.objects.filter(id=pk).delete()
+    django_logout(request)
+    return HttpResponseRedirect(reverse('index'))
+
+
 @login_required
 def index(request):
     advisor = Advisor.objects.get(user=request.user)
