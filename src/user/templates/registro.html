@@ -27,33 +27,41 @@
                {%csrf_token%}
                
                <label><h3>Cadastro</h3></label><br>
-               <input type="" name="username" maxlength="30" placeholder="Username" required></br>
-               <input type="" name="name" maxlength="64" required placeholder="Nome"></br>
-               <input type="email" name="email" maxlength="100" required placeholder="Email"></br>
-               <input type="" name="cpf" min="0" max="99999999999" placeholder="Cpf" required><br>
-               <input type="" name="phone" min="1000000000" max="99999999999" placeholder="Telefone com ddd"></br>
-
-                <label>Cep:
-                <input name="cep" type="text" id="cep" value="" size="10" maxlength="9"
-                    onblur="pesquisacep(this.value);" /></label><br />
-                <label>Bairro:
-                <input name="bairro" type="text" id="bairro" size="40" /></label><br />
-                <label>Cidade:
-                <input name="cidade" type="text" id="cidade" size="40" /></label><br />
-                <label>Estado:
-                <input name="uf" type="text" id="uf" size="2" /></label><br />
-                <input type="" name="descricao" maxlength="50" placeholder="Decrição"> </br>
-
-               <input type="password" name="password" id="password" maxlength="30" required placeholder="Senha" oninput="validatePassword();" > </br>
-               <input type="password"  id="password_confirmation" maxlength="30" required placeholder="Confirmar senha" oninput="validatePassword();"> </br><p></p>
+               <label>
+               <input type="" name="username" maxlength="30" placeholder="Username" size="20" required>
+               </label></br>
+               <label>
+               <input type="" name="name" maxlength="64" required placeholder="Nome">
+               </label></br>
+               <label>
+               <input type="email" name="email" maxlength="100" required placeholder="Email">
+               </label></br>
+               <label>
+               <input type="" name="cpf" min="0" max="99999999999" placeholder="Cpf" required>
+               </label><br>
+                <label>
+                <input name="cep" type="" id="cep" value="" size="" maxlength="9"
+                    onblur="pesquisacep(this.value);" placeholder="CEP"/></label><br />
+                <label>
+                <input name="bairro" type="" id="bairro" size="" placeholder="Bairro" readonly/></label><br />
+                <label>
+                <input name="municipio" type="" id="municipio" size="" placeholder="Município" readonly/></label><br />
+                <label>
+                <input name="uf" type="" id="uf" size="" placeholder="Estado" readonly/></label><br />
+                <label>
+               <input type="password" name="password" id="password" maxlength="30" required placeholder="Senha" oninput="validatePassword();" >
+                </label></br>
+                <label>
+               <input type="password"  id="password_confirmation" maxlength="30" required placeholder="Confirmar senha" oninput="validatePassword();"> 
+               </label></br><p></p>
             
-                <!-- Adicionando Javascript -->
+                <!-- Javascript -->
                 <script type="text/javascript" >
                 
                 function limpa_formulário_cep() {
                         //Limpa valores do formulário de cep.
                         document.getElementById('bairro').value=("");
-                        document.getElementById('cidade').value=("");
+                        document.getElementById('municipio').value=("");
                         document.getElementById('uf').value=("");
                 }
             
@@ -61,7 +69,7 @@
                     if (!("erro" in conteudo)) {
                         //Atualiza os campos com os valores.
                         document.getElementById('bairro').value=(conteudo.bairro);
-                        document.getElementById('cidade').value=(conteudo.localidade);
+                        document.getElementById('municipio').value=(conteudo.localidade);
                         document.getElementById('uf').value=(conteudo.uf);
                     } //end if.
                     else {
@@ -87,7 +95,7 @@
             
                             //Preenche os campos com "..." enquanto consulta webservice.
                             document.getElementById('bairro').value="...";
-                            document.getElementById('cidade').value="...";
+                            document.getElementById('municipio').value="...";
                             document.getElementById('uf').value="...";
                             
             

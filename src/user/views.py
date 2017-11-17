@@ -41,11 +41,9 @@ def register(request):
         except:
             return render(request, 'registroException.html')
         advisor.name = request.POST['name']
-        advisor.phone = request.POST['phone']
         advisor.email = request.POST['email']
         advisor.cpf = request.POST['cpf']
         advisor.cep = request.POST['cep']
-        advisor.descricao = request.POST['descricao']
         advisor.bairro = request.POST['bairro']
         advisor.municipio = request.POST.get("municipio", "")
         advisor.uf = request.POST.get("uf", "")
