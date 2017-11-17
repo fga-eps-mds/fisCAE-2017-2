@@ -4,7 +4,6 @@
 
 <head>
    <meta charset="utf-8">
-   <title>autocomplete demo</title>
    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -33,62 +32,90 @@
                <input type="email" name="email" maxlength="100" required placeholder="Email"></br>
                <input type="" name="cpf" min="0" max="99999999999" placeholder="Cpf" required><br>
                <input type="" name="phone" min="1000000000" max="99999999999" placeholder="Telefone com ddd"></br>
-               <input type="" name="cep" min="0" max="99999999" required placeholder="Cep"></br>
-               
-               <label id="campo_uf">
-                   <select id="uf" name="uf"></select>
-               </label><br>
-               <label id="campo_municipio">
-                   <select id="municipio" name="municipio"></select>
-               </label><br>
 
-               <script>
-               function listaMunicio(uf){
-                   $.ajax({
-                       type:'GET',
-                       url:'http://api.londrinaweb.com.br/PUC/Cidades/'+uf+'/BR/0/10000',
-                       contentType: "application/json; charset=utf-8",
-                       dataType: "jsonp",
-                       async:false
-                   }).done(function(response){
-                       municipios='';
-               
-                       $.each(response, function(c, municipio){
-                           municipios+='<option value="'+municipio+'">'+municipio+'</option>';
-                       });
-                       $('#municipio').html(municipios);
-                   });
-               }
-               
-               function listaUF(){
-                   $.ajax({
-                       type:'GET',
-                       url:'http://api.londrinaweb.com.br/PUC/Estados/BR/0/10000',
-                       contentType: "application/json; charset=utf-8",
-                       dataType: "jsonp",
-                       async:false
-                   }).done(function(response){
-                       ufs='';
-                       $.each(response, function(e, uf){
-                           ufs+='<option value="'+uf.UF+'">'+uf.Estado+'</option>';
-                       });
-                       $('#uf').html(ufs);
-                       listaMunicio($('#uf').val());
-                       $('#uf').change(function(){
-                           listaMunicio($(this).val());
-                       });
-                   });
-               }
-               listaUF()
-               </script>
+                <label>Cep:
+                <input name="cep" type="text" id="cep" value="" size="10" maxlength="9"
+                    onblur="pesquisacep(this.value);" /></label><br />
+                <label>Bairro:
+                <input name="bairro" type="text" id="bairro" size="40" /></label><br />
+                <label>Cidade:
+                <input name="cidade" type="text" id="cidade" size="40" /></label><br />
+                <label>Estado:
+                <input name="uf" type="text" id="uf" size="2" /></label><br />
+                <input type="" name="descricao" maxlength="50" placeholder="Decrição"> </br>
 
-               
-               <!--<input type="" name="municipio" maxlength="30" required placeholder="Municipio"> </br>-->
-               <input type="" name="bairro" maxlength="30" required placeholder="Bairro"> </br>
-               <input type="" name="descricao" maxlength="50" placeholder="Decrição"> </br>
                <input type="password" name="password" id="password" maxlength="30" required placeholder="Senha" oninput="validatePassword();" > </br>
                <input type="password"  id="password_confirmation" maxlength="30" required placeholder="Confirmar senha" oninput="validatePassword();"> </br><p></p>
-               <button type="submit" id="submit-register" class="btn btn-primary btn-block btn-large" style="width: 150px; height: 50px">Salvar</button><br>
+            
+                <!-- Adicionando Javascript -->
+                <script type="text/javascript" >
+                
+                function limpa_formulário_cep() {
+                        //Limpa valores do formulário de cep.
+                        document.getElementById('bairro').value=("");
+                        document.getElementById('cidade').value=("");
+                        document.getElementById('uf').value=("");
+                }
+            
+                function meu_callback(conteudo) {
+                    if (!("erro" in conteudo)) {
+                        //Atualiza os campos com os valores.
+                        document.getElementById('bairro').value=(conteudo.bairro);
+                        document.getElementById('cidade').value=(conteudo.localidade);
+                        document.getElementById('uf').value=(conteudo.uf);
+                    } //end if.
+                    else {
+                        //CEP não Encontrado.
+                        limpa_formulário_cep();
+                        alert("CEP não encontrado.");
+                    }
+                }
+                    
+                function pesquisacep(valor) {
+            
+                    //Nova variável "cep" somente com dígitos.
+                    var cep = valor.replace(/\D/g, '');
+            
+                    //Verifica se campo cep possui valor informado.
+                    if (cep != "") {
+            
+                        //Expressão regular para validar o CEP.
+                        var validacep = /^[0-9]{8}$/;
+            
+                        //Valida o formato do CEP.
+                        if(validacep.test(cep)) {
+            
+                            //Preenche os campos com "..." enquanto consulta webservice.
+                            document.getElementById('bairro').value="...";
+                            document.getElementById('cidade').value="...";
+                            document.getElementById('uf').value="...";
+                            
+            
+                            //Cria um elemento javascript.
+                            var script = document.createElement('script');
+            
+                            //Sincroniza com o callback.
+                            script.src = '//viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+            
+                            //Insere script no documento e carrega o conteúdo.
+                            document.body.appendChild(script);
+            
+                        } //end if.
+                        else {
+                            //cep é inválido.
+                            limpa_formulário_cep();
+                            alert("Formato de CEP inválido.");
+                        }
+                    } //end if.
+                    else {
+                        //cep sem valor, limpa formulário.
+                        limpa_formulário_cep();
+                    }
+                };
+            
+                </script>
+
+                <button type="submit" id="submit-register" class="btn btn-primary btn-block btn-large" style="width: 150px; height: 50px">Salvar</button><br>
                <p class="error" id="password-validation"></p>
            </form>
        </div>
