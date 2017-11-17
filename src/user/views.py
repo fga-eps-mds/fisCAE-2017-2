@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from user.forms import AdvisorForm
 from nuvem_civica.services import postUser
+import re 
+# Create your views here.
 
 
 def login(request):
@@ -43,13 +45,18 @@ def register(request):
         advisor.phone = request.POST['phone']
         advisor.email = request.POST['email']
         advisor.cpf = request.POST['cpf']
+        # endereço
         advisor.cep = request.POST['cep']
         advisor.descricao = request.POST['descricao']
         advisor.bairro = request.POST['bairro']
-        advisor.municipio = request.POST['municipio']
-        advisor.uf = request.POST['uf']
+        # advisor.municipio = request.POST['municipio']
+        advisor.municipio = request.POST.get("municipio", "")
+        # advisor.uf = request.POST['uf']
+        advisor.uf = request.POST.get("uf", "")
+        # endereço
+        cep = re.sub(u'[- A-Z a-z]', '', advisor.cep)
+        advisor.cep = cep
         advisor.save()
-
         response = postUser(
                         advisor.cep,
                         advisor.email,
