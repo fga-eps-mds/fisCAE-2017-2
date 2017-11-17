@@ -9,8 +9,11 @@ def indexScheduleVisit(request):
     newSchedule = ScheduleVisit()
     school = getSelectedSchool
     if request.method == 'POST':
+        current_user = request.user
+        userId = current_user.id
+        userObject = Advisor.objects.get(id=userId)
+        newSchedule.nome_cae_schedule = userObject.nome_cae
         newSchedule.school = getSelectedSchool()
-        newSchedule.nome_cae_schedule = getNomeCaeSchedule() # nome do conselheiro que agendou a visita
         newSchedule.date = request.POST['date']
         newSchedule.time = request.POST['time']
         newSchedule.members = request.POST['members']
@@ -70,6 +73,3 @@ def editVisit(request, pk):
     return render(request, 'editVisit.html', {'form': form, 'school': school})
 
 
-def getNomeCaeSchedule(self):
-    nome_cae_schedule = self.nome_cae_schedule
-    return nome_cae_schedule
