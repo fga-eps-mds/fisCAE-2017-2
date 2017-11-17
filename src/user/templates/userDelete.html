@@ -1,6 +1,13 @@
 {% extends "Base.html" %}
 {% block body %}
-
-        <meta http-equiv="refresh" content=1;url="../index.html">
-
+<div style="margin-top:5%">
+<h1>Tem certeza que deseja excluir a conta?</h1>
+<form method="POST">
+        {% csrf_token %}                
+        <button type="submit" class="btn btn-primary" id="submit">Deletar</button>
+        <input style="background-color:#6C5FDD; border:#6C5FDD" 
+        type="button" class="btn btn-primary" value="Cancelar" 
+        onclick="location.href='../'">         
+</form>
+</div>
 {% endblock %}
