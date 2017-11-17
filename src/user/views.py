@@ -60,6 +60,7 @@ def register(request):
 def userDelete(request, pk):
     if request.method == 'POST':
         Advisor.objects.filter(id=pk).delete()
+        User.objects.filter(id=pk).delete()
         django_logout(request)
         return render(request, 'index.html')
     return render(request, 'userDelete.html')
