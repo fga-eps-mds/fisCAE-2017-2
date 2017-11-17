@@ -57,7 +57,6 @@ def register(request):
                         username,
                         password
                     )
-        print(response.text)
         print(response.status_code, response.reason)
         return render(request, 'login.html')
     else:
