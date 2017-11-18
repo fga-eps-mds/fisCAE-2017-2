@@ -3,7 +3,8 @@ from django.apps import apps
 
 
 class ScheduleVisit(models.Model):
-    school = models.TextField()
+    schoolName = models.TextField()
+    schoolCode = models.TextField()
     date = models.TextField()
     time = models.TextField()
     members = models.TextField()

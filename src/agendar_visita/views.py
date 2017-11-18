@@ -6,9 +6,10 @@ from .forms import VisitForm
 
 def indexScheduleVisit(request):
     newSchedule = ScheduleVisit()
-    school = getSelectedSchool
+    schoolName = getSelectedSchool().get('nome')
     if request.method == 'POST':
-        newSchedule.school = getSelectedSchool()
+        newSchedule.schoolName = schoolName
+        newSchedule.schoolCode = getSelectedSchool().get('codEscola')
         newSchedule.date = request.POST['date']
         newSchedule.time = request.POST['time']
         newSchedule.members = request.POST['members']
@@ -19,7 +20,7 @@ def indexScheduleVisit(request):
     return render(
                 request,
                 'indexScheduleVisit.html',
-                {'school': school}
+                {'school': schoolName}
                 )
 
 

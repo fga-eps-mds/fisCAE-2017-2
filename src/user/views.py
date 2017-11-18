@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from user.forms import AdvisorForm
-from nuvem_civica.services import postUser
+# from nuvem_civica.services import postUser
 import re
 
 
@@ -50,14 +50,15 @@ def register(request):
         cep = re.sub(u'[- A-Z a-z]', '', advisor.cep)
         advisor.cep = cep
         advisor.save()
-        response = postUser(
+        # Deixar comentado
+        """response = postUser(
                         advisor.cep,
                         advisor.email,
                         advisor.name,
                         username,
                         password
                     )
-        print(response.status_code, response.reason)
+        print(response.status_code, response.reason)"""
         return render(request, 'login.html')
     else:
         return render(request, 'registro.html')
