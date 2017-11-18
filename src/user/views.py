@@ -57,6 +57,16 @@ def register(request):
 
 
 @login_required
+def userDelete(request, pk):
+    if request.method == 'POST':
+        Advisor.objects.filter(id=pk).delete()
+        User.objects.filter(id=pk).delete()
+        django_logout(request)
+        return render(request, 'index.html')
+    return render(request, 'userDelete.html')
+
+
+@login_required
 def index(request):
     advisor = Advisor.objects.get(user=request.user)
     return render(request,
@@ -66,10 +76,11 @@ def index(request):
 
 @login_required
 def userEdit(request, pk):
+    id = pk
     user = get_object_or_404(Advisor, pk=pk)
     form = AdvisorForm(request.POST or None, instance=user)
     if request.method == 'POST':
         if pk == user.id:
             form.save()
             return redirect('../../')
-    return render(request, 'userEdit.html', {'form': form})
+    return render(request, 'userEdit.html', {'form': form, 'id': id})
