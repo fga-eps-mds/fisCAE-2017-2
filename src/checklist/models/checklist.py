@@ -1,19 +1,11 @@
 from django.db import models
 from django.utils import timezone
 from django.apps import apps
-
-from .school import School
 from agendar_visita.models import ScheduleVisit
 from .question import Question
 
 
 class Checklist(models.Model):
-    school = models.ForeignKey(
-        School,
-        related_name="checklists",
-        on_delete=models.CASCADE
-    )
-
     visit = models.ForeignKey(
         ScheduleVisit,
         related_name="checklists",
@@ -54,7 +46,6 @@ class Checklist(models.Model):
             Checklist.objects.filter(pk=self.id).update(status=True)
             visit = ScheduleVisit.objects.get(id=self.visit_id)
             visit.updateStatus(visit)
-            print('\n', 'ANSWERS:', len(answers), self.status, '\n')
 
     @staticmethod
     def setNumberQuestions(self):

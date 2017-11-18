@@ -1,9 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.utils import timezone
-
 from checklist.models.checklist import Checklist
 from checklist.models.question import Question
-from checklist.models.school import School
 from agendar_visita.models import ScheduleVisit
 from checklist.models.answer import Answer
 from checklist.forms import ChecklistForm
@@ -19,16 +17,6 @@ def checklistForm(request, id_visit):
     visit = ScheduleVisit.objects.get(id=id_visit)
 
     if request.user.is_authenticated:
-        school = School(
-            idSchool=111,
-            name='EscolaTeste',
-            state='DF',
-            county='Brasília',
-            address='Endereço',
-            phone=111111,
-            principal='Diretor'
-        )
-        school.save()
         if request.method == 'POST':
             checklistForm = ChecklistForm(request.POST)
             if checklistForm.is_valid():
@@ -41,7 +29,6 @@ def checklistForm(request, id_visit):
                     checklist = tempChecklist
                 except:
                     checklist.user = request.user
-                    checklist.school = school
                     checklist.visit = visit
                     checklist.created_date = timezone.now()
                     checklist.save()
