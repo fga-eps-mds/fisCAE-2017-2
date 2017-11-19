@@ -127,10 +127,11 @@ def showAnswers(request, id):
 
 
 def listSchools(request):
-    schools = School.objects.all()
-
+    visits = ScheduleVisit.objects.all()
+    checklists = Checklist.objects.all()
     context = {
-        'schools': schools
+        'visits': visits,
+        'checklists': checklists
     }
 
     return render(request, 'listSchools.html', context)
