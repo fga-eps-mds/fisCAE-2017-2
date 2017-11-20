@@ -7,34 +7,37 @@ from .forms import VisitForm
 
 def indexScheduleVisit(request):
     newSchedule = ScheduleVisit()
-    school = getSelectedSchool
+    schoolName = getSelectedSchool().get('nome')
     if request.method == 'POST':
+
         current_user = request.user
         userId = current_user.id
         userObject = Advisor.objects.get(id=userId)
         newSchedule.nome_cae_schedule = userObject.nome_cae
-        newSchedule.school = getSelectedSchool()
+        newSchedule.schoolName = schoolName
+        newSchedule.schoolCode = getSelectedSchool().get('codEscola')
         newSchedule.date = request.POST['date']
         newSchedule.time = request.POST['time']
         newSchedule.members = request.POST['members']
         newSchedule.save()
         return HttpResponseRedirect(
-                            reverse('checklist:visitsSchool')
+                            reverse('agendar_visita:visitScheduled')
                             )
     return render(
                 request,
                 'indexScheduleVisit.html',
-                {'school': school}
+                {'school': schoolName}
                 )
 
 
-def visitedScheduleds(request):
+def visited(request):
     current_user = request.user
     userId = current_user.id
     userObject = Advisor.objects.get(id=userId)
     nome_cae_user = userObject.nome_cae
     visited = ScheduleVisit.objects.filter(status=True,
                                            nome_cae_schedule=nome_cae_user)
+
     return render(
             request,
             'visitedScheduleds.html',
@@ -42,7 +45,7 @@ def visitedScheduleds(request):
             )
 
 
-def visitScheduled(request):
+def sceduled(request):
     current_user = request.user
     userId = current_user.id
     userObject = Advisor.objects.get(id=userId)
@@ -71,5 +74,3 @@ def editVisit(request, pk):
                             reverse('agendar_visita:visitScheduled')
                             )
     return render(request, 'editVisit.html', {'form': form, 'school': school})
-
-

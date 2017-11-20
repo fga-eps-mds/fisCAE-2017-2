@@ -7,7 +7,8 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from user.forms import AdvisorForm
-# Create your views here.
+# from nuvem_civica.services import postUser
+import re
 
 
 def login(request):
@@ -40,22 +41,30 @@ def register(request):
         except:
             return render(request, 'registroException.html')
         advisor.name = request.POST['name']
-        advisor.phone = request.POST['phone']
         advisor.email = request.POST['email']
         advisor.cpf = request.POST['cpf']
-        # endereço
         advisor.cep = request.POST['cep']
-        advisor.descricao = request.POST['descricao']
         advisor.tipo_cae = request.POST['tipo_cae']
         advisor.bairro = request.POST['bairro']
-        advisor.municipio = request.POST['municipio']
-        advisor.uf = request.POST['uf']
+        advisor.municipio = request.POST.get("municipio", "")
+        advisor.uf = request.POST.get("uf", "")
+        cep = re.sub(u'[- A-Z a-z]', '', advisor.cep)
+        advisor.cep = cep
         if(advisor.tipo_cae == 'Municipal'):
             advisor.nome_cae = 'CAE'+' '+advisor.tipo_cae+' '+advisor.municipio
         else:
             advisor.nome_cae = 'CAE'+' '+advisor.tipo_cae+' '+advisor.uf
         # endereço
         advisor.save()
+        # Deixar comentado
+        """response = postUser(
+                        advisor.cep,
+                        advisor.email,
+                        advisor.name,
+                        username,
+                        password
+                    )
+        print(response.status_code, response.reason)"""
         return render(request, 'login.html')
     else:
         return render(request, 'registro.html')
