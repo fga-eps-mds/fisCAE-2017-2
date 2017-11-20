@@ -1,49 +1,6 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect, reverse
-from agendar_reuniao.models import Agendamento
-from agendar_reuniao.forms import AgendamentoForm
+from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
-
-
-def edit_schedule(request, pk):
-    reuniao = Agendamento.objects.get(id=pk)
-    form = AgendamentoForm(request.POST or None, instance=reuniao)
-    if form.is_valid():
-        form.save()
-        return redirect('../../scheduled.html')
-    return render(request, 'edit_schedule.html', {'form': form})
-
-
-def schedule_delete(request, pk):
-    Agendamento.objects.filter(id=pk).delete()
-    return render(request, 'schedule_delete.html')
-
-
-def indexScheduleMeeting(request):
-    novoAgendamento = Agendamento()
-    if request.method == 'POST':
-        novoAgendamento.local = request.POST['local']
-        novoAgendamento.data = request.POST['date']
-        novoAgendamento.horario = request.POST['time']
-        novoAgendamento.observacoes = request.POST['note']
-        novoAgendamento.save()
-        return HttpResponseRedirect(
-                            reverse('agendar_reuniao:scheduled')
-                            )
-    return render(request, 'indexScheduleMeeting.html')
-
-
-def scheduled(request):
-    todosAgendamentos = Agendamento.agendamentos(request)
-    return render(
-            request,
-            'scheduled.html',
-            {'todosAgendamentos': todosAgendamentos}
-            )
-
-
-def schedules(request):
-    return render(request, 'schedules.html')
 
 
 def index(request):

@@ -1,0 +1,16 @@
+{% extends "Base.html" %}
+{% block body %}
+    <div style="text-align: left;margin-top: 5%;">
+        {% for school in schools%}
+            <div style="border: solid;">
+            <h2>{{ school.name }}</h2>
+            {% for checklist in school.checklists.all %}
+                {% if checklist.user == request.user %}
+                    <a href="/showAnswers/{{ checklist.id }}">{{ checklist.get_checklist_type_display }} </a>
+                    <small>{{ checklist.created_date }}</small>
+                {% endif %}
+            {% endfor%}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

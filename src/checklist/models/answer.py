@@ -1,6 +1,7 @@
 from django.db import models
 from .checklist import Checklist
 from .question import Question
+from django.contrib.auth.models import User
 
 
 class Answer(models.Model):
@@ -12,6 +13,11 @@ class Answer(models.Model):
     question = models.ForeignKey(
         Question,
         related_name="answers",
+        on_delete=models.CASCADE
+    )
+
+    user = models.ForeignKey(
+        User,
         on_delete=models.CASCADE
     )
 

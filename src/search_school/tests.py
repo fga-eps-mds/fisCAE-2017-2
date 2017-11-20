@@ -16,14 +16,18 @@ class SearchSchoolTest(TestCase):
         self.assertEquals(item[0].get('nome'), name)
 
     def testGetFilteredItems(self):
-        name = 'Nazare'
+        name = 'Maria'
         state = 'DF'
         city = 'Brasília'
         schoolList = getFilteredItems(name, state, city)
         testList = [
-            'INST EDUCACIONAL EVANGELICO NAZARENO',
-            'CR MARIA DE NAZARE',
-            'CR ESPIRITA MARIA DE NAZARE'
+            'CEF 201 DE SANTA MARIA',
+            'CEF 209 DE SANTA MARIA',
+            'EC 218 DE SANTA MARIA',
+            'CEF PROF MARIA DO ROSARIO GONDIM DA SILVA',
+            'CEF 213 DE SANTA MARIA',
+            'CEF 403 DE SANTA MARIA',
+            'CEI 203 DE SANTA MARIA',
             ]
         self.assertEquals(schoolList, testList)
 

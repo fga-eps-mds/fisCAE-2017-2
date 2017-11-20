@@ -1,12 +1,12 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
-import requests
 import json
+import requests
 from .forms import SchoolForm
 from user.models import Advisor
 
 
 gList = []
-gSelectedSchool = ''
+gSelectedSchool = {}
 
 
 def getItems(name, state, city):
@@ -17,27 +17,32 @@ def getItems(name, state, city):
     state = '&uf=' + state
     city = '&municipio=' + city
     quantity = '&quantidadeDeItens=7'
-    url = urlBase + rest + name + state + city + quantity
+    category = '&rede=Publica'
+    url = urlBase + rest + name + category + state + city + quantity
     request = requests.get(url)
+
     items = json.loads(request.text)
     return items
 
 
 def getFilteredItems(name, state, city):
     items = getItems(name, state, city)
-    schoolList = []
+    schools = []
     for dictionary in items:
-        for (key, value) in dictionary.items():
-            if key == 'nome':
-                schoolList.append(value)
-    return schoolList
+        school = {
+            'nome':      dictionary.get('nome'),
+            'codEscola': dictionary.get('codEscola'),
+        }
+        schools.append(school)
+
+    return schools
 
 
 def search(request):
     error = []
     global gList
     if request.user.is_authenticated:
-        schoolList = []
+        schools = []
         if request.method == 'POST':
             schoolName = request.POST.get('school', '')
             if schoolName.isspace():
@@ -48,9 +53,9 @@ def search(request):
                 userObject = Advisor.objects.get(id=userId)
                 state = (userObject.uf).upper()
                 city = userObject.municipio
-                schoolList = getFilteredItems(schoolName, state, city)
-                gList = schoolList
-                if not schoolList:
+                schools = getFilteredItems(schoolName, state, city)
+                gList = schools
+                if not schools:
                     error = ['Não encontrado. Digite novamente']
                 else:
                     return HttpResponseRedirect(
@@ -65,20 +70,38 @@ def search(request):
         return HttpResponseRedirect(reverse('notLoggedIn'))
 
 
+def getSchoolNames(schoolList):
+    schools = []
+    for dictionary in schoolList:
+        school = dictionary.get('nome')
+        schools.append(school)
+    return schools
+
+
+def getSchoolDetail(list, name):
+    for dictionary in list:
+        for (key, value) in dictionary.items():
+            value = dictionary.get('nome')
+            if value == name:
+                school = dictionary
+    return school
+
+
 def schoolForm(request):
     global gList
     global gSelectedSchool
     if request.user.is_authenticated:
+        schools = getSchoolNames(gList)
         if request.method == 'POST':
-            schoolForm = SchoolForm(request.POST, schools=gList)
+            schoolForm = SchoolForm(request.POST, schools=schools)
             if schoolForm.is_valid():
-                gSelectedSchool = request.POST.get('school')
-                print(gSelectedSchool)
+                selectedSchool = request.POST.get('school')
+                gSelectedSchool = getSchoolDetail(gList, selectedSchool)
                 return HttpResponseRedirect(
                     reverse('agendar_visita:indexScheduleVisit')
                 )
         else:
-            schoolForm = SchoolForm(schools=gList)
+            schoolForm = SchoolForm(schools=schools)
 
         context = {'schoolForm': schoolForm}
         return render(request, 'schoolForm.html', context)

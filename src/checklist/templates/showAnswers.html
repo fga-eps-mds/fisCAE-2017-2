@@ -1,0 +1,12 @@
+{% extends "Base.html" %}
+{% block body %}
+    <div style="margin-top: 5%;">
+        <p>{{ error }}</p>
+        {% for answer in answers %}
+            <div style="border: solid;margin-left: 20%; margin-right: 20%;">
+            <h1>{{ answer.question.description }}</h1>
+            <p>{{ answer.get_answer_display }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

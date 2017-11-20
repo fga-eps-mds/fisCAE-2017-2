@@ -20,7 +20,7 @@ class TestDoc(TestCase):
     def test_documentsAll(self):
         response = self.c.get('/documentsAll/')
         self.assertEquals(200, response.status_code)
-        self.assertTemplateUsed(response, 'base_docs.html')
+        self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'documentsAll.html')
         self.assertContains(response, 'CartilhaCae.pdf')
         self.assertNotContains(response, '.Ds_Store')
@@ -28,7 +28,7 @@ class TestDoc(TestCase):
     def test_upload_file_template(self):
         response = self.c.get('/upload_file/')
         self.assertEquals(200, response.status_code)
-        self.assertTemplateUsed(response, 'base_docs.html')
+        self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'upload_file.html')
 
     def test_viewpdf(self):

@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'checklist',
     'agendar_reuniao',
     'search_school',
-    'agendar_visita'
+    'agendar_visita',
+    'nuvem_civica'
 ]
 
 MIDDLEWARE = [
@@ -127,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 

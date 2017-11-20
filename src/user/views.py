@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from .models import Advisor
 from django.contrib.auth.models import User
 from django.contrib.auth import login as django_login, authenticate
@@ -6,6 +5,10 @@ from django.contrib.auth import logout as django_logout
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404, redirect
+from user.forms import AdvisorForm
+# from nuvem_civica.services import postUser
+import re
 
 
 def login(request):
@@ -38,20 +41,43 @@ def register(request):
         except:
             return render(request, 'registroException.html')
         advisor.name = request.POST['name']
-        advisor.phone = request.POST['phone']
         advisor.email = request.POST['email']
         advisor.cpf = request.POST['cpf']
-        # endereço
         advisor.cep = request.POST['cep']
-        advisor.descricao = request.POST['descricao']
+        advisor.tipo_cae = request.POST['tipo_cae']
         advisor.bairro = request.POST['bairro']
-        advisor.municipio = request.POST['municipio']
-        advisor.uf = request.POST['uf']
+        advisor.municipio = request.POST.get("municipio", "")
+        advisor.uf = request.POST.get("uf", "")
+        cep = re.sub(u'[- A-Z a-z]', '', advisor.cep)
+        advisor.cep = cep
+        if(advisor.tipo_cae == 'Municipal'):
+            advisor.nome_cae = 'CAE'+' '+advisor.tipo_cae+' '+advisor.municipio
+        else:
+            advisor.nome_cae = 'CAE'+' '+advisor.tipo_cae+' '+advisor.uf
         # endereço
         advisor.save()
+        # Deixar comentado
+        """response = postUser(
+                        advisor.cep,
+                        advisor.email,
+                        advisor.name,
+                        username,
+                        password
+                    )
+        print(response.status_code, response.reason)"""
         return render(request, 'login.html')
     else:
         return render(request, 'registro.html')
+
+
+@login_required
+def userDelete(request, pk):
+    if request.method == 'POST':
+        Advisor.objects.filter(id=pk).delete()
+        User.objects.filter(id=pk).delete()
+        django_logout(request)
+        return render(request, 'index.html')
+    return render(request, 'userDelete.html')
 
 
 @login_required
@@ -60,3 +86,15 @@ def index(request):
     return render(request,
                   'checklist/templates/index.html',
                   {'advisor': advisor})
+
+
+@login_required
+def userEdit(request, pk):
+    id = pk
+    user = get_object_or_404(Advisor, pk=pk)
+    form = AdvisorForm(request.POST or None, instance=user)
+    if request.method == 'POST':
+        if pk == user.id:
+            form.save()
+            return redirect('../../')
+    return render(request, 'userEdit.html', {'form': form, 'id': id})
