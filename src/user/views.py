@@ -18,7 +18,10 @@ def login(request):
         if user is not None:
             django_login(request, user)
             return HttpResponseRedirect(reverse('index'))
-        return render(request, 'login.html')
+        else:
+            error = 'Username ou senha incorretos!'
+            context = {'error': error}
+            return render(request, 'login.html', context)
     else:
         return render(request, 'login.html')
 
@@ -39,7 +42,9 @@ def register(request):
                                             password=password)
             advisor.user = user
         except:
-            return render(request, 'registroException.html')
+            error = 'Usuário já existe!'
+            context = {'error': error}
+            return render(request, 'registro.html', context)
         advisor.name = request.POST['name']
         advisor.email = request.POST['email']
         advisor.cpf = request.POST['cpf']

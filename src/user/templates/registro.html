@@ -25,8 +25,15 @@
            box-sizing: border-box;
            resize: vertical">
                {%csrf_token%}
-               
                <label><h3>Cadastro</h3></label><br>
+
+               <div style="color:red; font-size: 25px"> 
+                {% if error %}
+                {{ error }}
+                <br>
+                {% endif %}
+               </div>
+
                <label>
                <input type="" name="username" maxlength="30" placeholder="Username" size="20" required>
                </label></br>
