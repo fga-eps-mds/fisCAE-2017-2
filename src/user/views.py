@@ -7,8 +7,35 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from user.forms import AdvisorForm
-# Create your views here.
+from django.contrib.auth.forms import PasswordChangeForm
+from django.core.mail import send_mail
+from django.core.mail import send_mail
+from django.http import HttpResponse
+import smtplib
+from random import choice
 
+
+def reset_password(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        passwordtmp = ''
+        caracters = '0123456789abcdefghijlmnopqrstuwvxz'
+        usuario = Advisor.objects.get(email=email)
+        user = User.objects.get(username=usuario.name)
+        for char in range(6):
+            passwordtmp +=  choice(caracters)  
+
+        user.set_password(passwordtmp) 
+        user.save()
+        content = 'Essa e sua senha temporaria para acessar seu perfil '+passwordtmp
+        mail = smtplib.SMTP('smtp.gmail.com', 587)
+        mail.ehlo()
+        mail.starttls()
+        mail.login('fiscaeinfo@gmail.com', 'fiscae2017')
+        mail.sendmail('fiscaeinfo@gmail.com', email, content)
+        return render(request, 'sucess_reset_password.html', {'usuario': usuario})    
+    return render(request, 'reset_password.html')
+    
 
 def login(request):
     if request.method == 'POST':
