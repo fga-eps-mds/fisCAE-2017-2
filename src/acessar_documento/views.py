@@ -34,3 +34,12 @@ def documentsAll(request):
     return render(request, 'documentsAll.html', {'lista': lista})
     # lista = Arquivos.arquivosSalvos()
     # return render(request,'documentsAll.html',{'lista':lista})
+
+
+def legislation(request):
+    return render(request, 'legislation.html')
+
+
+def upload_legislation(request):
+    return render(request, 'upload_legislation.html')
+

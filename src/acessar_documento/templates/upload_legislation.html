@@ -1,0 +1,18 @@
+{% extends "Base.html" %}
+
+{% block body %}
+    <div style="margin-top: 5%; ">
+        <p>Upload</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <br>
+            <input style="vertical-align: middle; " type="file" name="arquivo" />
+            <button type="submit" class="btn btn-success">Submit</button>
+          </form></br>
+
+        <a href="legislation">Legislações salvas</a>
+
+    </div>
+
+{% endblock %}

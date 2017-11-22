@@ -1,12 +1,15 @@
 {% extends "Base.html" %}
 
 {% block body %}
-<form method="POST" enctype="multipart/form-data">
-  {% csrf_token %}
-  <br><br>
-  <p align="center">{{ form.title }}</p>
-  <p align="center"> {{ form.arquivo }}</p>
-  <button type="submit" class="btn btn-success">Submit</button>
-</form>
-<a href="documentsAll">Arquivos salvos</a>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <br><br>
+    <p align="center">{{ form.title }}</p>
+    <p align="center"> {{ form.arquivo }}</p>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+
+  <a href="documentsAll">Arquivos salvos</a></br>
+  <a href="legislation">Legislação</a>
+  
 {% endblock %}
