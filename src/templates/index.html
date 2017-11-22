@@ -13,9 +13,8 @@
             top: 50%;
             left: 50%;
             margin-right: -50%;
-            opacity: 0.5;
+            opacity: 0.3;
             transform: translate(-50%, -50%)">
-
         </div>
     </div>
 
@@ -42,15 +41,8 @@
                     <div class="block-3-box-icon">
                         <span aria-hidden="true" class="icon_key"></span>
                     </div>
-                    <h3><a href="{% url 'agendar_visita:visitScheduled' %}">Iniciar visita a uma escola</a></h3>
-                    <p>Iniciar visita à escola.</p>
-                </div>
-                <div class="col-sm-3 block-3-box wow fadeInUp">
-                    <div class="block-3-box-icon">
-                        <span aria-hidden="true" class="icon_pencil"></span>
-                    </div>
-                    <h3>Denúncia</h3>
-                    <p>Viu alguma irregularidade e quer informar aos orgãos competentes?</p>
+                    <h3><a href="{% url 'agendar_visita:visitScheduled' %}">Iniciar visita</a></h3>
+                    <p>Iniciar visita a uma escola</p>
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInDown">
                     <div class="block-3-box-icon" href="{% url 'acessar_cartilha:view_pdf_cae' %}">
@@ -58,6 +50,20 @@
                     </div>
                     <a href="upload_file.html"><h3>Documentos</h3></a>
                     <p>Acesse aqui os documentos</p>
+                </div>
+                <div class="col-sm-3 block-3-box wow fadeInDown">
+                    <div class="block-3-box-icon" href="{% url 'acessar_cartilha:view_pdf_cae' %}">
+                        <span aria-hidden="true" class="icon_pencil"></span>
+                    </div>
+                    <a href="{% url 'checklist:listSchools' %}"><h3>Checklists</h3></a>
+                    <p>Consultar checklists preenchidos</p>
+                </div>
+                <div class="col-sm-3 block-3-box wow fadeInUp">
+                    <div class="block-3-box-icon">
+                        <span aria-hidden="true" class="icon_pencil"></span>
+                    </div>
+                    <h3>Denúncia</h3>
+                    <p>Viu alguma irregularidade e quer informar aos orgãos competentes?</p>
                 </div>
             </div>
         </div>

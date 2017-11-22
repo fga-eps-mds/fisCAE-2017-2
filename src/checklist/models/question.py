@@ -5,6 +5,7 @@ import json
 class Question(models.Model):
     item_number = models.CharField(max_length=4, null=False)
     description = models.CharField(max_length=255, null=False)
+    question_title = models.CharField(max_length=255, null=False)
 
     QUESTION_TYPE = (
         ('TA', 'Questões técnicas e administrativas'),
@@ -30,6 +31,7 @@ class Question(models.Model):
                 Question(
                     item_number=item['item_number'],
                     description=item['description'],
+                    question_title=item['question_title'],
                     question_type=item['question_type']).save()
 
     @staticmethod

@@ -4,7 +4,6 @@ __pycache__
 src/user/migrations/*
 src/search_school/migrations/*
 src/checklist/migrations/*
-src/user/migrations/*
 src/agendar_reuniao/migrations/*
 src/agendar_visita/migrations/*
 src/nuvem_civica/migrations/*

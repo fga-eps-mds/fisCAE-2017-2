@@ -63,4 +63,4 @@ class QuestionTeste(TestCase):
     def testSeed(self):
         Question.objects.all().delete()
         Question.seedQuestions()
-        self.assertEquals(Question.objects.count(), 13)
+        self.assertEquals(Question.objects.count(), 89)
