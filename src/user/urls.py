@@ -11,4 +11,7 @@ urlpatterns = [
     url(r'^userEdit/(?P<pk>\d+)$', views.userEdit, name='userEdit'),
     url(r'^userDelete/(?P<pk>\d+)$', views.userDelete, name='userDelete'),
     url(r'^reset_password/$', views.reset_password, name='reset_password'),
+    url(r'^change_password/$', views.change_password, name='change_password'),
+    url(r'^password_sucess/$', views.password_sucess, name='password_sucess'),
+    
 ]

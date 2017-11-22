@@ -9,10 +9,42 @@ from django.shortcuts import render, get_object_or_404, redirect
 from user.forms import AdvisorForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.core.mail import send_mail
-from django.core.mail import send_mail
 from django.http import HttpResponse
 import smtplib
 from random import choice
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.shortcuts import render, redirect
+
+
+def password_sucess(request):
+    return render(request, 'password_sucess.html')
+    
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        usuario_id = request.user.id
+        user = User.objects.get(id=usuario_id)        
+        new_password = request.POST['password']
+        new_password_confirm = request.POST['password_confirmation']
+        
+        if new_password == new_password_confirm:
+            user.set_password(request.POST['password'])  
+            user.save() 
+            django_logout(request)
+            return render(request, 'password_sucess.html')
+        else:
+            mensagem = 'Senhas incorretas!'
+            return render(request, 'change_password.html', {'mensagem': mensagem})
+        return render(request, 'password_sucess.html')        
+    return render(request, 'change_password.html')
+    
+
+
+    # password_confirmation
+
 
 
 def reset_password(request):
