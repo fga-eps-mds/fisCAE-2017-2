@@ -1,3 +1,5 @@
+[![Code Health](https://landscape.io/github/fga-gpp-mds/fisCAE-2017-2/development/landscape.svg?style=flat)](https://landscape.io/github/fga-gpp-mds/fisCAE-2017-2/development)
+
 <br><p align="center"> <img src="https://i.imgur.com/PTkqmJC.png" width="325"></p></br>
 
 # Projeto FisCAE
