@@ -1,4 +1,5 @@
 [![Code Health](https://landscape.io/github/fga-gpp-mds/fisCAE-2017-2/development/landscape.svg?style=flat)](https://landscape.io/github/fga-gpp-mds/fisCAE-2017-2/development)
+[![Coverage Status](https://coveralls.io/repos/github/fga-gpp-mds/fisCAE-2017-2/badge.svg?branch=GCS)](https://coveralls.io/github/fga-gpp-mds/fisCAE-2017-2?branch=GCS)
 
 <br><p align="center"> <img src="https://i.imgur.com/PTkqmJC.png" width="325"></p></br>
 
