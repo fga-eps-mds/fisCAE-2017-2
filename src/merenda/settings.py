@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'agendar_reuniao',
     'search_school',
     'agendar_visita',
-    'denuncias'
+    'denuncias',
+    'nuvem_civica',
 ]
 
 MIDDLEWARE = [
@@ -128,7 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 

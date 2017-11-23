@@ -9,7 +9,7 @@ urlpatterns = [
         views.indexScheduleVisit,
         name='indexScheduleVisit'
         ),
-    url(r'visitScheduleds', views.visitScheduled, name='visitScheduled'),
+    url(r'visitScheduleds', views.sceduled, name='visitScheduled'),
     url(
         r'scheduleVisitDelete/(?P<pk>\d+)/$',
         views.scheduleVisitDelete,
