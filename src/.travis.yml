@@ -15,12 +15,14 @@ before_install:
   - export PYTHONPATH="/usr/local/lib/python3.4/dist-packages"
 
 install:
-  - pip install -r src/requirements.txt
+  - pip install -r requirements.txt
   - pip install django==$DJANGO --quiet
 
 
 script:
-  - python src/manage.py migrate --noinput
+  - python manage.py makemigrations --noinput
+  - python manage.py migrate --noinput
+  - coverage run --source='.' manage.py test
 
 after_success:
   - coveralls
