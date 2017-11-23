@@ -20,8 +20,9 @@ install:
 
 
 script:
-  - python manage.py migrate --noinput
-  - cd-src.sh 
+  - python src/manage.py makemigrations --noinput
+  - python src/manage.py migrate --noinput
+  - pushd src
   - coverage run --source='.' manage.py test
 
 after_success:
