@@ -6,6 +6,7 @@ from agendar_visita.models import ScheduleVisit
 from checklist.models.answer import Answer
 from checklist.forms import ChecklistForm
 from checklist.forms import AnswerForm
+from checklist.forms import ObservationsForm
 from user.models import Advisor
 
 
@@ -18,7 +19,7 @@ def visitsSchool(request):
     current_user = request.user
     userId = current_user.id
     userObject = Advisor.objects.get(id=userId)
-    nome_cae_user = userObject.nome_cae                                         
+    nome_cae_user = userObject.nome_cae                                        
     visita = ScheduleVisit.objects.filter(status=False,  nome_cae_schedule=nome_cae_user)
     #visita = ScheduleVisit.objects.all()
     return render(request, 'visitsSchool.html', {'visita': visita})
@@ -68,8 +69,19 @@ def checklistForm(request, id_visit):
         return HttpResponseRedirect(reverse('notLoggedIn'))
 
 
-def completed(request):
-    return render(request, 'completed.html', {'var_id': var_id})
+def completed(request, checklist_id):
+        checklist = Checklist.objects.get(
+            id=checklist_id,
+            )
+        form = ObservationsForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            observation = form.save(commit=False)
+            observation.images = request.FILES['images']
+            observation.observation = request.POST['observation']
+            observation.checklist = checklist
+            observation.save()
+        # return render(request, 'documentsAll.html')
+        return render(request, 'completed.html', {'var_id': var_id, 'form': form})
 
 
 def getQuestion(checklist):
@@ -89,7 +101,7 @@ def answerForm(request, checklist_id):
             user_id=user.id,
             )
         if checklist.status:
-            return HttpResponseRedirect(reverse('checklist:completed'))
+            return HttpResponseRedirect(reverse('checklist:completed', args=[checklist.id]))
         else:
             question = getQuestion(checklist)
             if request.method == 'POST':
