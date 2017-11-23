@@ -29,8 +29,9 @@ def logout(request):
 
 
 def register(request):
-    user_type = "president"
     if request.method == 'POST':
+        user_type = request.POST['user_type']
+        print("USER TYPE IS: ", user_type)
         if(user_type == "advisor"):
             person = Advisor()
         elif(user_type == "president"):
