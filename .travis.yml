@@ -22,7 +22,8 @@ install:
 script:
   - python manage.py makemigrations --noinput
   - python manage.py migrate --noinput
-  - coverage run --source='.' src/manage.py test
+  - cd src
+  - coverage run --source='.' manage.py test
 
 after_success:
   - coveralls
