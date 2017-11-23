@@ -16,8 +16,9 @@ def login(request):
         user = authenticate(username=request.POST['username'],
                             password=request.POST['password'])
         if user is not None:
-            django_login(request, user)
-            return HttpResponseRedirect(reverse('index'))
+            if user.is_active:
+                django_login(request, user)
+                return HttpResponseRedirect(reverse('index'))
         else:
             error = 'Username ou senha incorretos!'
             context = {'error': error}
@@ -59,6 +60,7 @@ def register(request):
             password = request.POST['password']
             user = User.objects.create_user(username=username,
                                             password=password)
+                                          #  is_active=False)
             user_type = request.POST['user_type']
             print("USER TYPE IS: ", user_type)
             if(user_type == "advisor"):
@@ -126,3 +128,13 @@ def userEdit(request, pk):
             form.save()
             return redirect('../../')
     return render(request, 'userEdit.html', {'form': form, 'id': id})
+
+
+@login_required
+@permission_required('user.remove_advisor')
+def listRequests(request):
+    users = Advisor.objects.all()
+    context = {
+        'advisor': users
+    }
+    return render(request, 'listRequests.html', context)
