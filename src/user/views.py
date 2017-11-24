@@ -35,7 +35,7 @@ def change_password(request):
             return render(request, 'change_password.html', {
                 'mensagem': mensagem
             })
-        return render(request, 'password_sucess.html')        
+        return render(request, 'password_sucess.html')
     return render(request, 'change_password.html')
 
 
