@@ -95,6 +95,7 @@ class TestForms(TestCase):
             'bairro': 'sss',
             'municipio': 'goiania',
             'uf': 'go',
+            'user_type': 'advisor',
 
         }
         data2 = {
@@ -109,6 +110,7 @@ class TestForms(TestCase):
             'bairro': 'sss',
             'municipio': 'goiania',
             'uf': 'go',
+            'user_type': 'advisor',
 
         }
         self.c.post('/registro/', data1)

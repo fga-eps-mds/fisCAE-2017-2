@@ -13,4 +13,3 @@ class Agendamento(models.Model):
         visitas = []
         visitas = Agendamento.objects.all()
         return visitas
-

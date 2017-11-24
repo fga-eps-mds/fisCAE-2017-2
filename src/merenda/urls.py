@@ -7,7 +7,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('acessar_documento.urls', namespace='acessar_documento')),
+    url(r'^', include('acessar_documento.urls',
+                      namespace='acessar_documento')),
     url(r'^', include('checklist.urls', namespace='checklist')),
     url(r'^', include('search_school.urls', namespace='search_school')),
     url(r'^', include('agendar_visita.urls', namespace='agendar_visita')),
@@ -26,18 +27,18 @@ urlpatterns = [
         r'^indexScheduleMeeting',
         views.indexScheduleMeeting,
         name='indexScheduleMeeting'
-        ),
+    ),
     url(r'^scheduled', views.scheduled, name='scheduled'),
     url(
         r'^schedule_delete/(?P<pk>\d+)/$',
         views.schedule_delete,
         name='schedule_delete'
-        ),
+    ),
     url(
         r'^edit_schedule/(?P<pk>\d+)/$',
         views.edit_schedule,
         name='edit_schedule'
-        ),
+    ),
     url(r'schedules', views.schedules, name='schedules'),
     url(r'^notLoggedIn/$', views.notLoggedIn, name='notLoggedIn'),
 ]
