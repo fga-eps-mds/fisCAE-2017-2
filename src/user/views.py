@@ -64,6 +64,9 @@ def register(request):
             elif(user_type == "president"):
                 person = President()
                 setPresidentPerm(user)
+            elif(user_type == "administrator"):
+                person = Administrator()
+                setAdministratorPerm(user)
             person.user = user
         except:
             user.delete()
