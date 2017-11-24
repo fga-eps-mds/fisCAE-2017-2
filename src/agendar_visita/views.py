@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from agendar_visita.models import ScheduleVisit
 from search_school.views import getSelectedSchool
+from user.models import Advisor
 from .forms import VisitForm
 
 
@@ -8,6 +9,11 @@ def indexScheduleVisit(request):
     newSchedule = ScheduleVisit()
     schoolName = getSelectedSchool().get('nome')
     if request.method == 'POST':
+
+        current_user = request.user
+        userId = current_user.id
+        userObject = Advisor.objects.get(id=userId)
+        newSchedule.nome_cae_schedule = userObject.nome_cae
         newSchedule.schoolName = schoolName
         newSchedule.schoolCode = getSelectedSchool().get('codEscola')
         newSchedule.date = request.POST['date']
@@ -25,7 +31,13 @@ def indexScheduleVisit(request):
 
 
 def visited(request):
-    visited = ScheduleVisit.objects.filter(status=True)
+    current_user = request.user
+    userId = current_user.id
+    userObject = Advisor.objects.get(id=userId)
+    nome_cae_user = userObject.nome_cae
+    visited = ScheduleVisit.objects.filter(status=True,
+                                           nome_cae_schedule=nome_cae_user)
+
     return render(
             request,
             'visitedScheduleds.html',
@@ -34,7 +46,12 @@ def visited(request):
 
 
 def sceduled(request):
-    visits = ScheduleVisit.objects.filter(status=False)
+    current_user = request.user
+    userId = current_user.id
+    userObject = Advisor.objects.get(id=userId)
+    nome_cae_user = userObject.nome_cae
+    visits = ScheduleVisit.objects.filter(status=False,
+                                          nome_cae_schedule=nome_cae_user)
     return render(
             request,
             'visitScheduleds.html',

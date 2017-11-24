@@ -7,6 +7,7 @@ class Agendamento(models.Model):
     local = models.TextField()
     tema = models.TextField()
     observacoes = models.TextField()
+    nome_cae_schedule = models.CharField(max_length=50)
 
     @staticmethod
     def agendamentos(request):

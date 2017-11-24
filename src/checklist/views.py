@@ -6,6 +6,22 @@ from agendar_visita.models import ScheduleVisit
 from checklist.models.answer import Answer
 from checklist.forms import ChecklistForm
 from checklist.forms import AnswerForm
+from user.models import Advisor
+
+
+def getQuestions(checklist_type):
+    questions = Question.objects.filter(question_type=checklist_type)
+    return questions
+
+
+def visitsSchool(request):
+    current_user = request.user
+    userId = current_user.id
+    userObject = Advisor.objects.get(id=userId)
+    nome_cae_user = userObject.nome_cae
+    visita = ScheduleVisit.objects.filter(status=False,
+                                          nome_cae_schedule=nome_cae_user)
+    return render(request, 'visitsSchool.html', {'visita': visita})
 
 
 var_id = 0

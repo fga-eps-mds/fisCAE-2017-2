@@ -49,11 +49,17 @@ def register(request):
         advisor.email = request.POST['email']
         advisor.cpf = request.POST['cpf']
         advisor.cep = request.POST['cep']
+        advisor.tipo_cae = request.POST['tipo_cae']
         advisor.bairro = request.POST['bairro']
         advisor.municipio = request.POST.get("municipio", "")
         advisor.uf = request.POST.get("uf", "")
         cep = re.sub(u'[- A-Z a-z]', '', advisor.cep)
         advisor.cep = cep
+        if(advisor.tipo_cae == 'Municipal'):
+            advisor.nome_cae = 'CAE'+' '+advisor.tipo_cae+' '+advisor.municipio
+        else:
+            advisor.nome_cae = 'CAE'+' '+advisor.tipo_cae+' '+advisor.uf
+        # endereço
         advisor.save()
         # Deixar comentado
         """response = postUser(
