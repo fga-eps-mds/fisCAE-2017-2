@@ -43,18 +43,15 @@ class TestForms(TestCase):
 
     def test_register_user(self):
         data = {
-            'username': 'algo',
-            'password': '123456',
-            'email': 'jjj@ggg.com',
-            'name': 'Test',
-            'cpf': '',
-            'phone': '',
-            'cep': '2223335555',
+            'username': 'fiscae',
+            'password': 'fiscae',
+            'email': 'fiscae@hotmail.com',
+            'name': 'fisCAE',
+            'cpf': '7777777',
+            'cep': '7777777',
             'bairro': 'hhh',
-            'descricao': '',
             'municipio': 'goiania',
             'uf': 'go',
-
         }
 
         self.c.post('/registro/', data)
@@ -64,9 +61,7 @@ class TestForms(TestCase):
         self.assertEquals(data['email'], Advisor.objects.last().email)
         self.assertEquals(data['name'], Advisor.objects.last().name)
         self.assertEquals(data['cpf'], Advisor.objects.last().cpf)
-        self.assertEquals(data['phone'], Advisor.objects.last().phone)
         self.assertEquals(data['cep'], Advisor.objects.last().cep)
-        self.assertEquals(data['descricao'], Advisor.objects.last().descricao)
         self.assertEquals(data['bairro'], Advisor.objects.last().bairro)
         self.assertEquals(data['municipio'], Advisor.objects.last().municipio)
         self.assertEquals(data['uf'], Advisor.objects.last().uf)
@@ -117,7 +112,7 @@ class TestForms(TestCase):
         self.c.post('/registro/', data1)
         response = self.c.post('/registro/', data2)
         self.assertTemplateUsed(response, 'Base.html')
-        self.assertTemplateUsed(response, 'registroException.html')
+        self.assertTemplateUsed(response, 'registro.html')
 
     def test_logout_user(self):
         self.c.login(username='test', password='123456')

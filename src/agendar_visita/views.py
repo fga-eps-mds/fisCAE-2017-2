@@ -6,9 +6,10 @@ from .forms import VisitForm
 
 def indexScheduleVisit(request):
     newSchedule = ScheduleVisit()
-    school = getSelectedSchool
+    schoolName = getSelectedSchool().get('nome')
     if request.method == 'POST':
-        newSchedule.school = getSelectedSchool()
+        newSchedule.schoolName = schoolName
+        newSchedule.schoolCode = getSelectedSchool().get('codEscola')
         newSchedule.date = request.POST['date']
         newSchedule.time = request.POST['time']
         newSchedule.members = request.POST['members']
@@ -19,11 +20,11 @@ def indexScheduleVisit(request):
     return render(
                 request,
                 'indexScheduleVisit.html',
-                {'school': school}
+                {'school': schoolName}
                 )
 
 
-def visitedScheduleds(request):
+def visited(request):
     visited = ScheduleVisit.objects.filter(status=True)
     return render(
             request,
@@ -32,7 +33,7 @@ def visitedScheduleds(request):
             )
 
 
-def visitScheduled(request):
+def sceduled(request):
     visits = ScheduleVisit.objects.filter(status=False)
     return render(
             request,
@@ -49,7 +50,7 @@ def scheduleVisitDelete(request, pk):
 def editVisit(request, pk):
     visit = ScheduleVisit.objects.get(id=pk)
     form = VisitForm(request.POST or None, instance=visit)
-    school = visit.school
+    school = visit.schoolName
     if form.is_valid():
         form.save()
         return HttpResponseRedirect(

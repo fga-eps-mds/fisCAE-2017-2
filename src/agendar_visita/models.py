@@ -1,8 +1,10 @@
 from django.db import models
+from django.apps import apps
 
 
 class ScheduleVisit(models.Model):
-    school = models.TextField()
+    schoolName = models.TextField()
+    schoolCode = models.TextField()
     date = models.TextField()
     time = models.TextField()
     members = models.TextField()
@@ -15,5 +17,8 @@ class ScheduleVisit(models.Model):
         return visits
 
     @staticmethod
-    def update(self):
-        self.status = True
+    def updateStatus(self):
+        Checklist = apps.get_model('checklist', 'Checklist')
+        listChecklist = Checklist.objects.filter(visit_id=self.id)
+        if len(listChecklist) == len(Checklist.CHECKLIST_TYPE):
+            ScheduleVisit.objects.filter(pk=self.id).update(status=True)

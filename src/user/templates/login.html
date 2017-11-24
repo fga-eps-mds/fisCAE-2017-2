@@ -5,13 +5,24 @@
 </div>
 <div class="content container">
   <div class="row">
-    <div class="col-md-12" "col-md-push-4" align="center">
+    <div class="col-md-12" "col-md-push-4" align="center" style="
+    margin: 0 auto;display:inline-block;width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical">
         <br>
         <h1>Login</h1>
             <form method="POST" action="{%url 'user:login'%}">
-                {%csrf_token%}       
-                <input type="" name="username" placeholder="Username" required maxlength="30" style="text-align:center ; width:25% ; height:40px" /><br>
-                <input type="password" name="password" maxlength="30" placeholder="Password" required style="text-align:center ; width:25% ; height:40px" /><br>
+                {%csrf_token%}
+                <div style="color:red; font-size: 25px"> 
+                  {% if error %}
+                  {{ error }}
+                  <br>
+                  {% endif %}
+                </div>      
+                <label><input type="" name="username" placeholder="Nome de usuário" required maxlength="30" style="text-align:center; " /></label><br>
+                <label><input type="password" name="password" maxlength="30" placeholder="Senha" required style="text-align:center;" /></label><br>
                 <button type="submit" class="btn btn-info" style="width: 100px; height: 50px">Entrar</button><br>
                 <a href="{% url 'user:registro' %}" style="font-size:20px;">Registrar </a>
                 <a href="{% url 'user:reset_password' %}" style="font-size:20px;">| Esqueceu sua senha?</a>

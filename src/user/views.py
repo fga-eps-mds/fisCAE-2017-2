@@ -73,7 +73,7 @@ def reset_password(request):
             })
     return render(request, 'reset_password.html')
 
-
+  
 def login(request):
     if request.method == 'POST':
         user = authenticate(username=request.POST['username'],

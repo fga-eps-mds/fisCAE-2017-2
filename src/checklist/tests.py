@@ -1,5 +1,6 @@
 from django.test import TestCase, Client
 from django.shortcuts import reverse
+from agendar_visita.models import ScheduleVisit
 
 from .models import Question
 
@@ -17,24 +18,27 @@ class ChecklistTest(TestCase):
         )
         question.save()
 
+        visit = ScheduleVisit(1, 'Escola Teste', '2017-10-10', '10:10', 'CAE', 0)
+        visit.save()
+
     def testSubmitChecklistFormValid(self):
         client = Client()
         client.login(username="amanda", password="123")
         data = {'checklist_type': 'TA'}
         response = client.post(
-            reverse('checklist:checklistForm'),
+            reverse('checklist:checklistForm', args=(1,)),
             data, follow=True
         )
         print(response.redirect_chain)
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.redirect_chain, [('/answerForm', 302)])
+        self.assertEquals(response.redirect_chain, [('/answerForm/1/', 302)])
 
     def testSubmitChecklistFormInvalid(self):
         client = Client()
         client.login(username="amanda", password="123")
         data = {'checklist_type': 'TT'}
         response = client.post(
-            reverse('checklist:checklistForm'),
+            reverse('checklist:checklistForm', args=(1,)),
             data,
             follow=True
         )
@@ -44,7 +48,7 @@ class ChecklistTest(TestCase):
     def testRenderChecklistForm(self):
         client = Client()
         client.login(username="amanda", password="123")
-        response = client.get(reverse('checklist:checklistForm'))
+        response = client.get(reverse('checklist:checklistForm', args=(1,)))
         self.assertEquals(response.status_code, 200)
 
     def test_listSchools(self):
