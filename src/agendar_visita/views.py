@@ -67,7 +67,7 @@ def scheduleVisitDelete(request, pk):
 def editVisit(request, pk):
     visit = ScheduleVisit.objects.get(id=pk)
     form = VisitForm(request.POST or None, instance=visit)
-    school = visit.school
+    school = visit.schoolName
     if form.is_valid():
         form.save()
         return HttpResponseRedirect(

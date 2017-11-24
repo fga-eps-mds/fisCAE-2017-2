@@ -116,7 +116,7 @@ class TestForms(TestCase):
         self.c.post('/registro/', data1)
         response = self.c.post('/registro/', data2)
         self.assertTemplateUsed(response, 'Base.html')
-        self.assertTemplateUsed(response, 'registroException.html')
+        self.assertTemplateUsed(response, 'registro.html')
 
     def test_logout_user(self):
         self.c.login(username='test', password='123456')

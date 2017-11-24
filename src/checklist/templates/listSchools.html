@@ -1,11 +1,12 @@
 {% extends "Base.html" %}
 {% block body %}
     <div style="text-align: left;margin-top: 5%;">
-        {% for school in schools%}
+        <br>
+        {% for visit in visits%}
             <div style="border: solid;">
-            <h2>{{ school.name }}</h2>
-            {% for checklist in school.checklists.all %}
-                {% if checklist.user == request.user %}
+            <h2>{{ visit.schoolName }}</h2>
+            {% for checklist in checklists %}
+                {% if checklist.visit_id == visit.id %}
                     <a href="/showAnswers/{{ checklist.id }}">{{ checklist.get_checklist_type_display }} </a>
                     <small>{{ checklist.created_date }}</small>
                 {% endif %}

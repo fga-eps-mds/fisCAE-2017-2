@@ -4,11 +4,10 @@
 <div class="page-title" >   
         <div id = "scheduleTitles">    
     <h1>Editar Visita</h1>
-    </div></div>
     <form method="POST">
         <div id="formstyle edit">
             {% csrf_token %}<br>
-            Escola: {{ school }}
+            Escola: {{ school }}<br>
             Data: {{ form.date }}<br>
             Horário: {{ form.time }}<br>
             Membros: {{ form.members }}
