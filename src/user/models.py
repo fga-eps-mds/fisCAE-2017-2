@@ -11,7 +11,3 @@ class Advisor(models.Model):
     bairro = models.CharField(max_length=30, null=False)
     municipio = models.CharField(max_length=30, null=False)
     uf = models.CharField(max_length=2, null=False)
-
-    @staticmethod
-    def setPassword(senha):
-        self.user.setPassword(senha)

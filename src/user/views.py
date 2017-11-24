@@ -47,7 +47,7 @@ def reset_password(request):
         try:
             mensagem1 = 'Solicitação realizada com sucesso!'
             mensagem2 = 'Uma nova senha foi enviada para o email:'
-            mensagem = mensagem1+mensagem2
+            mensagem = mensagem1 + mensagem2
             usuario = Advisor.objects.get(email=email)
             user = User.objects.get(username=usuario.name)
             for char in range(6):
@@ -56,16 +56,16 @@ def reset_password(request):
             user.set_password(passwordtmp)
             user.save()
             content1 = 'Essa e sua senha temporaria'
-            content2 = 'para acessar seu perfil '+passwordtmp
-            content = content1+content2
+            content2 = 'para acessar seu perfil ' + passwordtmp
+            content = content1 + content2
             mail = smtplib.SMTP('smtp.gmail.com', 587)
             mail.ehlo()
             mail.starttls()
             mail.login('fiscaeinfo@gmail.com', 'fiscae2017')
             mail.sendmail('fiscaeinfo@gmail.com', email, content)
             return render(request, 'sucess_reset_password.html', {
-                    'usuario': usuario, 'mensagem': mensagem
-                })
+                'usuario': usuario, 'mensagem': mensagem
+            })
         except:
             mensagem = 'O email digitado não está cadastrado!'
             return render(request, 'sucess_reset_password.html', {
