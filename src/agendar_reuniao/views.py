@@ -40,8 +40,8 @@ def scheduled(request):
     current_user = request.user
     userId = current_user.id
     userObject = Advisor.objects.get(id=userId)
-    nome_cae_user = userObject.nome_cae
-    todosAgendamentos = Agendamento.objects.filter(nome_cae_schedule=nome_cae_user)
+    nome_cae = userObject.nome_cae
+    todosAgendamentos = Agendamento.objects.filter(nome_cae_schedule=nome_cae)
     return render(
             request,
             'scheduled.html',

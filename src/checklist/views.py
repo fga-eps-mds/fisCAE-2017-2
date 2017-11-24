@@ -18,9 +18,9 @@ def visitsSchool(request):
     current_user = request.user
     userId = current_user.id
     userObject = Advisor.objects.get(id=userId)
-    nome_cae_user = userObject.nome_cae                                         
-    visita = ScheduleVisit.objects.filter(status=False,  nome_cae_schedule=nome_cae_user)
-    #visita = ScheduleVisit.objects.all()
+    nome_cae_user = userObject.nome_cae
+    visita = ScheduleVisit.objects.filter(status=False,
+                                          nome_cae_schedule=nome_cae_user)
     return render(request, 'visitsSchool.html', {'visita': visita})
 
 
