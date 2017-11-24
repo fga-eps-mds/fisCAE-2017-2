@@ -64,7 +64,8 @@ def reset_password(request):
             mail.login('fiscaeinfo@gmail.com', 'fiscae2017')
             mail.sendmail('fiscaeinfo@gmail.com', email, content)
             return render(request, 'sucess_reset_password.html', {
-                'usuario': usuario, 'mensagem': mensagem
+                'usuario': usuario,
+                'mensagem': mensagem
             })
         except:
             mensagem = 'O email digitado não está cadastrado!'
@@ -73,11 +74,12 @@ def reset_password(request):
             })
     return render(request, 'reset_password.html')
 
-  
+
 def login(request):
     if request.method == 'POST':
-        user = authenticate(username=request.POST['username'],
-                            password=request.POST['password'])
+        user = authenticate(
+            username=request.POST['username'],
+            password=request.POST['password'])
         if user is not None:
             django_login(request, user)
             return HttpResponseRedirect(reverse('index'))
@@ -101,8 +103,8 @@ def register(request):
         try:
             username = request.POST['username']
             password = request.POST['password']
-            user = User.objects.create_user(username=username,
-                                            password=password)
+            user = User.objects.create_user(
+                username=username, password=password)
             advisor.user = user
         except:
             error = 'Usuário já existe!'
@@ -145,9 +147,9 @@ def userDelete(request, pk):
 @login_required
 def index(request):
     advisor = Advisor.objects.get(user=request.user)
-    return render(request,
-                  'checklist/templates/index.html',
-                  {'advisor': advisor})
+    return render(request, 'checklist/templates/index.html', {
+        'advisor': advisor
+    })
 
 
 @login_required
