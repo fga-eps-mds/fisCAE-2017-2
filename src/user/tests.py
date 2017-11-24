@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from .models import Advisor
 from django.contrib.auth import authenticate
+from user.views import register
 
 
 class TestSimpleViews(TestCase):
@@ -52,6 +53,7 @@ class TestForms(TestCase):
             'bairro': 'hhh',
             'municipio': 'goiania',
             'uf': 'go',
+            'user_type': 'advisor'
         }
 
         self.c.post('/registro/', data)
@@ -113,6 +115,7 @@ class TestForms(TestCase):
         response = self.c.post('/registro/', data2)
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'registro.html')
+        self.assertContains(response, 'Usuário já existe!')
 
     def test_logout_user(self):
         self.c.login(username='test', password='123456')

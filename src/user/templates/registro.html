@@ -33,7 +33,10 @@
                 <br>
                 {% endif %}
                </div>
-
+               <h4>
+                <label><input type="radio" name="user_type" value="advisor">Conselheiro</label>
+                <label><input type="radio" name="user_type" value="president">Presidente</label></br>
+                </h4>
                <label>
                <input type="" name="username" maxlength="30" placeholder="Username" size="20" required>
                </label></br>
@@ -50,11 +53,11 @@
                 <input name="cep" type="" id="cep" value="" size="" maxlength="9"
                     onblur="pesquisacep(this.value);" placeholder="CEP"/></label><br />
                 <label>
-                <input name="bairro" type="" id="bairro" size="" placeholder="Bairro" readonly/></label><br />
+                <input name="bairro" type="" id="bairro" size="" placeholder="Bairro" required readonly/></label><br />
                 <label>
-                <input name="municipio" type="" id="municipio" size="" placeholder="Município" readonly/></label><br />
+                <input name="municipio" type="" id="municipio" size="" placeholder="Município" required readonly/></label><br />
                 <label>
-                <input name="uf" type="" id="uf" size="" placeholder="Estado" readonly/></label><br />
+                <input name="uf" type="" id="uf" size="" placeholder="Estado"  readonly/></label><br />
                 <label>
                <input type="password" name="password" id="password" maxlength="30" required placeholder="Senha" oninput="validatePassword();" >
                 </label></br>
@@ -129,7 +132,6 @@
                 };
             
                 </script>
-
                 <button type="submit" id="submit-register" class="btn btn-primary btn-block btn-large" style="width: 150px; height: 50px">Salvar</button><br>
                <p class="error" id="password-validation"></p>
            </form>

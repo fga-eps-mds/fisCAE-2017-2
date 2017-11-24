@@ -1,0 +1,7 @@
+{% extends "Base.html" %} {% block body %}
+<div style="margin-top : 5%;">
+    {% for i in advisor %}
+        {{i.name}}
+    {% endfor %}
+</div>
+{% endblock %}
