@@ -1,39 +1,42 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse
-from .models import Denunciation
+from django.shortcuts import render
 import smtplib
 
 
 def denunciations(request):
     if request.method == 'POST':
-        denunciation = Denunciation()
-        denunciation.email_from = request.POST['email']
-        denunciation.subject = request.POST['subject']
-        denunciation.password = request.POST['password']
-        denunciation.description = request.POST['description']
-#        denunciation.email_to = ['ouvidoria@fnde.gov.br', 'audit@fnde.gov.br']
-        denunciation.email_to = ['palitos.11234@gmail.com']
+        school = request.POST['escola']
+        city = request.POST['cidade']
+        state = request.POST['estado']
+        end = request.POST['endereco']
+        subject = request.POST['subject']
+        description = request.POST['description'] 
+#       email_to = ['ouvidoria@fnde.gov.br', 'audit@fnde.gov.br']
+        email_to = ['fiscaeinfo@gmail.com']
 
-        email_from = denunciation.email_from
-        email_to = denunciation.email_to
-        subject = denunciation.subject
-        password = denunciation.password
-        description = denunciation.description
+        text_school = 'Segue abaixo uma denuncia sobre a escola ' + school
+        text_city = 'da cidade ' + city
+        text_state = 'do estado ' + state
+        text_end = 'situado no endereco ' + end
 
         messange = '\r\n'.join([
-                   'From: %s' % email_from,
+                   'From: fiscaeinfo@gmail.com',
                    'To: %s' % email_to,
                    'Subject: %s' % subject,
                    '',
+                   '%s' % text_school,
+                   '%s' % text_city,
+                   '%s' % text_state,
+                   '%s' % text_end,
                    '%s' % description
                    ])
 
-        smtp = smtplib.SMTP('smtp.gmail.com:587')
+        smtp = smtplib.SMTP('smtp.gmail.com', 587)
+        smtp.ehlo()
         smtp.starttls()
-        smtp.login(email_from, password)
-        smtp.sendmail(email_from, email_to, messange)
+        smtp.login('fiscaeinfo@gmail.com', 'fiscae2017')
+        smtp.sendmail('fiscaeinfo@gmail.com', email_to, messange)
         smtp.quit()
 
-        denunciation.save()
         return render(request, 'index.html')
     else:
         return render(request, 'denuncias/denunciations.html')
