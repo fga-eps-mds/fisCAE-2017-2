@@ -11,7 +11,7 @@ def denunciations(request):
         denunciation.password = request.POST['password']
         denunciation.description = request.POST['description']
 #        denunciation.email_to = ['ouvidoria@fnde.gov.br', 'audit@fnde.gov.br']
-        denunciation.email_to = ['mateusaugusto-2009@hotmail.com']
+        denunciation.email_to = ['palitos.11234@gmail.com']
 
         email_from = denunciation.email_from
         email_to = denunciation.email_to
@@ -27,13 +27,13 @@ def denunciations(request):
                    '%s' % description
                    ])
 
-        smtp = smtplib.SMTP(email_from, 465)
+        smtp = smtplib.SMTP('smtp.gmail.com:587')
         smtp.starttls()
         smtp.login(email_from, password)
         smtp.sendmail(email_from, email_to, messange)
         smtp.quit()
 
         denunciation.save()
-        return HttpResponseRedirect(reverse('denuncias:denunciations'))
-
-    return render(request, 'denuncias/denunciations.html')
+        return render(request, 'index.html')
+    else:
+        return render(request, 'denuncias/denunciations.html')
