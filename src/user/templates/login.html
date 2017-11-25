@@ -24,7 +24,9 @@
                 <label><input type="" name="username" placeholder="Nome de usuário" required maxlength="30" style="text-align:center; " /></label><br>
                 <label><input type="password" name="password" maxlength="30" placeholder="Senha" required style="text-align:center;" /></label><br>
                 <button type="submit" class="btn btn-info" style="width: 100px; height: 50px">Entrar</button><br>
-                <a href="{% url 'user:registro' %}" style="font-size:20px;">Registrar</a>
+                <a href="{% url 'user:registro' %}" style="font-size:20px;">Registrar </a>
+                <a href="{% url 'user:reset_password' %}" style="font-size:20px;">| Esqueceu sua senha?</a>
+                
             </form>
     </div>
   </div>
