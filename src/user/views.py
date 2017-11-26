@@ -98,6 +98,13 @@ def logout(request):
         return HttpResponseRedirect(reverse('index'))
 
 
+def setAdvisorPerm(user):
+    content_type = ContentType.objects.get_for_model(Advisor)
+    fill_checklist_perm = Permission.objects.get(codename='fill_checklist',
+                                                 content_type=content_type)
+    user.user_permissions.add(fill_checklist_perm)
+
+
 def setPresidentPerm(user):
     content_type = ContentType.objects.get_for_model(President)
     add_advisor_perm = Permission.objects.get(codename='add_advisor',
@@ -114,8 +121,29 @@ def setAdministratorPerm(user):
                                                 content_type=content_type)
     remove_president_perm = Permission.objects.get(codename='remove_president',
                                                    content_type=content_type)
+    add_advisor_perm = Permission.objects.get(codename='add_advisor',
+                                              content_type=content_type)
+    remove_advisor_perm = Permission.objects.get(codename='remove_advisor',
+                                                 content_type=content_type)
     user.user_permissions.add(add_president_perm)
     user.user_permissions.add(remove_president_perm)
+    user.user_permissions.add(add_advisor_perm)
+    user.user_permissions.add(remove_advisor_perm)
+
+
+def user_type(request, user):
+    user_type = request.POST['user_type']
+    if(user_type == "advisor"):
+        person = Advisor()
+        setAdvisorPerm(user)
+    elif(user_type == "president"):
+        person = President()
+        setPresidentPerm(user)
+    elif(user_type == "administrator"):
+        person = Administrator()
+        setAdministratorPerm(user)
+    person.user = user
+    return person
 
 
 def register(request):
@@ -125,16 +153,7 @@ def register(request):
             password = request.POST['password']
             user = User.objects.create_user(
                 username=username, password=password)
-            user_type = request.POST['user_type']
-            if(user_type == "advisor"):
-                person = Advisor()
-            elif(user_type == "president"):
-                person = President()
-                setPresidentPerm(user)
-            elif(user_type == "administrator"):
-                person = Administrator()
-                setAdministratorPerm(user)
-            person.user = user
+            person = user_type(request, user)
         except:
             error = 'Usuário já existe!'
             context = {'error': error}
