@@ -1,4 +1,8 @@
+# -*- encoding: utf-8 -*-
+
 from django.shortcuts import render
+# from email.mime.multipart import MIMEMultipart
+# from email.mime.text import MIMEText
 import smtplib
 
 
@@ -11,13 +15,29 @@ def denunciations(request):
         subject = request.POST['subject']
         description = request.POST['description'] 
 #       email_to = ['ouvidoria@fnde.gov.br', 'audit@fnde.gov.br']
+        email_from = 'fiscaeinfo@gmail.com'
         email_to = ['fiscaeinfo@gmail.com']
 
-        text_school = 'Segue abaixo uma denuncia sobre a escola ' + school
-        text_city = 'da cidade ' + city
-        text_state = 'do estado ' + state
-        text_end = 'situado no endereco ' + end
+        # msg = MIMEMultipart('alternative')
+# 
+        # msg['From'] = email_from
+        # msg['To'] = email_to
+        # msg['Subject'] = subject
 
+        text_school = 'Segue abaixo uma denuncia sobre a escola ' + school
+        text_city = ' da cidade ' + city
+        text_state = ' do estado ' + state
+        text_end = ' situado no endereco ' + end + '\n\n'
+
+        # body = text_school + text_city + text_state + text_end + description
+# 
+        # msg.attach(MIMEText(body, 'plain'))
+
+        # text_school = 'Segue abaixo uma denuncia sobre a escola ' + school
+        # text_city = 'da cidade ' + city
+        # text_state = 'do estado ' + state
+        # text_end = 'situado no endereco ' + end
+# 
         messange = '\r\n'.join([
                    'From: fiscaeinfo@gmail.com',
                    'To: %s' % email_to,
@@ -31,10 +51,9 @@ def denunciations(request):
                    ])
 
         smtp = smtplib.SMTP('smtp.gmail.com', 587)
-        smtp.ehlo()
         smtp.starttls()
-        smtp.login('fiscaeinfo@gmail.com', 'fiscae2017')
-        smtp.sendmail('fiscaeinfo@gmail.com', email_to, messange)
+        smtp.login(email_from, 'fiscae2017')
+        smtp.sendmail(email_from, email_to, messange)
         smtp.quit()
 
         return render(request, 'index.html')
