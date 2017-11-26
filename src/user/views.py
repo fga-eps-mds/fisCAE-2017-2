@@ -1,4 +1,4 @@
-from .models import Advisor
+from .models import Advisor, President
 from django.contrib.auth.models import User
 from django.contrib.auth import login as django_login, authenticate
 from django.contrib.auth import logout as django_logout
@@ -98,28 +98,32 @@ def logout(request):
 
 
 def register(request):
+    user_type = "president"
     if request.method == 'POST':
-        advisor = Advisor()
+        if(user_type == "advisor"):
+            person = Advisor()
+        elif(user_type == "president"):
+            person = President()
         try:
             username = request.POST['username']
             password = request.POST['password']
             user = User.objects.create_user(
                 username=username, password=password)
-            advisor.user = user
+            person.user = user
         except:
             error = 'Usuário já existe!'
             context = {'error': error}
             return render(request, 'registro.html', context)
-        advisor.name = request.POST['name']
-        advisor.email = request.POST['email']
-        advisor.cpf = request.POST['cpf']
-        advisor.cep = request.POST['cep']
-        advisor.bairro = request.POST['bairro']
-        advisor.municipio = request.POST.get("municipio", "")
-        advisor.uf = request.POST.get("uf", "")
-        cep = re.sub(u'[- A-Z a-z]', '', advisor.cep)
-        advisor.cep = cep
-        advisor.save()
+        person.name = request.POST['name']
+        person.email = request.POST['email']
+        person.cpf = request.POST['cpf']
+        person.cep = request.POST['cep']
+        person.bairro = request.POST['bairro']
+        person.municipio = request.POST["municipio", ""]
+        person.uf = request.POST["uf", ""]
+        cep = re.sub(u'[- A-Z a-z]', '', person.cep)
+        person.cep = cep
+        person.save()
         # Deixar comentado
         """response = postUser(
                         advisor.cep,
