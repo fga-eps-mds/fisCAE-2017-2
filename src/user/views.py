@@ -1,10 +1,11 @@
-from .models import Advisor, President
-from django.contrib.auth.models import User
+from .models import Advisor, President, Administrator
+from django.contrib.auth.models import User, Permission
 from django.contrib.auth import login as django_login, authenticate
 from django.contrib.auth import logout as django_logout
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from user.forms import AdvisorForm
 import smtplib
@@ -97,22 +98,43 @@ def logout(request):
         return HttpResponseRedirect(reverse('index'))
 
 
+def setPresidentPerm(user):
+    content_type = ContentType.objects.get_for_model(President)
+    add_advisor_perm = Permission.objects.get(codename='add_advisor',
+                                              content_type=content_type)
+    remove_advisor_perm = Permission.objects.get(codename='remove_advisor',
+                                                 content_type=content_type)
+    user.user_permissions.add(add_advisor_perm)
+    user.user_permissions.add(remove_advisor_perm)
+
+
+def setAdministratorPerm(user):
+    content_type = ContentType.objects.get_for_model(Administrator)
+    add_president_perm = Permission.objects.get(codename='add_president',
+                                                content_type=content_type)
+    remove_president_perm = Permission.objects.get(codename='remove_president',
+                                                   content_type=content_type)
+    user.user_permissions.add(add_president_perm)
+    user.user_permissions.add(remove_president_perm)
+
+
 def register(request):
-    user_type = "president"
-    if request.method == 'POST':
-        if(user_type == "advisor"):
-            person = Advisor()
-        elif(user_type == "president"):
-            person = President()
         try:
             username = request.POST['username']
             password = request.POST['password']
             user = User.objects.create_user(
                 username=username, password=password)
+            user_type = request.POST['user_type']
+            if(user_type == "advisor"):
+                person = Advisor()
+            elif(user_type == "president"):
+                person = President()
+                setPresidentPerm(user)
             person.user = user
         except:
             error = 'Usuário já existe!'
             context = {'error': error}
+            user.delete()
             return render(request, 'registro.html', context)
         person.name = request.POST['name']
         person.email = request.POST['email']
@@ -139,6 +161,7 @@ def register(request):
 
 
 @login_required
+@permission_required('user.remove_advisor')
 def userDelete(request, pk):
     if request.method == 'POST':
         Advisor.objects.filter(id=pk).delete()
