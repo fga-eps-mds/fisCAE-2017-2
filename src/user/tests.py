@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
-from django.contrib.auth.models import User
-from .models import Advisor
+from django.contrib.auth.models import User, Permission
+from .models import Advisor, President
 from django.contrib.auth import authenticate
 
 
@@ -45,6 +45,7 @@ class TestForms(TestCase):
         data = {
             'username': 'fiscae',
             'password': 'fiscae',
+            'user_type': 'advisor',
             'email': 'fiscae@hotmail.com',
             'name': 'fisCAE',
             'cpf': '7777777',
@@ -79,6 +80,50 @@ class TestForms(TestCase):
         data = {'username': 'tes', 'password': '123456'}
         response = self.c.post('/login/', data, follow=True)
         self.assertNotEquals(response.context['user'], self.user)
+
+    def test_setPresidentPerm(self):
+        data = {
+            'username': 'president_test',
+            'password': '123456',
+            'user_type': 'president',
+            'email': 'jjj@ggg.com',
+            'name': 'President_test',
+            'cpf': '',
+            'cep': '2223335555',
+            'bairro': 'hhh',
+            'municipio': 'goiania',
+            'uf': 'go',
+
+        }
+        self.c.post('/registro/', data)
+        user = User.objects.get(username='president_test')
+        self.assertEquals(user.has_perm('user.add_advisor'), True)
+        self.assertEquals(user.has_perm('user.remove_advisor'), True)
+        self.assertEquals(user.has_perm('user.add_president'), False)
+        self.assertEquals(user.has_perm('user.remove_president'), False)
+        self.assertEquals(user.has_perm('user.none'), False)
+
+    def test_setAdministratorPerm(self):
+        data = {
+            'username': 'administrator_test',
+            'password': '123456',
+            'user_type': 'administrator',
+            'email': 'jjj@ggg.com',
+            'name': 'President_test',
+            'cpf': '',
+            'cep': '2223335555',
+            'bairro': 'hhh',
+            'municipio': 'goiania',
+            'uf': 'go',
+
+        }
+        self.c.post('/registro/', data)
+        user = User.objects.get(username='administrator_test')
+        self.assertEquals(user.has_perm('user.add_president'), True)
+        self.assertEquals(user.has_perm('user.remove_president'), True)
+        self.assertEquals(user.has_perm('user.add_advisor'), False)
+        self.assertEquals(user.has_perm('user.remove_advisor'), False)
+        self.assertEquals(user.has_perm('user.none'), False)
 
     def test_register_DuplicateUser(self):
         data1 = {

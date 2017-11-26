@@ -119,6 +119,7 @@ def setAdministratorPerm(user):
 
 
 def register(request):
+    if request.method == 'POST':
         try:
             username = request.POST['username']
             password = request.POST['password']
@@ -130,6 +131,9 @@ def register(request):
             elif(user_type == "president"):
                 person = President()
                 setPresidentPerm(user)
+            elif(user_type == "administrator"):
+                person = Administrator()
+                setAdministratorPerm(user)
             person.user = user
         except:
             error = 'Usuário já existe!'
@@ -141,8 +145,8 @@ def register(request):
         person.cpf = request.POST['cpf']
         person.cep = request.POST['cep']
         person.bairro = request.POST['bairro']
-        person.municipio = request.POST["municipio", ""]
-        person.uf = request.POST["uf", ""]
+        person.municipio = request.POST['municipio']
+        person.uf = request.POST['uf']
         cep = re.sub(u'[- A-Z a-z]', '', person.cep)
         person.cep = cep
         person.save()
