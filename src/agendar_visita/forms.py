@@ -5,7 +5,7 @@ from .models import ScheduleVisit
 class VisitForm(ModelForm):
     class Meta:
         model = ScheduleVisit
-        exclude = ['school']
+        exclude = ['schoolName', 'schoolCode']
 
         widgets = {
             'date': Textarea(attrs={'cols': 20, 'rows': 1}),

@@ -25,36 +25,63 @@
            box-sizing: border-box;
            resize: vertical">
                {%csrf_token%}
-               
                <label><h3>Cadastro</h3></label><br>
-               <input type="" name="username" maxlength="30" placeholder="Username" required></br>
-               <input type="" name="name" maxlength="64" required placeholder="Nome"></br>
-               <input type="email" name="email" maxlength="100" required placeholder="Email"></br>
-               <input type="number" name="cpf" min="0" max="99999999999" placeholder="Cpf" required><br>
-               <div class="select-cae" >
-                    <h4>A QUAL TIPO DE CAE VOCÊ PERTENCE?</h1>
-                        <select name="tipo_cae">
-                           <option value="Municipal">Municipal</option>
-                           <option value="Estadual">Estadual</option>
-                       </select> 
+
+               <div style="color:red; font-size: 25px"> 
+                {% if error %}
+                {{ error }}
+                <br>
+                {% endif %}
                </div>
-               <input name="cep" type="" id="cep" value="" size="" maxlength="9"
-               onblur="pesquisacep(this.value);" placeholder="CEP"/></label><br />
-           <label>
-           <input name="bairro" type="" id="bairro" size="" placeholder="Bairro" readonly/></label><br />
-           <label>
-           <input name="municipio" type="" id="municipio" size="" placeholder="Município" readonly/></label><br />
-           <label>
-           <input name="uf" type="" id="uf" size="" placeholder="Estado" readonly/></label><br />
-              
-                <input type="password" name="password" id="password" maxlength="30" required placeholder="Senha" oninput="validatePassword();" > </br>
-               <input type="password"  id="password_confirmation" maxlength="30" required placeholder="Confirmar senha" oninput="validatePassword();"> </br><p></p>
+
+               <label>
+               <input type="" name="username" maxlength="30" placeholder="Username" size="20" required>
+               </label></br>
+               <label>
+               <input type="" name="name" maxlength="64" required placeholder="Nome">
+               </label></br>
+               <h4>
+               <label>
+               <input type="radio" name="user_type" value="advisor">Conselheiro
+               </label>
+               <label>
+               <input type="radio" name="user_type" value="president">Presidente
+               </label></br>
+               </h4>
+               <label>
+               <input type="email" name="email" maxlength="100" required placeholder="Email">
+               </label></br>
+               <label>
+               <input type="" name="cpf" min="0" max="99999999999" placeholder="Cpf" required>
+               </label><br>
+               <div class="select-cae" >
+                <h4>A QUAL TIPO DE CAE VOCÊ PERTENCE?</h1>
+                    <select name="tipo_cae">
+                       <option value="Municipal">Municipal</option>
+                       <option value="Estadual">Estadual</option>
+                   </select> 
+                </div>
+                <label>
+                <input name="cep" type="" id="cep" value="" size="" maxlength="9"
+                    onblur="pesquisacep(this.value);" placeholder="CEP"/></label><br />
+                <label>
+                <input name="bairro" type="" id="bairro" size="" placeholder="Bairro" readonly/></label><br />
+                <label>
+                <input name="municipio" type="" id="municipio" size="" placeholder="Município" readonly/></label><br />
+                <label>
+                <input name="uf" type="" id="uf" size="" placeholder="Estado" readonly/></label><br />
+                <label>
+               <input type="password" name="password" id="password" maxlength="30" required placeholder="Senha" oninput="validatePassword();" >
+                </label></br>
+                <label>
+               <input type="password"  id="password_confirmation" maxlength="30" required placeholder="Confirmar senha" oninput="validatePassword();"> 
+               </label></br>
                <button type="submit" id="submit-register" class="btn btn-primary btn-block btn-large" style="width: 150px; height: 50px">Salvar</button><br>
-              <p class="error" id="password-validation"></p>
-          </form>
-      </div>
-    </div>
-  </div>  
+               <p class="error" id="password-validation"></p>
+           </form>
+       </div>
+     </div>
+   </div>  
             
                 <!-- Javascript -->
                 <script type="text/javascript" >

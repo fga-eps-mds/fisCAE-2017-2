@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from django.shortcuts import reverse
 from .views import getItems
 from .views import getFilteredItems
+from .views import getSchoolNames
 
 
 class SearchSchoolTest(TestCase):
@@ -20,6 +21,7 @@ class SearchSchoolTest(TestCase):
         state = 'DF'
         city = 'Brasília'
         schoolList = getFilteredItems(name, state, city)
+        schools = getSchoolNames(schoolList)
         testList = [
             'CEF 201 DE SANTA MARIA',
             'CEF 209 DE SANTA MARIA',
@@ -29,7 +31,7 @@ class SearchSchoolTest(TestCase):
             'CEF 403 DE SANTA MARIA',
             'CEI 203 DE SANTA MARIA',
             ]
-        self.assertEquals(schoolList, testList)
+        self.assertEquals(schools, testList)
 
     def testRenderSchoolForm(self):
         client = Client()
