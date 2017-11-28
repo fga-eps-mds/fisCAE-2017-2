@@ -7,7 +7,6 @@ class Question(models.Model):
     description = models.CharField(max_length=255, null=False)
 
     QUESTION_TYPE = (
-        ('TA', 'Questões técnicas e administrativas'),
         ('HS', 'Questões Higiênico Sanitárias'),
         ('AL', 'Questões Alimentares'),
         ('D', 'Sobre a documentação'),

@@ -7,7 +7,7 @@ class Person(models.Model):
     name = models.CharField(max_length=64, null=False)
     email = models.EmailField(max_length=100, null=False)
     cpf = models.CharField(max_length=14, null=False)
-    tipo_cae = models.CharField(max_length=9, null=False)
+    tipo_cae = models.CharField(default='Municipal', max_length=9, null=False)
     nome_cae = models.CharField(default='CAE', max_length=50, null=False)
     # endereço
     cep = models.CharField(max_length=10, null=False)
