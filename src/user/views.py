@@ -168,6 +168,10 @@ def register(request):
         person.uf = request.POST['uf']
         cep = re.sub(u'[- A-Z a-z]', '', person.cep)
         person.cep = cep
+        if(person.tipo_cae == 'Municipal'):
+            person.nome_cae = 'CAE'+' '+person.tipo_cae+' '+person.municipio
+        else:
+            person.nome_cae = 'CAE'+' '+person.tipo_cae+' '+person.uf
         person.save()
         # Deixar comentado
         """response = postUser(

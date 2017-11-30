@@ -7,9 +7,9 @@ class Question(models.Model):
     description = models.CharField(max_length=255, null=False)
 
     QUESTION_TYPE = (
-        ('TA', 'Questões técnicas e administrativas'),
         ('HS', 'Questões Higiênico Sanitárias'),
-        ('O', 'Questões orçamentárias'),
+        ('AL', 'Questões Alimentares'),
+        ('D', 'Sobre a documentação'),
     )
 
     question_type = models.CharField(
@@ -20,7 +20,8 @@ class Question(models.Model):
 
     @staticmethod
     def seedQuestions():
-        path = 'static/assets/test_items_checklist.json'
+        path = 'static/assets/checklist_questions.json'
+        # path = 'static/assets/test_items_checklist.json'
         # path = 'static/assets/items_checklist.json'
         with open(path) as json_file:
             checklist = json.load(json_file)

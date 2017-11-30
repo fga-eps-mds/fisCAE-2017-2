@@ -10,4 +10,7 @@
                 onclick="location.href='{% url 'checklist:checklistForm' i.id %}'"> <br>
         </div>
     {%  endfor %}
+    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" 
+    class="btn btn-primary" value="Nova Visita" onclick="location.href='{% url 'search_school:searchSchool' %}'">
+
 {% endblock %}

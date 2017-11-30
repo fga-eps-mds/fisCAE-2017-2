@@ -10,7 +10,7 @@
         
         <form method="post" novalidate>
           <div id="questionDescription">
-            {{ current_question.id }}. {{ current_question.description }}
+             {{ current_question.description }}
           </div>
           <p></p>
           {% csrf_token %}{% for field in answerForm %}

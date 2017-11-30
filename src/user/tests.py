@@ -49,6 +49,7 @@ class TestForms(TestCase):
             'email': 'fiscae@hotmail.com',
             'name': 'fisCAE',
             'cpf': '7777777',
+            'tipo_cae': 'Municipal',
             'cep': '7777777',
             'bairro': 'hhh',
             'municipio': 'goiania',
@@ -62,6 +63,7 @@ class TestForms(TestCase):
         self.assertEquals(data['email'], Advisor.objects.last().email)
         self.assertEquals(data['name'], Advisor.objects.last().name)
         self.assertEquals(data['cpf'], Advisor.objects.last().cpf)
+        self.assertEquals(data['tipo_cae'], Advisor.objects.last().tipo_cae)
         self.assertEquals(data['cep'], Advisor.objects.last().cep)
         self.assertEquals(data['bairro'], Advisor.objects.last().bairro)
         self.assertEquals(data['municipio'], Advisor.objects.last().municipio)
@@ -157,6 +159,7 @@ class TestForms(TestCase):
             'email': 'jjj@ggg.com',
             'name': 'Test',
             'cpf': 'Tester',
+            'tipo_cae': 'Municipal',
             'phone': '',
             'cep': '2223335555',
             'descricao': '',
@@ -171,6 +174,7 @@ class TestForms(TestCase):
             'email': 'hhh@ggg.com',
             'name': 'batma',
             'cpf': 'Tester',
+            'tipo_cae': 'Municipal',
             'phone': '',
             'cep': '2223345555',
             'descricao': '',
