@@ -8,20 +8,32 @@ import smtplib
 from email.mime.text import MIMEText
 
 
-def notify(request):
+def notify(request, novoAgendamento, tipo):
     current_user = request.user
     userId = current_user.id
     userObject = Advisor.objects.get(id=userId)
     cae_user = userObject.nome_cae
     todosemails = Advisor.objects.filter(nome_cae=cae_user)
-    texto = "Seu CAE agendou uma nova reunião! "
+    texto = "Seu CAE agendou o evento "+tipo+"!"
 
-    # return render(request, 'notify.html', {'todosemails': todosemails})
-    # data
-    # local
-    # horario
-    # observacoes
-    # texto ="Seu CAE agendou um novo evento!"
+    if tipo == "reunião":
+        data = novoAgendamento.data
+        local = novoAgendamento.local
+        horario = novoAgendamento.horario
+        observacoes = novoAgendamento.observacoes
+        texto += '\n Data: '+data+'\n Local: '+local
+        texto += '\n Horário: '+horario+'\n Observações: '+observacoes
+    elif tipo == "visita":
+        nome_cae = novoAgendamento.nome_cae_schedule
+        schooolname = novoAgendamento.schoolName
+        schoolcode = novoAgendamento.schoolCode
+        data = novoAgendamento.date
+        time = novoAgendamento.time
+        texto += '\n Nome do Cae: '+nome_cae+'\n Nome da escola: '+schooolname
+        texto += '\n Código da escola: '+str(schoolcode)+'\n Data: '+data
+        texto += '\n Horário '+time
+    else:
+        pass
     mensagem = MIMEText(texto)
     mensagem.set_charset('utf-8')
     mensagem['Subject'] = "Novo evento CAE"
@@ -50,6 +62,7 @@ def schedule_delete(request, pk):
 def indexScheduleMeeting(request):
     novoAgendamento = Agendamento()
     if request.method == 'POST':
+        tipo = "reunião"
         current_user = request.user
         userId = current_user.id
         userObject = Advisor.objects.get(id=userId)
@@ -59,7 +72,7 @@ def indexScheduleMeeting(request):
         novoAgendamento.horario = request.POST['time']
         novoAgendamento.observacoes = request.POST['note']
         novoAgendamento.save()
-        notify(request)
+        notify(request, novoAgendamento, tipo)
         return HttpResponseRedirect(reverse('agendar_reuniao:scheduled'))
     return render(request, 'indexScheduleMeeting.html')
 
