@@ -2,6 +2,35 @@ from django.shortcuts import render, redirect, HttpResponseRedirect, reverse
 from agendar_reuniao.models import Agendamento
 from agendar_reuniao.forms import AgendamentoForm
 from user.models import Advisor
+import smtplib
+# from email.MIMEText import MIMEText
+# from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+
+def notify(request):
+    current_user = request.user
+    userId = current_user.id
+    userObject = Advisor.objects.get(id=userId)
+    cae_user = userObject.nome_cae
+    todosemails = Advisor.objects.filter(nome_cae=cae_user)
+    texto = "Seu CAE agendou uma nova reunião! "
+
+    # return render(request, 'notify.html', {'todosemails': todosemails})
+    # data
+    # local
+    # horario
+    # observacoes
+    # texto ="Seu CAE agendou um novo evento!"
+    mensagem = MIMEText(texto)
+    mensagem.set_charset('utf-8')
+    mensagem['Subject'] = "Novo evento CAE"
+    mail = smtplib.SMTP('smtp.gmail.com', 587)
+    mail.ehlo()
+    mail.starttls()
+    mail.login('fiscaeinfo@gmail.com', 'fiscae2017')
+    for i in todosemails:
+        mail.sendmail('fiscaeinfo@gmail.com', i.email, mensagem.as_string())
 
 
 def edit_schedule(request, pk):
@@ -30,9 +59,8 @@ def indexScheduleMeeting(request):
         novoAgendamento.horario = request.POST['time']
         novoAgendamento.observacoes = request.POST['note']
         novoAgendamento.save()
-        return HttpResponseRedirect(
-                            reverse('agendar_reuniao:scheduled')
-                            )
+        notify(request)
+        return HttpResponseRedirect(reverse('agendar_reuniao:scheduled'))
     return render(request, 'indexScheduleMeeting.html')
 
 
@@ -42,11 +70,9 @@ def scheduled(request):
     userObject = Advisor.objects.get(id=userId)
     cae_user = userObject.nome_cae
     todosAgendamentos = Agendamento.objects.filter(nome_cae_schedule=cae_user)
-    return render(
-            request,
-            'scheduled.html',
-            {'todosAgendamentos': todosAgendamentos}
-            )
+    return render(request, 'scheduled.html', {
+        'todosAgendamentos': todosAgendamentos
+    })
 
 
 def schedules(request):
