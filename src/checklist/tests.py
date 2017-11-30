@@ -14,7 +14,7 @@ class ChecklistTest(TestCase):
             id=1,
             item_number=1,
             description="Agua parada",
-            question_type='TA'
+            question_type='HS'
         )
         question.save()
 
