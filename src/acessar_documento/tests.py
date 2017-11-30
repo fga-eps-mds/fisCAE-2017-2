@@ -7,10 +7,10 @@ class TestDoc(TestCase):
 
     def setUp(self):
         self.c = Client()
-        with open('CartilhaCae.pdf', 'rb') as pdf:
-            self.data = {'title': 'cartilha', 'arquivo': pdf}
-            self.c.post('/upload_file/', self.data)
-        pdf.close
+        self.pdf = open('CartilhaCae.pdf', 'rb')
+        self.data = {'title': 'cartilha', 'arquivo': self.pdf}
+        self.c.post('/upload_file/', self.data)
+        self.pdf.close()
 
     def test_upload_file(self):
         self.assertEquals(self.data['arquivo'],
@@ -34,6 +34,7 @@ class TestDoc(TestCase):
     def test_viewpdf(self):
         response = self.c.get('/viewpdf/CartilhaCae.pdf', follow=True)
         self.assertEquals(200, response.status_code)
+        self.assertTrue(self.pdf.closed)
 
     def tearDown(self):
         os.remove('media/CartilhaCae.pdf')
