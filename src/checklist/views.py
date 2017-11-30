@@ -7,6 +7,7 @@ from checklist.models.answer import Answer
 from checklist.forms import ChecklistForm
 from checklist.forms import AnswerForm
 from user.models import Advisor
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def getQuestions(checklist_type):
@@ -135,7 +136,7 @@ def showAnswers(request, id):
         context = {
             'answers': answers
         }
-    except:
+    except ObjectDoesNotExist:
         context = {
             'error': 'checklist não encontrado'
         }

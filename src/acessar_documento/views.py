@@ -27,10 +27,7 @@ def upload_file(request):
 
 
 def documentsAll(request):
-    try:
-        lista = listdir('media')
-    except:
-        lista = listdir('app/media')
+    lista = listdir('media')
     return render(request, 'documentsAll.html', {'lista': lista})
     # lista = Arquivos.arquivosSalvos()
     # return render(request,'documentsAll.html',{'lista':lista})

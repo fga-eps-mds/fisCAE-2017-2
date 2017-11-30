@@ -10,6 +10,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from user.forms import AdvisorForm
 import smtplib
 from random import choice
+from django.db import IntegrityError
+
 # from nuvem_civica.services import postUser
 import re
 
@@ -154,10 +156,10 @@ def register(request):
             user = User.objects.create_user(
                 username=username, password=password)
             person = user_type(request, user)
-        except:
+        except IntegrityError:
             error = 'Usuário já existe!'
             context = {'error': error}
-            user.delete()
+            # user.delete()
             return render(request, 'registro.html', context)
         person.name = request.POST['name']
         person.email = request.POST['email']
