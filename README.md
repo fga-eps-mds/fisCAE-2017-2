@@ -1,10 +1,14 @@
-[![Code Health](https://landscape.io/github/fga-gpp-mds/fisCAE-2017-2/development/landscape.svg?style=flat)](https://landscape.io/github/fga-gpp-mds/fisCAE-2017-2/development)
-[![Coverage Status](https://coveralls.io/repos/github/fga-gpp-mds/fisCAE-2017-2/badge.svg?branch=GCS)](https://coveralls.io/github/fga-gpp-mds/fisCAE-2017-2?branch=GCS)
-[![Issue Count](https://codeclimate.com/github/fga-gpp-mds/fisCAE-2017-2/badges/issue_count.svg)](https://codeclimate.com/github/fga-gpp-mds/fisCAE-2017-2)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+<p align="center"><a href="https://fiscae.herokuapp.com/" target="_blank"><img width="300"src="https://i.imgur.com/PTkqmJC.png"></a></p>
 
-<br><p align="center"> <img src="https://i.imgur.com/PTkqmJC.png" width="325"></p></br>
+<p align="center">
+  <a href="https://landscape.io/github/fga-gpp-mds/fisCAE-2017-2/development"><img src="https://landscape.io/github/fga-gpp-mds/fisCAE-2017-2/development/landscape.svg?style=flat" alt="Code Health"></a>
+  <a href="https://coveralls.io/github/fga-gpp-mds/fisCAE-2017-2?branch=GCS"><img src="https://coveralls.io/repos/github/fga-gpp-mds/fisCAE-2017-2/badge.svg?branch=GCS" alt="Coverage Status"></a>
+  <a href="https://codeclimate.com/github/fga-gpp-mds/fisCAE-2017-2"><img src="https://codeclimate.com/github/fga-gpp-mds/fisCAE-2017-2/badges/issue_count.svg" alt="Issue Count"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+</p>
+
+<h1 align="center">fisCAE</h1>
 
 # Projeto FisCAE
 <p align="justify">Esse projeto tem por objetivo criar um canal de comunicação eficiente entre os conselheiros alimentares escolares (CAEs) e os fiscais do Tribunal de Contas da União (TCU) a fim de otimizar o processo de fiscalização do uso de verbas destinadas à merenda escolar evitando fraudes e a má qualidade do serviço prestado. O Programa Nacional de alimentação Escolar (PNAE) responsável por repassar as verbas destinadas a merenda das escolas públicas brasileiras e regulamentar esse processo, enfrenta problemas tais como a logística de fiscalizar o uso correto do valor repassado tendo em vista que moramos em um país de dimensões continentais. Para tanto, fora criado um grupo de conselheiros em cada município (CAEs) a fim de tentar amenizar esses problemas. Atualmente a fiscalização é realizada através de ações que estão contidas nas cartilhas e denúncias regulares, por telefone e etc. A solução requisitada e proposta no nosso software a ser implementado é coletar os dados provenientes das ações realizadas pelos conselhos e disponibilizá-los na nuvem cívica.</p>
