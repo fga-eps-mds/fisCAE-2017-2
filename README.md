@@ -3,7 +3,7 @@
 
 <p align="center">
   <a href="https://landscape.io/github/fga-gpp-mds/fisCAE-2017-2/development"><img src="https://landscape.io/github/fga-gpp-mds/fisCAE-2017-2/development/landscape.svg?style=flat" alt="Code Health"></a>
-  <a href="https://coveralls.io/github/fga-gpp-mds/fisCAE-2017-2?branch=GCS"><img src="https://coveralls.io/repos/github/fga-gpp-mds/fisCAE-2017-2/badge.svg?branch=GCS" alt="Coverage Status"></a>
+  <a href="https://coveralls.io/github/fga-gpp-mds/fisCAE-2017-2?branch=development"><img src="https://coveralls.io/repos/github/fga-gpp-mds/fisCAE-2017-2/badge.svg?branch=development" alt="Coverage Status"></a>
   <a href="https://codeclimate.com/github/fga-gpp-mds/fisCAE-2017-2"><img src="https://codeclimate.com/github/fga-gpp-mds/fisCAE-2017-2/badges/issue_count.svg" alt="Issue Count"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
   <a href="https://codeclimate.com/github/fga-gpp-mds/fisCAE-2017-2/maintainability"><img src="https://api.codeclimate.com/v1/badges/2ab2048e44f5f93eaba2/maintainability" /></a>
