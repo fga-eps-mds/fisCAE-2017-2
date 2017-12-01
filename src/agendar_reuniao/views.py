@@ -25,8 +25,9 @@ def notify(request, novoAgendamento, tipo):
     userId = current_user.id
     userObject = Advisor.objects.get(id=userId)
     cae_user = userObject.nome_cae
+    user_name = userObject.name
     todosemails = Advisor.objects.filter(nome_cae=cae_user)
-    texto = "Seu CAE agendou o evento " + tipo + "!"
+    texto = user_name + " membro do " + cae_user + " agendou uma " + tipo + ":"
 
     if tipo == "reunião":
         data = novoAgendamento.data
@@ -41,7 +42,8 @@ def notify(request, novoAgendamento, tipo):
         schoolcode = novoAgendamento.schoolCode
         data = novoAgendamento.date
         time = novoAgendamento.time
-        texto += '\n Nome do Cae: ' + nome_cae + '\n Nome da escola: ' + schooolname
+        texto += '\n Nome do Cae: ' + nome_cae
+        texto += '\n Nome da escola: ' + schooolname
         texto += '\n Código da escola: ' + str(schoolcode) + '\n Data: ' + data
         texto += '\n Horário ' + time
     sendmailfunction(request, texto, todosemails)

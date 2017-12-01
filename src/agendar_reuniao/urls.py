@@ -21,9 +21,4 @@ urlpatterns = [
         views.edit_schedule,
         name='edit_schedule'
         ),
-    url(
-        r'notify/',
-        views.notify,
-        name='notify'
-        ),
 ]
