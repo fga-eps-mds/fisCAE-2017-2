@@ -8,32 +8,7 @@ import smtplib
 from email.mime.text import MIMEText
 
 
-def notify(request, novoAgendamento, tipo):
-    current_user = request.user
-    userId = current_user.id
-    userObject = Advisor.objects.get(id=userId)
-    cae_user = userObject.nome_cae
-    todosemails = Advisor.objects.filter(nome_cae=cae_user)
-    texto = "Seu CAE agendou o evento "+tipo+"!"
-
-    if tipo == "reunião":
-        data = novoAgendamento.data
-        local = novoAgendamento.local
-        horario = novoAgendamento.horario
-        observacoes = novoAgendamento.observacoes
-        texto += '\n Data: '+data+'\n Local: '+local
-        texto += '\n Horário: '+horario+'\n Observações: '+observacoes
-    elif tipo == "visita":
-        nome_cae = novoAgendamento.nome_cae_schedule
-        schooolname = novoAgendamento.schoolName
-        schoolcode = novoAgendamento.schoolCode
-        data = novoAgendamento.date
-        time = novoAgendamento.time
-        texto += '\n Nome do Cae: '+nome_cae+'\n Nome da escola: '+schooolname
-        texto += '\n Código da escola: '+str(schoolcode)+'\n Data: '+data
-        texto += '\n Horário '+time
-    else:
-        pass
+def sendmailfunction(request, texto, todosemails):
     mensagem = MIMEText(texto)
     mensagem.set_charset('utf-8')
     mensagem['Subject'] = "Novo evento CAE"
@@ -43,6 +18,33 @@ def notify(request, novoAgendamento, tipo):
     mail.login('fiscaeinfo@gmail.com', 'fiscae2017')
     for i in todosemails:
         mail.sendmail('fiscaeinfo@gmail.com', i.email, mensagem.as_string())
+
+
+def notify(request, novoAgendamento, tipo):
+    current_user = request.user
+    userId = current_user.id
+    userObject = Advisor.objects.get(id=userId)
+    cae_user = userObject.nome_cae
+    todosemails = Advisor.objects.filter(nome_cae=cae_user)
+    texto = "Seu CAE agendou o evento " + tipo + "!"
+
+    if tipo == "reunião":
+        data = novoAgendamento.data
+        local = novoAgendamento.local
+        horario = novoAgendamento.horario
+        observacoes = novoAgendamento.observacoes
+        texto += '\n Data: ' + data + '\n Local: ' + local
+        texto += '\n Horário: ' + horario + '\n Observações: ' + observacoes
+    elif tipo == "visita":
+        nome_cae = novoAgendamento.nome_cae_schedule
+        schooolname = novoAgendamento.schoolName
+        schoolcode = novoAgendamento.schoolCode
+        data = novoAgendamento.date
+        time = novoAgendamento.time
+        texto += '\n Nome do Cae: ' + nome_cae + '\n Nome da escola: ' + schooolname
+        texto += '\n Código da escola: ' + str(schoolcode) + '\n Data: ' + data
+        texto += '\n Horário ' + time
+    sendmailfunction(request, texto, todosemails)
 
 
 def edit_schedule(request, pk):
