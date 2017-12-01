@@ -9,7 +9,7 @@
   <a href="https://codeclimate.com/github/fga-gpp-mds/fisCAE-2017-2/maintainability"><img src="https://api.codeclimate.com/v1/badges/2ab2048e44f5f93eaba2/maintainability" /></a>
 </p>
 
-<h1 align="center">fisCAE</h1>
+<h1 align="center">FisCAE</h1>
 
 ## Sobre o projeto
 <p align="justify"> &emsp;&emsp; Esse projeto tem por objetivo criar um canal de comunicação eficiente entre os conselheiros alimentares escolares (CAEs) e os fiscais do Tribunal de Contas da União (TCU) a fim de otimizar o processo de fiscalização do uso de verbas destinadas à merenda escolar evitando fraudes e a má qualidade do serviço prestado. O Programa Nacional de alimentação Escolar (PNAE) responsável por repassar as verbas destinadas a merenda das escolas públicas brasileiras e regulamentar esse processo, enfrenta problemas tais como a logística de fiscalizar o uso correto do valor repassado tendo em vista que moramos em um país de dimensões continentais. Para tanto, fora criado um grupo de conselheiros em cada município (CAEs) a fim de tentar amenizar esses problemas. Atualmente a fiscalização é realizada através de ações que estão contidas nas cartilhas e denúncias regulares, por telefone e etc. A solução requisitada e proposta no nosso software a ser implementado é coletar os dados provenientes das ações realizadas pelos conselhos e disponibilizá-los na nuvem cívica.</p>
@@ -21,7 +21,7 @@ Primeiramente é necessário ter o docker instalado, caso não tenha acesse o [I
 
 ### Utilizando o ambiente
 
- &emsp;&emsp; Para a utilização do ambiente, basta dar o comando `docker-compose up -d` e ele ira ligar o container.
+ &emsp;&emsp; Para a utilização do ambiente, basta dar o comando `docker-compose up -d` e ele irá ligar o container.
 
  &emsp;&emsp; Para a visualização dos logs use o comando `docker-compose logs -f`.
 
