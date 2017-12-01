@@ -13,8 +13,9 @@ def notify(request, novoAgendamento, tipo):
     userId = current_user.id
     userObject = Advisor.objects.get(id=userId)
     cae_user = userObject.nome_cae
+    user_name = userObject.name
     todosemails = Advisor.objects.filter(nome_cae=cae_user)
-    texto = "Seu CAE agendou o evento "+tipo+"!"
+    texto = user_name+" membro do "+cae_user+" agendou uma "+tipo+":"
 
     if tipo == "reunião":
         data = novoAgendamento.data
