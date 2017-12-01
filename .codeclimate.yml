@@ -19,3 +19,4 @@ exclude_patterns:
 - "**.html"
 - "**/migrations/**"
 - "**/tests.py"
+- "**.js"
