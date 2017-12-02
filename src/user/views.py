@@ -1,10 +1,11 @@
-from .models import Advisor
-from django.contrib.auth.models import User
+from .models import Advisor, President, Administrator
+from django.contrib.auth.models import User, Permission
 from django.contrib.auth import login as django_login, authenticate
 from django.contrib.auth import logout as django_logout
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from user.forms import AdvisorForm
 import smtplib
@@ -97,29 +98,81 @@ def logout(request):
         return HttpResponseRedirect(reverse('index'))
 
 
+def setAdvisorPerm(user):
+    content_type = ContentType.objects.get_for_model(Advisor)
+    fill_checklist_perm = Permission.objects.get(codename='fill_checklist',
+                                                 content_type=content_type)
+    user.user_permissions.add(fill_checklist_perm)
+
+
+def setPresidentPerm(user):
+    content_type = ContentType.objects.get_for_model(President)
+    add_advisor_perm = Permission.objects.get(codename='add_advisor',
+                                              content_type=content_type)
+    remove_advisor_perm = Permission.objects.get(codename='remove_advisor',
+                                                 content_type=content_type)
+    user.user_permissions.add(add_advisor_perm)
+    user.user_permissions.add(remove_advisor_perm)
+
+
+def setAdministratorPerm(user):
+    content_type = ContentType.objects.get_for_model(Administrator)
+    add_president_perm = Permission.objects.get(codename='add_president',
+                                                content_type=content_type)
+    remove_president_perm = Permission.objects.get(codename='remove_president',
+                                                   content_type=content_type)
+    add_advisor_perm = Permission.objects.get(codename='add_advisor',
+                                              content_type=content_type)
+    remove_advisor_perm = Permission.objects.get(codename='remove_advisor',
+                                                 content_type=content_type)
+    user.user_permissions.add(add_president_perm)
+    user.user_permissions.add(remove_president_perm)
+    user.user_permissions.add(add_advisor_perm)
+    user.user_permissions.add(remove_advisor_perm)
+
+
+def user_type(request, user):
+    user_type = request.POST['user_type']
+    if(user_type == "advisor"):
+        person = Advisor()
+        setAdvisorPerm(user)
+    elif(user_type == "president"):
+        person = President()
+        setPresidentPerm(user)
+    elif(user_type == "administrator"):
+        person = Administrator()
+        setAdministratorPerm(user)
+    person.user = user
+    return person
+
+
 def register(request):
     if request.method == 'POST':
-        advisor = Advisor()
         try:
             username = request.POST['username']
             password = request.POST['password']
             user = User.objects.create_user(
                 username=username, password=password)
-            advisor.user = user
+            person = user_type(request, user)
         except:
             error = 'Usuário já existe!'
             context = {'error': error}
+            user.delete()
             return render(request, 'registro.html', context)
-        advisor.name = request.POST['name']
-        advisor.email = request.POST['email']
-        advisor.cpf = request.POST['cpf']
-        advisor.cep = request.POST['cep']
-        advisor.bairro = request.POST['bairro']
-        advisor.municipio = request.POST.get("municipio", "")
-        advisor.uf = request.POST.get("uf", "")
-        cep = re.sub(u'[- A-Z a-z]', '', advisor.cep)
-        advisor.cep = cep
-        advisor.save()
+        person.name = request.POST['name']
+        person.email = request.POST['email']
+        person.cpf = request.POST['cpf']
+        person.cep = request.POST['cep']
+        person.bairro = request.POST['bairro']
+        person.municipio = request.POST['municipio']
+        person.uf = request.POST['uf']
+        cep = re.sub(u'[- A-Z a-z]', '', person.cep)
+        person.cep = cep
+        if(person.tipo_cae == 'Municipal'):
+            person.nome_cae = 'CAE'+' '+person.tipo_cae+' '+person.municipio
+        else:
+            person.nome_cae = 'CAE'+' '+person.tipo_cae+' '+person.uf
+        person.save()
         # Deixar comentado
         """response = postUser(
                         advisor.cep,
@@ -135,6 +188,7 @@ def register(request):
 
 
 @login_required
+@permission_required('user.remove_advisor')
 def userDelete(request, pk):
     if request.method == 'POST':
         Advisor.objects.filter(id=pk).delete()

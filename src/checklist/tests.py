@@ -14,7 +14,7 @@ class ChecklistTest(TestCase):
             id=1,
             item_number=1,
             description="Agua parada",
-            question_type='TA'
+            question_type='HS'
         )
         question.save()
 
@@ -24,7 +24,7 @@ class ChecklistTest(TestCase):
     def testSubmitChecklistFormValid(self):
         client = Client()
         client.login(username="amanda", password="123")
-        data = {'checklist_type': 'TA'}
+        data = {'checklist_type': 'HS'}
         response = client.post(
             reverse('checklist:checklistForm', args=(1,)),
             data, follow=True
@@ -63,4 +63,4 @@ class QuestionTeste(TestCase):
     def testSeed(self):
         Question.objects.all().delete()
         Question.seedQuestions()
-        self.assertEquals(Question.objects.count(), 13)
+        self.assertEquals(Question.objects.count(), 65)
