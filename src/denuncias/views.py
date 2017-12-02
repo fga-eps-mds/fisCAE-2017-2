@@ -34,6 +34,10 @@ def denunciations(request):
 
         sendmaildenunciation(request, text, subject, email_to)
 
-        return render(request, 'index.html')
+        mensagem = 'Denúncia Enviada!'
+
+        return render(request, 'denuncias/sucess_send_denunciation.html', {
+            'mensagem': mensagem
+        })
     else:
         return render(request, 'denuncias/denunciations.html')
