@@ -26,11 +26,11 @@ def denunciations(request):
 
         body = text_school + text_city + text_state + text_end + description
 
-        msg = MIMEText(body.encode('utf-8'), 'text', 'utf-8')
+        # msg = MIMEText(body.encode('utf-8'), 'text', 'utf-8')
 
-        msg['From'] = email_from
-        msg['To'] = email_to
-        msg['Subject'] = Header(subject, 'utf-8')
+        # msg['From'] = email_from
+        # msg['To'] = email_to
+        # msg['Subject'] = Header(subject, 'utf-8')
 
         # text_school = 'Segue abaixo uma denuncia sobre a escola ' + school
         # text_city = 'da cidade ' + city
@@ -50,9 +50,10 @@ def denunciations(request):
         #            ])
 
         smtp = smtplib.SMTP('smtp.gmail.com', 587)
+        smtp.ehlo()
         smtp.starttls()
         smtp.login(email_from, 'fiscae2017')
-        smtp.sendmail(email_from, email_to, msg.as_string())
+        smtp.sendmail(email_from, email_to, body)
         smtp.quit()
 
         return render(request, 'index.html')
