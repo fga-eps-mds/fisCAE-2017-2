@@ -46,9 +46,11 @@ class TestForms(TestCase):
         data = {
             'username': 'fiscae',
             'password': 'fiscae',
+            'user_type': 'advisor',
             'email': 'fiscae@hotmail.com',
             'name': 'fisCAE',
             'cpf': '7777777',
+            'tipo_cae': 'Municipal',
             'cep': '7777777',
             'bairro': 'hhh',
             'municipio': 'goiania',
@@ -63,6 +65,7 @@ class TestForms(TestCase):
         self.assertEquals(data['email'], Advisor.objects.last().email)
         self.assertEquals(data['name'], Advisor.objects.last().name)
         self.assertEquals(data['cpf'], Advisor.objects.last().cpf)
+        self.assertEquals(data['tipo_cae'], Advisor.objects.last().tipo_cae)
         self.assertEquals(data['cep'], Advisor.objects.last().cep)
         self.assertEquals(data['bairro'], Advisor.objects.last().bairro)
         self.assertEquals(data['municipio'], Advisor.objects.last().municipio)
@@ -82,6 +85,75 @@ class TestForms(TestCase):
         response = self.c.post('/login/', data, follow=True)
         self.assertNotEquals(response.context['user'], self.user)
 
+    def test_setAdvisorPerm(self):
+        data = {
+            'username': 'advisor_test',
+            'password': '123456',
+            'user_type': 'advisor',
+            'email': 'jjj@ggg.com',
+            'name': 'Advisor_test',
+            'cpf': '',
+            'cep': '2223335555',
+            'bairro': 'hhh',
+            'municipio': 'goiania',
+            'uf': 'go',
+
+        }
+        self.c.post('/registro/', data)
+        user = User.objects.get(username='advisor_test')
+        self.assertEquals(user.has_perm('user.fill_checklist'), True)
+        self.assertEquals(user.has_perm('user.add_president'), False)
+        self.assertEquals(user.has_perm('user.remove_president'), False)
+        self.assertEquals(user.has_perm('user.add_advisor'), False)
+        self.assertEquals(user.has_perm('user.remove_advisor'), False)
+        self.assertEquals(user.has_perm('user.none'), False)
+
+    def test_setPresidentPerm(self):
+        data = {
+            'username': 'president_test',
+            'password': '123456',
+            'user_type': 'president',
+            'email': 'jjj@ggg.com',
+            'name': 'President_test',
+            'cpf': '',
+            'cep': '2223335555',
+            'bairro': 'hhh',
+            'municipio': 'goiania',
+            'uf': 'go',
+
+        }
+        self.c.post('/registro/', data)
+        user = User.objects.get(username='president_test')
+        self.assertEquals(user.has_perm('user.fill_checklist'), False)
+        self.assertEquals(user.has_perm('user.add_advisor'), True)
+        self.assertEquals(user.has_perm('user.remove_advisor'), True)
+        self.assertEquals(user.has_perm('user.add_president'), False)
+        self.assertEquals(user.has_perm('user.remove_president'), False)
+        self.assertEquals(user.has_perm('user.none'), False)
+
+    def test_setAdministratorPerm(self):
+        data = {
+            'username': 'administrator_test',
+            'password': '123456',
+            'user_type': 'administrator',
+            'email': 'jjj@ggg.com',
+            'name': 'President_test',
+            'cpf': '',
+            'cep': '2223335555',
+            'bairro': 'hhh',
+            'municipio': 'goiania',
+            'uf': 'go',
+
+        }
+        self.c.post('/registro/', data)
+        user = User.objects.get(username='administrator_test')
+        self.assertEquals(user.has_perm('user.fill_checklist'), False)
+        self.assertEquals(user.has_perm('user.add_president'), True)
+        self.assertEquals(user.has_perm('user.remove_president'), True)
+        self.assertEquals(user.has_perm('user.add_advisor'), True)
+        self.assertEquals(user.has_perm('user.remove_advisor'), True)
+        self.assertEquals(user.has_perm('user.none'), False)
+
     def test_register_DuplicateUser(self):
         data1 = {
             'username': 'robin',
@@ -89,6 +161,7 @@ class TestForms(TestCase):
             'email': 'jjj@ggg.com',
             'name': 'Test',
             'cpf': 'Tester',
+            'tipo_cae': 'Municipal',
             'phone': '',
             'cep': '2223335555',
             'descricao': '',
@@ -104,6 +177,7 @@ class TestForms(TestCase):
             'email': 'hhh@ggg.com',
             'name': 'batma',
             'cpf': 'Tester',
+            'tipo_cae': 'Municipal',
             'phone': '',
             'cep': '2223345555',
             'descricao': '',

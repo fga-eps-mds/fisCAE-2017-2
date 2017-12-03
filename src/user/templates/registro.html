@@ -43,12 +43,27 @@
                <label>
                <input type="" name="name" maxlength="64" required placeholder="Nome">
                </label></br>
+               <h4>
+               <label>
+               <input type="radio" name="user_type" value="advisor">Conselheiro
+               </label>
+               <label>
+               <input type="radio" name="user_type" value="president">Presidente
+               </label></br>
+               </h4>
                <label>
                <input type="email" name="email" maxlength="100" required placeholder="Email">
                </label></br>
                <label>
                <input type="" name="cpf" min="0" max="99999999999" placeholder="Cpf" required>
                </label><br>
+               <div class="select-cae" >
+                <h4>A QUAL TIPO DE CAE VOCÊ PERTENCE?</h1>
+                    <select name="tipo_cae">
+                       <option value="Municipal">Municipal</option>
+                       <option value="Estadual">Estadual</option>
+                   </select> 
+                </div>
                 <label>
                 <input name="cep" type="" id="cep" value="" size="" maxlength="9"
                     onblur="pesquisacep(this.value);" placeholder="CEP"/></label><br />
@@ -63,12 +78,18 @@
                 </label></br>
                 <label>
                <input type="password"  id="password_confirmation" maxlength="30" required placeholder="Confirmar senha" oninput="validatePassword();"> 
-               </label></br><p></p>
+               </label></br>
+               <button type="submit" id="submit-register" class="btn btn-primary btn-block btn-large" style="width: 150px; height: 50px">Salvar</button><br>
+               <p class="error" id="password-validation"></p>
+           </form>
+       </div>
+     </div>
+   </div>  
             
                 <!-- Javascript -->
                 <script type="text/javascript" >
-                
-                function limpa_formulário_cep() {
+
+function limpa_formulário_cep() {
                         //Limpa valores do formulário de cep.
                         document.getElementById('bairro').value=("");
                         document.getElementById('municipio').value=("");
@@ -131,13 +152,7 @@
                     }
                 };
             
-                </script>
-                <button type="submit" id="submit-register" class="btn btn-primary btn-block btn-large" style="width: 150px; height: 50px">Salvar</button><br>
-               <p class="error" id="password-validation"></p>
-           </form>
-       </div>
-     </div>
-   </div>     
+                </script>                 
    
 <script type="text/javascript">
   var passwordInput = document.getElementById('password');

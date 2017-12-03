@@ -5,11 +5,9 @@
     <form method="POST">
       {% csrf_token %}
         <label>Nome</label><br>{{ form.name }}<br><br>
-        <label>Telefone</label><br> {{ form.phone }}<br><br>
         <label>E-mail</label><br> {{ form.email }}<br><br>
         <label>CPF</label><br> {{ form.cpf }}<br><br>
         <label>CEP</label><br>{{ form.cep }}<br><br>
-        <label>Descrição</label><br> {{ form.descricao }}<br><br>
         <label>Bairro</label><br> {{ form.bairro }}<br><br>
         <label>Município</label><br>  {{ form.municipio }}<br><br>
         <label>UF</label><br> {{ form.uf }}<br><br>
@@ -18,7 +16,9 @@
     </form>
   </div>
 
-  <a href="../userDelete/{{ id }}">Excluir Conta</a>
+  <a href="../userDelete/{{ id }}">Excluir Conta</a><br>
+  <a href="../change_password">Alterar Senha</a>
+  
   
 
 {% endblock %}
