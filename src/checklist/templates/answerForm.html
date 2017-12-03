@@ -9,8 +9,11 @@
       <div class="row">
         
         <form method="post" novalidate>
+          <div id="questionTitle">
+              {{current_question.question_title}}
+          </div>
           <div id="questionDescription">
-             {{ current_question.description }}
+             {{current_question.description }}
           </div>
           <p></p>
           {% csrf_token %}{% for field in answerForm %}

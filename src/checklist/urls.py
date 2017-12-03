@@ -4,7 +4,11 @@ from checklist import views
 
 app_name = 'checklist'
 urlpatterns = [
-    url(r'^completed', views.completed, name='completed'),
+    url(
+        r'^completed/(?P<checklist_id>\d+)/$',
+        views.completed,
+        name='completed'
+        ),
     url(r'^checklistForm/(?P<id_visit>\d+)/$',
         views.checklistForm,
         name='checklistForm'),
