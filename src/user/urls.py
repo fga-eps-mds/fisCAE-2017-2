@@ -13,4 +13,7 @@ urlpatterns = [
     url(r'^reset_password/$', views.reset_password, name='reset_password'),
     url(r'^change_password/$', views.change_password, name='change_password'),
     url(r'^password_sucess/$', views.password_sucess, name='password_sucess'),
+    url(r'^listRequests/$', views.listRequests, name='listRequests'),
+    url(r'^addAdmin/$', views.addAdmin, name='addAdmin'),
+    url(r'^addPresident/$', views.addPresident, name='addPresident'),
 ]
