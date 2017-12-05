@@ -7,9 +7,12 @@ from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
-from user.forms import AdvisorForm
+from user.forms import AdvisorForm, AdministratorForm
+from user.forms import PresidentForm, ConfirmUserForm
 import smtplib
 from random import choice
+import re
+from django.forms import modelformset_factory
 # from nuvem_civica.services import postUser
 
 
@@ -85,7 +88,7 @@ def login(request):
                 django_login(request, user)
                 return HttpResponseRedirect(reverse('index'))
         else:
-            error = 'Username ou senha incorretos!'
+            error = 'Login inválido!'
             context = {'error': error}
             return render(request, 'login.html', context)
     else:
@@ -136,6 +139,7 @@ def user_type(request, user):
     if(user_type == "advisor"):
         person = Advisor()
         setAdvisorPerm(user)
+        User.objects.filter(pk=user.id).update(is_active=False)
     elif(user_type == "president"):
         person = President()
         setPresidentPerm(user)
@@ -151,11 +155,11 @@ def register(request):
         try:
             username = request.POST['username']
             password = request.POST['password']
-            user = User.objects.create_user(
-                username=username, password=password)
+            user = User.objects.create_user(username=username,
+                                            password=password)
             person = user_type(request, user)
         except:
-            error = 'Usuário já existe!'
+            error = 'Registro inválido!'
             context = {'error': error}
             user.delete()
             return render(request, 'registro.html', context)
@@ -219,10 +223,49 @@ def userEdit(request, pk):
 
 
 @login_required
-@permission_required('user.remove_advisor')
+@permission_required('user.president')
 def listRequests(request):
-    users = Advisor.objects.all()
-    context = {
-        'advisor': users
-    }
+    presidents = President.objects.all()
+    presidents_ids = presidents.values_list('advisor_ptr_id', flat=True)
+    advisors = Advisor.objects.all().exclude(person_ptr_id__in=presidents_ids)
+    advisors_id = advisors.values_list('user_id', flat=True)
+    users = User.objects.filter(id__in=advisors_id, is_active=False)
+
+    if users is None:
+        context = {'avisors': 'None'}
+        return render(request, 'listRequests.html', context)
+
+    else:
+        UserFormSet = modelformset_factory(User, form=ConfirmUserForm, extra=0)
+        if request.method == 'POST':
+            formset = UserFormSet(request.POST, queryset=users)
+            if formset.is_valid():
+                print('\n', 'aaaaaaaah', '\n')
+                formset.save()
+                return HttpResponseRedirect(reverse('index'))
+
+        else:
+            formset = UserFormSet(queryset=users)
+
+        context = {'formset': formset}
     return render(request, 'listRequests.html', context)
+
+
+def addAdmin(request):
+    if request.method == 'POST':
+        form = AdministratorForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+    else:
+        form = AdministratorForm()
+    return render(request, 'addAdmin.html', {'form': form})
+
+
+def addPresident(request):
+    if request.method == 'POST':
+        form = PresidentForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+    else:
+        form = PresidentForm()
+    return render(request, 'addPresident.html', {'form': form})
