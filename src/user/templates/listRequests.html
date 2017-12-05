@@ -1,7 +1,53 @@
 {% extends "Base.html" %} {% block body %}
-<div style="margin-top : 5%;">
-    {% for i in advisor %}
-        {{i.name}}
-    {% endfor %}
+
+<style>
+    table, th, td {
+        border: none;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+    
+
+<div style="margin-top : 15%;" class="center">
+    {% if advisor is 'None' %}
+    <h2>Nenhum cadastro pendente no momento.</h2>
+    {% else %}
+        <form action="" method="post">
+        <table style="width:90%">
+            <tr>
+                <th>Nome de usuário:</th>
+                <th>Ativar:</th> 
+            </tr>
+            {{ formset.management_form }}         
+            {% for form in formset %}
+            <tr>
+                {% csrf_token %}
+                {% for field in form %}             
+                <td>
+                    {{ field }}
+                </td>
+                {% endfor %}            
+            </tr>
+            {% endfor %}            
+        </table>    
+        <p>
+        <div class="center">
+            <button type="submit" id="submit-register" class="btn btn-primary btn-block btn-large" 
+        style="width: 150px; height: 50px">Salvar</button><br>   
+        </div>
+        </form>
+    {% endif %}
 </div>
+<br>
+<div class="center">
+     
+</div>
+
+        
 {% endblock %}
