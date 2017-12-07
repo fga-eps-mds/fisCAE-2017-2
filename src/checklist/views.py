@@ -45,7 +45,7 @@ def checklistForm(request, id_visit):
                         checklist_type=checklist.checklist_type
                         )
                     checklist = tempChecklist
-                except:
+                except ObjectDoesNotExist:
                     checklist.user = request.user
                     checklist.visit = visit
                     checklist.created_date = timezone.now()

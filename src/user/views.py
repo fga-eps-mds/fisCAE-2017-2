@@ -148,19 +148,24 @@ def user_type(request, user):
     return person
 
 
+def set_user(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = User.objects.create_user(
+        username=username, password=password)
+    return user
+
+
 def register(request):
     if request.method == 'POST':
         try:
-            username = request.POST['username']
-            password = request.POST['password']
-            user = User.objects.create_user(
-                username=username, password=password)
-            person = user_type(request, user)
+            user = set_user(request)
         except IntegrityError:
             error = 'Usuário já existe!'
             context = {'error': error}
             # user.delete()
             return render(request, 'registro.html', context)
+        person = user_type(request, user)
         person.name = request.POST['name']
         person.email = request.POST['email']
         person.cpf = request.POST['cpf']

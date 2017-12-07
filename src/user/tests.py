@@ -190,6 +190,7 @@ class TestForms(TestCase):
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'registro.html')
         self.assertContains(response, 'Usuário já existe!')
+        self.assertEquals(response.context['error'], 'Usuário já existe!')
 
     def test_logout_user(self):
         self.c.login(username='test', password='123456')
