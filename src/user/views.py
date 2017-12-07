@@ -13,6 +13,7 @@ import smtplib
 from random import choice
 import re
 from django.forms import modelformset_factory
+from django.db import IntegrityError
 # from nuvem_civica.services import postUser
 
 
@@ -103,90 +104,53 @@ def logout(request):
 
 def setAdvisorPerm(user):
     content_type = ContentType.objects.get_for_model(Advisor)
-    fill_checklist_perm = Permission.objects.get(codename='fill_checklist',
-                                                 content_type=content_type)
-    user.user_permissions.add(fill_checklist_perm)
-
-
-def setPresidentPerm(user):
-    content_type = ContentType.objects.get_for_model(President)
-    add_advisor_perm = Permission.objects.get(codename='add_advisor',
-                                              content_type=content_type)
-    remove_advisor_perm = Permission.objects.get(codename='remove_advisor',
-                                                 content_type=content_type)
-    user.user_permissions.add(add_advisor_perm)
-    user.user_permissions.add(remove_advisor_perm)
-
-
-def setAdministratorPerm(user):
-    content_type = ContentType.objects.get_for_model(Administrator)
-    add_president_perm = Permission.objects.get(codename='add_president',
-                                                content_type=content_type)
-    remove_president_perm = Permission.objects.get(codename='remove_president',
-                                                   content_type=content_type)
-    add_advisor_perm = Permission.objects.get(codename='add_advisor',
-                                              content_type=content_type)
-    remove_advisor_perm = Permission.objects.get(codename='remove_advisor',
-                                                 content_type=content_type)
-    user.user_permissions.add(add_president_perm)
-    user.user_permissions.add(remove_president_perm)
-    user.user_permissions.add(add_advisor_perm)
-    user.user_permissions.add(remove_advisor_perm)
-
-
-def user_type(request, user):
-    user_type = request.POST['user_type']
-    if(user_type == "advisor"):
-        person = Advisor()
-        setAdvisorPerm(user)
-        User.objects.filter(pk=user.id).update(is_active=False)
-    elif(user_type == "president"):
-        person = President()
-        setPresidentPerm(user)
-    elif(user_type == "administrator"):
-        person = Administrator()
-        setAdministratorPerm(user)
-    person.user = user
-    return person
+    advisor_perm = Permission.objects.get(codename='advisor',
+                                          content_type=content_type)
+    user.user_permissions.add(advisor_perm)
 
 
 def register(request):
     if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        email = request.POST['email']
         try:
-            username = request.POST['username']
-            password = request.POST['password']
             user = User.objects.create_user(username=username,
-                                            password=password)
-            person = user_type(request, user)
-        except:
+                                            password=password,
+                                            email=email)
+        except IntegrityError:
             error = 'Registro inválido!'
             context = {'error': error}
-            user.delete()
             return render(request, 'registro.html', context)
-        person.name = request.POST['name']
-        person.email = request.POST['email']
-        person.cpf = request.POST['cpf']
-        person.cep = request.POST['cep']
-        person.bairro = request.POST['bairro']
-        person.municipio = request.POST['municipio']
-        person.uf = request.POST['uf']
-        cep = re.sub(u'[- A-Z a-z]', '', person.cep)
-        person.cep = cep
-        if(person.tipo_cae == 'Municipal'):
-            person.nome_cae = 'CAE'+' '+person.tipo_cae+' '+person.municipio
         else:
-            person.nome_cae = 'CAE'+' '+person.tipo_cae+' '+person.uf
-        person.save()
-        # Deixar comentado
-        """response = postUser(
-                        advisor.cep,
-                        advisor.email,
-                        advisor.name,
-                        username,
-                        password
-                    )
-        print(response.status_code, response.reason)"""
-        return render(request, 'login.html')
+            person = Advisor()
+            setAdvisorPerm(user)
+            User.objects.filter(pk=user.id).update(is_active=False)
+            person.name = request.POST['name']
+            person.email = email
+            person.cpf = request.POST['cpf']
+            person.cep = request.POST['cep']
+            person.bairro = request.POST['bairro']
+            person.municipio = request.POST['municipio']
+            person.uf = request.POST['uf']
+            cep = re.sub(u'[- A-Z a-z]', '', person.cep)
+            person.cep = cep
+            if(person.tipo_cae == 'Municipal'):
+                person.nome_cae = 'CAE'+' '+person.tipo_cae+' '+person.municipio
+            else:
+                person.nome_cae = 'CAE'+' '+person.tipo_cae+' '+person.uf
+            person.user = user
+            person.save()
+            # Deixar comentado
+            """response = postUser(
+                            advisor.cep,
+                            advisor.email,
+                            advisor.name,
+                            username,
+                            password
+                        )
+            print(response.status_code, response.reason)"""
+            return render(request, 'login.html')
     else:
         return render(request, 'registro.html')
 
@@ -240,7 +204,6 @@ def listRequests(request):
         if request.method == 'POST':
             formset = UserFormSet(request.POST, queryset=users)
             if formset.is_valid():
-                print('\n', 'aaaaaaaah', '\n')
                 formset.save()
                 return HttpResponseRedirect(reverse('index'))
 
@@ -251,21 +214,27 @@ def listRequests(request):
     return render(request, 'listRequests.html', context)
 
 
+@login_required
+@permission_required('user.administrator')
 def addAdmin(request):
     if request.method == 'POST':
         form = AdministratorForm(request.POST)
         if form.is_valid():
             form.save(commit=True)
+            return HttpResponseRedirect(reverse('index'))
     else:
         form = AdministratorForm()
     return render(request, 'addAdmin.html', {'form': form})
 
 
+@login_required
+@permission_required('user.administrator')
 def addPresident(request):
     if request.method == 'POST':
         form = PresidentForm(request.POST)
         if form.is_valid():
             form.save(commit=True)
+            return HttpResponseRedirect(reverse('index'))
     else:
         form = PresidentForm()
     return render(request, 'addPresident.html', {'form': form})
