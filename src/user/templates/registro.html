@@ -74,10 +74,10 @@
                <input type="password" name="password" id="password" maxlength="30" required placeholder="Senha" oninput="validatePassword();" >
                 </label></br>
                 <label>
-               <input type="password"  id="password_confirmation" maxlength="30" required placeholder="Confirmar senha" oninput="validatePassword();"> 
+               <input type="password"  id="password_confirmation" maxlength="30" minlength="6" required placeholder="Confirmar senha" oninput="validatePassword();"> 
                </label></br>
-               <button type="submit" id="submit-register" class="btn btn-primary btn-block btn-large" style="width: 150px; height: 50px">Salvar</button><br>
                <p class="error" id="password-validation"></p>
+               <button type="submit" id="submit-register" class="btn btn-primary btn-block btn-large" style="width: 150px; height: 50px">Salvar</button><br>
            </form>
        </div>
      </div>
@@ -161,7 +161,7 @@ function limpa_formulário_cep() {
       if(passwordInput.value === '' || passwordConfirmationInput.value === '') 
           return;
       if(passwordInput.value !== passwordConfirmationInput.value) {
-          passwordValidation.innerHTML = 'você está inserindo uma senha diferente no campo de confirmar senha</p>';
+          passwordValidation.innerHTML = 'As senhas não correspondem</p>';
           submitInput.disabled = true;
       } else {
           passwordValidation.innerHTML = '';

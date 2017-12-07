@@ -916,6 +916,12 @@ button, input, optgroup, select, textarea {
 		padding-left: 0px;
 	}
 
+	.error{
+
+		font-size: 20px;
+		color: red;
+	}
+
 	@media only screen and (max-width:480px) {
     #logo img{
         width: 50px;
