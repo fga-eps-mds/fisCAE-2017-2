@@ -19,7 +19,7 @@ class Advisor(Person):
 
     class Meta:
         permissions = (
-            ('fill_checklist', 'Advisor can fill out checklist'),
+            ('advisor', 'Advisor permissions'),
         )
 
 

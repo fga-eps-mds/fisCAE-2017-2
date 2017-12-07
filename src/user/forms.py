@@ -1,3 +1,5 @@
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import Permission
 from django.forms import ModelForm
 from django import forms
 from user.models import Advisor, President, Administrator, Person
@@ -47,8 +49,12 @@ class PresidentForm(ModelForm):
         else:
             user = User.objects.create_user(username=username,
                                             password=password,
-                                            is_superuser=True)
+                                            email=email)
             president.user = user
+            content_type = ContentType.objects.get_for_model(President)
+            president_perm = Permission.objects.get(codename='president',
+                                                    content_type=content_type)
+            user.user_permissions.add(president_perm)
             if commit:
                 president.save()
                 return president
@@ -84,6 +90,10 @@ class AdministratorForm(ModelForm):
                                             password=password,
                                             is_superuser=True)
             admin.user = user
+            content_type = ContentType.objects.get_for_model(Administrator)
+            admin_perm = Permission.objects.get(codename='administrator',
+                                                content_type=content_type)
+            user.user_permissions.add(admin_perm)
             if commit:
                 admin.save()
                 return admin
@@ -95,10 +105,12 @@ class ConfirmUserForm(forms.ModelForm):
         self.fields['username'].help_text = None
         self.fields['username'].widget.attrs['readonly'] = True
         self.fields['is_active'].help_text = None
+        self.fields['email'].help_text = None
+        self.fields['email'].widget.attrs['readonly'] = True
 
     class Meta:
         model = User
-        fields = ('username', 'is_active',)
+        fields = ('username', 'email', 'is_active',)
 
     def save(self, commit=True):
         user = super(ConfirmUserForm, self)

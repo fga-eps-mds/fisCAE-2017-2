@@ -15,14 +15,13 @@
     
 
 <div style="margin-top : 15%;" class="center">
-    {% if advisor is 'None' %}
-    <h2>Nenhum cadastro pendente no momento.</h2>
-    {% else %}
+    {% if formset.forms %}
         <form action="" method="post">
         <table style="width:90%">
             <tr>
-                <th>Nome de usuário:</th>
-                <th>Ativar:</th> 
+                <th><h3>Nome de usuário:</h3></th>
+                <th><h3>Email:</h3></th>
+                <th><h3>Ativar:</h3></th> 
             </tr>
             {{ formset.management_form }}         
             {% for form in formset %}
@@ -42,7 +41,10 @@
         style="width: 150px; height: 50px">Salvar</button><br>   
         </div>
         </form>
+    {% else %}
+    <h3>Nenhum cadastro pendente no momento.</h3>
     {% endif %}
+
 </div>
 <br>
 <div class="center">

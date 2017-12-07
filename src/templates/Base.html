@@ -63,15 +63,15 @@
                     <li>
                       {% if perms.user.administrator and perms.user.president%}
                       <div class="dropdown">
-                          <button class="dropbtn">ADMIN</button>
+                          <button class="dropbtn">OPÇÕES</button>
                           <div class="dropdown-content">
                             <a href="{% url 'user:addPresident' %}">Adicionar Presidente</a>
-                            <a href="{% url 'user:addAdmin' %}">Adiconar Administrador</a>
+                            <a href="{% url 'user:addAdmin' %}">Adicionar Administrador</a>
                           </div>
                         </div>
                       {% elif perms.user.president %}
                       <div class="dropdown">
-                        <button class="dropbtn">PRES</button>
+                        <button class="dropbtn">OPÇÕES</button>
                         <div class="dropdown-content">
                           <a href="{% url 'user:listRequests' %}">Aprovar cadastros</a>
                         </div>
