@@ -80,29 +80,18 @@
             <h5>Começar</h5>
             <ul>
               <li><a href="#">Início</a></li>
-              <li><a href="#">Login</a></li>
-              <li><a href="#">Agenda</a></li>
-              <li><a href="#">Checklists</a></li>
+              <li><a href="{% url 'user:login' %}">Login</a></li>
             </ul>
           </div>
           <div class="col-sm-3">
             <h5>Sobre nós</h5>
             <ul>
               <li><a href="#">Sobre o CAE</a></li>
-              <li><a href="#">Fale Conosco</a></li>
               <li><a href="#">Faça uma denúncia</a></li>
             </ul>
           </div>
-          <div class="col-sm-3">
-            <h5>Suporte</h5>
-            <ul>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">Help desk</a></li>
-              <li><a href="#">Fórums</a></li>
-            </ul>
-          </div>
-          <div class="col-sm-3 info">
-            <h5>Sobre o FISCAE</h5>
+           <div class="col-sm-3 info">
+            <h5></h5>
             <p> O FISCAE existe para dar suporte aos conselheiros alimentares de todo o Brasil.</p>
           </div>
         </div>
@@ -112,7 +101,6 @@
             <h7>GPP/MDS-Universidade de Brasília 2017/2</h7>
             <a id="logo" href="#"> <img src="{% static 'assets/img/logo/l.png' %}"  alt="Fiscae" class="pull-left"></a>
         </div>
-
       </footer>
       
       <script src="{% static 'assets/js/jquery-1.11.1.min.js' %}"></script>
