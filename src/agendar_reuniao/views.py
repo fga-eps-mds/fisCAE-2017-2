@@ -56,7 +56,7 @@ def edit_schedule(request, pk):
     form = AgendamentoForm(request.POST or None, instance=reuniao)
     if form.is_valid():
         form.save()
-        return redirect('../../scheduled.html')    
+        return redirect('../../scheduled.html')
     return render(request, 'edit_schedule.html', {'form': form})
 
 

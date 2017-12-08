@@ -6,9 +6,6 @@ from django.contrib.auth.models import User
 from user.models import *
 
 
-
-
-
 class EditScheduleTest(TestCase):
 
     def setUp(self):
