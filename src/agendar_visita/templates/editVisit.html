@@ -7,7 +7,13 @@
     <form method="POST">
         <div id="formstyle edit">
             {% csrf_token %}
-            {{ form }}
+            <table align="center" style="font-size:20px; display:inline-block;text-align: center;">
+                <tr>
+                  <th>
+                    {{ form }}
+                  </th>
+                </tr>
+              </table>
             <br><br>
             <button type="submit" class="btn btn-primary" id="submit">Salvar</button></br>
             <a href="{% url 'agendar_visita:visitScheduled' %}">Visitas marcadas</a>
