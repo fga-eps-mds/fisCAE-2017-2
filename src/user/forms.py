@@ -4,12 +4,48 @@ from django.forms import ModelForm
 from django import forms
 from user.models import Advisor, President, Administrator, Person
 from django.contrib.auth.models import User
+from django.forms.widgets import TextInput
 
 
 class AdvisorForm(ModelForm):
+    name = forms.CharField(label='Nome', max_length=50)
+    cpf = forms.CharField(label='CPF', max_length=12)
+    municipio = forms.CharField(label='Município', max_length=30)
+    bairro = forms.CharField(label='Bairro', max_length=30)
+    uf = forms.CharField(label='UF', max_length=2)
+    cep = forms.CharField(label='CEP', max_length=10)
+
     class Meta:
         model = Advisor
-        exclude = ["user"]
+        exclude = ['user', 'nome_cae', 'tipo_cae']
+
+    def __init__(self, *args, **kwargs):
+        super(AdvisorForm, self).__init__(*args, **kwargs)
+        self.fields['cep'].widget = TextInput(attrs={
+            'id': 'cep',
+            'class': 'cep',
+            'name': 'cep',
+            'placeholder': '',
+            'onblur': 'pesquisacep(this.value)'
+            })
+        self.fields['bairro'].widget = TextInput(attrs={
+            'id': 'bairro',
+            'class': 'bairro',
+            'name': 'bairro',
+            'placeholder': '',
+            })
+        self.fields['municipio'].widget = TextInput(attrs={
+            'id': 'municipio',
+            'class': 'municipio',
+            'name': 'municipio',
+            'placeholder': '',
+            })
+        self.fields['uf'].widget = TextInput(attrs={
+            'id': 'uf',
+            'class': 'uf',
+            'name': 'uf',
+            'placeholder': '',
+            })
 
 
 class PresidentForm(ModelForm):
@@ -43,7 +79,7 @@ class PresidentForm(ModelForm):
         username = self.cleaned_data['username']
         password = self.cleaned_data['password']
         if User.objects.filter(username=username).exists():
-            self.add_error('username', 'Este usuário já está cadastrado!')
+            self.add_error('username', 'Este nome de usuário já está cadastrado!')
         elif Person.objects.filter(email=email).exists():
             self.add_error('email', 'Este email já está cadastrado!')
         else:

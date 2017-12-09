@@ -1,4 +1,4 @@
-from .models import Advisor, President, Administrator
+from .models import Advisor, President
 from django.contrib.auth.models import User, Permission
 from django.contrib.auth import login as django_login, authenticate
 from django.contrib.auth import logout as django_logout
@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
 from user.forms import AdvisorForm, AdministratorForm
 from user.forms import PresidentForm, ConfirmUserForm
 import smtplib
@@ -175,15 +175,16 @@ def index(request):
 
 
 @login_required
-def userEdit(request, pk):
-    id = pk
-    user = get_object_or_404(Advisor, pk=pk)
-    form = AdvisorForm(request.POST or None, instance=user)
+def userEdit(request):
+    user = Advisor.objects.get(user_id=request.user.id)
     if request.method == 'POST':
-        if pk == user.id:
+        form = AdvisorForm(request.POST, instance=user)
+        if form.is_valid():
             form.save()
-            return redirect('../../')
-    return render(request, 'userEdit.html', {'form': form, 'id': id})
+            return redirect('index')
+    else:
+        form = AdvisorForm(instance=user)
+    return render(request, 'userEdit.html', {'form': form})
 
 
 @login_required
