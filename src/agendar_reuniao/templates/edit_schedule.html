@@ -1,21 +1,25 @@
 {% extends 'Base.html' %}
 {% block body %}
 
-<div class="page-title" >   
-        <div id = "scheduleTitles">    
-    <h1>Editar Reunião</h1>
-    </div></div>
-    <form method="POST">
-        <div id="formstyle edit">
-            {% csrf_token %}<br>
-            Local:  {{ form.local }}<br>
-            Data: {{ form.data }}<br>
-            Horario: {{ form.horario }}<br>
-            Observações: {{ form.observacoes }}
-            <br><br>
-            <button type="submit" class="btn btn-primary" id="submit">Salvar</button></br>
-            <a href="{% url 'agendar_reuniao:scheduled' %}">Reuniões marcadas</a>
-        </div>
-    </form> 
+<div class="page-title" >
+    <div id = "scheduleTitles">
+        <h1>Editar Reunião</h1>
+    </div>
 </div>
+
+<form method="POST"> 
+    <div id="formstyle edit">
+        {% csrf_token %}
+        <table align="center" style="font-size:20px; display:inline-block;text-align: center;">
+          <tr>
+            <th>
+              {{ form }}
+            </th>
+          </tr>
+        </table>
+        <br><br>
+        <button type="submit" class="btn btn-primary" id="submit">Salvar</button></br>
+        <a href="{% url 'agendar_reuniao:scheduled' %}">Reuniões marcadas</a>
+    </div>
+</form>
 {% endblock %}

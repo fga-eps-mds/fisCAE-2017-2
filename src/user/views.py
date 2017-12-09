@@ -56,7 +56,7 @@ def reset_password(request):
 
             user.set_password(passwordtmp)
             user.save()
-            content1 = 'Essa e sua senha temporaria'
+            content1 = 'Essa e sua senha temporaria '
             content2 = 'para acessar seu perfil ' + passwordtmp
             content = content1 + content2
             mail = smtplib.SMTP('smtp.gmail.com', 587)
@@ -64,6 +64,7 @@ def reset_password(request):
             mail.starttls()
             mail.login('fiscaeinfo@gmail.com', 'fiscae2017')
             mail.sendmail('fiscaeinfo@gmail.com', email, content)
+            mail.close()
             return render(request, 'sucess_reset_password.html', {
                 'usuario': usuario,
                 'mensagem': mensagem
