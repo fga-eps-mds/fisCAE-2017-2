@@ -2,7 +2,7 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from .models import Advisor
 from django.contrib.auth import authenticate
-from .forms import PresidentForm, AdministratorForm
+from .forms import PresidentForm, AdministratorForm, AdvisorForm
 
 
 class TestSimpleViews(TestCase):
@@ -130,8 +130,8 @@ class TestForms(TestCase):
         self.assertEquals(response.status_code, 302)
 
     def test_edit_user(self):
-        user = authenticate(username='test', password='123456')
-        response = self.c.get('/userEdit/' + str(user.id))
+        # user = authenticate(username='test', password='123456')
+        response = self.c.get('/userEdit/')
         self.assertEquals(302, response.status_code)
 
     def test_PresidentForm_valid(self):
@@ -172,4 +172,38 @@ class TestForms(TestCase):
             'password': 'admin'
         }
         form = AdministratorForm(data=data)
+        self.assertFalse(form.is_valid())
+
+    def test_AdvisorForm_valid(self):
+        data = {
+            'username': 'robin',
+            'password': 'testing',
+            'email': 'jjj@ggg.com',
+            'name': 'Test',
+            'cpf': 'Tester',
+            'tipo_cae': 'Municipal',
+            'cep': '2223335555',
+            'bairro': 'sss',
+            'municipio': 'goiania',
+            'uf': 'go',
+            'user_type': 'advisor',
+        }
+        form = AdvisorForm(data=data)
+        self.assertTrue(form.is_valid())
+
+    def test_AdvisorForm_invalid(self):
+        data = {
+            'username': 'robin',
+            'password': '',
+            'email': 'jjj@ggg.com',
+            'name': 'Test',
+            'cpf': 'Tester',
+            'tipo_cae': 'Municipal',
+            'cep': '',
+            'bairro': 'sss',
+            'municipio': 'goiania',
+            'uf': 'go',
+            'user_type': 'advisor',
+        }
+        form = AdvisorForm(data=data)
         self.assertFalse(form.is_valid())
