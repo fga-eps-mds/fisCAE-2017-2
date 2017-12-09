@@ -1,19 +1,20 @@
-from .models import Advisor, President
 from django.contrib.auth.models import User, Permission
 from django.contrib.auth import login as django_login, authenticate
 from django.contrib.auth import logout as django_logout
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.contenttypes.models import ContentType
+from django.forms import modelformset_factory
+from django.db import IntegrityError
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from user.forms import AdvisorForm, AdministratorForm
-from user.forms import PresidentForm, ConfirmUserForm
 import smtplib
 from random import choice
 import re
-from django.forms import modelformset_factory
-from django.db import IntegrityError
+
+from .models import Advisor, President, Administrator
+from .forms import AdvisorForm, AdministratorForm
+from .forms import PresidentForm, ConfirmUserForm
 # from nuvem_civica.services import postUser
 
 
@@ -156,14 +157,13 @@ def register(request):
         return render(request, 'registro.html')
 
 
-@login_required
-@permission_required('user.remove_advisor')
-def userDelete(request, pk):
+def userDelete(request):
+    pk = request.user.id
     if request.method == 'POST':
         Advisor.objects.filter(id=pk).delete()
         User.objects.filter(id=pk).delete()
         django_logout(request)
-        return render(request, 'index.html')
+        return redirect('index')
     return render(request, 'userDelete.html')
 
 
@@ -177,14 +177,19 @@ def index(request):
 
 @login_required
 def userEdit(request):
-    user = Advisor.objects.get(user_id=request.user.id)
+    try:
+        user = Advisor.objects.get(user_id=request.user.id)
+        formNotPost = AdvisorForm(instance=user)
+        formPost = AdvisorForm(request.POST, instance=user)
+    except Advisor.DoesNotExist:
+        user = Administrator.objects.get(user_id=request.user.id)
     if request.method == 'POST':
-        form = AdvisorForm(request.POST, instance=user)
+        form = formPost
         if form.is_valid():
             form.save()
             return redirect('index')
     else:
-        form = AdvisorForm(instance=user)
+        form = formNotPost
     return render(request, 'userEdit.html', {'form': form})
 
 

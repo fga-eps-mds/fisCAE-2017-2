@@ -57,7 +57,11 @@
                     <li><a href="{% url 'user:login' %}">Login</a></li>
                     <li><a href="#">Sobre</a></li>
                 {% else %}
-                    <li><a href="{% url 'user:userEdit'%} ">{{ request.user.username }}</a></li> 
+                    {% if perms.user.administrator %}
+                      <li><a href="">{{ request.user.username }}</a></li> 
+                    {% else %}
+                      <li><a href="{% url 'user:userEdit'%} ">{{ request.user.username }}</a></li> 
+                    {% endif %}
                     <li><a href="documentsAll.html">Documentos</a></li>
                     <li><a href="#">Sobre</a></li>
                     <li>
