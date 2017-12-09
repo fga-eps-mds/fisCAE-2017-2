@@ -1,8 +1,14 @@
+.form-edit-schedule {
+	font-size: 20px;
+	display:inline-block;
+	text-align: center;
+}
+
 #personalizado {
 	border-style: solid;
 	border-radius: 50px;
 	border-color: rgba(255, 255, 255, 0.4);
-	background: rgba(255, 255, 255, 0.6);	
+	background: rgba(255, 255, 255, 0.6);
 }
 body {
 	background: #FFFFFF;
@@ -80,10 +86,10 @@ img { max-width: 100%; }
 
 .section-container-gray { background: #f8f8f8; }
 
-.section-container-full-bg, 
-.section-container-full-bg h1, 
-.section-container-full-bg h2, 
-.section-container-full-bg h3, 
+.section-container-full-bg,
+.section-container-full-bg h1,
+.section-container-full-bg h2,
+.section-container-full-bg h3,
 .section-container-full-bg h4 { color: #050404; }
 
 .section-description {
@@ -194,7 +200,7 @@ ul.navbar-nav li a { padding-top: 23px; padding-bottom: 23px; color: #fff; }
 ul.navbar-nav li a:hover { background: none; color:#3D2BA5; }
 ul.navbar-nav li a:focus { background: none; color:#3D2BA5; outline: 0; }
 
-.navbar>.container 
+.navbar>.container
 
 .navbar-header {
 		max-width: 70px;
@@ -210,7 +216,7 @@ ul.navbar-nav li a:focus { background: none; color:#3D2BA5; outline: 0; }
 
 .page-title-text {
 	width: 700px;
-	margin: 0 auto;	
+	margin: 0 auto;
 	color: rgb(5, 26, 75);
 }
 
@@ -652,7 +658,7 @@ ul.navbar-nav li a:focus { background: none; color:#3D2BA5; outline: 0; }
 }
 
 #myFooter .info{
-    text-align: justify; 
+    text-align: justify;
     color: #afb0b1;
 }
 
@@ -768,7 +774,7 @@ html{
 }
 
 body{
-    
+
     height: 100%;
 }
 
@@ -794,7 +800,7 @@ button, input, optgroup, select, textarea {
 }
 
 .checklistType ul li {
- 
+
 	list-style: none;
 	font-size: 20px;
     color: #95a5a6;
@@ -818,7 +824,7 @@ button, input, optgroup, select, textarea {
 
 	border:10px solid red;
 }
- 
+
 #checklistTitle{
 
 	text-transform: initial;
@@ -830,24 +836,24 @@ button, input, optgroup, select, textarea {
 }
 
 .checklistAnswer ul li {
-	
+
 	   list-style: none;
 	   font-size: 20px;
 	   color: #95a5a6;
    }
-   
+
    .checklistAnswer ul{
-   
+
 	   text-align: center;
    }
 
    .answerButton{
-	
+
 		background: none;
 		border:none;
 		color:#1F4788;
 		font-weight: bold;
-	
+
 	}
 
 	#questionDescription{
@@ -858,16 +864,16 @@ button, input, optgroup, select, textarea {
     color: #1F4788;
     line-height: 30px;
     text-transform: initial;
-		
+
 	}
 
 	#formstyle{
-	  
+
 		background: #C5D2D6;
 		font-size: 12px;
 		color: #061937;
 		text-align: center;
-		width: 100%; 
+		width: 100%;
 
 	}
 
@@ -886,7 +892,7 @@ button, input, optgroup, select, textarea {
 		text-transform: initial;
 
 	}
-	
+
 	#successMessage{
 
 		font-size: 32px;
@@ -895,7 +901,7 @@ button, input, optgroup, select, textarea {
 		text-transform: initial;
 	}
 	#errorMessage{
-		
+
 				font-size: 32px;
 				color: #1F4788;
 				font-weight: bold;
@@ -903,14 +909,14 @@ button, input, optgroup, select, textarea {
 	}
 
 	.backButton{
-		
+
 			background: none;
 			border:none;
 			color:#1F4788;
 			font-weight: bold;
-		
+
 		}
-	
+
 	.select-cae{
 		font-size: 17px;
 		padding-left: 0px;
@@ -922,7 +928,6 @@ button, input, optgroup, select, textarea {
         margin-left: 5px;
     }
 }
-
 
 /* Dropdown for admin */
 .dropbtn {

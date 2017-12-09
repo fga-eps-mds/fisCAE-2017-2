@@ -3,13 +3,14 @@ from agendar_visita.models import ScheduleVisit
 from search_school.views import getSelectedSchool
 from user.models import Advisor
 from .forms import VisitForm
+from agendar_reuniao.views import notify
 
 
 def indexScheduleVisit(request):
+    tipo = "visita"
     newSchedule = ScheduleVisit()
     schoolName = getSelectedSchool().get('nome')
     if request.method == 'POST':
-
         current_user = request.user
         userId = current_user.id
         userObject = Advisor.objects.get(id=userId)
@@ -20,6 +21,7 @@ def indexScheduleVisit(request):
         newSchedule.time = request.POST['time']
         newSchedule.members = request.POST['members']
         newSchedule.save()
+        notify(request, newSchedule, tipo)
         return HttpResponseRedirect(
                             reverse('agendar_visita:visitScheduled')
                             )
