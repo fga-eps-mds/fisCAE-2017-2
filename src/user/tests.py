@@ -150,7 +150,6 @@ class TestForms(TestCase):
         self.assertEquals(response.status_code, 302)
 
     def test_edit_user(self):
-        # user = authenticate(username='test', password='123456')
         response = self.c.get('/userEdit/')
         self.assertEquals(302, response.status_code)
 
@@ -234,6 +233,150 @@ class TestForms(TestCase):
         self.assertIn('id="bairro"', form.as_p())
         self.assertIn('id="municipio"', form.as_p())
         self.assertIn('id="uf"', form.as_p())
+
+    def test_PresidentForm_username_validation(self):
+        data = {
+            'username': 'robin',
+            'password': 'testing',
+            'email': 'jjj@ggg.com',
+            'name': 'Test',
+            'cpf': 'Tester',
+            'tipo_cae': 'Municipal',
+            'cep': '2223335555',
+            'bairro': 'sss',
+            'municipio': 'goiania',
+            'uf': 'go',
+            'user_type': 'advisor',
+        }
+        data2 = {
+            'username': 'robin',
+            'password': 'testing',
+            'email': 'fff@ggg.com',
+            'name': 'Test',
+            'cpf': 'Tester',
+            'tipo_cae': 'Municipal',
+            'cep': '2223335555',
+            'bairro': 'sss',
+            'municipio': 'goiania',
+            'uf': 'go',
+            'user_type': 'advisor',
+        }
+        form1 = PresidentForm(data=data)
+        form1.save()
+        form2 = PresidentForm(data=data2)
+        form2.save()
+        self.assertEqual(
+            form2.errors['username'],
+            ["Este nome de usuário já está cadastrado!"]
+        )
+
+    def test_PresidentForm_email_validation(self):
+        data = {
+            'username': 'robin',
+            'password': 'testing',
+            'email': 'jjj@ggg.com',
+            'name': 'Test',
+            'cpf': 'Tester',
+            'tipo_cae': 'Municipal',
+            'cep': '2223335555',
+            'bairro': 'sss',
+            'municipio': 'goiania',
+            'uf': 'go',
+            'user_type': 'advisor',
+        }
+        data2 = {
+            'username': 'batman',
+            'password': 'testing',
+            'email': 'jjj@ggg.com',
+            'name': 'Test',
+            'cpf': 'Tester',
+            'tipo_cae': 'Municipal',
+            'cep': '2223335555',
+            'bairro': 'sss',
+            'municipio': 'goiania',
+            'uf': 'go',
+            'user_type': 'advisor',
+        }
+        form1 = PresidentForm(data=data)
+        form1.save()
+        form2 = PresidentForm(data=data2)
+        form2.save()
+        self.assertEqual(
+            form2.errors['email'],
+            ["Este email já está cadastrado!"]
+        )
+
+    def test_AdministratorForm_username_validation(self):
+        data = {
+            'username': 'robin',
+            'password': 'testing',
+            'email': 'jjj@ggg.com',
+            'name': 'Test',
+            'cpf': 'Tester',
+            'tipo_cae': 'Municipal',
+            'cep': '2223335555',
+            'bairro': 'sss',
+            'municipio': 'goiania',
+            'uf': 'go',
+            'user_type': 'advisor',
+        }
+        data2 = {
+            'username': 'robin',
+            'password': 'testing',
+            'email': 'fff@ggg.com',
+            'name': 'Test',
+            'cpf': 'Tester',
+            'tipo_cae': 'Municipal',
+            'cep': '2223335555',
+            'bairro': 'sss',
+            'municipio': 'goiania',
+            'uf': 'go',
+            'user_type': 'advisor',
+        }
+        form1 = AdministratorForm(data=data)
+        form1.save()
+        form2 = AdministratorForm(data=data2)
+        form2.save()
+        self.assertEqual(
+            form2.errors['username'],
+            ["Este nome de usuário já está cadastrado!"]
+        )
+
+    def test_AdministratorForm_email_validation(self):
+        data = {
+            'username': 'robin',
+            'password': 'testing',
+            'email': 'jjj@ggg.com',
+            'name': 'Test',
+            'cpf': 'Tester',
+            'tipo_cae': 'Municipal',
+            'cep': '2223335555',
+            'bairro': 'sss',
+            'municipio': 'goiania',
+            'uf': 'go',
+            'user_type': 'advisor',
+        }
+        data2 = {
+            'username': 'batman',
+            'password': 'testing',
+            'email': 'jjj@ggg.com',
+            'name': 'Test',
+            'cpf': 'Tester',
+            'tipo_cae': 'Municipal',
+            'cep': '2223335555',
+            'bairro': 'sss',
+            'municipio': 'goiania',
+            'uf': 'go',
+            'user_type': 'advisor',
+        }
+        form1 = AdministratorForm(data=data)
+        form1.save()
+        form2 = AdministratorForm(data=data2)
+        form2.save()
+        self.assertEqual(
+            form2.errors['email'],
+            ["Este email já está cadastrado!"]
+        )
 
     def test_ConfirmUserForm_valid(self):
         data = {
