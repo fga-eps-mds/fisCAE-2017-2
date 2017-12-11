@@ -3,7 +3,7 @@ from agendar_reuniao.models import Agendamento
 from agendar_reuniao.forms import AgendamentoForm
 from user.models import Advisor
 import smtplib
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
 # from email.MIMEText import MIMEText
 # from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -29,7 +29,6 @@ def notify(request, novoAgendamento, tipo):
     user_name = userObject.name
     todosemails = Advisor.objects.filter(nome_cae=cae_user)
     texto = user_name + " membro do " + cae_user + " agendou uma " + tipo + ":"
-
     if tipo == "reunião":
         data = novoAgendamento.data
         local = novoAgendamento.local

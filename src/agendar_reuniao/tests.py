@@ -3,55 +3,70 @@ from agendar_reuniao.models import Agendamento
 from django.contrib.auth.models import User
 
 
-class EditScheduleTest(TestCase):
+class ScheduleTest(TestCase):
+
+    global registro
+    registro = {
+        'username': 'test555',
+        'password': '123456',
+        'name': 'joao',
+        'email': 'jj@asb.com',
+        'cpf': '1234',
+        'tipo_cae': 'Municipal',
+        'user_type': 'advisor',
+        'nome_cae': 'CAE',
+        'cep': '72430107',
+        'bairro': 'setor norte',
+        'municipio': 'Brasilia',
+        'uf': 'DF'}
+
     def setUp(self):
         self.cliente = Client()
         self.user = User.objects.create_user(
             username='testuser', password='12345')
         self.user.save()
-        data = {
-            'username': 'test555',
-            'password': '123456',
-            'name': 'joao',
-            'email': 'jj@asb.com',
-            'cpf': '1234',
-            'tipo_cae': 'Municipal',
-            'user_type': 'advisor',
-            'nome_cae': 'CAE',
-            'cep': '72430107',
-            'bairro': 'setor norte',
-            'municipio': 'Brasilia',
-            'uf': 'DF'}
-        self.advisor = self.client.post('/registro/', data)
+        self.advisor = self.client.post('/registro/', registro)
         self.client.force_login(self.user)
-        self.data1 = {
+        self.agenda = Agendamento.objects.create(data='12/08',
+                                                 horario='13:00',
+                                                 local='gama',
+                                                 tema='discussão',
+                                                 observacoes='levem lanche',
+                                                 nome_cae_schedule='newton')
+        self.agenda.save
+
+    def test_index_schedule_post(self):
+        data = {
             'date': '22 de janeiro',
             'time': 'dez e vinte',
             'local': 'no parque',
             'note': 'levem lanche'
         }
-        self.response = self.client.post('/indexScheduleMeeting/', self.data1,
-                                         follow=True)
-
-    def test_index_schedule_post(self):
-        self.client.force_login(self.user)
-        self.assertEqual(self.data1['local'], Agendamento.objects.last().local)
-        self.assertEqual(self.data1['time'],
+        response = self.client.post('/indexScheduleMeeting/', data,
+                                    follow=True)
+        self.assertEqual(data['local'], Agendamento.objects.last().local)
+        self.assertEqual(data['time'],
                          Agendamento.objects.last().horario)
-        self.assertEqual(self.data1['date'], Agendamento.objects.last().data)
-        self.assertEqual(self.data1['note'],
+        self.assertEqual(data['date'], Agendamento.objects.last().data)
+        self.assertEqual(data['note'],
                          Agendamento.objects.last().observacoes)
-        self.assertEqual(self.response.status_code, 200)
-        self.assertTemplateUsed(self.response, 'scheduled.html')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'scheduled.html')
 
-    def test_edit_schedule(self):
-        logged_in = self.cliente.login(username='testuser', password='12345')
-        self.assertEquals(logged_in, True)
+    def test_edit_schedule_get(self):
+        response = self.cliente.get('/edit_schedule/{}/'.format(self.agenda.pk))
+        self.assertEqual(response.status_code, 302)
 
-    def teste_template_edit_visit(self):
-        self.cliente.login(username='testuser', password='12345')
-        response = self.cliente.get('/editVisit/1')
-        self.assertEquals(301, response.status_code)
+    def test_edit_schedule_post(self):
+        data = {
+            'data': '2/4',
+            'horario': '22:00',
+            'local': 'parque',
+            'observacoes': '2 horas'
+        }
+        response = self.cliente.post('/edit_schedule/{}/'.format(self.agenda.pk),
+                                     data)
+        self.assertEqual(response.status_code, 302)
 
     def teste_template_indexScheduleMeeting(self):
         response = self.cliente.get('/indexScheduleMeeting/')
