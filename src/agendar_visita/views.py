@@ -48,17 +48,23 @@ def visited(request):
 
 
 def sceduled(request):
-    current_user = request.user
-    userId = current_user.id
-    userObject = Advisor.objects.get(id=userId)
-    nome_cae_user = userObject.nome_cae
-    visits = ScheduleVisit.objects.filter(status=False,
-                                          nome_cae_schedule=nome_cae_user)
-    return render(
-            request,
-            'visitScheduleds.html',
-            {'visits': visits},
-            )
+    try:
+        current_user = request.user
+        userId = current_user.id
+        userObject = Advisor.objects.get(id=userId)
+        nome_cae_user = userObject.nome_cae
+        visits = ScheduleVisit.objects.filter(status=False,
+                                            nome_cae_schedule=nome_cae_user)
+        return render(
+                request,
+                'visitScheduleds.html',
+                {'visits': visits},
+                )
+    except:
+        mensagem = "Apenas membros de CAE podem ter acesso à essas funcionalidades!"
+        return render(request, 'schedules.html', {
+            'mensagem': mensagem
+        })
 
 
 def scheduleVisitDelete(request, pk):

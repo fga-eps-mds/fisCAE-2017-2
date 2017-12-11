@@ -84,14 +84,19 @@ def indexScheduleMeeting(request):
 
 
 def scheduled(request):
-    current_user = request.user
-    userId = current_user.id
-    userObject = Advisor.objects.get(id=userId)
-    cae_user = userObject.nome_cae
-    todosAgendamentos = Agendamento.objects.filter(nome_cae_schedule=cae_user)
-    return render(request, 'scheduled.html', {
-        'todosAgendamentos': todosAgendamentos
-    })
+    try:
+        current_user = request.user
+        userId = current_user.id
+        userObject = Advisor.objects.get(id=userId)
+        cae_user = userObject.nome_cae
+        todosAgendamentos = Agendamento.objects.filter(
+            nome_cae_schedule=cae_user)
+        return render(request, 'scheduled.html', {
+            'todosAgendamentos': todosAgendamentos
+        })
+    except:
+        mensagem = "Apenas membros de CAE podem ter acesso à essas funcionalidades!"
+        return render(request, 'schedules.html', {'mensagem': mensagem})
 
 
 def schedules(request):
