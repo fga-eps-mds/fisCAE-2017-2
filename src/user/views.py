@@ -12,7 +12,7 @@ import smtplib
 from random import choice
 import re
 
-from .models import Advisor, President, Administrator
+from .models import Advisor, President
 from .forms import AdvisorForm, AdministratorForm
 from .forms import PresidentForm, ConfirmUserForm
 # from nuvem_civica.services import postUser
@@ -22,7 +22,6 @@ def password_sucess(request):
     return render(request, 'password_sucess.html')
 
 
-@login_required
 def change_password(request):
     if request.method == 'POST':
         usuario_id = request.user.id
@@ -182,7 +181,8 @@ def userEdit(request):
         formNotPost = AdvisorForm(instance=user)
         formPost = AdvisorForm(request.POST, instance=user)
     except Advisor.DoesNotExist:
-        user = Administrator.objects.get(user_id=request.user.id)
+        formPost = None
+        formNotPost = None
     if request.method == 'POST':
         form = formPost
         if form.is_valid():

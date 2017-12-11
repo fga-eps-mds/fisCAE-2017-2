@@ -16,8 +16,20 @@ class TestSimpleViews(TestCase):
         response = self.c.get('/login/')
         self.assertEquals(200, response.status_code)
 
+    def test_change_password_page(self):
+        response = self.c.get('/change_password/')
+        self.assertEquals(200, response.status_code)
+
+    def test_reset_password_page(self):
+        response = self.c.get('/reset_password/')
+        self.assertEquals(200, response.status_code)
+
     def test_get_register_page(self):
         response = self.c.get('/registro/')
+        self.assertEquals(200, response.status_code)
+
+    def test_get_password_sucess_page(self):
+        response = self.c.get('/password_sucess/')
         self.assertEquals(200, response.status_code)
 
     def test_erro(self):
@@ -215,6 +227,13 @@ class TestForms(TestCase):
         }
         form = AdvisorForm(data=data)
         self.assertFalse(form.is_valid())
+
+    def test_Advisorform_widgets(self):
+        form = AdvisorForm()
+        self.assertIn('id="cep"', form.as_p())
+        self.assertIn('id="bairro"', form.as_p())
+        self.assertIn('id="municipio"', form.as_p())
+        self.assertIn('id="uf"', form.as_p())
 
     def test_ConfirmUserForm_valid(self):
         data = {
