@@ -170,7 +170,7 @@ class TestForms(TestCase):
         }
         data2 = {
             'username': 'robin',
-            'password': 'testi',
+            'password': 'testi2',
             'email': 'hhh@ggg.com',
             'name': 'batma',
             'cpf': 'Tester',

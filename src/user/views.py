@@ -87,7 +87,7 @@ def login(request):
             django_login(request, user)
             return HttpResponseRedirect(reverse('index'))
         else:
-            error = 'Username ou senha incorretos!'
+            error = 'Usuário ou senha incorretos!'
             context = {'error': error}
             return render(request, 'login.html', context)
     else:
