@@ -10,6 +10,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from user.forms import AdvisorForm
 import smtplib
 from random import choice
+from django.db import IntegrityError
+
 # from nuvem_civica.services import postUser
 import re
 
@@ -147,32 +149,41 @@ def user_type(request, user):
     return person
 
 
+def set_user(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = User.objects.create_user(
+        username=username, password=password)
+    return user
+
+
+def set_person(request, person):
+    person.name = request.POST['name']
+    person.email = request.POST['email']
+    person.cpf = request.POST['cpf']
+    person.cep = request.POST['cep']
+    person.bairro = request.POST['bairro']
+    person.municipio = request.POST['municipio']
+    person.uf = request.POST['uf']
+    cep = re.sub(u'[- A-Z a-z]', '', person.cep)
+    person.cep = cep
+
+
 def register(request):
     if request.method == 'POST':
         try:
-            username = request.POST['username']
-            password = request.POST['password']
-            user = User.objects.create_user(
-                username=username, password=password)
-            person = user_type(request, user)
-        except:
+            user = set_user(request)
+        except IntegrityError:
             error = 'Usuário já existe!'
             context = {'error': error}
-            user.delete()
             return render(request, 'registro.html', context)
-        person.name = request.POST['name']
-        person.email = request.POST['email']
-        person.cpf = request.POST['cpf']
-        person.cep = request.POST['cep']
-        person.bairro = request.POST['bairro']
-        person.municipio = request.POST['municipio']
-        person.uf = request.POST['uf']
-        cep = re.sub(u'[- A-Z a-z]', '', person.cep)
-        person.cep = cep
+        person = user_type(request, user)
+        set_person(request, person)
         if(person.tipo_cae == 'Municipal'):
-            person.nome_cae = 'CAE'+' '+person.tipo_cae+' '+person.municipio
+            person.nome_cae = 'CAE' + ' ' + person.tipo_cae + ' ' + (person.
+                                                                     municipio)
         else:
-            person.nome_cae = 'CAE'+' '+person.tipo_cae+' '+person.uf
+            person.nome_cae = 'CAE' + ' ' + person.tipo_cae + ' ' + person.uf
         person.save()
         # Deixar comentado
         """response = postUser(

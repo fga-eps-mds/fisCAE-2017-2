@@ -157,6 +157,7 @@ class TestForms(TestCase):
             'username': 'robin',
             'password': 'testing',
             'email': 'jjj@ggg.com',
+            'user_type': 'advisor',
             'name': 'Test',
             'cpf': 'Tester',
             'tipo_cae': 'Municipal',
@@ -172,6 +173,7 @@ class TestForms(TestCase):
             'username': 'robin',
             'password': 'testi',
             'email': 'hhh@ggg.com',
+            'user_type': 'advisor',
             'name': 'batma',
             'cpf': 'Tester',
             'tipo_cae': 'Municipal',
@@ -187,6 +189,8 @@ class TestForms(TestCase):
         response = self.c.post('/registro/', data2)
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'registro.html')
+        self.assertContains(response, 'Usuário já existe!')
+        self.assertEquals(response.context['error'], 'Usuário já existe!')
 
     def test_logout_user(self):
         self.c.login(username='test', password='123456')

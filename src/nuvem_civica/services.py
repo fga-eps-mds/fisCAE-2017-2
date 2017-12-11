@@ -56,8 +56,8 @@ def registerProfile(description, codAplicativo, email, password):
 
     description = str(description)
 
-    data = { 
-        "descricao": description 
+    data = {
+        "descricao": description
         }
 
     url_base = 'http://mobile-aceite.tcu.gov.br:80/appCivicoRS'
