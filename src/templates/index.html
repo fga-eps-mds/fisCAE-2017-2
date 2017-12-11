@@ -19,7 +19,7 @@
     </div>
 
     <!-- What we do -->
-    {% if request.user and request.user.is_authenticated %}
+    {% if request.user and request.user.is_authenticated and not perms.user.administrator  %}
     <div class="block-3-container section-container what-we-do-container">
         <div class="container">
             <div class="row">
