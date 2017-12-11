@@ -33,6 +33,11 @@
     </p> 
     </tr>
   {% endfor %}
+  {% if messages %}
+  {% for message in messages %}
+    <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}" style="font-size: 20px">{{ message|safe }}</div>
+  {% endfor %}
+  {% endif %}
   </tbody>
   </table>
   <div class="center">

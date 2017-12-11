@@ -11,6 +11,7 @@ from django.shortcuts import render, redirect
 import smtplib
 from random import choice
 import re
+from django.contrib import messages
 
 from .models import Advisor, President
 from .forms import AdvisorForm, AdministratorForm
@@ -81,20 +82,18 @@ def reset_password(request):
 
 
 def login(request):
+    context = {'error': ''}
     if request.method == 'POST':
         user = authenticate(
             username=request.POST['username'],
             password=request.POST['password'])
-        if user is not None:
-            if user.is_active:
-                django_login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+        if user is not None and user.is_active:
+            django_login(request, user)
+            return HttpResponseRedirect(reverse('index'))
         else:
             error = 'Login inválido!'
             context = {'error': error}
-            return render(request, 'login.html', context)
-    else:
-        return render(request, 'login.html')
+    return render(request, 'login.html', context)
 
 
 def logout(request):
@@ -233,7 +232,12 @@ def addAdmin(request):
         if form.is_valid():
             saveForm = form.save(commit=True)
             if saveForm:
-                return HttpResponseRedirect(reverse('index'))
+                form = AdministratorForm()
+                messages.add_message(
+                    request,
+                    messages.SUCCESS,
+                    'Usuário cadastrado com sucesso!'
+                    )
     else:
         form = AdministratorForm()
     return render(request, 'addAdmin.html', {'form': form})
@@ -247,7 +251,12 @@ def addPresident(request):
         if form.is_valid():
             saveForm = form.save(commit=True)
             if saveForm:
-                return HttpResponseRedirect(reverse('index'))
+                form = PresidentForm()
+                messages.add_message(
+                    request,
+                    messages.SUCCESS,
+                    'Usuário cadastrado com sucesso!'
+                    )
     else:
         form = PresidentForm()
     return render(request, 'addPresident.html', {'form': form})
