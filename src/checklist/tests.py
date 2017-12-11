@@ -18,7 +18,8 @@ class ChecklistTest(TestCase):
         )
         question.save()
 
-        visit = ScheduleVisit(1, 'Escola Teste', '2017-10-10', '10:10', 'CAE', 0)
+        visit = ScheduleVisit(
+            1, 'Escola Teste', '2017-10-10', '10:10', 'CAE', 0)
         visit.save()
 
     def testSubmitChecklistFormValid(self):

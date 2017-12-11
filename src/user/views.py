@@ -116,6 +116,26 @@ def setCaeType(person):
         person.nome_cae = 'CAE'+' '+person.tipo_cae+' '+person.uf
 
 
+def set_user(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = User.objects.create_user(
+        username=username, password=password)
+    return user
+
+
+def set_person(request, person):
+    person.name = request.POST['name']
+    person.email = request.POST['email']
+    person.cpf = request.POST['cpf']
+    person.cep = request.POST['cep']
+    person.bairro = request.POST['bairro']
+    person.municipio = request.POST['municipio']
+    person.uf = request.POST['uf']
+    cep = re.sub(u'[- A-Z a-z]', '', person.cep)
+    person.cep = cep
+
+
 def register(request):
     if request.method == 'POST':
         username = request.POST['username']

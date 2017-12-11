@@ -275,6 +275,7 @@ class TestForms(TestCase):
             'username': 'robin',
             'password': 'testing',
             'email': 'jjj@ggg.com',
+            'user_type': 'advisor',
             'name': 'Test',
             'cpf': 'Tester',
             'tipo_cae': 'Municipal',
