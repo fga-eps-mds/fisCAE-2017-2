@@ -227,8 +227,9 @@ def addAdmin(request):
     if request.method == 'POST':
         form = AdministratorForm(request.POST)
         if form.is_valid():
-            form.save(commit=True)
-            return HttpResponseRedirect(reverse('index'))
+            saveForm = form.save(commit=True)
+            if saveForm:
+                return HttpResponseRedirect(reverse('index'))
     else:
         form = AdministratorForm()
     return render(request, 'addAdmin.html', {'form': form})
@@ -240,8 +241,9 @@ def addPresident(request):
     if request.method == 'POST':
         form = PresidentForm(request.POST)
         if form.is_valid():
-            form.save(commit=True)
-            return HttpResponseRedirect(reverse('index'))
+            saveForm = form.save(commit=True)
+            if saveForm:
+                return HttpResponseRedirect(reverse('index'))
     else:
         form = PresidentForm()
     return render(request, 'addPresident.html', {'form': form})
