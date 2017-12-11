@@ -2,7 +2,9 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from .models import Advisor
 from django.contrib.auth import authenticate
-from .forms import PresidentForm, AdministratorForm, AdvisorForm
+from .forms import PresidentForm, AdministratorForm
+from .forms import AdvisorForm, ConfirmUserForm
+from .views import setAdvisorPerm
 
 
 class TestSimpleViews(TestCase):
@@ -33,6 +35,12 @@ class TestSimpleViews(TestCase):
     def test_templateNotExist(self):
         response = self.c.get('/registro/')
         self.assertTemplateNotUsed(response, 'notexist.html')
+
+    def test_setAdvisorPerm(self):
+        user = User.objects.create_user(username='fiscae', password='fiscae')
+        setAdvisorPerm(user)
+        self.assertEquals(user.has_perm('user.advisor'), True)
+        self.assertEquals(user.has_perm('user.none'), False)
 
 
 class TestForms(TestCase):
@@ -206,4 +214,20 @@ class TestForms(TestCase):
             'user_type': 'advisor',
         }
         form = AdvisorForm(data=data)
+        self.assertFalse(form.is_valid())
+
+    def test_ConfirmUserForm_valid(self):
+        data = {
+            'username': 'robin',
+            'email': 'jjj@ggg.com',
+            'is_active': True,
+        }
+        form = ConfirmUserForm(data=data)
+        self.assertTrue(form.is_valid())
+
+    def test_ConfirmUserForm_invalid(self):
+        data = {
+            'name': 'fulano'
+        }
+        form = ConfirmUserForm(data=data)
         self.assertFalse(form.is_valid())
