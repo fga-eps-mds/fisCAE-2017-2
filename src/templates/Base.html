@@ -62,7 +62,7 @@
                     {% else %}
                       <li><a href="{% url 'user:userEdit'%} ">{{ request.user.username }}</a></li> 
                     {% endif %}
-                    <li><a href="documentsAll.html">Documentos</a></li>
+                    <li><a href="{% url 'acessar_documento:documentsAll' %}">Documentos</a></li>
                     <li><a href="#">Sobre</a></li>
                     <li>
                       {% if perms.user.administrator and perms.user.president%}

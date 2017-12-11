@@ -3,6 +3,7 @@ from django.shortcuts import HttpResponse
 from os import listdir
 from django.core.files.storage import FileSystemStorage
 from .forms import UploadFileForm
+from django.contrib import messages
 
 
 def viewpdf(request, pk):
@@ -22,6 +23,12 @@ def upload_file(request):
         arq.arquivo = request.FILES['arquivo']
         arq.title = request.POST['title']
         arq.save()
+        form = UploadFileForm()
+        messages.add_message(
+                request,
+                messages.SUCCESS,
+                'Arquivo adicionado com sucesso!'
+                )
         # return render(request, 'documentsAll.html')
     return render(request, 'upload_file.html', {'form': form})
 
