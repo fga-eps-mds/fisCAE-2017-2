@@ -110,6 +110,13 @@ def setAdvisorPerm(user):
     user.user_permissions.add(advisor_perm)
 
 
+def setCaeType(person):
+    if(person.tipo_cae == 'Municipal'):
+        person.nome_cae = 'CAE'+' '+person.tipo_cae+' '+person.municipio
+    else:
+        person.nome_cae = 'CAE'+' '+person.tipo_cae+' '+person.uf
+
+
 def register(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -119,11 +126,6 @@ def register(request):
             user = User.objects.create_user(username=username,
                                             password=password,
                                             email=email)
-        except IntegrityError:
-            error = 'Registro inválido!'
-            context = {'error': error}
-            return render(request, 'registro.html', context)
-        else:
             person = Advisor()
             setAdvisorPerm(user)
             User.objects.filter(pk=user.id).update(is_active=False)
@@ -134,12 +136,10 @@ def register(request):
             person.bairro = request.POST['bairro']
             person.municipio = request.POST['municipio']
             person.uf = request.POST['uf']
+            person.tipo_cae = request.POST['tipo_cae']
             cep = re.sub(u'[- A-Z a-z]', '', person.cep)
             person.cep = cep
-            if(person.tipo_cae == 'Municipal'):
-                person.nome_cae = 'CAE'+' '+person.tipo_cae+' '+person.municipio
-            else:
-                person.nome_cae = 'CAE'+' '+person.tipo_cae+' '+person.uf
+            setCaeType(person)
             person.user = user
             person.save()
             # Deixar comentado
@@ -152,6 +152,10 @@ def register(request):
                         )
             print(response.status_code, response.reason)"""
             return render(request, 'login.html')
+        except IntegrityError:
+            error = 'Registro inválido!'
+            context = {'error': error}
+            return render(request, 'registro.html', context)
     else:
         return render(request, 'registro.html')
 

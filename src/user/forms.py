@@ -79,7 +79,10 @@ class PresidentForm(ModelForm):
         username = self.cleaned_data['username']
         password = self.cleaned_data['password']
         if User.objects.filter(username=username).exists():
-            self.add_error('username', 'Este nome de usuário já está cadastrado!')
+            self.add_error(
+                'username',
+                'Este nome de usuário já está cadastrado!'
+                )
         elif Person.objects.filter(email=email).exists():
             self.add_error('email', 'Este email já está cadastrado!')
         else:
@@ -118,7 +121,10 @@ class AdministratorForm(ModelForm):
         username = self.cleaned_data['username']
         password = self.cleaned_data['password']
         if User.objects.filter(username=username).exists():
-            self.add_error('username', 'Este nome de usuário já está cadastrado!')
+            self.add_error(
+                'username',
+                'Este nome de usuário já está cadastrado!'
+                )
         elif Person.objects.filter(email=email).exists():
             self.add_error('email', 'Este email já está cadastrado!')
         else:
