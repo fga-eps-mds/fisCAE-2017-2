@@ -229,15 +229,14 @@ def listRequests(request):
 def addAdmin(request):
     if request.method == 'POST':
         form = AdministratorForm(request.POST)
-        if form.is_valid():
-            saveForm = form.save(commit=True)
-            if saveForm:
-                form = AdministratorForm()
-                messages.add_message(
-                    request,
-                    messages.SUCCESS,
-                    'Usuário cadastrado com sucesso!'
-                    )
+        saveForm = form.save(commit=True)
+        if saveForm:
+            form = AdministratorForm()
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                'Usuário cadastrado com sucesso!'
+                )
     else:
         form = AdministratorForm()
     return render(request, 'addAdmin.html', {'form': form})
@@ -248,15 +247,14 @@ def addAdmin(request):
 def addPresident(request):
     if request.method == 'POST':
         form = PresidentForm(request.POST)
-        if form.is_valid():
-            saveForm = form.save(commit=True)
-            if saveForm:
-                form = PresidentForm()
-                messages.add_message(
-                    request,
-                    messages.SUCCESS,
-                    'Usuário cadastrado com sucesso!'
-                    )
+        saveForm = form.save(commit=True)
+        if saveForm:
+            form = PresidentForm()
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                'Usuário cadastrado com sucesso!'
+                )
     else:
         form = PresidentForm()
     return render(request, 'addPresident.html', {'form': form})
