@@ -1,0 +1,33 @@
+{% extends "Base.html" %} {% block body %}
+<br><br>
+  <div class="container">
+			<div class="row">
+					<div class="col-md-12" "col-md-push-4" align="center">
+    					<form action="{% url 'denuncias:denunciations' %}" method="POST" style="
+								margin: 0 auto;display:inline-block;width: 100%;
+								padding: 12px;
+								border-radius: 4px;
+								box-sizing: border-box;
+								resize: vertical">
+								{% csrf_token %}
+									<label><h3>Denúncia</h3></label><br>
+									<label><input type="" name="escola" maxlength="255" placeholder="Nome da Escola" size="20" required></input>
+									</label><br>
+									<label><input type="" name="cidade" maxlength="255" placeholder="Cidade" size="20" required></input>
+									</label><br>
+									<label><input type="" name="estado" maxlength="255" placeholder="Estado" size="20" required></input>
+									</label><br>
+									<label><input type="" name="endereco" maxlength="255" placeholder="Endereço" size="20" required></input>
+									</label><br>
+  						  	<label><input type="" name="subject" maxlength="255" placeholder="Assunto" size="20" required></input>
+									</label><br>
+									<label><textarea name="description" cols="30" rows="5" maxlength="5000" placeholder="Assunto" required></textarea>
+									</label><br>
+  						  	<button class="btn btn-primary btn-block btn-large" style="width: 150px; height: 50px" type="submit">Enviar</button>
+							</form>
+					</div>
+		  </div>
+  </div>
+</div>
+
+{% endblock %}

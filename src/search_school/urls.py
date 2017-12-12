@@ -4,7 +4,6 @@ from search_school import views
 
 app_name = 'search_school'
 urlpatterns = [
-    url(r'^searchSchool/$', views.search, name='searchSchool'),
-    url(r'^schoolForm/$', views.schoolForm, name='schoolForm'),
-    url(r'^redirectSchool/$', views.redirectSchool, name='redirectSchool'),
+    url(r'^pesquisar-escola/$', views.search, name='searchSchool'),
+    url(r'^selecionar-escola/$', views.schoolForm, name='schoolForm'),
 ]

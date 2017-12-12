@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect, reverse
+from django.shortcuts import render, HttpResponseRedirect, reverse
 from agendar_reuniao.models import Agendamento
 from agendar_reuniao.forms import AgendamentoForm
 from user.models import Advisor
 import smtplib
+from django.contrib.auth.decorators import login_required
 # from email.MIMEText import MIMEText
 # from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -49,12 +50,13 @@ def notify(request, novoAgendamento, tipo):
     sendmailfunction(request, texto, todosemails)
 
 
+@login_required
 def edit_schedule(request, pk):
     reuniao = Agendamento.objects.get(id=pk)
     form = AgendamentoForm(request.POST or None, instance=reuniao)
     if form.is_valid():
         form.save()
-        return redirect('../../scheduled.html')
+        return HttpResponseRedirect(reverse('agendar_reuniao:scheduled'))
     return render(request, 'edit_schedule.html', {'form': form})
 
 

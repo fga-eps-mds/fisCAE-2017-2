@@ -3,3 +3,6 @@ coveralls
 Django
 python-coveralls
 requests
+django-compressor
+libsass
+django-sass-processor
