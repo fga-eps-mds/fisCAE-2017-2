@@ -65,7 +65,6 @@
                     {% endif %}
                     <li><a href="documentsAll.html">Documentos</a></li>
                     <li><a href="#">Sobre</a></li>
-                    <li><a href="{% url 'user:logout' %}">Sair</a></li>
                     <li><a href="denunciations.html">Denúncias</a></li>
                     <li>
                       {% if perms.user.administrator and perms.user.president%}
