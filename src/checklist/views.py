@@ -8,6 +8,7 @@ from checklist.forms import ChecklistForm
 from checklist.forms import AnswerForm
 from checklist.forms import ObservationsForm
 from user.models import Advisor
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def getQuestions(checklist_type):
@@ -19,9 +20,10 @@ def visitsSchool(request):
     current_user = request.user
     userId = current_user.id
     userObject = Advisor.objects.get(id=userId)
-    nome_cae_user = userObject.nome_cae                                        
-    visita = ScheduleVisit.objects.filter(status=False,  nome_cae_schedule=nome_cae_user)
-    #visita = ScheduleVisit.objects.all()
+    nome_cae_user = userObject.nome_cae
+    visita = ScheduleVisit.objects.filter(status=False,
+                                          nome_cae_schedule=nome_cae_user)
+    # visita = ScheduleVisit.objects.all()
     return render(request, 'visitsSchool.html', {'visita': visita})
 
 
@@ -44,7 +46,7 @@ def checklistForm(request, id_visit):
                         checklist_type=checklist.checklist_type
                         )
                     checklist = tempChecklist
-                except:
+                except ObjectDoesNotExist:
                     checklist.user = request.user
                     checklist.visit = visit
                     checklist.created_date = timezone.now()
@@ -146,7 +148,7 @@ def showAnswers(request, id):
         context = {
             'answers': answers
         }
-    except:
+    except ObjectDoesNotExist:
         context = {
             'error': 'checklist não encontrado'
         }

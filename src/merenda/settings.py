@@ -28,6 +28,14 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 25
+# EMAIL_HOST_USER =  'username@gmail.com'
+# EMAIL_HOST_PASSWORD =  'password'
+# DEFAULT_FROM_EMAIL = 'sanuptpm20@gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,7 +51,8 @@ INSTALLED_APPS = [
     'agendar_reuniao',
     'search_school',
     'agendar_visita',
-    'nuvem_civica'
+    'denuncias',
+    'nuvem_civica',
 ]
 
 MIDDLEWARE = [
@@ -109,16 +118,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.' +
+        'UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.' +
+        'MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.' +
+        'CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.' +
+        'NumericPasswordValidator',
     },
 ]
 

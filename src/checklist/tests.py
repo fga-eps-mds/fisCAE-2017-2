@@ -14,17 +14,18 @@ class ChecklistTest(TestCase):
             id=1,
             item_number=1,
             description="Agua parada",
-            question_type='TA'
+            question_type='HS'
         )
         question.save()
 
-        visit = ScheduleVisit(1, 'Escola Teste', '2017-10-10', '10:10', 'CAE', 0)
+        visit = ScheduleVisit(
+            1, 'Escola Teste', '2017-10-10', '10:10', 'CAE', 0)
         visit.save()
 
     def testSubmitChecklistFormValid(self):
         client = Client()
         client.login(username="amanda", password="123")
-        data = {'checklist_type': 'TA'}
+        data = {'checklist_type': 'HS'}
         response = client.post(
             reverse('checklist:checklistForm', args=(1,)),
             data, follow=True
