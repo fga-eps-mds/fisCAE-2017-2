@@ -13,6 +13,7 @@ import smtplib
 from random import choice
 # from nuvem_civica.services import postUser
 import re
+from email.mime.text import MIMEText
 
 
 def password_sucess(request):
@@ -41,11 +42,23 @@ def change_password(request):
     return render(request, 'change_password.html')
 
 
+def send_mail_password_function(request, texto, email):
+    mensagem = MIMEText(texto)
+    mensagem.set_charset('utf-8')
+    mensagem['Subject'] = "Recuperação de senha - FisCAE"
+    mail = smtplib.SMTP('smtp.gmail.com', 587)
+    mail.ehlo()
+    mail.starttls()
+    mail.login('fiscaeinfo@gmail.com', 'fiscae2017')
+    mail.sendmail('fiscaeinfo@gmail.com', email, mensagem.as_string())
+    mail.close()
+
+
 def reset_password(request):
     if request.method == 'POST':
         email = request.POST['email']
         passwordtmp = ''
-        caracters = '0123456789abcdefghijlmnopqrstuwvxz'
+        caracters = '0123456789abcdefghijklmnopqrstuvwxyz'
         try:
             mensagem1 = 'Solicitação realizada com sucesso! '
             mensagem2 = 'Uma nova senha foi enviada para o email:'
@@ -57,15 +70,10 @@ def reset_password(request):
 
             user.set_password(passwordtmp)
             user.save()
-            content1 = 'Essa e sua senha temporaria '
+            content1 = 'Essa é sua senha temporária '
             content2 = 'para acessar seu perfil ' + passwordtmp
             content = content1 + content2
-            mail = smtplib.SMTP('smtp.gmail.com', 587)
-            mail.ehlo()
-            mail.starttls()
-            mail.login('fiscaeinfo@gmail.com', 'fiscae2017')
-            mail.sendmail('fiscaeinfo@gmail.com', email, content)
-            mail.close()
+            send_mail_password_function(request, content, email)
             return render(request, 'sucess_reset_password.html', {
                 'usuario': usuario,
                 'mensagem': mensagem
