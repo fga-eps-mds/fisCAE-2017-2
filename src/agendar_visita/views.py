@@ -4,6 +4,7 @@ from search_school.views import getSelectedSchool
 from user.models import Advisor
 from .forms import VisitForm
 from agendar_reuniao.views import notify
+from agendar_reuniao.views import current
 
 
 def indexScheduleVisit(request):
@@ -43,9 +44,7 @@ def visited(request):
 
 def sceduled(request):
     try:
-        current_user = request.user
-        userId = current_user.id
-        userObject = Advisor.objects.get(id=userId)
+        userObject = current(request)
         nome_cae_user = userObject.nome_cae
         visits = ScheduleVisit.objects.filter(
             status=False, nome_cae_schedule=nome_cae_user)

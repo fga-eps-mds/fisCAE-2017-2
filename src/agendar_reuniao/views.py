@@ -83,12 +83,17 @@ def indexScheduleMeeting(request):
     return render(request, 'indexScheduleMeeting.html')
 
 
+def current(request):
+    current_user = request.user
+    userId = current_user.id
+    userObject = Advisor.objects.get(id=userId)
+    return (userObject)
+
+
 def scheduled(request):
     try:
-        current_user = request.user
-        userId = current_user.id
-        userObject = Advisor.objects.get(id=userId)
-        cae_user = userObject.nome_cae
+        userObject_scheduled = current(request)
+        cae_user = userObject_scheduled.nome_cae
         todosAgendamentos = Agendamento.objects.filter(
             nome_cae_schedule=cae_user)
 
