@@ -1,6 +1,6 @@
 from django.db import models
 
- 
+
 class Agendamento(models.Model):
     data = models.TextField()
     horario = models.TextField()
@@ -14,4 +14,3 @@ class Agendamento(models.Model):
         visitas = []
         visitas = Agendamento.objects.all()
         return visitas
-
