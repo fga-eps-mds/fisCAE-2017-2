@@ -479,7 +479,7 @@ ul.navbar-nav li a:focus { background: none; color:#3D2BA5; outline: 0; }
 	height: 80px;
     margin: 25px auto 0 auto;
 	padding-top: 19px;
-	background:#3D2BA5;
+	background:#FDFDFF;
 	-moz-border-radius: 40px; -webkit-border-radius: 40px; border-radius: 40px;
 	font-size: 34px;
     color: #0C0909;
