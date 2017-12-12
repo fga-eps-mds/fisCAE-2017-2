@@ -36,6 +36,7 @@ class EditScheduleTest(TestCase):
 
     def test_index_schedule_post(self):
         self.client.force_login(self.user)
+        
         self.assertEqual(self.data1['local'], Agendamento.objects.last().local)
         self.assertEqual(self.data1['time'],
                          Agendamento.objects.last().horario)
@@ -47,21 +48,25 @@ class EditScheduleTest(TestCase):
 
     def test_edit_schedule(self):
         logged_in = self.cliente.login(username='testuser', password='12345')
+
         self.assertEquals(logged_in, True)
 
     def test_template_edit_visit(self):
         self.cliente.login(username='testuser', password='12345')
         response = self.cliente.get('/editVisit/1')
+
         self.assertEquals(301, response.status_code)
 
     def test_template_indexScheduleMeeting(self):
         response = self.cliente.get('/indexScheduleMeeting/')
+
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'indexScheduleMeeting.html')
         self.assertEquals(200, response.status_code)
 
     def test_template_schedules(self):
         response = self.cliente.get('/schedules/')
+
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'schedules.html')
         self.assertEquals(200, response.status_code)
@@ -69,6 +74,7 @@ class EditScheduleTest(TestCase):
     def test_escheduled(self):
         self.cliente.login(username='testuser', password='12345')
         response = self.cliente.get('/scheduled/')
+
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'scheduled.html')
         self.assertEquals(200, response.status_code)
