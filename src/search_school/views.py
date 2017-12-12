@@ -110,14 +110,6 @@ def schoolForm(request):
         return HttpResponseRedirect(reverse('notLoggedIn'))
 
 
-def redirectSchool(request):
-    return render(request, 'redirectSchool.html')
-
-
-def notLoggedIn(request):
-    return render(request, 'notLoggedIn.html')
-
-
 def getSelectedSchool():
     global gSelectedSchool
     return gSelectedSchool

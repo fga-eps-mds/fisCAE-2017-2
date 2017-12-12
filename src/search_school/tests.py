@@ -40,16 +40,6 @@ class SearchSchoolTest(TestCase):
         response = client.get(reverse('search_school:schoolForm'))
         self.assertEquals(response.status_code, 302)
 
-    def test_redirectSchool_page(self):
-        client = Client()
-        response = client.get('/redirectSchool/')
-        self.assertEquals(200, response.status_code)
-
-    def test_notLoggedIn_page(self):
-        client = Client()
-        response = client.get('/notLoggedIn/')
-        self.assertEquals(200, response.status_code)
-
     def test_SchoolForm_invalid(self):
         data = [
             'CEF 201 DE SANTA MARIA',
