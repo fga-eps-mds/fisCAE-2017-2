@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'agendar_reuniao',
     'search_school',
     'agendar_visita',
+    'denuncias',
     'nuvem_civica',
     'compressor',
     'sass_processor',
