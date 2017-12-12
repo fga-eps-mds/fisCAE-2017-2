@@ -1,0 +1,50 @@
+{% extends "Base.html" %} {% block body %}
+{% block content %}
+<style>
+    .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<div style="margin-top : 10%;">
+<h3>CADASTRAR</h3>
+<form method="post">
+  <table align="center">
+  {% csrf_token %}
+  {% for field in form %}
+    <tbody>
+    <tr>
+    <p>
+      <td>
+      <label for="{{ field.label }}" style="display:inline-block;vertical-align:middle">{{ field.label_tag }}</label>
+      </td>
+      <td>
+      {{ field }}
+      </td>
+      <td>
+      {% if field.help_text %}
+        <small style="color: grey">{{ field.help_text }}</small>
+      {% endif %}
+      </td>
+      {% for error in field.errors %}
+        <p style="color: red; font-size: 20px">{{ error }}</p>
+      {% endfor %}
+    </p> 
+    </tr>
+  {% endfor %}
+  {% if messages %}
+  {% for message in messages %}
+    <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}" style="font-size: 20px">{{ message|safe }}</div>
+  {% endfor %}
+  {% endif %}
+  </tbody>
+  </table>
+  <div class="center">
+      <button type="submit" id="submit-register" class="btn btn-primary btn-block btn-large" 
+    style="width: 150px; height: 50px">Salvar</button><br>
+  </div>
+</form>
+{% endblock %}
+{% endblock %}
+</div>

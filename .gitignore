@@ -11,3 +11,5 @@ src/acessar_documento/migrations/*
 coverage_html_report
 db.sqlite3
 *.coverage
+src/.coverage
+src/coverage_html_report/*
