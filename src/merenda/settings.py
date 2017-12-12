@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'agendar_reuniao',
     'search_school',
     'agendar_visita',
-    'nuvem_civica'
+    'denuncias',
+    'nuvem_civica',
 ]
 
 MIDDLEWARE = [
