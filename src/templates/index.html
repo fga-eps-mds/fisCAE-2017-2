@@ -1,10 +1,13 @@
 {% extends "Base.html" %}
+{% load compress %}
+{% load staticfiles %}
 {% block body %}
 <body>
-    <div class="page-title top-content" style="position: relative; z-index: 0; background-image: none; background-position: initial initial; background-repeat: initial initial;">
+  <section id="cover" class="cover">
+    <div class="page-title top-content" style="color: white;text-shadow: 2px 2px 1px rgba(0, 0, 0, 1);"><h1>Bem vindo ao FisCae</h1></div>
         <div class="page-title-text wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;text-align: center;">
-            <h1>Bem vindo ao FisCae</h1>
-            <p>Uma plataforma de apoio aos <br>Conselheiros Alimentares Escolares de todo o Brasil! </p><p>Escolha uma das opções abaixo<br>
+
+            <p style="color: white;text-shadow: 2px 2px 1px rgba(0, 0, 0, 1);">Uma plataforma de apoio aos <br>Conselheiros Alimentares Escolares de todo o Brasil! </p><p style="color: white;text-shadow: 2px 2px 1px rgba(0, 0, 0, 1);">Escolha uma das opções abaixo<br>
                 para navegar nas funcionalidades do nosso sistema:</p>
         </div>
         <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 722px; width: 100%; z-index: -999998; position: absolute; ">
@@ -13,10 +16,9 @@
             top: 50%;
             left: 50%;
             margin-right: -50%;
-            opacity: 0.3;
+            opacity: 1;
             transform: translate(-50%, -50%)">
         </div>
-    </div>
 
     <!-- What we do -->
     {% if request.user and request.user.is_authenticated %}
@@ -46,7 +48,7 @@
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInDown">
                     <div class="block-3-box-icon" >
-                        <a aria-hidden="true" class="icon_pencil" href="upload_file.html"></a>
+                        <a aria-hidden="true" class="icon_pencil" href="{% url 'acessar_documento:upload_file' %}"></a>
                     </div>
                     <a href="{% url 'acessar_documento:upload_file' %}"><h3>Documentos</h3></a>
                     <p>Acesse aqui os documentos</p>
@@ -60,7 +62,7 @@
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInUp">
                     <div class="block-3-box-icon">
-                        <a aria-hidden="true" class="icon_pencil" href="index.html"></a>
+                        <a aria-hidden="true" class="icon_pencil" href="{% url 'denuncias:denunciations' %}"></a>
                     </div>
                     <a href="{% url 'denuncias:denunciations' %}"><h3>Denúncia</h3></a>
                     <p>Viu alguma irregularidade e quer informar aos orgãos competentes?</p>
@@ -70,6 +72,5 @@
     </div>
     {% endif %}
 
-   
-{% endblock %}
 
+{% endblock %}
