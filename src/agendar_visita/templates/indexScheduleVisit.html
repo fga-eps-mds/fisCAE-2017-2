@@ -4,7 +4,7 @@
 {% if request.user and request.user.is_authenticated %}    
 <div id="personalizadoform" >
     <h1>Agendar Visita</h1>
-    <form action="/indexScheduleVisit" method="POST">
+    <form action="" method="POST">
         {% csrf_token %}
         <h3>Escola: {{ school }}</h3>
         <label for="date" style="font-size:20px; display:inline-block;width:100px;">Data</label>
@@ -13,7 +13,7 @@
         <input type="time" class="input-time" name="time" required><br>
         <label for="members" style="font-size:20px; display:inline-block;width:100px;">Membros</label></br>
         <input type="text" style="display:inline-block;text-align:center; color:black ; width:30% ; height:100px" name="members" id="members" maxlenght="1000" placeholder="Insira as observacoes" required size="100px"></br></br>
-        <button type="submit" class="btn btn-primary" id="submit">Enviar</button></br>
+        <button type="submit" class="btn btn-primary" id="submit">Salvar</button></br>
         </form></br>
     </form> 
     <a href="{% url 'agendar_visita:visitScheduled' %}">Visitas marcadas</a>                
