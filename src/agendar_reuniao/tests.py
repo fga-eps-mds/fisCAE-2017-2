@@ -78,3 +78,30 @@ class EditScheduleTest(TestCase):
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'scheduled.html')
         self.assertEquals(200, response.status_code)
+
+    def test_save(self):
+        data = '22/10/2017'
+        local = 'teste'
+        horario = '22:00'
+        tema = 'teste'
+        observacoes = 'teste function'
+        nome_cae = 'CAE test'
+        novo_agendamento = Agendamento()
+        novo_agendamento.data = data
+        novo_agendamento.local = local
+        novo_agendamento.horario = horario
+        novo_agendamento.tema = tema
+        novo_agendamento.observacoes = observacoes
+        novo_agendamento.nome_cae_schedule = nome_cae
+        novo_agendamento.save()
+        test_agendamento = Agendamento.objects.get(nome_cae_schedule=nome_cae)
+        self.assertEquals(data, test_agendamento.data)
+        self.assertEquals(local, test_agendamento.local)
+        self.assertEquals(horario, test_agendamento.horario)
+        self.assertEquals(tema, test_agendamento.tema)
+        self.assertEquals(observacoes, test_agendamento.observacoes)
+        self.assertEquals(nome_cae, test_agendamento.nome_cae_schedule)
+        
+
+
+
