@@ -82,7 +82,10 @@ def completed(request, checklist_id):
             observation.checklist = checklist
             observation.save()
         # return render(request, 'documentsAll.html')
-        return render(request, 'completed.html', {'var_id': var_id, 'form': form})
+        return render(
+               request, 'completed.html',
+               {'var_id': var_id, 'form': form}
+               )
 
 
 def getQuestion(checklist):
@@ -102,7 +105,9 @@ def answerForm(request, checklist_id):
             user_id=user.id,
             )
         if checklist.status:
-            return HttpResponseRedirect(reverse('checklist:completed', args=[checklist.id]))
+            return HttpResponseRedirect(
+                   reverse('checklist:completed', args=[checklist.id])
+                   )
         else:
             question = getQuestion(checklist)
             if request.method == 'POST':
