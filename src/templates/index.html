@@ -32,37 +32,37 @@
             <div class="row">
                 <div class="col-sm-3 block-3-box wow fadeInUp">
                     <div class="block-3-box-icon">
-                        <span aria-hidden="true" class="icon_pencil"></span>
+                        <a aria-hidden="true" class="icon_pencil" href="{% url 'agendar_reuniao:schedules' %}"></a>
                     </div>
                     <h3><a href="{% url 'agendar_reuniao:schedules' %}">Agendar reunião ou visita</a></h3>
                     <p>Marque as reuniões e visitas</p>
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInDown">
                     <div class="block-3-box-icon">
-                        <span aria-hidden="true" class="icon_key"></span>
+                        <a aria-hidden="true" class="icon_pencil" href="{% url 'agendar_visita:visitScheduled' %}"></a>
                     </div>
                     <h3><a href="{% url 'agendar_visita:visitScheduled' %}">Iniciar visita</a></h3>
                     <p>Iniciar visita a uma escola</p>
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInDown">
-                    <div class="block-3-box-icon" href="{% url 'acessar_cartilha:view_pdf_cae' %}">
-                        <span aria-hidden="true" class="icon_pencil"></span>
+                    <div class="block-3-box-icon" >
+                        <a aria-hidden="true" class="icon_pencil" href="{% url 'acessar_documento:upload_file' %}"></a>
                     </div>
                     <a href="{% url 'acessar_documento:upload_file' %}"><h3>Documentos</h3></a>
                     <p>Acesse aqui os documentos</p>
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInDown">
-                    <div class="block-3-box-icon" href="{% url 'acessar_cartilha:view_pdf_cae' %}">
-                        <span aria-hidden="true" class="icon_pencil"></span>
+                    <div class="block-3-box-icon" >
+                        <a aria-hidden="true" class="icon_pencil" href="{% url 'checklist:listSchools' %}"></a>
                     </div>
                     <a href="{% url 'checklist:listSchools' %}"><h3>Checklists</h3></a>
                     <p>Consultar checklists preenchidos</p>
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInUp">
                     <div class="block-3-box-icon">
-                        <span aria-hidden="true" class="icon_pencil"></span>
+                        <a aria-hidden="true" class="icon_pencil" href="{% url 'denuncias:denunciations' %}"></a>
                     </div>
-                    <h3>Denúncia</h3>
+                    <a href="{% url 'denuncias:denunciations' %}"><h3>Denúncia</h3></a>
                     <p>Viu alguma irregularidade e quer informar aos orgãos competentes?</p>
                 </div>
             </div>
