@@ -32,7 +32,7 @@ class ChecklistTest(TestCase):
         )
         print(response.redirect_chain)
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.redirect_chain, [('/answerForm/1/', 302)])
+        self.assertEquals(response.redirect_chain, [('/responder/1/', 302)])
 
     def testSubmitChecklistFormInvalid(self):
         client = Client()
@@ -55,7 +55,7 @@ class ChecklistTest(TestCase):
     def test_listSchools(self):
         c = Client()
         c.login(username="amanda", password="123")
-        response = c.get('/listSchools/')
+        response = c.get('/lista-checklists/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'listSchools.html')
 

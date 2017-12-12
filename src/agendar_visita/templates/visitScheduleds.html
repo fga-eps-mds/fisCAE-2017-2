@@ -7,7 +7,6 @@
                 <h1>Visitas Agendadas</h1>
                 </div>
                 <form action="scheduled" method="POST">
-                    <ol>
                     {% for i in visits %}
                     <div id="formstyle" style="font-size:30px;">
                         Escola: {{ i.schoolName }}<br>
@@ -16,17 +15,15 @@
                         Membros: {{ i.members }}<br>
                         <a href="{% url 'agendar_visita:scheduleVisitDelete' i.id %}">Deletar</a> | 
                         <a href="{% url 'agendar_visita:editVisit' i.id %}">Editar</a>
-                        <br><br>
+                        <br>
+                        </div>
                         <input style="background-color:#6C5FDD; border:#6C5FDD" 
                         type="button" class="btn btn-primary" value="Iniciar" 
                         onclick="location.href='{% url 'checklist:checklistForm' i.id  %}'"> <br>
-                    </div>   
+                        <br>
                     {% endfor %}
-                    </ol>
                 </form>
-                <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" 
-                class="btn btn-primary" value="Nova Visita" onclick="location.href='{% url 'search_school:searchSchool' %}'">
-            
+                <a href="{% url 'search_school:searchSchool' %}" class="btn btn-primary">Nova visita</a>                                
             {% else %}
             <div id="pop">
                 <a class="close" id="close" href="#" onclick="document.getElementById('pop').style.display='none';">×</a>

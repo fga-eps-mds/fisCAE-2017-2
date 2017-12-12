@@ -29,6 +29,7 @@
   <link href="{% static 'assets/css/media-queries.css' %}"
   rel="stylesheet" media="screen">
   
+  
   <link rel="shortcut icon" sizes="20x20" href="{% static 'assets/ico/f.png' %}">
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'assets/ico/apple-touch-icon-144-precomposed.png' %}">
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'assets/ico/apple-touch-icon-114-precomposed.png' %}">
@@ -63,9 +64,8 @@
                     {% else %}
                       <li><a href="{% url 'user:userEdit'%} ">{{ request.user.username }}</a></li> 
                     {% endif %}
-                    <li><a href="documentsAll.html">Documentos</a></li>
-                    <li><a href="#">Sobre</a></li>
-                    <li><a href="denunciations.html">Denúncias</a></li>
+                    <li><a href="{% url 'acessar_documento:documentsAll' %}">Documentos</a></li>
+                    <li><a href="/visualizar/CartilhaCae.pdf/">Cartilha</a></li>
                     <li>
                       {% if perms.user.administrator and perms.user.president%}
                       <div class="dropdown">

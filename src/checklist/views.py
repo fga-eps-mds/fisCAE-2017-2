@@ -23,7 +23,6 @@ def visitsSchool(request):
     nome_cae_user = userObject.nome_cae
     visita = ScheduleVisit.objects.filter(status=False,
                                           nome_cae_schedule=nome_cae_user)
-    # visita = ScheduleVisit.objects.all()
     return render(request, 'visitsSchool.html', {'visita': visita})
 
 

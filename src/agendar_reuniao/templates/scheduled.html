@@ -18,7 +18,6 @@
         </div>
     <form action="scheduled"  method="POST">
         {% csrf_token %}
-        <ol>
         {% for a in todosAgendamentos %}
         <div id="formstyle" style="font-size:30px;">
             Local: {{ a.local }}<br>
@@ -27,12 +26,11 @@
             Observações: {{ a.observacoes }}<br>
             <a href="{% url 'agendar_reuniao:schedule_delete' a.id %}">Excluir</a> |   
             <a href="{% url 'agendar_reuniao:edit_schedule' a.id %}">Editar</a>         
-            <br><br>
-        </div>   
+            </div>   
+            <br>
         {% endfor %}
-        </ol>
     </form>
-    <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Novo agendamento" onclick="IndexScheduleMeetingRedirect()">
+    <a href="{% url 'agendar_reuniao:indexScheduleMeeting' %}" class="btn btn-primary">Novo agendamento</a>                                    
 
 {% else %}
     <div id="errorMessage">
