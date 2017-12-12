@@ -54,7 +54,8 @@ class ScheduleTest(TestCase):
         self.assertTemplateUsed(response, 'scheduled.html')
 
     def test_edit_schedule_get(self):
-        response = self.cliente.get('/edit_schedule/{}/'.format(self.agenda.pk))
+        response = self.cliente.get(
+            '/edit_schedule/{}/'.format(self.agenda.pk))
         self.assertEqual(response.status_code, 302)
 
     def test_edit_schedule_post(self):
@@ -64,17 +65,17 @@ class ScheduleTest(TestCase):
             'local': 'parque',
             'observacoes': '2 horas'
         }
-        response = self.cliente.post('/edit_schedule/{}/'.format(self.agenda.pk),
-                                     data)
+        response = self.cliente.post(
+            '/edit_schedule/{}/'.format(self.agenda.pk), data)
         self.assertEqual(response.status_code, 302)
 
-    def teste_template_indexScheduleMeeting(self):
+    def test_template_indexScheduleMeeting(self):
         response = self.cliente.get('/indexScheduleMeeting/')
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'indexScheduleMeeting.html')
         self.assertEquals(200, response.status_code)
 
-    def teste_template_schedules(self):
+    def test_template_schedules(self):
         response = self.cliente.get('/schedules/')
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'schedules.html')
