@@ -9,7 +9,7 @@ class TestDoc(TestCase):
         self.c = Client()
         with open('CartilhaCae.pdf', 'rb') as pdf:
             self.data = {'title': 'cartilha', 'arquivo': pdf}
-            self.c.post('/upload_file/', self.data)
+            self.c.post('/adicionar-arquivo/', self.data)
         pdf.close
 
     def test_upload_file(self):
@@ -18,7 +18,7 @@ class TestDoc(TestCase):
         self.assertEqual(self.data['title'], Arquivos.objects.last().title)
 
     def test_documentsAll(self):
-        response = self.c.get('/documentsAll/')
+        response = self.c.get('/documentos/')
         self.assertEquals(200, response.status_code)
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'documentsAll.html')
@@ -26,13 +26,13 @@ class TestDoc(TestCase):
         self.assertNotContains(response, '.Ds_Store')
 
     def test_upload_file_template(self):
-        response = self.c.get('/upload_file/')
+        response = self.c.get('/adicionar-arquivo/')
         self.assertEquals(200, response.status_code)
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'upload_file.html')
 
     def test_viewpdf(self):
-        response = self.c.get('/viewpdf/CartilhaCae.pdf', follow=True)
+        response = self.c.get('/visualizar/CartilhaCae.pdf', follow=True)
         self.assertEquals(200, response.status_code)
 
     def tearDown(self):
