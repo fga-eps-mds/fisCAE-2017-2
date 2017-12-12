@@ -10,8 +10,8 @@ def sendmaildenunciation(request, texto, subject, emails):
     mail = smtplib.SMTP('smtp.gmail.com', 587)
     mail.ehlo()
     mail.starttls()
-    mail.login('fiscaeinfo@gmail.com', 'fiscae2017')
-    mail.sendmail('fiscaeinfo@gmail.com', emails, mensagem.as_string())
+    mail.login('noreplayfiscae@gmail.com', 'fiscaeunb')
+    mail.sendmail('noreplayfiscae@gmail.com', emails, mensagem.as_string())
 
 
 def denunciations(request):

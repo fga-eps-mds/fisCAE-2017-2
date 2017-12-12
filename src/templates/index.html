@@ -21,6 +21,7 @@
         </div>
 
     <!-- What we do -->
+    <br><br><br>
     {% if request.user and request.user.is_authenticated %}
     <div class="block-3-container section-container what-we-do-container">
         <div class="container">
@@ -41,28 +42,28 @@
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInDown">
                     <div class="block-3-box-icon">
-                        <a aria-hidden="true" class="icon_pencil" href="{% url 'agendar_visita:visitScheduled' %}"></a>
+                        <a aria-hidden="true" class="icon_comment" href="{% url 'agendar_visita:visitScheduled' %}"></a>
                     </div>
                     <h3><a href="{% url 'agendar_visita:visitScheduled' %}">Iniciar visita</a></h3>
                     <p>Iniciar visita a uma escola</p>
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInDown">
                     <div class="block-3-box-icon" >
-                        <a aria-hidden="true" class="icon_pencil" href="{% url 'acessar_documento:upload_file' %}"></a>
+                        <a aria-hidden="true" class="icon_book" href="{% url 'acessar_documento:upload_file' %}"></a>
                     </div>
                     <a href="{% url 'acessar_documento:upload_file' %}"><h3>Documentos</h3></a>
                     <p>Acesse aqui os documentos</p>
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInDown">
                     <div class="block-3-box-icon" >
-                        <a aria-hidden="true" class="icon_pencil" href="{% url 'checklist:listSchools' %}"></a>
+                        <a aria-hidden="true" class="icon_info" href="{% url 'checklist:listSchools' %}"></a>
                     </div>
                     <a href="{% url 'checklist:listSchools' %}"><h3>Checklists</h3></a>
                     <p>Consultar checklists preenchidos</p>
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInUp">
                     <div class="block-3-box-icon">
-                        <a aria-hidden="true" class="icon_pencil" href="{% url 'denuncias:denunciations' %}"></a>
+                        <a aria-hidden="true" class="icon_mail" href="{% url 'denuncias:denunciations' %}"></a>
                     </div>
                     <a href="{% url 'denuncias:denunciations' %}"><h3>Denúncia</h3></a>
                     <p>Viu alguma irregularidade e quer informar aos orgãos competentes?</p>
