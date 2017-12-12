@@ -42,20 +42,20 @@ class ScheduleTest(TestCase):
             'local': 'no parque',
             'note': 'levem lanche'
         }
-        response = self.client.post('/indexScheduleMeeting/', data,
-                                    follow=True)
-        self.assertEqual(data['local'], Agendamento.objects.last().local)
-        self.assertEqual(data['time'],
+        self.response = self.client.post('/agendar-reuniao/', data,
+                                         follow=True)
+        self.assertEqual(self.data['local'], Agendamento.objects.last().local)
+        self.assertEqual(self.data['time'],
                          Agendamento.objects.last().horario)
         self.assertEqual(data['date'], Agendamento.objects.last().data)
         self.assertEqual(data['note'],
                          Agendamento.objects.last().observacoes)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'scheduled.html')
+        self.assertEqual(self.response.status_code, 200)
+        self.assertTemplateUsed(self.response, 'scheduled.html')
 
     def test_edit_schedule_get(self):
         response = self.cliente.get(
-            '/edit_schedule/{}/'.format(self.agenda.pk))
+            '/editar-reuniao/{}/'.format(self.agenda.pk))
         self.assertEqual(response.status_code, 302)
 
     def test_edit_schedule_post(self):
@@ -66,17 +66,17 @@ class ScheduleTest(TestCase):
             'observacoes': '2 horas'
         }
         response = self.cliente.post(
-            '/edit_schedule/{}/'.format(self.agenda.pk), data)
+            '/editar-reuniao/{}/'.format(self.agenda.pk), data)
         self.assertEqual(response.status_code, 302)
 
-    def test_template_indexScheduleMeeting(self):
-        response = self.cliente.get('/indexScheduleMeeting/')
+    def teste_template_indexScheduleMeeting(self):
+        response = self.cliente.get('/agendar-reuniao/')
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'indexScheduleMeeting.html')
         self.assertEquals(200, response.status_code)
 
-    def test_template_schedules(self):
-        response = self.cliente.get('/schedules/')
+    def teste_template_schedules(self):
+        response = self.cliente.get('/eventos/')
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'schedules.html')
         self.assertEquals(200, response.status_code)

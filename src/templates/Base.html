@@ -56,14 +56,15 @@
                 {% if request.user and not request.user.is_authenticated %}
                     <li><a href="{% url 'user:login' %}">Login</a></li>
                     <li><a href="#">Sobre</a></li>
+                    <li><a href="{% url 'denuncias:denunciations' %}">Denúncias</a></li>
                 {% else %}
                     {% if perms.user.administrator %}
                       <li><a href="">{{ request.user.username }}</a></li> 
                     {% else %}
                       <li><a href="{% url 'user:userEdit'%} ">{{ request.user.username }}</a></li> 
                     {% endif %}
-                    <li><a href="documentsAll.html">Documentos</a></li>
-                    <li><a href="#">Sobre</a></li>
+                    <li><a href="{% url 'acessar_documento:documentsAll' %}">Documentos</a></li>
+                    <li><a href="/visualizar/CartilhaCae.pdf/">Cartilha</a></li>
                     <li>
                       {% if perms.user.administrator and perms.user.president%}
                       <div class="dropdown">
