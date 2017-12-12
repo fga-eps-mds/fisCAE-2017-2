@@ -52,10 +52,10 @@
                <input type="email" name="email" maxlength="100" required placeholder="E-mail">
                </label></br>
                <label>
-               <input type="" name="cpf" min="0" max="99999999999" placeholder="CPF" required>
+               <input type="" name="cpf" min="0" max="99999999999" pattern="[0-9]{11}" placeholder="CPF (apenas números)" required>
                </label><br>
                <div class="select-cae" >
-                <h4>A QUAL TIPO DE CAE VOCÊ PERTENCE?</h1>
+                <h4>A QUAL TIPO DE CAE VOCÊ PERTENCE?</h4>
                     <select name="tipo_cae">
                        <option value="Municipal">Municipal</option>
                        <option value="Estadual">Estadual</option>
@@ -71,10 +71,12 @@
                 <label>
                 <input name="uf" type="" id="uf" size="" placeholder="Estado" readonly/></label><br />
                 <label>
-               <input type="password" name="password" id="password" maxlength="30" required placeholder="Senha" oninput="validatePassword();" >
+               <input type="password" name="password" id="password" pattern="(?=.*[A-Za-z])(?=.*\d)[A-Za-z\u00C0-\u00FF !@#;$%?&<>*(){}_+^-=,.:°\d]{6,}" maxlength="30" minlength="6" required placeholder="Senha" oninput="validatePassword();" >
                 </label></br>
+                <h4>• Deve conter letras e números</h4>
+                <h4>• Tamanho mínimo: 6</h4>
                 <label>
-               <input type="password"  id="password_confirmation" maxlength="30" minlength="6" required placeholder="Confirmar senha" oninput="validatePassword();"> 
+               <input type="password"  id="password_confirmation" pattern="(?=.*[A-Za-z])(?=.*\d)[A-Za-z\u00C0-\u00FF !@#;$%?&<>*(){}_+^-=,.:°\d]{6,}" maxlength="30" minlength="6" required placeholder="Confirmar senha" oninput="validatePassword();"> 
                </label></br>
                <p class="error" id="password-validation"></p>
                <button type="submit" id="submit-register" class="btn btn-primary btn-block btn-large" style="width: 150px; height: 50px">Salvar</button><br>

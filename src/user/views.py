@@ -33,7 +33,7 @@ def change_password(request):
             django_logout(request)
             return render(request, 'password_sucess.html')
         else:
-            mensagem = 'Senhas incorretas!'
+            mensagem = 'As senhas não correspondem'
             return render(request, 'change_password.html', {
                 'mensagem': mensagem
             })
@@ -47,7 +47,7 @@ def reset_password(request):
         passwordtmp = ''
         caracters = '0123456789abcdefghijlmnopqrstuwvxz'
         try:
-            mensagem1 = 'Solicitação realizada com sucesso!'
+            mensagem1 = 'Solicitação realizada com sucesso! '
             mensagem2 = 'Uma nova senha foi enviada para o email:'
             mensagem = mensagem1 + mensagem2
             usuario = Advisor.objects.get(email=email)
