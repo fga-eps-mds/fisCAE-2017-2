@@ -67,10 +67,9 @@ class EditScheduleTest(TestCase):
         self.assertTemplateUsed(response, 'schedules.html')
         self.assertEquals(200, response.status_code)
 
-    def test_escheduled(self):
+    def test_scheduled(self):
         self.cliente.login(username='testuser', password='12345')
-        response = self.cliente.get('/scheduled/')
-
+        response = self.cliente.get('/reunioes-agendadas/')
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'scheduled.html')
         self.assertEquals(200, response.status_code)
