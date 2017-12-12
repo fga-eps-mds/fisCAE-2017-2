@@ -46,9 +46,9 @@
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInDown">
                     <div class="block-3-box-icon" >
-                        <a aria-hidden="true" class="icon_pencil" href="upload_file.html"></a>
+                        <a aria-hidden="true" class="icon_pencil" href="{% url 'acessar_documento:upload_file' %}"></a>
                     </div>
-                    <a href="upload_file.html"><h3>Documentos</h3></a>
+                    <a href="{% url 'acessar_documento:upload_file' %}"><h3>Documentos</h3></a>
                     <p>Acesse aqui os documentos</p>
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInDown">
@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-sm-3 block-3-box wow fadeInUp">
                     <div class="block-3-box-icon">
-                        <a aria-hidden="true" class="icon_pencil" href="index.html"></a>
+                        <a aria-hidden="true" class="icon_pencil" href="{% url 'denuncias:denunciations' %}"></a>
                     </div>
                     <a href="{% url 'denuncias:denunciations' %}"><h3>Denúncia</h3></a>
                     <p>Viu alguma irregularidade e quer informar aos orgãos competentes?</p>

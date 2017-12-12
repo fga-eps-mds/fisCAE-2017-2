@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect, reverse
+from django.shortcuts import render, HttpResponseRedirect, reverse
 from agendar_reuniao.models import Agendamento
 from agendar_reuniao.forms import AgendamentoForm
 from user.models import Advisor
 import smtplib
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
 # from email.MIMEText import MIMEText
 # from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -56,7 +56,7 @@ def edit_schedule(request, pk):
     form = AgendamentoForm(request.POST or None, instance=reuniao)
     if form.is_valid():
         form.save()
-        return redirect('../../scheduled.html')
+        return HttpResponseRedirect(reverse('agendar_reuniao:scheduled'))
     return render(request, 'edit_schedule.html', {'form': form})
 
 
