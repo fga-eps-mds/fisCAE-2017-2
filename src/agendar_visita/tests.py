@@ -23,7 +23,6 @@ class EditScheduleTest(TestCase):
 
     def setUp(self):
         self.cliente = Client()
-        self.cliente = Client()
         self.user = User.objects.create_user(
             username='testuser', password='12345')
         self.user.save()
@@ -40,18 +39,21 @@ class EditScheduleTest(TestCase):
         self.assertTemplateUsed(response, 'indexScheduleVisit.html')
         self.assertEquals(200, response.status_code)
 
-    ''' def test_indexScheduleVisit_get(self):
+    def test_indexScheduleVisit_get(self):
         self.cliente.force_login(self.user)
-        getFilteredItems('CEF 201 DE SANTA MARIA', 'DF', 'Brasília')
 
        # self.cliente.post('/schoolForm/', data, follow=True)
         data1 = {
+            'nome': 'joao',
+            'codEscola': '1',
             'date': '11/2',
             'time': '11:20',
             'members': 'aquiles'
         }
-        response = self.cliente.post('/indexScheduleVisit/', data1, follow=True)
+        response = self.cliente.post(
+            '/indexScheduleVisit/', data1, follow=True)
         self.assertEqual(data1['date'], ScheduleVisit.objects.last().date)
         self.assertEqual(data1['time'], ScheduleVisit.objects.last().time)
-        self.assertEqual(data1['members'], ScheduleVisit.objects.last().members)
-        self.assertEqual(response.status_code, 200) '''
+        self.assertEqual(data1['members'],
+                         ScheduleVisit.objects.last().members)
+        self.assertEqual(response.status_code, 200)

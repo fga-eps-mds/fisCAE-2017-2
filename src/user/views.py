@@ -111,7 +111,8 @@ def setAdvisorPerm(user):
 
 def setCaeType(person):
     if(person.tipo_cae == 'Municipal'):
-        person.nome_cae = 'CAE' + ' ' + person.tipo_cae + ' ' + person.municipio
+        person.nome_cae = ('CAE' + ' ' + person.tipo_cae +
+                           ' ' + person.municipio)
     else:
         person.nome_cae = 'CAE' + ' ' + person.tipo_cae + ' ' + person.uf
 
