@@ -12,7 +12,11 @@ class Checklist(models.Model):
         on_delete=models.CASCADE
     )
 
-    user = models.ForeignKey('auth.User')
+    user = models.ForeignKey(
+        'auth.User',
+        related_name='users',
+        on_delete=models.CASCADE,
+    )
 
     CHECKLIST_TYPE = (
         ('HS', 'Questões Higiênico Sanitárias'),
