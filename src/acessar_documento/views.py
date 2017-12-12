@@ -8,7 +8,6 @@ from django.contrib import messages
 
 def viewpdf(request, pk):
     fs = FileSystemStorage()
-    # with fs.open(pk+'.pdf') as pdf:
     with fs.open(pk) as pdf:
         response = HttpResponse(pdf.read(), content_type='application/pdf')
         response['Content-Disposition'] = 'inline;filename='
@@ -29,12 +28,9 @@ def upload_file(request):
                 messages.SUCCESS,
                 'Arquivo adicionado com sucesso!'
                 )
-        # return render(request, 'documentsAll.html')
     return render(request, 'upload_file.html', {'form': form})
 
 
 def documentsAll(request):
     lista = listdir('media')
     return render(request, 'documentsAll.html', {'lista': lista})
-    # lista = Arquivos.arquivosSalvos()
-    # return render(request,'documentsAll.html',{'lista':lista})

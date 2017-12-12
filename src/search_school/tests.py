@@ -52,3 +52,9 @@ class SearchSchoolTest(TestCase):
             ]
         form = SchoolForm(schools=data)
         self.assertFalse(form.is_valid())
+
+    def testRenderSeachPage(self):
+        client = Client()
+        client.login(username="amanda", password="123")
+        response = client.get(reverse('search_school:searchSchool'))
+        self.assertEquals(response.status_code, 302)
