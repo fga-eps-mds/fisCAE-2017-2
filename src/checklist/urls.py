@@ -4,7 +4,10 @@ from checklist import views
 
 app_name = 'checklist'
 urlpatterns = [
-    url(r'^checklist-finalizado', views.completed, name='completed'),
+    url(r'^checklist-finalizado/(?P<checklist_id>\d+)/$',
+        views.completed,
+        name='completed'),
+
     url(r'^selecionar-checklist/(?P<id_visit>\d+)/$',
         views.checklistForm,
         name='checklistForm'),
