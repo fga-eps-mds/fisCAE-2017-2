@@ -91,11 +91,15 @@ def scheduled(request):
         cae_user = userObject.nome_cae
         todosAgendamentos = Agendamento.objects.filter(
             nome_cae_schedule=cae_user)
+
         return render(request, 'scheduled.html', {
             'todosAgendamentos': todosAgendamentos
         })
     except:
-        mensagem = "Apenas membros de CAE podem ter acesso à essas funcionalidades!"
+
+        mensagem1 = "Apenas membros de CAE podem "
+        mensagem2 = "ter acesso à essas funcionalidades!"
+        mensagem = mensagem1 + mensagem2
         return render(request, 'schedules.html', {'mensagem': mensagem})
 
 

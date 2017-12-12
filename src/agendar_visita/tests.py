@@ -6,33 +6,6 @@ from django.contrib.auth.models import User
 class EditScheduleTest(TestCase):
     def setUp(self):
         self.cliente = Client()
-        self.user = User.objects.create_user(
-            username='testuser', password='12345')
-        self.user.save()
-        data = {
-            'username': 'test555',
-            'password': '123456',
-            'name': 'joao',
-            'email': 'jj@asb.com',
-            'cpf': '1234',
-            'tipo_cae': 'Municipal',
-            'user_type': 'advisor',
-            'nome_cae': 'CAE',
-            'cep': '72430107',
-            'bairro': 'setor norte',
-            'municipio': 'Brasilia',
-            'uf': 'DF'
-        }
-        self.advisor = self.client.post('/registro/', data)
-        self.client.force_login(self.user)
-        self.data1 = {
-            'date': '22 de janeiro',
-            'time': 'dez e vinte',
-            'local': 'no parque',
-            'note': 'levem lanche'
-        }
-        self.response = self.client.post(
-            '/indexScheduleMeeting/', self.data1, follow=True)
 
     def test_edit_schedule(self):
         user = User.objects.create(username='testuser')

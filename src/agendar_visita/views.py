@@ -55,7 +55,9 @@ def sceduled(request):
             {'visits': visits},
         )
     except:
-        mensagem = "Apenas membros de CAE podem ter acesso à essas funcionalidades!"
+        mensagem1 = "Apenas membros de CAE podem "
+        mensagem2 = "ter acesso à essas funcionalidades!"
+        mensagem = mensagem1 + mensagem2
         return render(request, 'schedules.html', {'mensagem': mensagem})
 
 
