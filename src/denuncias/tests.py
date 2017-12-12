@@ -1,3 +1,19 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 
-# Create your tests here.
+
+class TestViews(TestCase):
+
+    def setUp(self):
+        self.c = Client()
+
+    def test_denunciations(self):
+        data = {
+            'escola': 'fiscae',
+            'cidade': 'brasilia',
+            'estado': 'DF',
+            'endereco': 'endereco_test',
+            'subject': 'testando denuncias',
+            'description': 'realizando testes das denuncias',
+        }
+        response = self.c.post('/denunciations/', data)
+        self.assertEquals(200, response.status_code)
