@@ -67,7 +67,7 @@ def registerProfile(description, codAplicativo, email, password):
         'Content-type': 'application/json',
         'Accept': 'text/plain',
         'appToken': str(app_token)
-        }
+    }
     response = requests.post(url, data=json.dumps(data), headers=headers)
 
     return response
@@ -94,7 +94,7 @@ def associateProfile(perfil, codPessoa, email, password):
     headers = {
         'Content-type': 'application/json',
         'appToken': str(app_token)
-        }
+    }
     response = requests.post(url, data=json.dumps(data), headers=headers)
     print(response.text)
     return response

@@ -57,10 +57,32 @@
                     <li><a href="{% url 'user:login' %}">Login</a></li>
                     <li><a href="#">Sobre</a></li>
                 {% else %}
-                    <li><a href="{% url 'user:userEdit' user.id %} ">{{ request.user.username }}</a></li> 
+                    {% if perms.user.administrator %}
+                      <li><a href="">{{ request.user.username }}</a></li> 
+                    {% else %}
+                      <li><a href="{% url 'user:userEdit'%} ">{{ request.user.username }}</a></li> 
+                    {% endif %}
                     <li><a href="documentsAll.html">Documentos</a></li>
                     <li><a href="#">Sobre</a></li>
-                    <li><a href="{% url 'user:logout' %}">Sair</a></li>
+                    <li>
+                      {% if perms.user.administrator and perms.user.president%}
+                      <div class="dropdown">
+                          <button class="dropbtn">OPÇÕES</button>
+                          <div class="dropdown-content">
+                            <a href="{% url 'user:addPresident' %}">Adicionar Presidente</a>
+                            <a href="{% url 'user:addAdmin' %}">Adicionar Administrador</a>
+                          </div>
+                        </div>
+                      {% elif perms.user.president %}
+                      <div class="dropdown">
+                        <button class="dropbtn">OPÇÕES</button>
+                        <div class="dropdown-content">
+                          <a href="{% url 'user:listRequests' %}">Aprovar cadastros</a>
+                        </div>
+                      </div>
+                      {% endif %}
+                    </li>
+                    <li><a href="{% url 'user:logout' %}">Sair</a></li>    
                 {% endif %}
             </ul>
         </div>
