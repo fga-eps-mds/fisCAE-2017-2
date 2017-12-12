@@ -21,7 +21,8 @@ class EditScheduleTest(TestCase):
             'cep': '72430107',
             'bairro': 'setor norte',
             'municipio': 'Brasilia',
-            'uf': 'DF'}
+            'uf': 'DF'
+        }
         self.advisor = self.client.post('/registro/', data)
         self.client.force_login(self.user)
         self.data1 = {
@@ -30,8 +31,8 @@ class EditScheduleTest(TestCase):
             'local': 'no parque',
             'note': 'levem lanche'
         }
-        self.response = self.client.post('/indexScheduleMeeting/', self.data1,
-                                         follow=True)
+        self.response = self.client.post(
+            '/indexScheduleMeeting/', self.data1, follow=True)
 
     def test_index_schedule_post(self):
         self.client.force_login(self.user)
@@ -64,12 +65,10 @@ class EditScheduleTest(TestCase):
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'schedules.html')
         self.assertEquals(200, response.status_code)
-    
+
     def test_escheduled(self):
-        self.cliente.login(username='testuser', password='12345')        
-        response = self.cliente.get('/scheduled/')  
-        self.assertTemplateUsed(response, 'Base.html')              
+        self.cliente.login(username='testuser', password='12345')
+        response = self.cliente.get('/scheduled/')
+        self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'scheduled.html')
         self.assertEquals(200, response.status_code)
-        
-
