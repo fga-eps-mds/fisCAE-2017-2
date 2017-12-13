@@ -4,6 +4,7 @@ from search_school.views import getSelectedSchool
 from user.models import Advisor
 from .forms import VisitForm
 from agendar_reuniao.views import notify
+from agendar_reuniao.views import current
 
 
 def indexScheduleVisit(request):
@@ -22,14 +23,8 @@ def indexScheduleVisit(request):
         newSchedule.members = request.POST['members']
         newSchedule.save()
         notify(request, newSchedule, tipo)
-        return HttpResponseRedirect(
-                            reverse('agendar_visita:visitScheduled')
-                            )
-    return render(
-                request,
-                'indexScheduleVisit.html',
-                {'school': schoolName}
-                )
+        return HttpResponseRedirect(reverse('agendar_visita:visitScheduled'))
+    return render(request, 'indexScheduleVisit.html', {'school': schoolName})
 
 
 def visited(request):
@@ -37,28 +32,32 @@ def visited(request):
     userId = current_user.id
     userObject = Advisor.objects.get(id=userId)
     nome_cae_user = userObject.nome_cae
-    visited = ScheduleVisit.objects.filter(status=True,
-                                           nome_cae_schedule=nome_cae_user)
+    visited = ScheduleVisit.objects.filter(
+        status=True, nome_cae_schedule=nome_cae_user)
 
     return render(
-            request,
-            'visitedScheduleds.html',
-            {'visited': visited},
-            )
+        request,
+        'visitedScheduleds.html',
+        {'visited': visited},
+    )
 
 
 def sceduled(request):
-    current_user = request.user
-    userId = current_user.id
-    userObject = Advisor.objects.get(id=userId)
-    nome_cae_user = userObject.nome_cae
-    visits = ScheduleVisit.objects.filter(status=False,
-                                          nome_cae_schedule=nome_cae_user)
-    return render(
+    try:
+        userObject = current(request)
+        nome_cae_user = userObject.nome_cae
+        visits = ScheduleVisit.objects.filter(
+            status=False, nome_cae_schedule=nome_cae_user)
+        return render(
             request,
             'visitScheduleds.html',
             {'visits': visits},
-            )
+        )
+    except:
+        mensagem1 = "Apenas membros de CAE podem "
+        mensagem2 = "ter acesso à essas funcionalidades!"
+        mensagem = mensagem1 + mensagem2
+        return render(request, 'schedules.html', {'mensagem': mensagem})
 
 
 def scheduleVisitDelete(request, pk):
@@ -72,7 +71,5 @@ def editVisit(request, pk):
     school = visit.schoolName
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect(
-                            reverse('agendar_visita:visitScheduled')
-                            )
+        return HttpResponseRedirect(reverse('agendar_visita:visitScheduled'))
     return render(request, 'editVisit.html', {'form': form, 'school': school})
