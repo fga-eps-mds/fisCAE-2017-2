@@ -2,7 +2,6 @@
 <p align="center"><a href="https://fiscae.herokuapp.com/" target="_blank"><img width="300"src="https://i.imgur.com/PTkqmJC.png"></a></p>
 
 <p align="center">
-  
   <a href="https://travis-ci.org/fga-gpp-mds/fisCAE-2017-2"><img src="https://travis-ci.org/fga-gpp-mds/fisCAE-2017-2.svg?branch=development" alt="Build"></a>
   <a href="https://landscape.io/github/fga-gpp-mds/fisCAE-2017-2/development"><img src="https://landscape.io/github/fga-gpp-mds/fisCAE-2017-2/development/landscape.svg?style=flat" alt="Code Health"></a>
   <a href="https://coveralls.io/github/fga-gpp-mds/fisCAE-2017-2?branch=development"><img src="https://coveralls.io/repos/github/fga-gpp-mds/fisCAE-2017-2/badge.svg?branch=development" alt="Coverage Status"></a>
