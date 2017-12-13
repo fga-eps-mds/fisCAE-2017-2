@@ -130,14 +130,17 @@ class ScheduleTest(TestCase):
 
     def test_edit_schedule(self):
         self.cliente.login(username='testuser', password='12345')
-        self.assertTemplateUsed('Base.html')
-        self.assertTemplateUsed('edit_schedule.html')
+        response = self.cliente.get('/editar-reuniao/{}/'.format(1))
+        self.assertTemplateUsed('Base.html')        
+        self.assertTemplateUsed(response, 'edit_schedule.html')                
+        self.assertEqual(response.status_code, 200)
 
     def test_schedule_delete(self):
         self.cliente.login(username='testuser', password='12345')
-        self.assertTemplateUsed('Base.html')
-        self.assertTemplateUsed('schedule_delete.html')
-
+        response = self.cliente.get('/deletar-reuniao/{}/'.format(1))
+        self.assertTemplateUsed(response, 'schedule_delete.html')                
+        self.assertEqual(response.status_code, 200)
+        
 
 
       
