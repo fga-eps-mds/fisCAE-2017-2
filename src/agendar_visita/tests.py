@@ -73,14 +73,14 @@ class EditScheduleTest(TestCase):
     def test_edit_schedule(self):
         # logged_in = self.cliente.login(username='testuser', password='12345')
         logged_in = self.cliente.login(username="testuser", password="12345")
-        self.assertEquals(logged_in, True)        
+        self.assertEquals(logged_in, True)
         # response = self.cliente.get('/editar-visita/{}/'.format(1))
-        # self.assertTemplateUsed(response, 'Base.html')   
-        # self.assertTemplateUsed(response, 'editVisit.html')                
+        # self.assertTemplateUsed(response, 'Base.html')
+        # self.assertTemplateUsed(response, 'editVisit.html')
         # self.assertEqual(response.status_code, 200)
 
     def test_template_schedules(self):
-        logged_in = self.cliente.login(username='testuser', password='12345')
+        self.cliente.login(username='testuser', password='12345')
         response = self.cliente.get('/visitas-agendadas/')
         self.assertTemplateUsed(response, 'Base.html')
         self.assertEquals(200, response.status_code)
@@ -92,7 +92,7 @@ class EditScheduleTest(TestCase):
         # self.assertTemplateUsed(response, 'scheduled.html')
         # self.assertEquals(200, response.status_code)
 
-    def test_indexScheduleVisit_get(self):
+    def test_indexScheduleVisit_post(self):
         self.cliente.force_login(self.user)
 
         # self.cliente.post('/schoolForm/', data, follow=True)
@@ -114,13 +114,26 @@ class EditScheduleTest(TestCase):
     def test_escheduledVisitDelete(self):
         self.cliente.login(username="testuser", password="12345")
         response = self.cliente.get('/deletar-visita/{}/'.format(1))
-        self.assertTemplateUsed(response, 'deleteScheduleVisit.html')                
+        self.assertTemplateUsed(response, 'deleteScheduleVisit.html')
         self.assertEqual(response.status_code, 200)
-
 
     def test_esceduled(self):
         self.cliente.login(username="testuser", password="12345")
         response = self.cliente.get('/visitas-agendadas/')
-        self.assertTemplateUsed(response, 'Base.html')   
-        self.assertTemplateUsed(response, 'visitScheduleds.html')                
+        self.assertTemplateUsed(response, 'Base.html')
+        self.assertTemplateUsed(response, 'visitScheduleds.html')
         self.assertEqual(response.status_code, 200)
+
+    def test_esceduled_except(self):
+        response = self.cliente.get('/visitas-agendadas/')
+        self.assertTemplateUsed(response, 'Base.html')
+        self.assertTemplateUsed(response, 'schedules.html')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(
+            response, "Apenas membros de CAE podem" +
+            " ter acesso à essas funcionalidades!")
+
+    def test_scheduleVisit(self):
+        agenda = ScheduleVisit()
+        agenda.updateStatus(agenda)
+        self.assertFalse(agenda.status)

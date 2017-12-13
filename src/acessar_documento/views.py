@@ -11,8 +11,8 @@ def viewpdf(request, pk):
     with fs.open(pk) as pdf:
         response = HttpResponse(pdf.read(), content_type='application/pdf')
         response['Content-Disposition'] = 'inline;filename='
+        pdf.close()
         return response
-    pdf.close()
 
 
 def upload_file(request):
