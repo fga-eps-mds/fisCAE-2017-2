@@ -77,7 +77,12 @@ def reset_password(request):
             content1 = 'Essa é sua senha temporária '
             content2 = 'para acessar seu perfil ' + passwordtmp
             content = content1 + content2
-            send_mail_password_function(request, content, email)
+            mail = smtplib.SMTP('smtp.gmail.com', 587)
+            mail.ehlo()
+            mail.starttls()
+            mail.login('noreplayfiscae@gmail.com', 'fiscaeunb')
+            mail.sendmail('noreplayfiscae@gmail.com', email, content)
+            mail.close()
             return render(request, 'sucess_reset_password.html', {
                 'usuario': usuario,
                 'mensagem': mensagem
@@ -120,22 +125,23 @@ def setAdvisorPerm(user):
 
 def setCaeType(person):
     if(person.tipo_cae == 'Municipal'):
-        person.nome_cae = 'CAE'+' '+person.tipo_cae+' '+person.municipio
+        person.nome_cae = ('CAE' + ' ' + person.tipo_cae +
+                           ' ' + person.municipio)
     else:
-        person.nome_cae = 'CAE'+' '+person.tipo_cae+' '+person.uf
+        person.nome_cae = 'CAE' + ' ' + person.tipo_cae + ' ' + person.uf
 
 
-def set_user(request):
+def set_user(request, email):
     username = request.POST['username']
     password = request.POST['password']
     user = User.objects.create_user(
-        username=username, password=password)
+        username=username, password=password, email=email)
     return user
 
 
-def set_person(request, person):
+def set_person(request, person, email):
     person.name = request.POST['name']
-    person.email = request.POST['email']
+    person.email = email
     person.cpf = request.POST['cpf']
     person.cep = request.POST['cep']
     person.bairro = request.POST['bairro']
@@ -143,33 +149,14 @@ def set_person(request, person):
     person.uf = request.POST['uf']
     cep = re.sub(u'[- A-Z a-z]', '', person.cep)
     person.cep = cep
+    person.tipo_cae = request.POST['tipo_cae']
 
 
 def register(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
         email = request.POST['email']
         try:
-            user = User.objects.create_user(username=username,
-                                            password=password,
-                                            email=email)
-            person = Advisor()
-            setAdvisorPerm(user)
-            User.objects.filter(pk=user.id).update(is_active=False)
-            person.name = request.POST['name']
-            person.email = email
-            person.cpf = request.POST['cpf']
-            person.cep = request.POST['cep']
-            person.bairro = request.POST['bairro']
-            person.municipio = request.POST['municipio']
-            person.uf = request.POST['uf']
-            person.tipo_cae = request.POST['tipo_cae']
-            cep = re.sub(u'[- A-Z a-z]', '', person.cep)
-            person.cep = cep
-            setCaeType(person)
-            person.user = user
-            person.save()
+            user = set_user(request, email)
             # Deixar comentado
             """response = postUser(
                             advisor.cep,
@@ -179,11 +166,19 @@ def register(request):
                             password
                         )
             print(response.status_code, response.reason)"""
-            return render(request, 'login.html')
+
         except IntegrityError:
             error = 'Registro inválido!'
             context = {'error': error}
             return render(request, 'registro.html', context)
+        person = Advisor()
+        setAdvisorPerm(user)
+        User.objects.filter(pk=user.id).update(is_active=False)
+        set_person(request, person, email)
+        setCaeType(person)
+        person.user = user
+        person.save()
+        return render(request, 'login.html')
     else:
         return render(request, 'registro.html')
 
@@ -265,7 +260,7 @@ def addAdmin(request):
                 request,
                 messages.SUCCESS,
                 'Usuário cadastrado com sucesso!'
-                )
+            )
     else:
         form = AdministratorForm()
     return render(request, 'addAdmin.html', {'form': form})
@@ -283,7 +278,7 @@ def addPresident(request):
                 request,
                 messages.SUCCESS,
                 'Usuário cadastrado com sucesso!'
-                )
+            )
     else:
         form = PresidentForm()
     return render(request, 'addPresident.html', {'form': form})

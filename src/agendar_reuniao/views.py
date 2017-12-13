@@ -16,9 +16,13 @@ def sendmailfunction(request, texto, todosemails):
     mail = smtplib.SMTP('smtp.gmail.com', 587)
     mail.ehlo()
     mail.starttls()
-    mail.login('fiscaeinfo@gmail.com', 'fiscae2017')
+    mail.login('noreplayfiscae@gmail.com', 'fiscaeunb')
     for i in todosemails:
-        mail.sendmail('fiscaeinfo@gmail.com', i.email, mensagem.as_string())
+        mail.sendmail(
+            'noreplayfiscae@gmail.com',
+            i.email,
+            mensagem.as_string()
+            )
 
 
 def notify(request, novoAgendamento, tipo):
@@ -29,7 +33,6 @@ def notify(request, novoAgendamento, tipo):
     user_name = userObject.name
     todosemails = Advisor.objects.filter(nome_cae=cae_user)
     texto = user_name + " membro do " + cae_user + " agendou uma " + tipo + ":"
-
     if tipo == "reunião":
         data = novoAgendamento.data
         local = novoAgendamento.local
@@ -83,15 +86,29 @@ def indexScheduleMeeting(request):
     return render(request, 'indexScheduleMeeting.html')
 
 
-def scheduled(request):
+def current(request):
     current_user = request.user
     userId = current_user.id
     userObject = Advisor.objects.get(id=userId)
-    cae_user = userObject.nome_cae
-    todosAgendamentos = Agendamento.objects.filter(nome_cae_schedule=cae_user)
-    return render(request, 'scheduled.html', {
-        'todosAgendamentos': todosAgendamentos
-    })
+    return (userObject)
+
+
+def scheduled(request):
+    try:
+        userObject_scheduled = current(request)
+        cae_user = userObject_scheduled.nome_cae
+        todosAgendamentos = Agendamento.objects.filter(
+            nome_cae_schedule=cae_user)
+
+        return render(request, 'scheduled.html', {
+            'todosAgendamentos': todosAgendamentos
+        })
+    except:
+
+        mensagem1 = "Apenas membros de CAE podem "
+        mensagem2 = "ter acesso à essas funcionalidades!"
+        mensagem = mensagem1 + mensagem2
+        return render(request, 'schedules.html', {'mensagem': mensagem})
 
 
 def schedules(request):

@@ -10,8 +10,8 @@ def sendmaildenunciation(request, texto, subject, emails):
     mail = smtplib.SMTP('smtp.gmail.com', 587)
     mail.ehlo()
     mail.starttls()
-    mail.login('fiscaeinfo@gmail.com', 'fiscae2017')
-    mail.sendmail('fiscaeinfo@gmail.com', emails, mensagem.as_string())
+    mail.login('noreplayfiscae@gmail.com', 'fiscaeunb')
+    mail.sendmail('noreplayfiscae@gmail.com', emails, mensagem.as_string())
 
 
 def denunciations(request):
@@ -22,8 +22,8 @@ def denunciations(request):
         end = request.POST['endereco']
         subject = request.POST['subject']
         description = request.POST['description']
-        email_to = ['ouvidoria@fnde.gov.br', 'audit@fnde.gov.br']
-        # email_to = ['fiscaeinfo@gmail.com']
+        # email_to = ['ouvidoria@fnde.gov.br', 'audit@fnde.gov.br']
+        email_to = ['noreplayfiscae@gmail.com']
 
         text_school = 'Segue abaixo uma denúncia sobre a escola ' + school
         text_city = ' da cidade ' + city

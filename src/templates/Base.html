@@ -12,17 +12,26 @@
   <title>FISCAE - plataforma de apoio ao CAE </title>
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,400">
   {% compress css %}
-  <link href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
-  <link href="{% static 'assets/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" media="screen">
-  <link href="{% static 'assets/elegant-font/code/style.css' %}" rel="stylesheet" media="screen">
-  <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet" media="screen">
-  <link href="{% static 'assets/css/magnific-popup.css' %}" rel="stylesheet" media="screen">
-  <link href="{% static 'assets/css/form-elements.css' %}" rel="stylesheet" media="screen">
-  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" media="screen">
-  <link href="{% static 'assets/css/mobile.css' %}" rel="stylesheet" media="screen">
-  <link href="{% static 'assets/css/media-queries.css' %}" rel="stylesheet" media="screen">
+  <link href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}"
+  rel="stylesheet" media="screen">
+  <link href="{% static 'assets/font-awesome/css/font-awesome.min.css' %}"
+  rel="stylesheet" media="screen">
+  <link href="{% static 'assets/elegant-font/code/style.css' %}"
+  rel="stylesheet" media="screen">
+  <link href="{% static 'assets/css/animate.css' %}"
+  rel="stylesheet" media="screen">
+  <link href="{% static 'assets/css/magnific-popup.css' %}"
+  rel="stylesheet" media="screen">
+  <link href="{% static 'assets/css/form-elements.css' %}"
+  rel="stylesheet" media="screen">
+  <link href="{% static 'assets/css/style.css' %}"
+  rel="stylesheet" media="screen">
+  <link href="{% static 'assets/css/mobile.css' %}"
+  rel="stylesheet" media="screen">
+  <link href="{% static 'assets/css/media-queries.css' %}"
+  rel="stylesheet" media="screen">
   {% endcompress %}
-
+  
   <link rel="shortcut icon" sizes="20x20" href="{% static 'assets/ico/f.png' %}">
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'assets/ico/apple-touch-icon-144-precomposed.png' %}">
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'assets/ico/apple-touch-icon-114-precomposed.png' %}">
@@ -57,43 +66,45 @@ box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);" role="navigation">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <a href="/"> <img src="{% static 'assets/img/logo/l.png' %}" alt="Fiscae" class="img-responsive"></a>
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="top-navbar-1">
-        <ul class="nav navbar-nav navbar-right">
-          {% if request.user and not request.user.is_authenticated %}
-          <li><a href="{% url 'user:login' %}">Login</a></li>
-          <li><a href="#">Sobre</a></li>
-          {% else %} {% if perms.user.administrator %}
-          <li><a href="">{{ request.user.username }}</a></li>
-          {% else %}
-          <li><a href="{% url 'user:userEdit'%} ">{{ request.user.username }}</a></li>
-          {% endif %}
-          <li><a href="documentsAll.html">Documentos</a></li>
-          <li><a href="#">Sobre</a></li>
-          <li>
-            {% if perms.user.administrator and perms.user.president%}
-            <div class="dropdown">
-              <button class="dropbtn">OPÇÕES</button>
-              <div class="dropdown-content">
-                <a href="{% url 'user:addPresident' %}">Adicionar Presidente</a>
-                <a href="{% url 'user:addAdmin' %}">Adicionar Administrador</a>
-              </div>
-            </div>
-            {% elif perms.user.president %}
-            <div class="dropdown">
-              <button class="dropbtn">OPÇÕES</button>
-              <div class="dropdown-content">
-                <a href="{% url 'user:listRequests' %}">Aprovar cadastros</a>
-              </div>
-            </div>
-            {% endif %}
-          </li>
-          <li><a href="{% url 'user:logout' %}">Sair</a></li>
-          {% endif %}
-        </ul>
-      </div>
+            <a  href="/"> <img src="{% static 'assets/img/logo/l.png' %}" alt="Fiscae" class="img-responsive"></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="top-navbar-1">
+            <ul class="nav navbar-nav navbar-right">
+                {% if request.user and not request.user.is_authenticated %}
+                    <li><a href="{% url 'user:login' %}">Login</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="{% url 'denuncias:denunciations' %}">Denúncias</a></li>
+                {% else %}
+                    {% if perms.user.administrator %}
+                      <li><a href="">{{ request.user.username }}</a></li> 
+                    {% else %}
+                      <li><a href="{% url 'user:userEdit'%} ">{{ request.user.username }}</a></li> 
+                    {% endif %}
+                    <li><a href="{% url 'acessar_documento:documentsAll' %}">Documentos</a></li>
+                    <li><a href="/visualizar/CartilhaCAE.pdf/">Cartilha</a></li>
+                    <li>
+                      {% if perms.user.administrator and perms.user.president%}
+                      <div class="dropdown">
+                          <button class="dropbtn">OPÇÕES</button>
+                          <div class="dropdown-content">
+                            <a href="{% url 'user:addPresident' %}">Adicionar Presidente</a>
+                            <a href="{% url 'user:addAdmin' %}">Adicionar Administrador</a>
+                          </div>
+                        </div>
+                      {% elif perms.user.president %}
+                      <div class="dropdown">
+                        <button class="dropbtn">OPÇÕES</button>
+                        <div class="dropdown-content">
+                          <a href="{% url 'user:listRequests' %}">Aprovar cadastros</a>
+                        </div>
+                      </div>
+                      {% endif %}
+                    </li>
+                    <li><a href="{% url 'user:logout' %}">Sair</a></li>    
+                {% endif %}
+            </ul>
+        </div>
     </div>
   </nav>
 
@@ -117,7 +128,7 @@ box-shadow: 0px -4px 5px 0px rgba(0,0,0,0.75);">
             {% endif %}
             <ul><a href="#">Agenda</a></ul>
             <ul><a href="#">Checklists</a></ul>
-            <UL><a href="/visualizar/CartilhaCae.pdf/">Visualizar cartilha</a></UL>
+            <UL><a href="/visualizar/CartilhaCAE.pdf/">Visualizar cartilha</a></UL>
           </li>
         </div>
         <div class="col-sm-3">

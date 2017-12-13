@@ -17,3 +17,7 @@ class TestViews(TestCase):
         }
         response = self.c.post('/denunciations/', data)
         self.assertEquals(200, response.status_code)
+
+    def test_denuncias(self):
+        self.assertTemplateUsed('denuncias/denunciations.html')
+        self.assertTemplateUsed('Base.html')
