@@ -100,5 +100,15 @@ class EditScheduleTest(TestCase):
         # self.assertEqual(data1['date'], ScheduleVisit.objects.last().date)
         # self.assertEqual(data1['time'], ScheduleVisit.objects.last().time)
         # self.assertEqual(data1['members'],
-                        #  ScheduleVisit.objects.last().members)
+        #  ScheduleVisit.objects.last().members)
         # self.assertEqual(response.status_code, 200)
+
+    def test_escheduledVisitDelete(self):
+        self.cliente.login(username='testuser', password='12345')
+        # response = self.cliente.get('/deleteScheduleVisit/')
+        self.assertTemplateUsed('Base.html')
+        self.assertTemplateUsed('deleteScheduleVisit.html')
+
+    def test_esceduled(self):
+        self.assertTemplateUsed('Base.html')
+        self.assertTemplateUsed('visitScheduleds.html')

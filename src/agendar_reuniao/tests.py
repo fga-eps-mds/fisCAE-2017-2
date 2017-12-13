@@ -127,3 +127,17 @@ class ScheduleTest(TestCase):
         self.assertEquals(tema, test_agendamento.tema)
         self.assertEquals(observacoes, test_agendamento.observacoes)
         self.assertEquals(nome_cae, test_agendamento.nome_cae_schedule)
+
+    def test_edit_schedule(self):
+        self.cliente.login(username='testuser', password='12345')
+        self.assertTemplateUsed('Base.html')
+        self.assertTemplateUsed('edit_schedule.html')
+
+    def test_schedule_delete(self):
+        self.cliente.login(username='testuser', password='12345')
+        self.assertTemplateUsed('Base.html')
+        self.assertTemplateUsed('schedule_delete.html')
+
+
+
+      
