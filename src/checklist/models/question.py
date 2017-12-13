@@ -5,6 +5,7 @@ import json
 class Question(models.Model):
     item_number = models.CharField(max_length=4, null=False)
     description = models.CharField(max_length=255, null=False)
+    question_title = models.CharField(max_length=255, null=False)
 
     QUESTION_TYPE = (
         ('HS', 'Questões Higiênico Sanitárias'),
@@ -20,7 +21,7 @@ class Question(models.Model):
 
     @staticmethod
     def seedQuestions():
-        path = 'static/assets/checklist_questions.json'
+        path = 'static/assets/checklist_question.json'
         # path = 'static/assets/test_items_checklist.json'
         # path = 'static/assets/items_checklist.json'
         with open(path) as json_file:
@@ -29,6 +30,7 @@ class Question(models.Model):
                 Question(
                     item_number=item['item_number'],
                     description=item['description'],
+                    question_title=item['question_title'],
                     question_type=item['question_type']).save()
 
     @staticmethod

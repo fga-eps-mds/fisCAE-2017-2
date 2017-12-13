@@ -15,6 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+PROJECT_PATH = os.path.join(BASE_DIR, os.pardir)
+PROJECT_PATH = os.path.abspath(PROJECT_PATH)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -51,8 +53,20 @@ INSTALLED_APPS = [
     'agendar_reuniao',
     'search_school',
     'agendar_visita',
-    'nuvem_civica'
+    'denuncias',
+    'nuvem_civica',
+    'compressor',
+    'sass_processor',
 ]
+
+SASS_PROCESSOR_INCLUDE_DIRS = [
+    os.path.join(PROJECT_PATH, 'extra-styles/scss'),
+    os.path.join(PROJECT_PATH, 'node_modules'),
+]
+
+SASS_PROCESSOR_AUTO_INCLUDE = False
+
+SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r'^.+\.scss$'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -87,16 +101,21 @@ MEDIA_URL = '/media/'
 
 STATIC_ROOT = ''
 
-STATIC_URL = '/static/'
-
 STATICFILES_DIRS = (os.path.join('static'), )
 
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+    'sass_processor.finders.CssFinder',
 ]
 
+SASS_PRECISION = 8
+
+SASS_OUTPUT_STYLE = 'compact'
+
+SASS_PROCESSOR_ENABLED = True
 
 WSGI_APPLICATION = 'merenda.wsgi.application'
 
@@ -117,16 +136,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.' +
+        'UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.' +
+        'MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.' +
+        'CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.' +
+        'NumericPasswordValidator',
     },
 ]
 
@@ -144,6 +167,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+COMPRESS_PRECOMPILERS = (
+    ('text/x-sass', 'sassc {infile} {outfile}'),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/

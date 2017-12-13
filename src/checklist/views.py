@@ -6,7 +6,9 @@ from agendar_visita.models import ScheduleVisit
 from checklist.models.answer import Answer
 from checklist.forms import ChecklistForm
 from checklist.forms import AnswerForm
+from checklist.forms import ObservationsForm
 from user.models import Advisor
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def getQuestions(checklist_type):
@@ -21,7 +23,6 @@ def visitsSchool(request):
     nome_cae_user = userObject.nome_cae
     visita = ScheduleVisit.objects.filter(status=False,
                                           nome_cae_schedule=nome_cae_user)
-    # visita = ScheduleVisit.objects.all()
     return render(request, 'visitsSchool.html', {'visita': visita})
 
 
@@ -44,7 +45,7 @@ def checklistForm(request, id_visit):
                         checklist_type=checklist.checklist_type
                         )
                     checklist = tempChecklist
-                except:
+                except ObjectDoesNotExist:
                     checklist.user = request.user
                     checklist.visit = visit
                     checklist.created_date = timezone.now()
@@ -69,8 +70,22 @@ def checklistForm(request, id_visit):
         return HttpResponseRedirect(reverse('notLoggedIn'))
 
 
-def completed(request):
-    return render(request, 'completed.html', {'var_id': var_id})
+def completed(request, checklist_id):
+        checklist = Checklist.objects.get(
+            id=checklist_id,
+            )
+        form = ObservationsForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            observation = form.save(commit=False)
+            observation.images = request.FILES['images']
+            observation.observation = request.POST['observation']
+            observation.checklist = checklist
+            observation.save()
+        # return render(request, 'documentsAll.html')
+        return render(
+               request, 'completed.html',
+               {'var_id': var_id, 'form': form}
+               )
 
 
 def getQuestion(checklist):
@@ -90,7 +105,9 @@ def answerForm(request, checklist_id):
             user_id=user.id,
             )
         if checklist.status:
-            return HttpResponseRedirect(reverse('checklist:completed'))
+            return HttpResponseRedirect(
+                   reverse('checklist:completed', args=[checklist.id])
+                   )
         else:
             question = getQuestion(checklist)
             if request.method == 'POST':
@@ -135,7 +152,7 @@ def showAnswers(request, id):
         context = {
             'answers': answers
         }
-    except:
+    except ObjectDoesNotExist:
         context = {
             'error': 'checklist não encontrado'
         }

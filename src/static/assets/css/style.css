@@ -1,8 +1,16 @@
+.form-edit-schedule {
+	font-size: 20px;
+	display:inline-block;
+	text-align: center;
+}
+
+
+
 #personalizado {
 	border-style: solid;
 	border-radius: 50px;
 	border-color: rgba(255, 255, 255, 0.4);
-	background: rgba(255, 255, 255, 0.6);	
+	background: rgba(255, 255, 255, 0.6);
 }
 body {
 	background: #FFFFFF;
@@ -80,10 +88,10 @@ img { max-width: 100%; }
 
 .section-container-gray { background: #f8f8f8; }
 
-.section-container-full-bg, 
-.section-container-full-bg h1, 
-.section-container-full-bg h2, 
-.section-container-full-bg h3, 
+.section-container-full-bg,
+.section-container-full-bg h1,
+.section-container-full-bg h2,
+.section-container-full-bg h3,
 .section-container-full-bg h4 { color: #050404; }
 
 .section-description {
@@ -194,7 +202,7 @@ ul.navbar-nav li a { padding-top: 23px; padding-bottom: 23px; color: #fff; }
 ul.navbar-nav li a:hover { background: none; color:#3D2BA5; }
 ul.navbar-nav li a:focus { background: none; color:#3D2BA5; outline: 0; }
 
-.navbar>.container 
+.navbar>.container
 
 .navbar-header {
 		max-width: 70px;
@@ -210,7 +218,7 @@ ul.navbar-nav li a:focus { background: none; color:#3D2BA5; outline: 0; }
 
 .page-title-text {
 	width: 700px;
-	margin: 0 auto;	
+	margin: 0 auto;
 	color: rgb(5, 26, 75);
 }
 
@@ -471,7 +479,7 @@ ul.navbar-nav li a:focus { background: none; color:#3D2BA5; outline: 0; }
 	height: 80px;
     margin: 25px auto 0 auto;
 	padding-top: 19px;
-	background:#3D2BA5;
+	background:#FDFDFF;
 	-moz-border-radius: 40px; -webkit-border-radius: 40px; border-radius: 40px;
 	font-size: 34px;
     color: #0C0909;
@@ -652,7 +660,7 @@ ul.navbar-nav li a:focus { background: none; color:#3D2BA5; outline: 0; }
 }
 
 #myFooter .info{
-    text-align: justify; 
+    text-align: justify;
     color: #afb0b1;
 }
 
@@ -685,7 +693,7 @@ ul.navbar-nav li a:focus { background: none; color:#3D2BA5; outline: 0; }
 
 #myFooter h7{
 	font-size: 10px;
-	color: black;
+	color: white;
 	font-weight: bold;
 }
 
@@ -768,7 +776,7 @@ html{
 }
 
 body{
-    
+
     height: 100%;
 }
 
@@ -794,7 +802,7 @@ button, input, optgroup, select, textarea {
 }
 
 .checklistType ul li {
- 
+
 	list-style: none;
 	font-size: 20px;
     color: #95a5a6;
@@ -818,7 +826,7 @@ button, input, optgroup, select, textarea {
 
 	border:10px solid red;
 }
- 
+
 #checklistTitle{
 
 	text-transform: initial;
@@ -830,24 +838,24 @@ button, input, optgroup, select, textarea {
 }
 
 .checklistAnswer ul li {
-	
+
 	   list-style: none;
 	   font-size: 20px;
 	   color: #95a5a6;
    }
-   
+
    .checklistAnswer ul{
-   
+
 	   text-align: center;
    }
 
    .answerButton{
-	
+
 		background: none;
 		border:none;
 		color:#1F4788;
 		font-weight: bold;
-	
+
 	}
 
 	#questionDescription{
@@ -858,16 +866,16 @@ button, input, optgroup, select, textarea {
     color: #1F4788;
     line-height: 30px;
     text-transform: initial;
-		
+
 	}
 
 	#formstyle{
-	  
+
 		background: #C5D2D6;
 		font-size: 12px;
 		color: #061937;
 		text-align: center;
-		width: 100%; 
+		width: 100%;
 
 	}
 
@@ -886,16 +894,16 @@ button, input, optgroup, select, textarea {
 		text-transform: initial;
 
 	}
-	
+
 	#successMessage{
 
-		font-size: 32px;
+		font-size: 25px;
 		color: #1F4788;
 		font-weight: bold;
 		text-transform: initial;
 	}
 	#errorMessage{
-		
+
 				font-size: 32px;
 				color: #1F4788;
 				font-weight: bold;
@@ -903,14 +911,14 @@ button, input, optgroup, select, textarea {
 	}
 
 	.backButton{
-		
+
 			background: none;
 			border:none;
 			color:#1F4788;
 			font-weight: bold;
-		
+
 		}
-	
+
 	.select-cae{
 		font-size: 17px;
 		padding-left: 0px;
@@ -922,4 +930,44 @@ button, input, optgroup, select, textarea {
         margin-left: 5px;
     }
 }
-	
+
+/* Dropdown for admin */
+.dropbtn {
+    background-color: #14427f;
+    color: white;
+    padding: 22px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #14427f;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #14427f}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #14427f;
+}
