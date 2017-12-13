@@ -18,7 +18,8 @@ class ScheduleTest(TestCase):
         'cep': '72430107',
         'bairro': 'setor norte',
         'municipio': 'Brasilia',
-        'uf': 'DF'}
+        'uf': 'DF'
+    }
 
     def setUp(self):
         self.cliente = Client()
@@ -42,35 +43,36 @@ class ScheduleTest(TestCase):
 
         self.advisor = self.client.post('/registro/', data)
         self.client.force_login(self.user)
-        self.agenda = Agendamento.objects.create(data='12/08',
-                                                 horario='13:00',
-                                                 local='gama',
-                                                 tema='discussão',
-                                                 observacoes='levem lanche',
-                                                 nome_cae_schedule='newton')
+        self.agenda = Agendamento.objects.create(
+            data='12/08',
+            horario='13:00',
+            local='gama',
+            tema='discussão',
+            observacoes='levem lanche',
+            nome_cae_schedule='newton')
         self.agenda.save
 
-    # def test_index_schedule_post(self):
-    #     data = {
-    #         'date': '22 de janeiro',
-    #         'time': 'dez e vinte',
-    #         'local': 'no parque',
-    #         'note': 'levem lanche'
-    #     }
-    #     self.response = self.client.post('/agendar-reuniao/', data,
-    #                                      follow=True)
-    #     self.assertEqual(self.data['local'], Agendamento.objects.last().local)
-    #     self.assertEqual(self.data['time'],
-    #                      Agendamento.objects.last().horario)
-    #     self.assertEqual(data['date'], Agendamento.objects.last().data)
-    #     self.assertEqual(data['note'],
-    #                      Agendamento.objects.last().observacoes)
-    #     self.assertEqual(self.response.status_code, 200)
-    #     self.assertTemplateUsed(self.response, 'scheduled.html')
+    def test_index_schedule_post(self):
+        data = {
+            'date': '22 de janeiro',
+            'time': 'dez e vinte',
+            'local': 'no parque',
+            'note': 'levem lanche'
+        }
+        # self.response = self.client.post('/agendar-reuniao/', data,
+        #                                  follow=True)
+        # self.assertEqual(self.data['local'], Agendamento.objects.last().local)
+        # self.assertEqual(self.data['time'],
+        #                  Agendamento.objects.last().horario)
+        # self.assertEqual(data['date'], Agendamento.objects.last().data)
+        # self.assertEqual(data['note'],
+        #                  Agendamento.objects.last().observacoes)
+        # self.assertEqual(self.response.status_code, 200)
+        # self.assertTemplateUsed(self.response, 'scheduled.html')
 
     def test_edit_schedule_get(self):
-        response = self.cliente.get(
-            '/editar-reuniao/{}/'.format(self.agenda.pk))
+        response = self.cliente.get('/editar-reuniao/{}/'.format(
+            self.agenda.pk))
         self.assertEqual(response.status_code, 302)
 
     def test_edit_schedule_post(self):
@@ -80,17 +82,17 @@ class ScheduleTest(TestCase):
             'local': 'parque',
             'observacoes': '2 horas'
         }
-        response = self.cliente.post(
-            '/editar-reuniao/{}/'.format(self.agenda.pk), data)
+        response = self.cliente.post('/editar-reuniao/{}/'.format(
+            self.agenda.pk), data)
         self.assertEqual(response.status_code, 302)
 
-    def teste_template_indexScheduleMeeting(self):
+    def test_template_indexScheduleMeeting(self):
         response = self.cliente.get('/agendar-reuniao/')
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'indexScheduleMeeting.html')
         self.assertEquals(200, response.status_code)
 
-    def teste_template_schedules(self):
+    def test_template_schedules(self):
         response = self.cliente.get('/eventos/')
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'schedules.html')
