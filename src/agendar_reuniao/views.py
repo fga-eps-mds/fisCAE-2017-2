@@ -29,7 +29,6 @@ def notify(request, novoAgendamento, tipo):
     user_name = userObject.name
     todosemails = Advisor.objects.filter(nome_cae=cae_user)
     texto = user_name + " membro do " + cae_user + " agendou uma " + tipo + ":"
-
     if tipo == "reunião":
         data = novoAgendamento.data
         local = novoAgendamento.local
