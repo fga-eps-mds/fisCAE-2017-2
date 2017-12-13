@@ -29,8 +29,11 @@ class EditScheduleTest(TestCase):
         self.advisor = self.client.post('/registro/', registro)
 
     def test_template_edit_visit(self):
-        logged_in = self.cliente.login(username='testuser', password='12345')
-        self.cliente.login(username='testuser', password='12345')
+        # logged_in = self.user.login(username='testuser', password='12345')
+        # User.objects.create_user(username="teste", password="teste")
+        # self.cliente.login(username='teste', password='teste')
+        # response = self.cliente.get('/editar-visita/1/')
+        # self.assertEquals(200, response.status_code)
         self.assertTemplateUsed('Base.html')
 
     def test_template_indexScheduleVisit(self):
@@ -68,8 +71,13 @@ class EditScheduleTest(TestCase):
         self.assertEquals(nome_cae, test_agendamento.nome_cae_schedule)
 
     def test_edit_schedule(self):
-        logged_in = self.cliente.login(username='testuser', password='12345')
-        self.assertEquals(logged_in, True)
+        # logged_in = self.cliente.login(username='testuser', password='12345')
+        logged_in = self.cliente.login(username="testuser", password="12345")
+        self.assertEquals(logged_in, True)        
+        # response = self.cliente.get('/editar-visita/{}/'.format(1))
+        # self.assertTemplateUsed(response, 'Base.html')   
+        # self.assertTemplateUsed(response, 'editVisit.html')                
+        # self.assertEqual(response.status_code, 200)
 
     def test_template_schedules(self):
         logged_in = self.cliente.login(username='testuser', password='12345')
@@ -104,11 +112,15 @@ class EditScheduleTest(TestCase):
         # self.assertEqual(response.status_code, 200)
 
     def test_escheduledVisitDelete(self):
-        self.cliente.login(username='testuser', password='12345')
-        # response = self.cliente.get('/deleteScheduleVisit/')
-        self.assertTemplateUsed('Base.html')
-        self.assertTemplateUsed('deleteScheduleVisit.html')
+        self.cliente.login(username="testuser", password="12345")
+        response = self.cliente.get('/deletar-visita/{}/'.format(1))
+        self.assertTemplateUsed(response, 'deleteScheduleVisit.html')                
+        self.assertEqual(response.status_code, 200)
+
 
     def test_esceduled(self):
-        self.assertTemplateUsed('Base.html')
-        self.assertTemplateUsed('visitScheduleds.html')
+        self.cliente.login(username="testuser", password="12345")
+        response = self.cliente.get('/visitas-agendadas/')
+        self.assertTemplateUsed(response, 'Base.html')   
+        self.assertTemplateUsed(response, 'visitScheduleds.html')                
+        self.assertEqual(response.status_code, 200)
