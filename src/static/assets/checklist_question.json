@@ -471,13 +471,13 @@
     {
       "item_number": "79",
       "question_title":"A respeito dos alimentos servidos:",
-      "description": "Qual o cardápio mais aceito?",
+      "description": "Existe um cardápio mais aceito?",
       "question_type": "AL"
     },
     {
       "item_number": "80",
       "question_title":"A respeito dos alimentos servidos:",
-      "description": "Qual o cardápio menos aceito?",
+      "description": "Existe um cardápio menos aceito?",
       "question_type": "AL"
     },
     {

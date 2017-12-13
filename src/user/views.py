@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User, Permission
 from django.contrib.auth import login as django_login, authenticate
 from django.contrib.auth import logout as django_logout
+# from django.contrib.auth. password_validation import validators
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.contenttypes.models import ContentType
 from django.forms import modelformset_factory
@@ -11,6 +12,7 @@ from django.shortcuts import render, redirect
 import smtplib
 from random import choice
 import re
+from email.mime.text import MIMEText
 from django.contrib import messages
 
 from .models import Advisor, President
@@ -36,7 +38,7 @@ def change_password(request):
             django_logout(request)
             return render(request, 'password_sucess.html')
         else:
-            mensagem = 'Senhas incorretas!'
+            mensagem = 'As senhas não correspondem'
             return render(request, 'change_password.html', {
                 'mensagem': mensagem
             })
@@ -44,13 +46,25 @@ def change_password(request):
     return render(request, 'change_password.html')
 
 
+def send_mail_password_function(request, texto, email):
+    mensagem = MIMEText(texto)
+    mensagem.set_charset('utf-8')
+    mensagem['Subject'] = "Recuperação de senha - FisCAE"
+    mail = smtplib.SMTP('smtp.gmail.com', 587)
+    mail.ehlo()
+    mail.starttls()
+    mail.login('fiscaeinfo@gmail.com', 'fiscae2017')
+    mail.sendmail('fiscaeinfo@gmail.com', email, mensagem.as_string())
+    mail.close()
+
+
 def reset_password(request):
     if request.method == 'POST':
         email = request.POST['email']
         passwordtmp = ''
-        caracters = '0123456789abcdefghijlmnopqrstuwvxz'
+        caracters = '0123456789abcdefghijklmnopqrstuvwxyz'
         try:
-            mensagem1 = 'Solicitação realizada com sucesso!'
+            mensagem1 = 'Solicitação realizada com sucesso! '
             mensagem2 = 'Uma nova senha foi enviada para o email:'
             mensagem = mensagem1 + mensagem2
             usuario = Advisor.objects.get(email=email)
@@ -60,7 +74,7 @@ def reset_password(request):
 
             user.set_password(passwordtmp)
             user.save()
-            content1 = 'Essa e sua senha temporaria '
+            content1 = 'Essa é sua senha temporária '
             content2 = 'para acessar seu perfil ' + passwordtmp
             content = content1 + content2
             mail = smtplib.SMTP('smtp.gmail.com', 587)
