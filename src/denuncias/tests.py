@@ -21,5 +21,3 @@ class TestViews(TestCase):
     def test_denuncias(self):
         self.assertTemplateUsed('denuncias/denunciations.html')
         self.assertTemplateUsed('Base.html')
-        
-

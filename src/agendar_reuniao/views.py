@@ -16,9 +16,13 @@ def sendmailfunction(request, texto, todosemails):
     mail = smtplib.SMTP('smtp.gmail.com', 587)
     mail.ehlo()
     mail.starttls()
-    mail.login('fiscaeinfo@gmail.com', 'fiscae2017')
+    mail.login('noreplayfiscae@gmail.com', 'fiscaeunb')
     for i in todosemails:
-        mail.sendmail('fiscaeinfo@gmail.com', i.email, mensagem.as_string())
+        mail.sendmail(
+            'noreplayfiscae@gmail.com',
+            i.email,
+            mensagem.as_string()
+            )
 
 
 def notify(request, novoAgendamento, tipo):

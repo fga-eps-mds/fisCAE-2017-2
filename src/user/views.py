@@ -66,8 +66,8 @@ def reset_password(request):
             mail = smtplib.SMTP('smtp.gmail.com', 587)
             mail.ehlo()
             mail.starttls()
-            mail.login('fiscaeinfo@gmail.com', 'fiscae2017')
-            mail.sendmail('fiscaeinfo@gmail.com', email, content)
+            mail.login('noreplayfiscae@gmail.com', 'fiscaeunb')
+            mail.sendmail('noreplayfiscae@gmail.com', email, content)
             mail.close()
             return render(request, 'sucess_reset_password.html', {
                 'usuario': usuario,
