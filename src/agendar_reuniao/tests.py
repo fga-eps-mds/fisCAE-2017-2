@@ -26,22 +26,8 @@ class ScheduleTest(TestCase):
         self.user = User.objects.create_user(
             username='testuser', password='12345')
         self.user.save()
-        data = {
-            'username': 'test555',
-            'password': '123456',
-            'name': 'joao',
-            'email': 'jj@asb.com',
-            'cpf': '1234',
-            'tipo_cae': 'Municipal',
-            'user_type': 'advisor',
-            'nome_cae': 'CAE',
-            'cep': '72430107',
-            'bairro': 'setor norte',
-            'municipio': 'Brasilia',
-            'uf': 'DF'
-        }
 
-        self.advisor = self.client.post('/registro/', data)
+        self.advisor = self.client.post('/registro/', registro)
         self.client.force_login(self.user)
         self.agenda = Agendamento.objects.create(
             data='12/08',
@@ -61,7 +47,8 @@ class ScheduleTest(TestCase):
         }
         # self.response = self.client.post('/agendar-reuniao/', data,
         #                                  follow=True)
-        # self.assertEqual(self.data['local'], Agendamento.objects.last().local)
+        # self.assertEqual(self.data['local'],
+        #  Agendamento.objects.last().local)
         # self.assertEqual(self.data['time'],
         #                  Agendamento.objects.last().horario)
         # self.assertEqual(data['date'], Agendamento.objects.last().data)
@@ -137,7 +124,3 @@ class ScheduleTest(TestCase):
         self.cliente.login(username='testuser', password='12345')
         self.assertTemplateUsed('Base.html')
         self.assertTemplateUsed('schedule_delete.html')
-
-
-
-      
