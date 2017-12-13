@@ -17,11 +17,11 @@ class TestSimpleViews(TestCase):
         self.assertEquals(200, response.status_code)
 
     def test_change_password_page(self):
-        response = self.c.get('/change_password/')
+        response = self.c.get('/alterar-senha/')
         self.assertEquals(200, response.status_code)
 
     def test_reset_password_page(self):
-        response = self.c.get('/reset_password/')
+        response = self.c.get('/resetar-senha/')
         self.assertEquals(200, response.status_code)
 
     def test_get_register_page(self):
@@ -29,7 +29,7 @@ class TestSimpleViews(TestCase):
         self.assertEquals(200, response.status_code)
 
     def test_get_password_sucess_page(self):
-        response = self.c.get('/password_sucess/')
+        response = self.c.get('/senha-alterada/')
         self.assertEquals(200, response.status_code)
 
     def test_erro(self):
@@ -150,7 +150,7 @@ class TestForms(TestCase):
         self.assertEquals(response.status_code, 302)
 
     def test_edit_user(self):
-        response = self.c.get('/userEdit/')
+        response = self.c.get('/editar-usuario/')
         self.assertEquals(302, response.status_code)
 
     def test_PresidentForm_valid(self):
