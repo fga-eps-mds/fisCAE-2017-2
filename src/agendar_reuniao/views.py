@@ -18,7 +18,11 @@ def sendmailfunction(request, texto, todosemails):
     mail.starttls()
     mail.login('noreplayfiscae@gmail.com', 'fiscaeunb')
     for i in todosemails:
-        mail.sendmail('noreplayfiscae@gmail.com', i.email, mensagem.as_string())
+        mail.sendmail(
+            'noreplayfiscae@gmail.com',
+            i.email,
+            mensagem.as_string()
+            )
 
 
 def notify(request, novoAgendamento, tipo):

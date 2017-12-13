@@ -22,6 +22,12 @@ class ChecklistTest(TestCase):
             1, 'Escola Teste', '2017-10-10', '10:10', 'CAE', 0)
         visit.save()
 
+    def testTamplateChecklist(self):
+        client = Client()
+        client.login(username="amanda", password="123")
+        response = self.client.get('/selecionar-checklist/{}/'.format(1))
+        self.assertEqual(response.status_code, 302)
+
     def testSubmitChecklistFormValid(self):
         client = Client()
         client.login(username="amanda", password="123")
