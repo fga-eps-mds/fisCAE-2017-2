@@ -64,7 +64,7 @@ box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);" role="navigation">
             <ul class="nav navbar-nav navbar-right">
                 {% if request.user and not request.user.is_authenticated %}
                     <li><a href="{% url 'user:login' %}">Login</a></li>
-                    <li><a href="#">Sobre</a></li>
+                    <li><a href="{% url 'about' %}">Sobre</a></li>
                     <li><a href="{% url 'denuncias:denunciations' %}">Denúncias</a></li>
                 {% else %}
                     {% if perms.user.administrator %}

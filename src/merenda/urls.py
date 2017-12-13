@@ -24,7 +24,8 @@ urlpatterns = [
         views.view_pdf_cae,
         name='view_pdf_cae'
     ),
-    url(r'^notLoggedIn/$', views.notLoggedIn, name='notLoggedIn'),
+    url(r'^acesso-negado/$', views.notLoggedIn, name='notLoggedIn'),
+    url(r'^sobre/$', views.about, name='about'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
