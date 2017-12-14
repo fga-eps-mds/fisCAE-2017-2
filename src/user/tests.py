@@ -401,7 +401,7 @@ class TestForms(TestCase):
             'password': '1234567',
             'password_confirmation': '1234567',
         }
-        response = self.c.post('/change_password/', data)
+        response = self.c.post('/alterar-senha/', data)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'password_sucess.html')
@@ -412,7 +412,7 @@ class TestForms(TestCase):
             'password': '1234567',
             'password_confirmation': '12345678',
         }
-        response = self.c.post('/change_password/', data)
+        response = self.c.post('/alterar-senha/', data)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'change_password.html')
