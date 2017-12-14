@@ -15,7 +15,7 @@ class TestViews(TestCase):
             'subject': 'testando denuncias',
             'description': 'realizando testes das denuncias',
         }
-        response = self.c.post('/denunciations/', data)
+        response = self.c.post('/denunciar/', data)
         self.assertEquals(200, response.status_code)
 
     def test_denuncias(self):
