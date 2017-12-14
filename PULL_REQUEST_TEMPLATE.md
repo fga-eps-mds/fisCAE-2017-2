@@ -11,7 +11,7 @@ Marque as caixas que se aplicam ao _pull request_. Se você não tem certeza sob
 - [ ] O nome do _pull request_ deve ser significativo para representar a mudança que está sendo submetida.
 - [ ] Ter passado nos testes de integração [Travis-Pull Request](https://travis-ci.org/fga-gpp-mds/fisCAE-2017-2/builds) e [Travis-Branch](https://travis-ci.org/fga-gpp-mds/fisCAE-2017-2/builds).
 - [ ] Cobertura de testes não pode diminuir [Coveralls](https://coveralls.io/builds/14635655).
-- [ ] Seguir Folha de Estilo [Code Climate](https://codeclimate.com/github/fga-gpp-mds/fisCAE-2017-2/pull).
+- [ ] Seguir Folha de Estilo [Code Climate](https://codeclimate.com/github/fga-gpp-mds/fisCAE-2017-2).
 - [ ] Os _commits_ devem seguir a [Política de Commits](https://github.com/fga-gpp-mds/fisCAE-2017-2/wiki/Plano-de-Gerenciamento-de-Configura%C3%A7%C3%A3o).
 - [ ] Marcar um revisor.
 - [ ] Linkar o _pull request_ com a issue correspondente.
