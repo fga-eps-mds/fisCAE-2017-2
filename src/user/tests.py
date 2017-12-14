@@ -17,11 +17,11 @@ class TestSimpleViews(TestCase):
         self.assertEquals(200, response.status_code)
 
     def test_change_password_page(self):
-        response = self.c.get('/change_password/')
+        response = self.c.get('/alterar-senha/')
         self.assertEquals(200, response.status_code)
 
     def test_reset_password_page(self):
-        response = self.c.get('/reset_password/')
+        response = self.c.get('/resetar-senha/')
         self.assertEquals(200, response.status_code)
 
     def test_get_register_page(self):
@@ -29,7 +29,7 @@ class TestSimpleViews(TestCase):
         self.assertEquals(200, response.status_code)
 
     def test_get_password_sucess_page(self):
-        response = self.c.get('/password_sucess/')
+        response = self.c.get('/senha-alterada/')
         self.assertEquals(200, response.status_code)
 
     def test_erro(self):
@@ -150,7 +150,7 @@ class TestForms(TestCase):
         self.assertEquals(response.status_code, 302)
 
     def test_edit_user(self):
-        response = self.c.get('/userEdit/')
+        response = self.c.get('/editar-usuario/')
         self.assertEquals(302, response.status_code)
 
     def test_PresidentForm_valid(self):
@@ -401,7 +401,7 @@ class TestForms(TestCase):
             'password': '1234567',
             'password_confirmation': '1234567',
         }
-        response = self.c.post('/change_password/', data)
+        response = self.c.post('/alterar-senha/', data)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'password_sucess.html')
@@ -412,21 +412,21 @@ class TestForms(TestCase):
             'password': '1234567',
             'password_confirmation': '12345678',
         }
-        response = self.c.post('/change_password/', data)
+        response = self.c.post('/alterar-senha/', data)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'change_password.html')
         self.assertContains(response, 'Senhas incorretas!')
 
     def test_reset_password_wrong(self):
-        response = self.c.post('/reset_password/',
+        response = self.c.post('/resetar-senha/',
                                {'email': 'fiscae@hotmail.com'})
         self.assertContains(response, 'O email digitado não está cadastrado!')
         self.assertTemplateUsed(response, 'sucess_reset_password.html')
         self.assertAlmostEqual(response.status_code, 200)
 
     def test_userDelete(self):
-        response = self.c.get('/userDelete/')
+        response = self.c.get('/deletar-usuário/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'userDelete.html')
