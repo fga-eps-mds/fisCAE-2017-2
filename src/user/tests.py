@@ -394,3 +394,26 @@ class TestForms(TestCase):
         }
         form = ConfirmUserForm(data=data)
         self.assertFalse(form.is_valid())
+
+    def test_change_password(self):
+        self.c.login(username='test', password='123456')
+        data = {
+            'password': '1234567',
+            'password_confirmation': '1234567',
+        }
+        response = self.c.post('/change_password/', data)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'Base.html')
+        self.assertTemplateUsed(response, 'password_sucess.html')
+
+    def test_change_password_wrong(self):
+        self.c.login(username='test', password='123456')
+        data = {
+            'password': '1234567',
+            'password_confirmation': '12345678',
+        }
+        response = self.c.post('/change_password/', data)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'Base.html')
+        self.assertTemplateUsed(response, 'change_password.html')
+        self.assertContains(response, 'Senhas incorretas!')
