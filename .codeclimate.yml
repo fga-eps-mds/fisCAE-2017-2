@@ -16,7 +16,8 @@ engines:
 
 exclude_patterns:
 - "**.css"
+- "**.js"
 - "**.html"
 - "**/migrations/**"
 - "**/tests.py"
-- "**.js"
+- "src/static/**"
