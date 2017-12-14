@@ -417,3 +417,18 @@ class TestForms(TestCase):
         self.assertTemplateUsed(response, 'Base.html')
         self.assertTemplateUsed(response, 'change_password.html')
         self.assertContains(response, 'Senhas incorretas!')
+
+    def test_reset_password_wrong(self):
+        response = self.c.post('/reset_password/',
+                               {'email': 'fiscae@hotmail.com'})
+        self.assertContains(response, 'O email digitado não está cadastrado!')
+        self.assertTemplateUsed(response, 'sucess_reset_password.html')
+        self.assertAlmostEqual(response.status_code, 200)
+
+    def test_userDelete(self):
+        response = self.c.get('/userDelete/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'Base.html')
+        self.assertTemplateUsed(response, 'userDelete.html')
+        self.c.login(username='test', password='123456')
+        response = self.c.post('/userDelete/')
