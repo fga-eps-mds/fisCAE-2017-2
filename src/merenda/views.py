@@ -7,3 +7,7 @@ def index(request):
 
 def notLoggedIn(request):
     return render(request, 'notLoggedIn.html')
+
+
+def about(request):
+    return render(request, 'about.html')

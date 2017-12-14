@@ -18,7 +18,8 @@ urlpatterns = [
 
     url(r'^$', views.index, name='index'),
 
-    url(r'^notLoggedIn/$', views.notLoggedIn, name='notLoggedIn'),
+    url(r'^acesso-negado/$', views.notLoggedIn, name='notLoggedIn'),
+    url(r'^sobre/$', views.about, name='about'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

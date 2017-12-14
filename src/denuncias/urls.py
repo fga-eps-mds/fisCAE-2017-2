@@ -3,5 +3,5 @@ from denuncias import views
 
 app_name = 'denuncias'
 urlpatterns = [
-    url(r'^denunciations', views.denunciations, name='denunciations'),
+    url(r'^denunciar', views.denunciations, name='denunciations'),
 ]
