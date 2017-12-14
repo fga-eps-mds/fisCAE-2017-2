@@ -1,6 +1,9 @@
 # .coveragerc to control coverage.py
 [run]
 branch = True
+omit =
+  */apps.py
+  */wsgi.py
 
 [report]
 # Regexes for lines to exclude from consideration
