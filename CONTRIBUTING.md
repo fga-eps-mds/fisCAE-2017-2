@@ -1,46 +1,41 @@
-# Contributor Covenant Code of Conduct
+## Como contribuir com o FisCAE?
+Ajudas são sempre bem vindas!  
+<p align = "justify">Caso queira contribuir com o projeto, comece lendo o <a href="https://github.com/fga-gpp-mds/fisCAE-2017-2">README</a>, para conhecer um pouco da nossa proposta e para ter um guia básico de como baixar e configurar o ambiente para rodar o projeto. Também é importante ler nosso <a href="https://github.com/fga-gpp-mds/fisCAE-2017-2/blob/development/CODE_OF_CONDUCT.md">Código de Conduta</a>.</p>  
+<p align = "justify">Para mais informações sobre os aspectos gerais do projeto, acesse a <a href="https://github.com/fga-gpp-mds/fisCAE-2017-2/wiki">Wiki</a> e vá navegando pelos documentos que aparecem na <i>Sidebar</i>.</p>
 
-## Our Pledge
 
-In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.
+------------------------- 
 
-## Our Standards
+### Enconcontrou um Bug?
+* <p align = "justify">Procure se esse bug já não é conhecido e se encontra em uma das nossas <a href="https://github.com/fga-gpp-mds/fisCAE-2017-2/issues">Issues</a>. Os bugs devem estar marcados com <i>tag (label)</i> <b>bug</b>.</p>
+* <p align = "justify">Caso o bug encontrado ainda não esteja em uma das nossas <a href="https://github.com/fga-gpp-mds/fisCAE-2017-2/issues">Issues</a>, basta criar uma <a href="https://github.com/fga-gpp-mds/fisCAE-2017-2/issues/new">nova Issue</a>. Sempre coloque um título significativo e uma breve descrição do problema, e, caso seja possível, anexar outras informações relevantes sobre o bug, como trechos de código, execução de um caso de teste, imagens, entre outros.</p>
 
-Examples of behavior that contributes to creating a positive environment include:
+------------------------
 
-* Using welcoming and inclusive language
-* Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
-* Focusing on what is best for the community
-* Showing empathy towards other community members
+### Deseja adicionar e/ou modificar uma funcionalidade?
+* <p align = "justify">Primeiro certifique-se que não existe nenhuma <a href="https://github.com/fga-gpp-mds/fisCAE-2017-2/issues">Issues</a> com o mesmo propósito.</p>
+* <p align = "justify">Caso não exista, crie uma <a href="https://github.com/fga-gpp-mds/fisCAE-2017-2/issues/new">nova Issue</a>. Sempre dê um título significativo a ela e coloque uma breve descrição, além de colocar bons critérios de aceitação e ligá-la ao menos a uma <a href="https://github.com/fga-gpp-mds/fisCAE-2017-2/labels"><i>label</i></a>.</p>
+* <p align = "justify">Se nenhuma das <a href="https://github.com/fga-gpp-mds/fisCAE-2017-2/labels"><i>labels</i></a> já existente conseguir satisfazer alguma nova <a href="https://github.com/fga-gpp-mds/fisCAE-2017-2/issues">Issue</a>, sinta-se livre para criar uma nova que te atenda e ligue ela a sua <b>Issue</b>.</p>
+* <p align = "justify">As mudanças devem ser submetidas através de <b>Pull Requests</b> e você pode encontrar o padrão de como ele deve ser feito no <a href="https://github.com/fga-gpp-mds/fisCAE-2017-2/blob/development/PULL_REQUEST_TEMPLATE.md">Pull Request Template</a>.</p>
+* <p align = "justify">Caso deseje saber os passos corretos para abrir uma <i>Issue</i>, você pode seguir o nosso <a href="https://github.com/fga-gpp-mds/fisCAE-2017-2/blob/development/ISSUE_TEMPLATE.md">Issue Template</a>.</p>
 
-Examples of unacceptable behavior by participants include:
+-----------------------------
 
-* The use of sexualized language or imagery and unwelcome sexual attention or advances
-* Trolling, insulting/derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or electronic address, without explicit permission
-* Other conduct which could reasonably be considered inappropriate in a professional setting
+### Tem alguma dúvida?
+* <p align = "justify">Caso tenha alguma dúvida pertinente ao projeto, você também pode criar uma <a href="https://github.com/fga-gpp-mds/fisCAE-2017-2/issues/new">nova Issue</a>, marcando-a com a <i>label</i> <b>question</b>.</p>
+* <p align = "justify">Antes de fazer alguma pergunta, pesquise se já não foi feita alguma parecida que possa sanar essa dúvida.</p>
+* <p align = "justify">As dúvidas devem ser respondidas na própria <i>Issue</i>, assim como uma possível discussão. Se a dúvida for sanada, o autor deve fechar a <i>Issue</i>, mas pode reabrí-la caso for necessário.</p>
 
-## Our Responsibilities
+----------------
 
-Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
-
-Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
-
-## Scope
-
-This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.
-
-## Enforcement
-
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at fiscaeinfo@gmail.com. The project team will review and investigate all complaints, and will respond in a way that it deems appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
-
-Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
-
-## Attribution
-
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4, available at [http://contributor-covenant.org/version/1/4][version]
-
-[homepage]: http://contributor-covenant.org
-[version]: http://contributor-covenant.org/version/1/4/
+### Dicas importantes
+<p align = "justify">Por ser um projeto de código aberto, onde várias pessoas podem contribuir, é importante definir alguns padrões para que o projeto possa progredir de forma coesa. Por isso, é importante dar algumas dicas para as pessoas que desejam contribuir:
+<ul>
+    <li align = "justify">Sempre que for criar uma <i>Issue</i>, <b>dê um nome significativo</b> a ela, assim como uma <b>descrição completa</b> sobre do que ela se trata. Isso facilita  outras pessoas buscarem algo semelhante ao que já foi feito, evitando criar <i>Issues</i> com o mesmo propósito.</li>
+    <li align = "justify">Sempre <b>ligar as <i>Issues</i> a no mínimo uma <i>label</i></b>, que seja significativa para ela, sendo que isso é importante para manter a organização das <i>Issues</i>.</li>
+    <li align = "justify"><b>Manter o padrão</b> que o código está sendo feito, como a organização de pastas, nome dos arquivos, identação, entre outros.</li>
+    <li align = "justify">Para manter esses padrões, recomenda-se fortemente a utilização da <b>folha de estilo</b> disponível no projeto.</li>
+    <li align = "justify"><b>Testar</b> as funcionalidades que foram implementadas e/ou modificadas, para manter a confiabilidade do código.</li>
+</ul>
+<p align = "justify">Essas foram apenas algumas dicas para que seja possível trabalhar cooperativamente a fim de evoluir o projeto. Além dessas, é importante sempre colocar em prática as boas práticas da comunidade, aplicando e disceminando seus conhecimentos, além de estar sempre aprendendo com o conhecimento das outras pessoas.</p>
+<p align = "justify">Obrigado por contribuir! Com certeza sua ajuda será importante!</p>
