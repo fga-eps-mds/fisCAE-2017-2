@@ -1,0 +1,30 @@
+{% extends "Base.html" %}
+{% block body %}
+
+<div class="page-title top-content" style="position: relative; z-index: 0; background-image: none;
+  background-position: initial initial; background-repeat: initial initial;
+  top: 50%; left: 50%;transform: translate(-50%, -50%)">
+  <div class="container">
+    <div class="content container">
+      <div class="row">
+        
+        <form method="post" novalidate>
+          <div id="questionTitle">
+              {{current_question.question_title}}
+          </div>
+          <div id="questionDescription">
+             {{current_question.description }}
+          </div>
+          <p></p>
+          {% csrf_token %}{% for field in answerForm %}
+          <div class="checklistAnswer">{{ field }}</div>
+          {% endfor %}
+          <button class="btn btn-info" style="width: 150px; height: 50px" type="submit">Confirmar</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

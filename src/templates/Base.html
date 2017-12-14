@@ -1,0 +1,169 @@
+{% load static %}
+{% load compress %}
+{% load staticfiles %}
+
+<html lang="pt_br">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FISCAE - plataforma de apoio ao CAE </title>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,400">
+  {% compress css %}
+  <link href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+  <link href="{% static 'assets/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" media="screen">
+  <link href="{% static 'assets/elegant-font/code/style.css' %}" rel="stylesheet" media="screen">
+  <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet" media="screen">
+  <link href="{% static 'assets/css/magnific-popup.css' %}" rel="stylesheet" media="screen">
+  <link href="{% static 'assets/css/form-elements.css' %}" rel="stylesheet" media="screen">
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" media="screen">
+  <link href="{% static 'assets/css/mobile.css' %}" rel="stylesheet" media="screen">
+  <link href="{% static 'assets/css/media-queries.css' %}" rel="stylesheet" media="screen">
+  {% endcompress %}
+
+  <link rel="shortcut icon" sizes="20x20" href="{% static 'assets/ico/f.png' %}">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'assets/ico/apple-touch-icon-144-precomposed.png' %}">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'assets/ico/apple-touch-icon-114-precomposed.png' %}">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'assets/ico/apple-touch-icon-72-precomposed.png' %}">
+  <link rel="apple-touch-icon-precomposed" href="{% static 'assets/ico/apple-touch-icon-57-precomposed.png' %}">
+  {% compress js %}
+
+  <script src="{% static 'assets/js/jquery-1.11.1.min.js' %}"></script>
+  <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'assets/js/jquery.backstretch.min.js' %}"></script>
+  <script src="{% static 'assets/js/wow.min.js' %}"></script>
+  <script src="{% static 'assets/js/retina-1.1.0.min.js' %}"></script>
+  <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'assets/js/waypoints.min.js' %}"></script>
+  <script src="{% static 'assets/js/jquery.countTo.js' %}"></script>
+  <script src="{% static 'assets/js/masonry.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/js/scripts.js' %}"></script>
+  {% endcompress %}
+
+</head>
+
+<body>
+  <!-- Top menu -->
+  <nav class="navbar navbar-fixed-top" style="-webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+            <a  href="/"> <img src="{% static 'assets/img/logo/l.png' %}" alt="Fiscae" class="img-responsive"></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="top-navbar-1">
+            <ul class="nav navbar-nav navbar-right">
+                {% if request.user and not request.user.is_authenticated %}
+                    <li><a href="{% url 'user:login' %}">Login</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="{% url 'denuncias:denunciations' %}">Denúncias</a></li>
+                {% else %}
+                    {% if perms.user.administrator %}
+                      <li><a href="">{{ request.user.username }}</a></li> 
+                    {% else %}
+                      <li><a href="{% url 'user:userEdit'%} ">{{ request.user.username }}</a></li> 
+                    {% endif %}
+                    <li><a href="{% url 'acessar_documento:documentsAll' %}">Documentos</a></li>
+                    <li><a href="/visualizar/CartilhaCAE.pdf/">Cartilha</a></li>
+                    <li>
+                      {% if perms.user.administrator and perms.user.president%}
+                      <div class="dropdown">
+                          <button class="dropbtn">OPÇÕES</button>
+                          <div class="dropdown-content">
+                            <a href="{% url 'user:addPresident' %}">Adicionar Presidente</a>
+                            <a href="{% url 'user:addAdmin' %}">Adicionar Administrador</a>
+                          </div>
+                        </div>
+                      {% elif perms.user.president %}
+                      <div class="dropdown">
+                        <button class="dropbtn">OPÇÕES</button>
+                        <div class="dropdown-content">
+                          <a href="{% url 'user:listRequests' %}">Aprovar cadastros</a>
+                        </div>
+                      </div>
+                      {% endif %}
+                    </li>
+                    <li><a href="{% url 'user:logout' %}">Sair</a></li>    
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+  </nav>
+
+
+  {% block body %} {% endblock %}
+  <!--footer -->
+  <div class="content">
+  </div>
+
+  <footer id="myFooter" style="-webkit-box-shadow: 0px -4px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px -4px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 0px -4px 5px 0px rgba(0,0,0,0.75);">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <li>
+            <ul><h5>Começar</h5></ul>
+            <ul><a href="#">Início</a></ul>
+            {% if request.user and not request.user.is_authenticated %}
+            <ul><a href="{% url 'user:login' %}">Login</a></ul>
+            {% endif %}
+            <ul><a href="#">Agenda</a></ul>
+            <ul><a href="#">Checklists</a></ul>
+            <UL><a href="/visualizar/CartilhaCAE.pdf/">Visualizar cartilha</a></UL>
+          </li>
+        </div>
+        <div class="col-sm-3">
+          <li>
+            <h5>Sobre nós</h5>
+            <ul><a href="#">Sobre o CAE</a></ul>
+            <ul><a href="#">Fale Conosco</a></ul>
+            <ul><a href="#">Faça uma denúncia</a></ul>
+          </li>
+        </div>
+        <div class="col-sm-3">
+          <li>
+            <ul><h5>Suporte</h5></ul>
+            <ul><a href="#">FAQ</a></ul>
+            <ul><a href="#">Help desk</a></ul>
+            <ul><a href="#">Fórums</a></ul>
+          </li>
+        </div>
+        <div class="col-sm-3 info">
+          <li>
+            <ul><h5>Sobre o FISCAE</h5></ul>
+            <ul><p> O FISCAE existe para dar suporte aos</p></ul>
+            <ul><p>conselheiros alimentares de todo o Brasil.</p></ul>
+          </li>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="second-bar">
+      <div style="position: absolute;font-size:8pt; color:white;font-weight: bold;margin-left: auto;
+margin-right: auto;
+left: 0;
+right: 0;text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); margin-top:2%">GPP/MDS-Universidade de Brasília 2017/2</div>
+      <a id="logo" href="#"> <img src="{% static 'assets/img/logo/l.png' %}"  alt="Fiscae" class="pull-left"></a>
+    </div>
+
+  </footer>
+
+
+
+  <!--[if lt IE 10]>
+            <script src="static/assets/js/placeholder.js"></script>
+        <![endif]-->
+
+</body>
+
+</html>

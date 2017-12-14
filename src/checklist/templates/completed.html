@@ -1,0 +1,25 @@
+{% extends "Base.html" %}
+{% block body %}
+     
+        <div id="successMessage">
+          <br><br>
+          <h3>Checklist preenchido.</h3><br><br>
+          <h4>Deseja acrescentar alguma observação ou imagem?</h4>
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <br><br>
+            <h4>Observações:</h4>
+            <p align="center" placeholder="Observações">{{ form.observation }}</p>
+            <h4>Adicionar imagem:</h4>
+            <p align="center"> {{ form.images }}</p>
+            <br><br>
+            <button type="submit" class="btn btn-success">Salvar</button>
+          </form>
+          <a href="{% url 'checklist:checklistForm' var_id %}" button class="backButton">Voltar aos formulários</button>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

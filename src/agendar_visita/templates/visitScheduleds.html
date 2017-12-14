@@ -1,0 +1,39 @@
+{% extends "Base.html" %}
+
+    {% block body %}
+        {% if request.user and request.user.is_authenticated %}
+        <div class="page-title" >   
+            <div id = "scheduleTitles">
+                <h1>Visitas Agendadas</h1>
+                </div>
+                <form action="scheduled" method="POST">
+                    {% for i in visits %}
+                    <div id="formstyle" style="font-size:30px;">
+                        Escola: {{ i.schoolName }}<br>
+                        Data: {{ i.date }}<br>
+                        Horário: {{ i.time }}<br>
+                        Membros: {{ i.members }}<br>
+                        <a href="{% url 'agendar_visita:scheduleVisitDelete' i.id %}">Deletar</a> | 
+                        <a href="{% url 'agendar_visita:editVisit' i.id %}">Editar</a>
+                        <br>
+                        </div>
+                        <input style="background-color:#6C5FDD; border:#6C5FDD" 
+                        type="button" class="btn btn-primary" value="Iniciar" 
+                        onclick="location.href='{% url 'checklist:checklistForm' i.id  %}'"> <br>
+                        <br>
+                    {% endfor %}
+                </form>
+                <a href="{% url 'search_school:searchSchool' %}" class="btn btn-primary">Nova visita</a>                                
+            {% else %}
+            <div id="pop">
+                <a class="close" id="close" href="#" onclick="document.getElementById('pop').style.display='none';">×</a>
+                <br />
+                <h4 align="left">Atenção</h4>
+                <h5 align="left">É necessário estar logado em uma conta de usuário para acessar essa funcionalidade.</h5>
+            </div><br /><br /><br /><br /><br /><br />
+            <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Voltar" onclick="HomeRedirect()">
+            <input style="background-color:#6C5FDD; border:#6C5FDD" type="button" class="btn btn-primary" value="Login" onclick="LoginRedirect()">
+
+        {% endif %}
+
+    {% endblock %}

@@ -1,26 +1,165 @@
- {% extends "base.html" %}
- {% block body %}
+{% extends "Base.html" %}
+{% block body %}
 
-<a id="positionT">  
-    <h1>Cadastro</h1>
- </a>
 
- <a id="positionForm">                
-<form method="POST" action="{%url 'registro'%}">
-    {%csrf_token%}
+<head>
+   <meta charset="utf-8">
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+   <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+   <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <script src="path/to/jquery.easy-autocomplete.min.js"></script> 
+   <link rel="stylesheet" href="path/to/easy-autocomplete.min.css"> 
+   <link rel="stylesheet" href="path/to/easy-autocomplete.themes.min.css"> 
+   <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+ </head>
+
+<div class="page-header">
+   </div>
+   <div class="content container">
+     <div class="row">
+       <div class="col-md-12" "col-md-push-4" align="center">
+           <form method="POST" action="{%url 'user:registro'%}" style="
+           margin: 0 auto;display:inline-block;width: 100%;
+           padding: 12px;
+           border-radius: 4px;
+           box-sizing: border-box;
+           resize: vertical">
+               {%csrf_token%}
+               <label><h3>Cadastro</h3></label><br>
+
+               <div style="color:red; font-size: 25px"> 
+                {% if error %}
+                {{ error }}
+                <br>
+                {% endif %}
+               </div>
+               <label>
+               <input type="" name="username" maxlength="30" placeholder="Username" size="20" required>
+               </label></br>
+               <label>
+               <input type="" name="name" maxlength="64" required placeholder="Nome">
+               </label></br>
+               <h4>
+               </h4>
+               <label>
+               <input type="email" name="email" maxlength="100" required placeholder="Email">
+               </label></br>
+               <label>
+               <input type="" name="cpf" min="0" max="99999999999" placeholder="Cpf" required>
+               </label><br>
+               <div class="select-cae" >
+                <h4>A QUAL TIPO DE CAE VOCÊ PERTENCE?</h1>
+                    <select name="tipo_cae">
+                       <option value="Municipal">Municipal</option>
+                       <option value="Estadual">Estadual</option>
+                   </select> 
+                </div>
+                <label>
+                <input name="cep" type="" id="cep" value="" size="" maxlength="9"
+                    onblur="pesquisacep(this.value);" placeholder="CEP"/></label><br />
+                <label>
+                <input name="bairro" type="" id="bairro" size="" placeholder="Bairro" required readonly/></label><br />
+                <label>
+                <input name="municipio" type="" id="municipio" size="" placeholder="Município" required readonly/></label><br />
+                <label>
+                <input name="uf" type="" id="uf" size="" placeholder="Estado"  readonly/></label><br />
+                <label>
+               <input type="password" name="password" id="password" maxlength="30" required placeholder="Senha" oninput="validatePassword();" >
+                </label></br>
+                <label>
+               <input type="password"  id="password_confirmation" maxlength="30" required placeholder="Confirmar senha" oninput="validatePassword();"> 
+               </label></br>
+               <button type="submit" id="submit-register" class="btn btn-primary btn-block btn-large" style="width: 150px; height: 50px">Salvar</button><br>
+               <p class="error" id="password-validation"></p>
+           </form>
+       </div>
+     </div>
+   </div>  
             
-    <input type="text" name="username" maxlength="30" placeholder="Username" required></br>
-    <input type="text" name="name" maxlength="64" required placeholder="Nome"></br>
-    <input type="email" name="email" maxlength="100" required placeholder="Email"></br>
-    <input type="number" name="cpf" min="0" max="99999999999" placeholder="Cpf" required="required"><br>
-    <input type="number" name="phone" min="1000000000" max="99999999999" placeholder="Telefone"></br>
-    <input type="number" name="cep" min="0" max="99999999" required placeholder="Cep"></br>
-    <input type="text" name="uf" maxlength="2" required placeholder="Uf"> </br>
-    <input type="text" name="municipio" maxlength="30" required placeholder="Municipio"> </br>
-    <input type="text" name="bairro" maxlength="30" required placeholder="Bairro"> </br>
-    <input type="text" name="descricao" maxlength="50" placeholder="Decrição"> </br>
-    <input type="password" name="password" maxlength="30" required placeholder="Senha" size="50px 50px"> </br>
-    <button type="submit" class="btn btn-primary btn-block btn-large">Salvar</button><br>
-    </a>
-</form>
+    <!-- Javascript -->
+    <script type="text/javascript" >
+
+    function limpa_formulário_cep() {
+                //Limpa valores do formulário de cep.
+                document.getElementById('bairro').value=("");
+                document.getElementById('municipio').value=("");
+                document.getElementById('uf').value=("");
+        }
+
+        function meu_callback(conteudo) {
+            if (!("erro" in conteudo)) {
+                //Atualiza os campos com os valores.
+                document.getElementById('bairro').value=(conteudo.bairro);
+                document.getElementById('municipio').value=(conteudo.localidade);
+                document.getElementById('uf').value=(conteudo.uf);
+            } //end if.
+            else {
+                //CEP não Encontrado.
+                limpa_formulário_cep();
+                alert("CEP não encontrado.");
+            }
+        }
+            
+        function pesquisacep(valor) {
+
+            //Nova variável "cep" somente com dígitos.
+            var cep = valor.replace(/\D/g, '');
+
+            //Verifica se campo cep possui valor informado.
+            if (cep != "") {
+
+                //Expressão regular para validar o CEP.
+                var validacep = /^[0-9]{8}$/;
+
+                //Valida o formato do CEP.
+                if(validacep.test(cep)) {
+
+                    //Preenche os campos com "..." enquanto consulta webservice.
+                    document.getElementById('bairro').value="...";
+                    document.getElementById('municipio').value="...";
+                    document.getElementById('uf').value="...";
+                    
+
+                    //Cria um elemento javascript.
+                    var script = document.createElement('script');
+
+                    //Sincroniza com o callback.
+                    script.src = '//viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+                    //Insere script no documento e carrega o conteúdo.
+                    document.body.appendChild(script);
+
+                } //end if.
+                else {
+                    //cep é inválido.
+                    limpa_formulário_cep();
+                    alert("Formato de CEP inválido.");
+                }
+            } //end if.
+            else {
+                //cep sem valor, limpa formulário.
+                limpa_formulário_cep();
+            }
+        };
+
+        </script>                 
+   
+<script type="text/javascript">
+  var passwordInput = document.getElementById('password');
+  var passwordConfirmationInput = document.getElementById('password_confirmation');
+  var passwordValidation = document.getElementById('password-validation');
+  var submitInput = document.getElementById('submit-register');
+  submitInput.disabled = true;
+  function validatePassword() {
+      if(passwordInput.value === '' || passwordConfirmationInput.value === '') 
+          return;
+      if(passwordInput.value !== passwordConfirmationInput.value) {
+          passwordValidation.innerHTML = 'você está inserindo uma senha diferente no campo de confirmar senha</p>';
+          submitInput.disabled = true;
+      } else {
+          passwordValidation.innerHTML = '';
+          submitInput.disabled = false;
+      }
+  };
+</script>
 {% endblock %}

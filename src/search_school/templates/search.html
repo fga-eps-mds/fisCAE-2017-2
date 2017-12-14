@@ -1,0 +1,28 @@
+{% extends "Base.html" %}
+{% block body %}
+  <div class="page-title top-content" style="position: relative; z-index: 0; background-image: none; background-position: initial initial; background-repeat: initial initial;">
+    <div class="container">
+      <div class="content container">
+        <div class="row">
+          <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12"  align="center">                    
+            <h1>Pesquisar Escola</h1>
+              <form action="{% url 'search_school:searchSchool' %}" method="POST">
+                  {% csrf_token %}
+                  <input id="id_school" name="school" type="text" class="" placeholder="Digite o nome da escola" style="width: 60%; height: 30px" required>
+                  <p></p>
+                  <button class="btn btn-info" style="width: 200px; height: 50px" type="submit">
+                    Procurar escola
+                  </button>
+                  <p></p>
+                  <div style="color:red; font-size: 25px"> 
+                    {% for item in error %}
+                    {{ item }}
+                    {% endfor %} 
+                  </div>      
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

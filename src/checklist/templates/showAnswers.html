@@ -1,0 +1,17 @@
+{% extends "Base.html" %}
+{% block body %}
+    <div style="text-align: left;margin-top: 5%;">
+            <br>
+            <p>{{ error }}</p>
+            {% for answer in answers %}
+            <div id="formstyle">                    
+                <h3>{{ answer.question.description }}</h3>
+                {% if answer.get_answer_display == 'Não' %}
+                <p style="color: red; font-size:30px">{{ answer.get_answer_display }}</p>
+                {% else %}
+                <p style="color: green; font-size:30px">{{ answer.get_answer_display }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+{% endblock %}

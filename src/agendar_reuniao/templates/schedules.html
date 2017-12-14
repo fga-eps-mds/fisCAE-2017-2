@@ -1,0 +1,16 @@
+{% extends "Base.html" %}
+
+    {% block body %}
+    </br></br>
+    <div id = "scheduleTitles">
+        <h1>Escolha uma opção: </h1>
+    </div>
+    <input style="background-color:#6C5FDD; border:#6C5FDD" 
+    type="button" class="btn btn-primary" value="Reuniões" 
+    onclick="location.href='{% url 'agendar_reuniao:scheduled' %}'">
+    <input style="background-color:#6C5FDD; border:#6C5FDD" 
+    type="button" class="btn btn-primary" value="Visitas" 
+    onclick="location.href='{% url 'agendar_visita:visitScheduled' %}'"><br>
+    {{ mensagem }}
+
+    {% endblock %}

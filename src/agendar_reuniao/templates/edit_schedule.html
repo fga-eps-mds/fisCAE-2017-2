@@ -1,0 +1,25 @@
+{% extends 'Base.html' %}
+{% block body %}
+
+<div class="page-title" >
+    <div id = "scheduleTitles">
+        <h1>Editar Reunião</h1>
+    </div>
+</div>
+
+<form method="POST"> 
+    <div id="formstyle edit">
+        {% csrf_token %}
+        <table align="center" style="font-size:20px; display:inline-block;text-align: center;">
+          <tr>
+            <th>
+              {{ form }}
+            </th>
+          </tr>
+        </table>
+        <br>
+        <button type="submit" class="btn btn-primary" id="submit">Salvar</button>
+        <p><a href="{% url 'agendar_reuniao:scheduled' %}" style="font-size:30px;">Reuniões marcadas</a></p>
+    </div>
+</form>
+{% endblock %}

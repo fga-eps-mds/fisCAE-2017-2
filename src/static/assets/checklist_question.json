@@ -1,0 +1,538 @@
+{
+  "items": [
+    {
+      "item_number": "1",
+      "question_title":"A respeito dos arredores da escola:",
+      "description": "Existe lixo a céu aberto nos arredores da escola?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "2",
+      "question_title":"A respeito dos arredores da escola:",
+      "description": "Há água parada?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "3",
+      "question_title":"A respeito dos arredores da escola:",
+      "description": "Lixeiras destampadas ou sacos de lixos fora da lixeira nas redondezas da escola?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "4",
+      "question_title":"A respeito dos arredores da escola:",
+      "description": "O local está sujo ou tem objetos abandonados?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "5",
+      "question_title":"A respeito dos arredores da escola:",
+      "description": "Há animais nas proximidades da escola?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "6",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": "A escola possui um estoque de alimentos? ",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "7",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": " Há algum alimento vencido no estoque da escola? ",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "8",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": "Existe um controle de entrada e saída dos alimentos dentro do estoque?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "9",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": " No estoque existe embalagens roídas ou com insetos?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "10",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": "Possui alimentos no chão, dentro de caixas ou desorganizados?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "11",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": " Há embalagens abertas?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "12",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": "Há alimentos acondicionados próximos a produtos de limpeza? ",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "13",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": " Quanto às prateleiras do estoque, elas estão enferrujadas ou muito próximas às paredes? ",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "14",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": " O local onde estão acomodados os alimentos é abafado ou mal iluminado?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "15",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": "Os alimentos estão em contato com o sol?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "16",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": "O telhado da despensa de alimentos não possui forro ou está com furos?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "17",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": "O congelador existente no estoque possui um termômetro?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "18",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": " O chão ou a parede da sala onde se estoca os alimentoes são difíceis de se limpar? ",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "19",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": " Existe telas de proteção nas janelas e portas do estoque?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "20",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": " Há lixo armazenado em local aberto junto aos alimentos no estoque?s",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "21",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": "Há insetos sobrevoando o local ou animais com livre circulação?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "22",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": "O ambiente está sujo ou desorganizado?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "23",
+      "question_title":"Sobre o estoque de alimentos:",
+      "description": "Há objetos que não sejam alimentos nesse ambiente?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "24",
+      "question_title":"A respeito da cozinha:",
+      "description": " A escola possui uma cozinha?",
+      "question_type": "HS"
+    },
+        {
+      "item_number": "25",
+      "question_title":"A respeito da cozinha:",
+      "description": "O tamanho da cozinha é adequado?",
+      "question_type": "HS"
+    },
+        {
+      "item_number": "26",
+      "question_title":"A respeito da cozinha:",
+      "description": "Presença de planilha de rotina de higienização das instalações?",
+      "question_type": "HS"
+    },
+        {
+      "item_number": "27",
+      "question_title":"A respeito da cozinha:",
+      "description": "Produtos de higienização regularizados pelo Ministério da Saúde?",
+      "question_type": "HS"
+    },
+        {
+      "item_number": "28",
+      "question_title":"A respeito da cozinha:",
+      "description": "Há a presença de ralo sifonado com o sistema abre e fecha?",
+      "question_type": "HS"
+    },
+        {
+      "item_number": "29",
+      "question_title":"A respeito da cozinha:",
+      "description": "As instalações elétricas são adequadas?",
+      "question_type": "HS"
+    },
+         {
+      "item_number": "30",
+      "question_title":"A respeito da cozinha:",
+      "description": "Existem lavatórios na área de manipulação com água corrente, em posições adequadas em relação ao fluxo de produção e serviço, e em número suficiente de modo a atender toda a área de produção?",
+      "question_type": "HS"
+    },
+         {
+      "item_number": "31",
+      "question_title":"A respeito da cozinha:",
+      "description": "A quantidade de equipamentos é suficiente? (geladeira, freezer, fogão, liquidificador, cortador de legumes, etc).",
+      "question_type": "HS"
+    },
+         {
+      "item_number": "32",
+      "question_title":"A respeito da cozinha:",
+      "description": "A quantidade de utensílios é suficiente?(pratos, copos, talheres, panelas, conchas, facas, etc).",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "33",
+      "question_title":"A respeito da cozinha:",
+      "description": " Sobre as condições físicas da cozinha, o telhado não possui forro ou possui furos?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "34",
+      "question_title":"A respeito da cozinha:",
+      "description": " A cozinha é mal iluminada?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "35",
+      "question_title":"A respeito da cozinha:",
+      "description": " As portas e janelas da cozinha possuem telas?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "36",
+      "question_title":"A respeito da cozinha:",
+      "description": " O chão e as paredes da cozinha são difíceis de limpar?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "37",
+      "question_title":"A respeito da cozinha:",
+      "description": "Há lixo armazenado em local aberto dentro da cozinha?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "38",
+      "question_title":"A respeito da cozinha:",
+      "description": "Há insetos, ou animais na cozinha?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "39",
+      "question_title":"A respeito da cozinha:",
+      "description": "O ambiente dentro da cozinha está sujo ou desorganizado?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "40",
+      "question_title":"Sobre a manipulação dos alimentos:",
+      "description": "Os responsáveis por manipular o alimento utilizam uniforme completo?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "41",
+      "question_title":"Sobre a manipulação dos alimentos:",
+      "description": "Os manipuladores dos alimentos e visitantes estão todos com toucas?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "42",
+      "question_title":"Sobre a manipulação dos alimentos:",
+      "description": "Os manipuladores de alimentos estão com as unhas grandes ou com esmalte?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "43",
+      "question_title":"Sobre a manipulação dos alimentos:",
+      "description": "Tem algum manipulador de alimentos doente?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "44",
+      "question_title":"Sobre a manipulação dos alimentos:",
+      "description": "As manipuladoras de alimentos estão com acessórios (brincos, colares ou pulseiras)?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "45",
+      "question_title":"Sobre a manipulação dos alimentos:",
+      "description": "Os manipuladores estão com maquiagem? (batom, sombra, lápis de olho, etc).",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "46",
+      "question_title":"Sobre a manipulação dos alimentos:",
+      "description": "Higienização de frutas e verduras é realizada de maneira adequada?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "47",
+      "question_title":"Sobre a manipulação dos alimentos:",
+      "description": "A água sanitária utilizada é própria para alimentos?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "48",
+      "question_title":"Sobre a manipulação dos alimentos:",
+      "description": "O descongelamento dos alimentos é feito na geladeira?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "49",
+      "question_title":"Sobre a manipulação dos alimentos:",
+      "description": "É utilizada água potável no preparo de gelo e alimentos?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "50",
+      "question_title":"Sobre a manipulação dos alimentos:",
+      "description": "Os alimentos preparados, que serão congelados ou refrigerados, são adequadamente acondicionados e identificados com: nome da preparação, data de preparo e prazo de validade após a abertura ou retirada da embalagem original?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "51",
+      "question_title":"Sobre o refeitório e a maneira como o alimento é servido:",
+      "description": "Caso as refeições aconteçam em sala de aula, a escola possui carrinho para transportar os alimentos?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "52",
+      "question_title":"Sobre o refeitório e a maneira como o alimento é servido:",
+      "description": "Os carrinhos estão em boas condições e em quantidades suficientes?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "53",
+      "question_title":"Sobre o refeitório e a maneira como o alimento é servido:",
+      "description": "Todos os alimentos prontos estão acondicionados com proteção?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "54",
+      "question_title":"Sobre o refeitório e a maneira como o alimento é servido:",
+      "description": " Todas as refeições estão sendo servidas com talheres?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "55",
+      "question_title":"Sobre o refeitório e a maneira como o alimento é servido:",
+      "description": " Os alunos estão compartilhando copos no bebedouro?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "56",
+      "question_title":"Sobre o refeitório e a maneira como o alimento é servido:",
+      "description": " Há pia com sabonete e papel toalha para higienizar as mãos nesse ambiente?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "57",
+      "question_title":"Sobre o refeitório e a maneira como o alimento é servido:",
+      "description": "Sobre as condições físicas do refeitório, o telhado não possui forro ou possui furos?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "58",
+      "question_title":"Sobre o refeitório e a maneira como o alimento é servido:",
+      "description": "O refeitório é mal iluminado?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "59",
+      "question_title":"Sobre o refeitório e a maneira como o alimento é servido:",
+      "description": "As portas e janelas do refeitório possuem telas?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "60",
+      "question_title":"Sobre o refeitório e a maneira como o alimento é servido:",
+      "description": "O chão e as paredes do refeitório são difíceis de limpar?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "61",
+      "question_title":"Sobre o refeitório e a maneira como o alimento é servido:",
+      "description": "Há lixo armazenado no refeitório em local inapropriado?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "62",
+      "question_title":"Sobre o refeitório e a maneira como o alimento é servido:",
+      "description": " Há insetos, ou animais no local do refeitrório?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "64",
+      "question_title":"Sobre encanamentos, água e esgoto:",
+      "description": "Reservatório de água e encanamentos acessíveis, dotados de tampas, em satisfatória condição de uso, livre de vazamentos, infiltrações e descascamentos?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "65",
+      "question_title":"Sobre encanamentos, água e esgoto:",
+      "description": "Fossas e esgotos conectados à rede pública?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "66",
+      "question_title":"Sobre encanamentos, água e esgoto:",
+      "description": "Caixas de gordura em adequado estado de conservação e funcionamento?",
+      "question_type": "HS"
+    },
+    {
+      "item_number": "67",
+      "question_title":"A respeito dos alimentos servidos:",
+      "description": "Foi fornecida alimentação escolar na data da visita?",
+      "question_type": "AL"
+    },
+    {
+      "item_number": "68",
+      "question_title":"A respeito dos alimentos servidos:",
+      "description": " A maioria dos alunos rejeitou a alimentação oferecida?",
+      "question_type": "AL"
+    },
+    {
+      "item_number": "69",
+      "question_title":"A respeito dos alimentos servidos:",
+      "description": " A escola oferece alimentos proibidos?",
+      "question_type": "AL"
+    },
+    {
+      "item_number": "70",
+      "question_title":"A respeito dos alimentos servidos:",
+      "description": "O cardápio não está sendo seguido?",
+      "question_type": "AL"
+    },
+    {
+      "item_number": "71",
+      "question_title":"A respeito dos alimentos servidos:",
+      "description": "O cardápio prevê a oferta de, no mínimo, três porções de frutas e hortaliças por semana?",
+      "question_type": "AL"
+    },
+    {
+      "item_number": "72",
+      "question_title":"A respeito dos alimentos servidos:",
+      "description": "O cardápio é acompanhado de fichas técnicas de preparo?",
+      "question_type": "AL"
+    },
+    {
+      "item_number": "73",
+      "question_title":"A respeito dos alimentos servidos:",
+      "description": "O cardápio prevê a oferta de mais de duas porções de doces ou preparações doces por semana?",
+      "question_type": "AL"
+    },
+    {
+      "item_number": "74",
+      "question_title":"A respeito dos alimentos servidos:",
+      "description": "são realizados testes de aceitabilidade entre os alunos?",
+      "question_type": "AL"
+    },
+    {
+      "item_number": "75",
+      "question_title":"A respeito dos alimentos servidos:",
+      "description": " As refeições não são saudáveis (não tem boa aparência/não são frescas/não há variedade de alimentos)?",
+      "question_type": "AL"
+    },
+    {
+      "item_number": "75",
+      "question_title":"A respeito dos alimentos servidos:",
+      "description": " As refeições não são saudáveis (não tem boa aparência/não são frescas/não há variedade de alimentos)?",
+      "question_type": "AL"
+    },
+    {
+      "item_number": "76",
+      "question_title":"A respeito dos alimentos servidos:",
+      "description": "A alimentação escolar tem paladar saboroso e gostoso?",
+      "question_type": "AL"
+    },
+    {
+      "item_number": "77",
+      "question_title":"A respeito dos alimentos servidos:",
+      "description": "Os cardápios são variados?",
+      "question_type": "AL"
+    },
+    {
+      "item_number": "78",
+      "question_title":"A respeito dos alimentos servidos:",
+      "description": "Os cardápios estão afixados para visualização dos alunos e comunidade escolar?",
+      "question_type": "AL"
+    },
+    {
+      "item_number": "79",
+      "question_title":"A respeito dos alimentos servidos:",
+      "description": "Existe um cardápio mais aceito?",
+      "question_type": "AL"
+    },
+    {
+      "item_number": "80",
+      "question_title":"A respeito dos alimentos servidos:",
+      "description": "Existe um cardápio menos aceito?",
+      "question_type": "AL"
+    },
+    {
+      "item_number": "81",
+      "question_title":"Sobre a documentação:",
+      "description": "Existe um registro de imunização?",
+      "question_type": "D"
+    },
+    {
+      "item_number": "82",
+      "question_title":"Sobre a documentação:",
+      "description": "Existe um registro de higienização dos utensílios?",
+      "question_type": "D"
+    },
+    {
+      "item_number": "83",
+      "question_title":"Sobre a documentação:",
+      "description": "Existe de registro de capacitação ou treinamento de merendeiras?",
+      "question_type": "D"
+    },
+    {
+      "item_number": "84",
+      "question_title":"Sobre a documentação:",
+      "description": " Existe um registro de potabilidade da água?",
+      "question_type": "D"
+    },
+    {
+      "item_number": "85",
+      "question_title":"Sobre a documentação:",
+      "description": "Existe um registro de exames periódicos dos manipuladores?",
+      "question_type": "D"
+    },
+    {
+      "item_number": "86",
+      "question_title":"Sobre a documentação:",
+      "description": "Presença de comprovante de limpeza da caixa d'água potável?(semestral)",
+      "question_type": "D"
+    },
+    {
+      "item_number": "87",
+      "question_title":"Sobre a documentação:",
+      "description": "Presença de comprovante de limpeza do reservatório de água subterrâneo? (semestral)",
+      "question_type": "D"
+    },
+    {
+      "item_number": "88",
+      "question_title":"Sobre a documentação:",
+      "description": "Presença de comprovante de limpeza da caixa de gordura? (quinzenal)",
+      "question_type": "D"
+    },
+    {
+      "item_number": "89",
+      "question_title":"Sobre a documentação:",
+      "description": "Presença de comprovante de desinsetização e desratização? (semestral)",
+      "question_type": "D"
+    }
+  ]
+}

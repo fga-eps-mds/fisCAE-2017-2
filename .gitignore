@@ -1,4 +1,15 @@
 *.pyc
 __pycache__
-db.sqlite3
 .DS_Store
+src/user/migrations/*
+src/search_school/migrations/*
+src/checklist/migrations/*
+src/agendar_reuniao/migrations/*
+src/agendar_visita/migrations/*
+src/nuvem_civica/migrations/*
+src/acessar_documento/migrations/*
+coverage_html_report
+db.sqlite3
+*.coverage
+src/.coverage
+src/coverage_html_report/*

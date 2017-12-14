@@ -1,0 +1,38 @@
+{% extends "Base.html" %}
+{% block body %}
+    <style>
+        table, th, td {
+            border: none;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        .center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <div style="text-align: left;margin-top: 5%;">
+        <br>
+        {% if checklists %}
+        {% for visit in visits%}
+            <div id="formstyle">
+                <h3>{{ visit.schoolName }}</h3>
+            {% for checklist in checklists %}
+                {% if checklist.visit_id == visit.id %}
+                <div id="formstyle" style="font-size:25px;">
+                    <a href="/visualizar-checklist/{{ checklist.id }}">{{ checklist.get_checklist_type_display }} </a>
+                    <small>{{ checklist.created_date }}</small>
+                    <br>
+                </div>
+                {% endif %}
+            {% endfor%}
+            </div>
+        {% endfor %}
+        {% else %}
+        <div class="center">
+            <h3>Nenhum checklist foi preenchido.</h3>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

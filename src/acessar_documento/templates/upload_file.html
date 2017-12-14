@@ -1,0 +1,18 @@
+{% extends "Base.html" %}
+
+{% block body %}
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <br><br>
+  {% if messages %}
+  {% for message in messages %}
+    <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}" style="font-size: 20px">{{ message|safe }}</div>
+  {% endfor %}
+  {% endif %}
+  <p align="center">Título: {{ form.title }}</p>
+  <p align="center"> {{ form.arquivo }}</p>
+  <button type="submit" class="btn btn-success">Salvar</button>
+</form>
+<br>
+<a href="{% url 'acessar_documento:documentsAll' %}" class="btn btn-primary">Arquivos salvos</a>
+{% endblock %}

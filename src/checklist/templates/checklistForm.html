@@ -1,0 +1,34 @@
+{% extends "Base.html" %}
+{% block body %}
+
+<div class="page-title top-content" style="position: relative; z-index: 0; background-image: none;
+  background-position: initial initial; background-repeat: initial initial;
+  top: 50%; left: 50%;transform: translate(-50%, -50%)">
+  <div class="container">
+    <div class="content container">
+      <div class="row">
+        
+        <div class="page-title-text wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+          <h1 id="checklistTitle">Escolha um formulário:</h1>
+        </div>
+
+        <form method="post" novalidate>
+            {% csrf_token %} {% for field in checklistForm %}
+            <div class="checklistAnswer">{{ field }}</div>
+            {% endfor %}
+          </div>
+            <button class="btn btn-info" type="submit">Começar</button>
+          </div>
+        </form>
+        <br><br>
+        <div id="successMessage">
+          <a href="{% url 'agendar_visita:visitScheduled' %}" button class="backButton">
+            Voltar para visitas</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

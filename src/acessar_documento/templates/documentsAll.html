@@ -1,0 +1,13 @@
+{% extends "Base.html" %}
+
+{% block body %}
+    <br><br>
+    {% for l in lista %}
+    <ul>
+        {% if l.title  != '.Ds_Store' %}
+        <p style="font-size: 25px"><a href="{% url 'acessar_documento:viewpdf' pk=l %}">{{ l }}</a><br></p>
+        {% endif %}
+    </ul>
+    {% endfor %}
+    <a href="{% url 'acessar_documento:upload_file' %}" class="btn btn-primary">Adicionar arquivo</a>    
+{% endblock %}

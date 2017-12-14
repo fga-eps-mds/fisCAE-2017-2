@@ -2,16 +2,36 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Advisor(models.Model):
+class Person(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=64, null=False)
-    phone = models.CharField(max_length=13, null=True)
-    email = models.CharField(max_length=100, null=False)
+    email = models.EmailField(max_length=100, null=False)
+
+
+class Advisor(Person):
     cpf = models.CharField(max_length=14, null=False)
-    # endereço
+    tipo_cae = models.CharField(default='Municipal', max_length=9, null=False)
+    nome_cae = models.CharField(default='CAE', max_length=50, null=False)
     cep = models.CharField(max_length=10, null=False)
-    descricao = models.CharField(max_length=50, null=True)
     bairro = models.CharField(max_length=30, null=False)
     municipio = models.CharField(max_length=30, null=False)
     uf = models.CharField(max_length=2, null=False)
-    # endereço
+
+    class Meta:
+        permissions = (
+            ('advisor', 'Advisor permissions'),
+        )
+
+
+class President(Advisor):
+    class Meta:
+        permissions = (
+            ('president', 'President permissions'),
+        )
+
+
+class Administrator(Person):
+    class Meta:
+        permissions = (
+            ('administrator', 'Administrator permissions'),
+        )

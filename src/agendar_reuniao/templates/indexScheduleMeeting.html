@@ -1,0 +1,32 @@
+{% extends "Base.html" %}
+{% block body %}
+
+{% if request.user and request.user.is_authenticated %}    
+<div id="personalizadoform" >
+    <h1>Agendar Reunião</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="local" style="font-size:20px; display:inline-block;width:100px;">Local</label>
+        <input type="" style="text-align:center ; width:30% ; height:40px" name="local" id="local" maxlength="30" placeholder="Insira o local da reuniao" required><P></P>
+        <label for="date" style="font-size:20px;display:inline-block;width:100px;">Data</label>
+        <input type="date" style="text-align:center; color:#707070; border:1px; border-style: solid; border-radius: 8px ; width:30% ; height:40px" name="date" id="date" required><p></p>
+        <label for="time" style="font-size:20px; display:inline-block;width:100px;">Horário</label>
+        <input type="time" style="text-align:center; color:#707070; border:1px; border-style: solid; border-radius: 8px ;width:30% ; height:40px" name="time" id="time" required><p></p>
+        <label for="note" style="font-size:20px; display:inline-block;width:100px;">Obs.:</label>
+        <input type="" style="text-align:center; color:black ; width:30% ; height:100px" name="note" id="note" maxlenght="1000" placeholder="Insira as observacoes" required size="100px"><P></P>
+        <button type="submit" class="btn btn-primary" id="submit">Agendar</button>
+    </form>
+
+    <a href="{% url 'agendar_reuniao:scheduled' %}" class="backButton" style="font-size:30px">Reuniões marcadas</a>        
+</div>
+{% else %}
+
+  <div id="errorMessage">
+    <br><br><br><br>
+      <h3>Acesso não permitido</h3><br><br>
+      <a href="{% url 'user:login' %}" button class="backButton">Faça login para continuar</button><br><br>
+  </div>
+            
+{% endif %}
+
+{% endblock %}

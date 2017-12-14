@@ -1,0 +1,43 @@
+{% extends "Base.html" %}
+{% block body %}
+
+{% if request.user and request.user.is_authenticated %}
+
+<script type="text/javascript">
+    function LoginRedirect() {
+        location.href="user/login" }
+    function HomeRedirect() {
+        location.href="/" }
+    function IndexScheduleMeetingRedirect() {
+        location.href="indexScheduleMeeting" }
+</script>
+
+<div class="page-title" >   
+    <div id = "scheduleTitles">
+        <h1>Reuniões Agendadas</h1>
+        </div>
+    <form action="scheduled"  method="POST">
+        {% csrf_token %}
+        {% for a in todosAgendamentos %}
+        <div id="formstyle" style="font-size:30px;">
+            Local: {{ a.local }}<br>
+            Data: {{ a.data }}<br>
+            Horario: {{ a.horario }}<br>
+            Observações: {{ a.observacoes }}<br>
+            <a href="{% url 'agendar_reuniao:schedule_delete' a.id %}">Excluir</a> |   
+            <a href="{% url 'agendar_reuniao:edit_schedule' a.id %}">Editar</a>         
+            </div>   
+            <br>
+        {% endfor %}
+    </form>
+    <a href="{% url 'agendar_reuniao:indexScheduleMeeting' %}" class="btn btn-primary">Novo agendamento</a>                                    
+
+{% else %}
+    <div id="errorMessage">
+        <br><br><br><br>
+            <h3>Acesso não permitido</h3><br><br>
+            <a href="{% url 'user:login' %}" button class="backButton">Faça login para continuar</button><br><br>
+    </div>         
+{% endif %}  
+
+{% endblock %}

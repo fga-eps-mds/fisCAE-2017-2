@@ -1,0 +1,23 @@
+engines:
+  duplication:
+    enabled: true
+    checks:
+      Similar code:
+        enabled: false
+    config:
+      languages:
+      - python
+  fixme:
+    enabled: true
+  radon:
+    enabled: true
+  pep8:
+    enabled: true
+
+exclude_patterns:
+- "**.css"
+- "**.js"
+- "**.html"
+- "**/migrations/**"
+- "**/tests.py"
+- "src/static/**"
