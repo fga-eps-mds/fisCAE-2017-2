@@ -47,8 +47,8 @@ Primeiramente é necessário ter o docker instalado, caso não tenha acesse o [I
  &emsp;&emsp; Toda a documentação pode ser acessada através da wiki do projeto [aqui](https://github.com/fga-gpp-mds/fisCAE-2017-2/wiki).
 
 ## Criação de administrador
- <p>Acesse a pasta "src" que está localizada dentro da pasta do projeto, abra o shell digitando: python manage.py shell.
- No shell, digite os camando listados abaixo na mesma ordem apresentada.</p>
+ Acesse a pasta src que está localizada dentro da pasta do projeto, abra o shell digitando: python manage.py shell.
+ No shell, digite os camandos listados abaixo na mesma ordem apresentada.
 
 from django.contrib.auth.models import User    
 from user.models import Person, Administrator     
